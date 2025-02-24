@@ -124,7 +124,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(SolutionDir)MainServer\h;$(SolutionDir)MainServer\cpp;$(SolutionDir)MainServer\pch\;$(SolutionDir)ServerCore\h\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)MainServer\h;$(SolutionDir)MainServer\cpp;$(SolutionDir)MainServer\pch\;$(SolutionDir)ServerCore\h\;$(SolutionDir)ServerCore\cppx\h\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
