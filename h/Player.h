@@ -3,7 +3,7 @@
 class Player : public enable_shared_from_this<Player>
 {
 public:
-	Player();
+	Player(unsigned long long id);
 	virtual ~Player();
 
 	unsigned long long GetId() const;

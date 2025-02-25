@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "Player.h"
 
-Player::Player()
+Player::Player(unsigned long long id) : m_id(id)
 {
 }
 
