@@ -21,6 +21,8 @@
   <ItemGroup>
     <ClCompile Include="cpp\GameSession.cpp" />
     <ClCompile Include="cpp\main.cpp" />
+    <ClCompile Include="cpp\Player.cpp" />
+    <ClCompile Include="cpp\Room.cpp" />
     <ClCompile Include="pch\pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
@@ -28,6 +30,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="h\GameSession.h" />
+    <ClInclude Include="h\Player.h" />
+    <ClInclude Include="h\Room.h" />
     <ClInclude Include="pch\pch.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
