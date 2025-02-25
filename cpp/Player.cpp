@@ -9,6 +9,11 @@ Player::~Player()
 {
 }
 
+unsigned long long Player::GetId() const
+{
+	return m_id;
+}
+
 GameSession* Player::GetSession() const
 {
 	return m_session;
