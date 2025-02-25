@@ -6,8 +6,11 @@ public:
 	Player();
 	virtual ~Player();
 
+	GameSession* GetSession() const;
+	shared_ptr<Room> GetRoom() const;
+
 private:
-	weak_ptr<GameSession> m_session;
-	atomic<weak_ptr<Room>> m_room;
+	GameSession* m_session;
+	weak_ptr<Room> m_room;
 };
 
