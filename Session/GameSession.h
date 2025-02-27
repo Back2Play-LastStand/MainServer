@@ -11,5 +11,10 @@ public:
 	virtual int OnRecv(byte* buffer, int len) override;
 	virtual void OnSend(int len) override;
 	virtual void OnDisconnected() override;
+
+	shared_ptr<Player> GetPlayer();
+
+private:
+	shared_ptr<Player> m_player;
 };
 

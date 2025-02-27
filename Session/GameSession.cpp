@@ -17,3 +17,8 @@ void GameSession::OnSend(int len)
 void GameSession::OnDisconnected()
 {
 }
+
+shared_ptr<Player> GameSession::GetPlayer()
+{
+	return m_player;
+}
