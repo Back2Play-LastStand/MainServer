@@ -19,3 +19,11 @@ shared_ptr<Room> Player::GetRoom() const
 {
 	return m_room.lock();
 }
+
+void Player::BeginPlay()
+{
+}
+
+void Player::Tick()
+{
+}
