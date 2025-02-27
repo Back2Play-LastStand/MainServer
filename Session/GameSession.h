@@ -11,5 +11,4 @@ public:
 	virtual int OnRecv(byte* buffer, int len) override;
 	virtual void OnSend(int len) override;
 	virtual void OnDisconnected() override;
-};
 
