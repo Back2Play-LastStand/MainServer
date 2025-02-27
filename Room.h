@@ -6,6 +6,8 @@ public:
 	Room();
 	virtual ~Room();
 
+	bool EnterPlayer(shared_ptr<Player> player);
+	bool LeavePlayer(unsigned long long objectId);
 	void BroadCast(vector<char> buffer, unsigned long long exceptId = 0);
 
 private:
