@@ -130,7 +130,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(SolutionDir)MainServer\Object\;$(SolutionDir)MainServer\Session\;$(SolutionDir)MainServer\pch\;$(SolutionDir)ServerCore\h\;$(SolutionDir)ServerCore\cppx\h\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)MainServer\Object\;$(SolutionDir)MainServer\Session\;$(SolutionDir)MainServer\pch\;$(SolutionDir)ServerCore\cpp\;$(SolutionDir)ServerCore\h\;$(SolutionDir)ServerCore\cppx\h\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
