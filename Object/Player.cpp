@@ -1,17 +1,13 @@
 #include "pch.h"
 #include "Player.h"
 
-Player::Player(unsigned long long id) : m_id(id)
+Player::Player(unsigned long long id)
 {
+	SetId(id);
 }
 
 Player::~Player()
 {
-}
-
-unsigned long long Player::GetId() const
-{
-	return m_id;
 }
 
 GameSession* Player::GetSession() const

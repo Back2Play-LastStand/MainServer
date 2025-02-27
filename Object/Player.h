@@ -1,17 +1,16 @@
 #pragma once
+#include "GameObject.h"
 
-class Player : public enable_shared_from_this<Player>
+class Player : public GameObject
 {
 public:
 	Player(unsigned long long id);
 	virtual ~Player();
 
-	unsigned long long GetId() const;
 	GameSession* GetSession() const;
 	shared_ptr<Room> GetRoom() const;
 
 private:
-	unsigned long long m_id;
 	GameSession* m_session;
 	weak_ptr<Room> m_room;
 };
