@@ -22,8 +22,10 @@ shared_ptr<Room> Player::GetRoom() const
 
 void Player::BeginPlay()
 {
+	Super::BeginPlay();
 }
 
 void Player::Tick()
 {
+	Super::Tick();
 }
