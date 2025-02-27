@@ -12,6 +12,9 @@ public:
 	void SetId(unsigned long long id) { m_objectId = id; }
 	void SetHp(unsigned int hp) { m_hp = hp; }
 
+	virtual void BeginPlay() {};
+	virtual void Tick() {};
+
 private:
 	unsigned long long m_objectId;
 	unsigned int m_hp = 0;
