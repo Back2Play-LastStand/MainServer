@@ -14,3 +14,4 @@ private:
 	unordered_map<unsigned long long, shared_ptr<Player>> m_players;
 };
 
+extern shared_ptr<Room> GRoom;
