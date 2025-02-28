@@ -1,6 +1,8 @@
 #include "pch.h"
 #include "Room.h"
 
+shared_ptr<Room> GRoom = make_shared<Room>();
+
 Room::Room()
 {
 }
