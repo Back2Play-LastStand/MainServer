@@ -3,6 +3,8 @@
 using PacketHandlerFunc = function<bool(Session*, BYTE*, int)>;
 extern PacketHandlerFunc GPacketHandler[UINT16_MAX];
 
+bool Handle_INVALID(Session* session, BYTE* buffer, int len);
+
 class ServerPacketHandler
 {
 	static bool HandlePacket(Session* session, BYTE* buffer, int len)
