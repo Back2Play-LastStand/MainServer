@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Object\GameObject.cpp" />
+    <ClCompile Include="ServerPacketHandler.cpp" />
     <ClCompile Include="Session\GameSession.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Object\Player.cpp" />
@@ -31,6 +32,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Object\GameObject.h" />
+    <ClInclude Include="ServerPacketHandler.h" />
     <ClInclude Include="Session\GameSession.h" />
     <ClInclude Include="Object\Player.h" />
     <ClInclude Include="Session\Room.h" />
