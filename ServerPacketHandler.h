@@ -19,5 +19,15 @@ public:
 		PacketHeader* header = reinterpret_cast<PacketHeader*>(buffer);
 		return GPacketHandler[header->id](session, buffer, len);
 	}
+
+	template<typename PacketType, typename ProcessFunc>
+	static bool HandlePacket(ProcessFunc func, Session* session, BYTE* buffer, int len)
+	{
+		PacketType pkt;
+		if (pkt.ParseFromArray(buffer + sizeof(PacketHeader), len - sizeof(PacketHeader)) == false)
+			return false;
+
+		return func(session, pkt);
+	}
 };
 
