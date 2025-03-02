@@ -20,6 +20,11 @@ void GameSession::OnDisconnected()
 	// TODO
 }
 
+Session* GameSession::GetSession()
+{
+	return this;
+}
+
 shared_ptr<Player> GameSession::GetPlayer()
 {
 	return m_player;

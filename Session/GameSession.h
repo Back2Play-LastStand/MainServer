@@ -12,6 +12,7 @@ public:
 	virtual void OnSend(int len) override;
 	virtual void OnDisconnected() override;
 
+	Session* GetSession();
 	shared_ptr<Player> GetPlayer();
 
 private:
