@@ -16,6 +16,8 @@ void GameSession::OnSend(int len)
 
 void GameSession::OnDisconnected()
 {
+	m_player->LeaveRoom();
+	// TODO
 }
 
 shared_ptr<Player> GameSession::GetPlayer()
