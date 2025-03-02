@@ -29,3 +29,22 @@ void Player::Tick()
 {
 	Super::Tick();
 }
+
+void Player::EnterRoom(shared_ptr<Room> gameRoom)
+{
+	if (auto room = m_room.lock())
+		return;
+
+	m_room = gameRoom;
+	if (auto room = m_room.lock())
+		room->EnterPlayer(static_pointer_cast<Player>(shared_from_this()));
+}
+
+void Player::LeaveRoom()
+{
+	if (auto room = m_room.lock())
+	{
+		room->LeavePlayer(GetId());
+		m_room.reset();
+	}
+}
