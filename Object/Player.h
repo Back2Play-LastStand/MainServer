@@ -17,6 +17,9 @@ public:
 	virtual void BeginPlay() override;
 	virtual void Tick() override;
 
+	void EnterRoom(shared_ptr<Room> gameRoom);
+	void LeaveRoom();
+
 private:
 	GameSession* m_session;
 	weak_ptr<Room> m_room;
