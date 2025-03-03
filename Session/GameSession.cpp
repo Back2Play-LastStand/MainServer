@@ -5,7 +5,7 @@ void GameSession::OnConnected(endpoint ep)
 {
 }
 
-int GameSession::OnRecv(byte* buffer, int len)
+void GameSession::OnRecv(byte* buffer, int len)
 {
 	auto session = GetSession();
 	ServerPacketHandler::HandlePacket(session, buffer, len);
