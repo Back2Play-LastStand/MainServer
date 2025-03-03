@@ -1,0 +1,9 @@
+Package: mysql-connector-cpp
+Version: 8.0.32
+Port-Version: 1
+Depends: lz4, openssl, protobuf, vcpkg-cmake, vcpkg-cmake-config, zlib, zstd
+Architecture: x64-windows
+Multi-Arch: same
+Abi: 1babbf1fc5b5fac6ef9028c21bae5a93156cbde78d61d0ccb2d807de6bb61d1c
+Description: This is a release of MySQL Connector/C++, the C++ interface for communicating with MySQL servers.
+Status: install ok installed
