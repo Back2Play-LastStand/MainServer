@@ -29,5 +29,20 @@ public:
 
 		return func(session, pkt);
 	}
+
+	template<typename T>
+	static vector<char> MakeSendBuffer(T& pkt, unsigned short id)
+	{
+		const unsigned short dataSize = static_cast<unsigned short>(pkt.ByteSizeLong());
+		const unsigned short packetSize = dataSize + sizeof(PacketHeader);
+
+		vector<char> sendBuffer = make_shared<vector<char>>(packetSize);
+		PacketHeader* header = reinterpret_cast<PacketHeader*>(sendBuffer.data() + 4, dataSize);
+		header->size = packetSize;
+		header->id = id;
+		assert(pkt.SerializeToArray(&header[1], dataSize));
+
+		return sendBuffer;
+	}
 };
 
