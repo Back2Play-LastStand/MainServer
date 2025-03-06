@@ -20,22 +20,69 @@ PROTOBUF_PRAGMA_INIT_SEG
 namespace _pb = ::PROTOBUF_NAMESPACE_ID;
 namespace _pbi = _pb::internal;
 
+namespace Protocol {
+PROTOBUF_CONSTEXPR Req_Enter::Req_Enter(
+    ::_pbi::ConstantInitialized) {}
+struct Req_EnterDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR Req_EnterDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~Req_EnterDefaultTypeInternal() {}
+  union {
+    Req_Enter _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 Req_EnterDefaultTypeInternal _Req_Enter_default_instance_;
+PROTOBUF_CONSTEXPR Res_Enter::Res_Enter(
+    ::_pbi::ConstantInitialized) {}
+struct Res_EnterDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR Res_EnterDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~Res_EnterDefaultTypeInternal() {}
+  union {
+    Res_Enter _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 Res_EnterDefaultTypeInternal _Res_Enter_default_instance_;
+}  // namespace Protocol
+static ::_pb::Metadata file_level_metadata_Protocol_2eproto[2];
 static constexpr ::_pb::EnumDescriptor const** file_level_enum_descriptors_Protocol_2eproto = nullptr;
 static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_Protocol_2eproto = nullptr;
-const uint32_t TableStruct_Protocol_2eproto::offsets[1] = {};
-static constexpr ::_pbi::MigrationSchema* schemas = nullptr;
-static constexpr ::_pb::Message* const* file_default_instances = nullptr;
+
+const uint32_t TableStruct_Protocol_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::Protocol::Req_Enter, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::Protocol::Res_Enter, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+};
+static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
+  { 0, -1, -1, sizeof(::Protocol::Req_Enter)},
+  { 6, -1, -1, sizeof(::Protocol::Res_Enter)},
+};
+
+static const ::_pb::Message* const file_default_instances[] = {
+  &::Protocol::_Req_Enter_default_instance_._instance,
+  &::Protocol::_Res_Enter_default_instance_._instance,
+};
 
 const char descriptor_table_protodef_Protocol_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
-  "\n\016Protocol.protob\006proto3"
+  "\n\016Protocol.proto\022\010Protocol\"\013\n\tReq_Enter\""
+  "\013\n\tRes_Enterb\006proto3"
   ;
 static ::_pbi::once_flag descriptor_table_Protocol_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_Protocol_2eproto = {
-    false, false, 24, descriptor_table_protodef_Protocol_2eproto,
+    false, false, 60, descriptor_table_protodef_Protocol_2eproto,
     "Protocol.proto",
-    &descriptor_table_Protocol_2eproto_once, nullptr, 0, 0,
+    &descriptor_table_Protocol_2eproto_once, nullptr, 0, 2,
     schemas, file_default_instances, TableStruct_Protocol_2eproto::offsets,
-    nullptr, file_level_enum_descriptors_Protocol_2eproto,
+    file_level_metadata_Protocol_2eproto, file_level_enum_descriptors_Protocol_2eproto,
     file_level_service_descriptors_Protocol_2eproto,
 };
 PROTOBUF_ATTRIBUTE_WEAK const ::_pbi::DescriptorTable* descriptor_table_Protocol_2eproto_getter() {
@@ -44,9 +91,99 @@ PROTOBUF_ATTRIBUTE_WEAK const ::_pbi::DescriptorTable* descriptor_table_Protocol
 
 // Force running AddDescriptors() at dynamic initialization time.
 PROTOBUF_ATTRIBUTE_INIT_PRIORITY2 static ::_pbi::AddDescriptorsRunner dynamic_init_dummy_Protocol_2eproto(&descriptor_table_Protocol_2eproto);
+namespace Protocol {
+
+// ===================================================================
+
+class Req_Enter::_Internal {
+ public:
+};
+
+Req_Enter::Req_Enter(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase(arena, is_message_owned) {
+  // @@protoc_insertion_point(arena_constructor:Protocol.Req_Enter)
+}
+Req_Enter::Req_Enter(const Req_Enter& from)
+  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase() {
+  Req_Enter* const _this = this; (void)_this;
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  // @@protoc_insertion_point(copy_constructor:Protocol.Req_Enter)
+}
+
+
+
+
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData Req_Enter::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl,
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl,
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*Req_Enter::GetClassData() const { return &_class_data_; }
+
+
+
+
+
+
+
+::PROTOBUF_NAMESPACE_ID::Metadata Req_Enter::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_Protocol_2eproto_getter, &descriptor_table_Protocol_2eproto_once,
+      file_level_metadata_Protocol_2eproto[0]);
+}
+
+// ===================================================================
+
+class Res_Enter::_Internal {
+ public:
+};
+
+Res_Enter::Res_Enter(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase(arena, is_message_owned) {
+  // @@protoc_insertion_point(arena_constructor:Protocol.Res_Enter)
+}
+Res_Enter::Res_Enter(const Res_Enter& from)
+  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase() {
+  Res_Enter* const _this = this; (void)_this;
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  // @@protoc_insertion_point(copy_constructor:Protocol.Res_Enter)
+}
+
+
+
+
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData Res_Enter::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl,
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl,
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*Res_Enter::GetClassData() const { return &_class_data_; }
+
+
+
+
+
+
+
+::PROTOBUF_NAMESPACE_ID::Metadata Res_Enter::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_Protocol_2eproto_getter, &descriptor_table_Protocol_2eproto_once,
+      file_level_metadata_Protocol_2eproto[1]);
+}
 
 // @@protoc_insertion_point(namespace_scope)
+}  // namespace Protocol
 PROTOBUF_NAMESPACE_OPEN
+template<> PROTOBUF_NOINLINE ::Protocol::Req_Enter*
+Arena::CreateMaybeMessage< ::Protocol::Req_Enter >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::Protocol::Req_Enter >(arena);
+}
+template<> PROTOBUF_NOINLINE ::Protocol::Res_Enter*
+Arena::CreateMaybeMessage< ::Protocol::Res_Enter >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::Protocol::Res_Enter >(arena);
+}
 PROTOBUF_NAMESPACE_CLOSE
 
 // @@protoc_insertion_point(global_scope)
