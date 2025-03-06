@@ -2,5 +2,6 @@
 
 int main()
 {
+	ServerPacketHandler::Init();
 	return 0;
 }
