@@ -157,7 +157,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(SolutionDir)Libraries\include\;$(SolutionDir)MainServer\Object\;$(SolutionDir)MainServer\Session\;$(SolutionDir)MainServer\pch\;$(SolutionDir)ServerCore\cpp\;$(SolutionDir)ServerCore\h\;$(SolutionDir)ServerCore\cppx\h\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Libraries\include\;$(SolutionDir)MainServer\Object\;$(SolutionDir)MainServer\Session\;$(SolutionDir)MainServer\pch\;$(SolutionDir)ServerCore\cpp\;$(SolutionDir)ServerCore\h\;$(SolutionDir)ServerCore\cppx\h\;$(SolutionDir)MainServer\Protocol\</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -179,7 +179,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(SolutionDir)Libraries\include\;$(SolutionDir)MainServer\Object\;$(SolutionDir)MainServer\Session\;$(SolutionDir)MainServer\pch\;$(SolutionDir)ServerCore\cpp\;$(SolutionDir)ServerCore\h\;$(SolutionDir)ServerCore\cppx\h\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Libraries\include\;$(SolutionDir)MainServer\Object\;$(SolutionDir)MainServer\Session\;$(SolutionDir)MainServer\pch\;$(SolutionDir)ServerCore\cpp\;$(SolutionDir)ServerCore\h\;$(SolutionDir)ServerCore\cppx\h\;$(SolutionDir)MainServer\Protocol\</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
