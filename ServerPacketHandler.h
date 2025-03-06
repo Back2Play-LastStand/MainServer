@@ -3,6 +3,10 @@
 using PacketHandlerFunc = function<bool(Session*, BYTE*, int)>;
 extern PacketHandlerFunc GPacketHandler[UINT16_MAX];
 
+enum : unsigned short
+{
+};
+
 bool Handle_INVALID(Session* session, BYTE* buffer, int len);
 
 class ServerPacketHandler
@@ -10,7 +14,7 @@ class ServerPacketHandler
 public:
 	static void Init()
 	{
-		for (int i = 0; i < UINT16_MAX;i++)
+		for (int i = 0; i < UINT16_MAX; i++)
 			GPacketHandler[i] = Handle_INVALID;
 	}
 
@@ -45,4 +49,3 @@ public:
 		return sendBuffer;
 	}
 };
-
