@@ -44,6 +44,7 @@ struct TableStruct_Struct_2eproto {
 extern const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_Struct_2eproto;
 PROTOBUF_NAMESPACE_OPEN
 PROTOBUF_NAMESPACE_CLOSE
+namespace Protocol {
 
 // ===================================================================
 
@@ -63,6 +64,7 @@ PROTOBUF_NAMESPACE_CLOSE
 
 // @@protoc_insertion_point(namespace_scope)
 
+}  // namespace Protocol
 
 // @@protoc_insertion_point(global_scope)
 
