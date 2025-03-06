@@ -5,9 +5,12 @@ extern PacketHandlerFunc GPacketHandler[UINT16_MAX];
 
 enum : unsigned short
 {
+	PKT_REQ_ENTER = 1000,
+	PKT_RES_ENTER = 1001,
 };
 
 bool Handle_INVALID(Session* session, BYTE* buffer, int len);
+bool Handle_REQ_ENTER(Session* session, Protocol::REQ_ENTER& pkt);
 
 class ServerPacketHandler
 {
@@ -16,7 +19,9 @@ public:
 	{
 		for (int i = 0; i < UINT16_MAX; i++)
 			GPacketHandler[i] = Handle_INVALID;
+		GPacketHandler[PKT_REQ_ENTER] = [](Session* session, BYTE* buffer, int len) {return HandlePacket<Protocol::REQ_ENTER>(Handle_REQ_ENTER, session, buffer, len); };
 	}
+	static vector<char> MakeSendBuffer(Protocl::RES_ENTER& pkt) { return MakeSendBuffer(pkt, PKT_RES_ENTER); }
 
 	static bool HandlePacket(Session* session, BYTE* buffer, int len)
 	{

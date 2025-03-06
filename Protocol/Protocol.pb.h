@@ -45,39 +45,39 @@ struct TableStruct_Protocol_2eproto {
 };
 extern const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_Protocol_2eproto;
 namespace Protocol {
-class Req_ENTER;
-struct Req_ENTERDefaultTypeInternal;
-extern Req_ENTERDefaultTypeInternal _Req_ENTER_default_instance_;
-class Res_ENTER;
-struct Res_ENTERDefaultTypeInternal;
-extern Res_ENTERDefaultTypeInternal _Res_ENTER_default_instance_;
+class REQ_ENTER;
+struct REQ_ENTERDefaultTypeInternal;
+extern REQ_ENTERDefaultTypeInternal _REQ_ENTER_default_instance_;
+class RES_ENTER;
+struct RES_ENTERDefaultTypeInternal;
+extern RES_ENTERDefaultTypeInternal _RES_ENTER_default_instance_;
 }  // namespace Protocol
 PROTOBUF_NAMESPACE_OPEN
-template<> ::Protocol::Req_ENTER* Arena::CreateMaybeMessage<::Protocol::Req_ENTER>(Arena*);
-template<> ::Protocol::Res_ENTER* Arena::CreateMaybeMessage<::Protocol::Res_ENTER>(Arena*);
+template<> ::Protocol::REQ_ENTER* Arena::CreateMaybeMessage<::Protocol::REQ_ENTER>(Arena*);
+template<> ::Protocol::RES_ENTER* Arena::CreateMaybeMessage<::Protocol::RES_ENTER>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
 namespace Protocol {
 
 // ===================================================================
 
-class Req_ENTER final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:Protocol.Req_ENTER) */ {
+class REQ_ENTER final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:Protocol.REQ_ENTER) */ {
  public:
-  inline Req_ENTER() : Req_ENTER(nullptr) {}
-  ~Req_ENTER() override;
-  explicit PROTOBUF_CONSTEXPR Req_ENTER(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+  inline REQ_ENTER() : REQ_ENTER(nullptr) {}
+  ~REQ_ENTER() override;
+  explicit PROTOBUF_CONSTEXPR REQ_ENTER(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
 
-  Req_ENTER(const Req_ENTER& from);
-  Req_ENTER(Req_ENTER&& from) noexcept
-    : Req_ENTER() {
+  REQ_ENTER(const REQ_ENTER& from);
+  REQ_ENTER(REQ_ENTER&& from) noexcept
+    : REQ_ENTER() {
     *this = ::std::move(from);
   }
 
-  inline Req_ENTER& operator=(const Req_ENTER& from) {
+  inline REQ_ENTER& operator=(const REQ_ENTER& from) {
     CopyFrom(from);
     return *this;
   }
-  inline Req_ENTER& operator=(Req_ENTER&& from) noexcept {
+  inline REQ_ENTER& operator=(REQ_ENTER&& from) noexcept {
     if (this == &from) return *this;
     if (GetOwningArena() == from.GetOwningArena()
   #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
@@ -100,20 +100,20 @@ class Req_ENTER final :
   static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const Req_ENTER& default_instance() {
+  static const REQ_ENTER& default_instance() {
     return *internal_default_instance();
   }
-  static inline const Req_ENTER* internal_default_instance() {
-    return reinterpret_cast<const Req_ENTER*>(
-               &_Req_ENTER_default_instance_);
+  static inline const REQ_ENTER* internal_default_instance() {
+    return reinterpret_cast<const REQ_ENTER*>(
+               &_REQ_ENTER_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
     0;
 
-  friend void swap(Req_ENTER& a, Req_ENTER& b) {
+  friend void swap(REQ_ENTER& a, REQ_ENTER& b) {
     a.Swap(&b);
   }
-  inline void Swap(Req_ENTER* other) {
+  inline void Swap(REQ_ENTER* other) {
     if (other == this) return;
   #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
     if (GetOwningArena() != nullptr &&
@@ -126,7 +126,7 @@ class Req_ENTER final :
       ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(Req_ENTER* other) {
+  void UnsafeArenaSwap(REQ_ENTER* other) {
     if (other == this) return;
     GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
     InternalSwap(other);
@@ -134,14 +134,14 @@ class Req_ENTER final :
 
   // implements Message ----------------------------------------------
 
-  Req_ENTER* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<Req_ENTER>(arena);
+  REQ_ENTER* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<REQ_ENTER>(arena);
   }
   using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const Req_ENTER& from);
+  void CopyFrom(const REQ_ENTER& from);
   using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom( const Req_ENTER& from) {
-    Req_ENTER::MergeImpl(*this, from);
+  void MergeFrom( const REQ_ENTER& from) {
+    REQ_ENTER::MergeImpl(*this, from);
   }
   private:
   static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
@@ -159,15 +159,15 @@ class Req_ENTER final :
   void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
   void SharedDtor();
   void SetCachedSize(int size) const final;
-  void InternalSwap(Req_ENTER* other);
+  void InternalSwap(REQ_ENTER* other);
 
   private:
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "Protocol.Req_ENTER";
+    return "Protocol.REQ_ENTER";
   }
   protected:
-  explicit Req_ENTER(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+  explicit REQ_ENTER(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                        bool is_message_owned = false);
   public:
 
@@ -192,7 +192,7 @@ class Req_ENTER final :
   void _internal_set_playerid(uint64_t value);
   public:
 
-  // @@protoc_insertion_point(class_scope:Protocol.Req_ENTER)
+  // @@protoc_insertion_point(class_scope:Protocol.REQ_ENTER)
  private:
   class _Internal;
 
@@ -208,24 +208,24 @@ class Req_ENTER final :
 };
 // -------------------------------------------------------------------
 
-class Res_ENTER final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:Protocol.Res_ENTER) */ {
+class RES_ENTER final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:Protocol.RES_ENTER) */ {
  public:
-  inline Res_ENTER() : Res_ENTER(nullptr) {}
-  ~Res_ENTER() override;
-  explicit PROTOBUF_CONSTEXPR Res_ENTER(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+  inline RES_ENTER() : RES_ENTER(nullptr) {}
+  ~RES_ENTER() override;
+  explicit PROTOBUF_CONSTEXPR RES_ENTER(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
 
-  Res_ENTER(const Res_ENTER& from);
-  Res_ENTER(Res_ENTER&& from) noexcept
-    : Res_ENTER() {
+  RES_ENTER(const RES_ENTER& from);
+  RES_ENTER(RES_ENTER&& from) noexcept
+    : RES_ENTER() {
     *this = ::std::move(from);
   }
 
-  inline Res_ENTER& operator=(const Res_ENTER& from) {
+  inline RES_ENTER& operator=(const RES_ENTER& from) {
     CopyFrom(from);
     return *this;
   }
-  inline Res_ENTER& operator=(Res_ENTER&& from) noexcept {
+  inline RES_ENTER& operator=(RES_ENTER&& from) noexcept {
     if (this == &from) return *this;
     if (GetOwningArena() == from.GetOwningArena()
   #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
@@ -248,20 +248,20 @@ class Res_ENTER final :
   static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const Res_ENTER& default_instance() {
+  static const RES_ENTER& default_instance() {
     return *internal_default_instance();
   }
-  static inline const Res_ENTER* internal_default_instance() {
-    return reinterpret_cast<const Res_ENTER*>(
-               &_Res_ENTER_default_instance_);
+  static inline const RES_ENTER* internal_default_instance() {
+    return reinterpret_cast<const RES_ENTER*>(
+               &_RES_ENTER_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
     1;
 
-  friend void swap(Res_ENTER& a, Res_ENTER& b) {
+  friend void swap(RES_ENTER& a, RES_ENTER& b) {
     a.Swap(&b);
   }
-  inline void Swap(Res_ENTER* other) {
+  inline void Swap(RES_ENTER* other) {
     if (other == this) return;
   #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
     if (GetOwningArena() != nullptr &&
@@ -274,7 +274,7 @@ class Res_ENTER final :
       ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(Res_ENTER* other) {
+  void UnsafeArenaSwap(RES_ENTER* other) {
     if (other == this) return;
     GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
     InternalSwap(other);
@@ -282,14 +282,14 @@ class Res_ENTER final :
 
   // implements Message ----------------------------------------------
 
-  Res_ENTER* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<Res_ENTER>(arena);
+  RES_ENTER* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<RES_ENTER>(arena);
   }
   using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const Res_ENTER& from);
+  void CopyFrom(const RES_ENTER& from);
   using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom( const Res_ENTER& from) {
-    Res_ENTER::MergeImpl(*this, from);
+  void MergeFrom( const RES_ENTER& from) {
+    RES_ENTER::MergeImpl(*this, from);
   }
   private:
   static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
@@ -307,15 +307,15 @@ class Res_ENTER final :
   void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
   void SharedDtor();
   void SetCachedSize(int size) const final;
-  void InternalSwap(Res_ENTER* other);
+  void InternalSwap(RES_ENTER* other);
 
   private:
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "Protocol.Res_ENTER";
+    return "Protocol.RES_ENTER";
   }
   protected:
-  explicit Res_ENTER(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+  explicit RES_ENTER(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                        bool is_message_owned = false);
   public:
 
@@ -340,7 +340,7 @@ class Res_ENTER final :
   void _internal_set_playerid(uint64_t value);
   public:
 
-  // @@protoc_insertion_point(class_scope:Protocol.Res_ENTER)
+  // @@protoc_insertion_point(class_scope:Protocol.RES_ENTER)
  private:
   class _Internal;
 
@@ -363,50 +363,50 @@ class Res_ENTER final :
   #pragma GCC diagnostic push
   #pragma GCC diagnostic ignored "-Wstrict-aliasing"
 #endif  // __GNUC__
-// Req_ENTER
+// REQ_ENTER
 
 // uint64 playerId = 1;
-inline void Req_ENTER::clear_playerid() {
+inline void REQ_ENTER::clear_playerid() {
   _impl_.playerid_ = uint64_t{0u};
 }
-inline uint64_t Req_ENTER::_internal_playerid() const {
+inline uint64_t REQ_ENTER::_internal_playerid() const {
   return _impl_.playerid_;
 }
-inline uint64_t Req_ENTER::playerid() const {
-  // @@protoc_insertion_point(field_get:Protocol.Req_ENTER.playerId)
+inline uint64_t REQ_ENTER::playerid() const {
+  // @@protoc_insertion_point(field_get:Protocol.REQ_ENTER.playerId)
   return _internal_playerid();
 }
-inline void Req_ENTER::_internal_set_playerid(uint64_t value) {
+inline void REQ_ENTER::_internal_set_playerid(uint64_t value) {
   
   _impl_.playerid_ = value;
 }
-inline void Req_ENTER::set_playerid(uint64_t value) {
+inline void REQ_ENTER::set_playerid(uint64_t value) {
   _internal_set_playerid(value);
-  // @@protoc_insertion_point(field_set:Protocol.Req_ENTER.playerId)
+  // @@protoc_insertion_point(field_set:Protocol.REQ_ENTER.playerId)
 }
 
 // -------------------------------------------------------------------
 
-// Res_ENTER
+// RES_ENTER
 
 // uint64 playerId = 1;
-inline void Res_ENTER::clear_playerid() {
+inline void RES_ENTER::clear_playerid() {
   _impl_.playerid_ = uint64_t{0u};
 }
-inline uint64_t Res_ENTER::_internal_playerid() const {
+inline uint64_t RES_ENTER::_internal_playerid() const {
   return _impl_.playerid_;
 }
-inline uint64_t Res_ENTER::playerid() const {
-  // @@protoc_insertion_point(field_get:Protocol.Res_ENTER.playerId)
+inline uint64_t RES_ENTER::playerid() const {
+  // @@protoc_insertion_point(field_get:Protocol.RES_ENTER.playerId)
   return _internal_playerid();
 }
-inline void Res_ENTER::_internal_set_playerid(uint64_t value) {
+inline void RES_ENTER::_internal_set_playerid(uint64_t value) {
   
   _impl_.playerid_ = value;
 }
-inline void Res_ENTER::set_playerid(uint64_t value) {
+inline void RES_ENTER::set_playerid(uint64_t value) {
   _internal_set_playerid(value);
-  // @@protoc_insertion_point(field_set:Protocol.Res_ENTER.playerId)
+  // @@protoc_insertion_point(field_set:Protocol.RES_ENTER.playerId)
 }
 
 #ifdef __GNUC__
