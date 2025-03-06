@@ -1,6 +1,6 @@
 #pragma once
 
-class Room
+class Room : public JobSerializer
 {
 public:
 	Room();
