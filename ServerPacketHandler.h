@@ -1,4 +1,5 @@
 #pragma once
+#include "Protocol.pb.h"
 
 using PacketHandlerFunc = function<bool(Session*, BYTE*, int)>;
 extern PacketHandlerFunc GPacketHandler[UINT16_MAX];
@@ -21,7 +22,7 @@ public:
 			GPacketHandler[i] = Handle_INVALID;
 		GPacketHandler[PKT_REQ_ENTER] = [](Session* session, BYTE* buffer, int len) {return HandlePacket<Protocol::REQ_ENTER>(Handle_REQ_ENTER, session, buffer, len); };
 	}
-	static vector<char> MakeSendBuffer(Protocl::RES_ENTER& pkt) { return MakeSendBuffer(pkt, PKT_RES_ENTER); }
+	static vector<char> MakeSendBuffer(Protocol::RES_ENTER& pkt) { return MakeSendBuffer(pkt, PKT_RES_ENTER); }
 
 	static bool HandlePacket(Session* session, BYTE* buffer, int len)
 	{
