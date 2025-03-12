@@ -2,5 +2,7 @@
 
 class ObjectManager
 {
+public:
+	ObjectManager();
 };
 
