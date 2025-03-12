@@ -10,6 +10,11 @@ Player::~Player()
 {
 }
 
+void Player::SetSession(GameSession* session)
+{
+	m_session = session;
+}
+
 GameSession* Player::GetSession() const
 {
 	return m_session;
