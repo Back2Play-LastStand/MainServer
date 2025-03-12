@@ -4,3 +4,8 @@
 ObjectManager::ObjectManager()
 {
 }
+
+void ObjectManager::Init()
+{
+	m_idGenerator = 0;
+}

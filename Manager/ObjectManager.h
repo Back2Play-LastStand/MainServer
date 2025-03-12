@@ -4,6 +4,9 @@ class ObjectManager
 {
 public:
 	ObjectManager();
+
+	void Init();
+	
 	template<typename T, typename... Args>
 	shared_ptr<T> CreateObject(Args&&... args)
 	{
