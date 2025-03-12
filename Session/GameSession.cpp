@@ -30,3 +30,8 @@ shared_ptr<Player> GameSession::GetPlayer()
 {
 	return m_player;
 }
+
+void GameSession::SetPlayer(shared_ptr<Player> player)
+{
+	m_player = player;
+}

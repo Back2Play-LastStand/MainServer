@@ -11,6 +11,7 @@ public:
 	Player(unsigned long long id);
 	virtual ~Player();
 
+	void SetSession(GameSession* session);
 	GameSession* GetSession() const;
 	shared_ptr<Room> GetRoom() const;
 

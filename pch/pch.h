@@ -11,3 +11,5 @@
 #include "Protocol.pb.h"
 #include "Enum.pb.h"
 #include "Struct.pb.h"
+
+#include "Manager.h"
