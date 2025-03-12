@@ -8,6 +8,8 @@ public:
 	Manager();
 	virtual ~Manager();
 
+	shared_ptr<ObjectManager> Object() { return m_object; }
+
 private:
 	shared_ptr<ObjectManager> m_object;
 };
