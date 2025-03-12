@@ -12,3 +12,4 @@ private:
 	shared_ptr<ObjectManager> m_object;
 };
 
+extern shared_ptr<Manager> GManager;
