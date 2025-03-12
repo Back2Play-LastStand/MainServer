@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClCompile Include="Manager\Manager.cpp" />
     <ClCompile Include="Manager\ObjectManager.cpp" />
+    <ClCompile Include="Manager\RoomManager.cpp" />
     <ClCompile Include="Object\GameObject.cpp" />
     <ClCompile Include="Protocol\Enum.pb.cc">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
@@ -47,6 +48,7 @@
   <ItemGroup>
     <ClInclude Include="Manager\Manager.h" />
     <ClInclude Include="Manager\ObjectManager.h" />
+    <ClInclude Include="Manager\RoomManager.h" />
     <ClInclude Include="Object\GameObject.h" />
     <ClInclude Include="Protocol\Enum.pb.h" />
     <ClInclude Include="Protocol\Protocol.pb.h" />
