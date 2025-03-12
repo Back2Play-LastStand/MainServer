@@ -22,7 +22,7 @@ public:
 			GPacketHandler[i] = Handle_INVALID;
 		GPacketHandler[PKT_REQ_ENTER] = [](Session* session, BYTE* buffer, int len) {return HandlePacket<Protocol::REQ_ENTER>(Handle_REQ_ENTER, session, buffer, len); };
 	}
-	static vector<char> MakeSendBuffer(Protocol::RES_ENTER& pkt) { return MakeSendBuffer(pkt, PKT_RES_ENTER); }
+	static shared_ptr<vector<char>> MakeSendBuffer(Protocol::RES_ENTER& pkt) { return MakeSendBuffer(pkt, PKT_RES_ENTER); }
 
 	static bool HandlePacket(Session* session, BYTE* buffer, int len)
 	{
@@ -41,13 +41,13 @@ public:
 	}
 
 	template<typename T>
-	static vector<char> MakeSendBuffer(T& pkt, unsigned short id)
+	static shared_ptr<vector<char>> MakeSendBuffer(T& pkt, unsigned short id)
 	{
 		const unsigned short dataSize = static_cast<unsigned short>(pkt.ByteSizeLong());
 		const unsigned short packetSize = dataSize + sizeof(PacketHeader);
 
-		vector<char> sendBuffer = make_shared<vector<char>>(packetSize);
-		PacketHeader* header = reinterpret_cast<PacketHeader*>(sendBuffer.data() + 4, dataSize);
+		shared_ptr<vector<char>> sendBuffer = make_shared<vector<char>>(packetSize);
+		PacketHeader* header = reinterpret_cast<PacketHeader*>(sendBuffer->data() + 4, dataSize);
 		header->size = packetSize;
 		header->id = id;
 		assert(pkt.SerializeToArray(&header[1], dataSize));
