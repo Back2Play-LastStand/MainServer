@@ -37,6 +37,7 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORIT
 PROTOBUF_CONSTEXPR RES_ENTER::RES_ENTER(
     ::_pbi::ConstantInitialized): _impl_{
     /*decltype(_impl_.playerid_)*/uint64_t{0u}
+  , /*decltype(_impl_.success_)*/false
   , /*decltype(_impl_._cached_size_)*/{}} {}
 struct RES_ENTERDefaultTypeInternal {
   PROTOBUF_CONSTEXPR RES_ENTERDefaultTypeInternal()
@@ -67,6 +68,7 @@ const uint32_t TableStruct_Protocol_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::Protocol::RES_ENTER, _impl_.playerid_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::RES_ENTER, _impl_.success_),
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::Protocol::REQ_ENTER)},
@@ -80,12 +82,12 @@ static const ::_pb::Message* const file_default_instances[] = {
 
 const char descriptor_table_protodef_Protocol_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
   "\n\016Protocol.proto\022\010Protocol\"\035\n\tREQ_ENTER\022"
-  "\020\n\010playerId\030\001 \001(\004\"\035\n\tRES_ENTER\022\020\n\010player"
-  "Id\030\001 \001(\004b\006proto3"
+  "\020\n\010playerId\030\001 \001(\004\".\n\tRES_ENTER\022\020\n\010player"
+  "Id\030\001 \001(\004\022\017\n\007success\030\002 \001(\010b\006proto3"
   ;
 static ::_pbi::once_flag descriptor_table_Protocol_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_Protocol_2eproto = {
-    false, false, 96, descriptor_table_protodef_Protocol_2eproto,
+    false, false, 113, descriptor_table_protodef_Protocol_2eproto,
     "Protocol.proto",
     &descriptor_table_Protocol_2eproto_once, nullptr, 0, 2,
     schemas, file_default_instances, TableStruct_Protocol_2eproto::offsets,
@@ -295,10 +297,13 @@ RES_ENTER::RES_ENTER(const RES_ENTER& from)
   RES_ENTER* const _this = this; (void)_this;
   new (&_impl_) Impl_{
       decltype(_impl_.playerid_){}
+    , decltype(_impl_.success_){}
     , /*decltype(_impl_._cached_size_)*/{}};
 
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  _this->_impl_.playerid_ = from._impl_.playerid_;
+  ::memcpy(&_impl_.playerid_, &from._impl_.playerid_,
+    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.success_) -
+    reinterpret_cast<char*>(&_impl_.playerid_)) + sizeof(_impl_.success_));
   // @@protoc_insertion_point(copy_constructor:Protocol.RES_ENTER)
 }
 
@@ -308,6 +313,7 @@ inline void RES_ENTER::SharedCtor(
   (void)is_message_owned;
   new (&_impl_) Impl_{
       decltype(_impl_.playerid_){uint64_t{0u}}
+    , decltype(_impl_.success_){false}
     , /*decltype(_impl_._cached_size_)*/{}
   };
 }
@@ -335,7 +341,9 @@ void RES_ENTER::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.playerid_ = uint64_t{0u};
+  ::memset(&_impl_.playerid_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&_impl_.success_) -
+      reinterpret_cast<char*>(&_impl_.playerid_)) + sizeof(_impl_.success_));
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -349,6 +357,14 @@ const char* RES_ENTER::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
           _impl_.playerid_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // bool success = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
+          _impl_.success_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -388,6 +404,12 @@ uint8_t* RES_ENTER::_InternalSerialize(
     target = ::_pbi::WireFormatLite::WriteUInt64ToArray(1, this->_internal_playerid(), target);
   }
 
+  // bool success = 2;
+  if (this->_internal_success() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(2, this->_internal_success(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -407,6 +429,11 @@ size_t RES_ENTER::ByteSizeLong() const {
   // uint64 playerId = 1;
   if (this->_internal_playerid() != 0) {
     total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(this->_internal_playerid());
+  }
+
+  // bool success = 2;
+  if (this->_internal_success() != 0) {
+    total_size += 1 + 1;
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
@@ -430,6 +457,9 @@ void RES_ENTER::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROT
   if (from._internal_playerid() != 0) {
     _this->_internal_set_playerid(from._internal_playerid());
   }
+  if (from._internal_success() != 0) {
+    _this->_internal_set_success(from._internal_success());
+  }
   _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -447,7 +477,12 @@ bool RES_ENTER::IsInitialized() const {
 void RES_ENTER::InternalSwap(RES_ENTER* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(_impl_.playerid_, other->_impl_.playerid_);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(RES_ENTER, _impl_.success_)
+      + sizeof(RES_ENTER::_impl_.success_)
+      - PROTOBUF_FIELD_OFFSET(RES_ENTER, _impl_.playerid_)>(
+          reinterpret_cast<char*>(&_impl_.playerid_),
+          reinterpret_cast<char*>(&other->_impl_.playerid_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata RES_ENTER::GetMetadata() const {

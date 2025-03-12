@@ -330,6 +330,7 @@ class RES_ENTER final :
 
   enum : int {
     kPlayerIdFieldNumber = 1,
+    kSuccessFieldNumber = 2,
   };
   // uint64 playerId = 1;
   void clear_playerid();
@@ -338,6 +339,15 @@ class RES_ENTER final :
   private:
   uint64_t _internal_playerid() const;
   void _internal_set_playerid(uint64_t value);
+  public:
+
+  // bool success = 2;
+  void clear_success();
+  bool success() const;
+  void set_success(bool value);
+  private:
+  bool _internal_success() const;
+  void _internal_set_success(bool value);
   public:
 
   // @@protoc_insertion_point(class_scope:Protocol.RES_ENTER)
@@ -349,6 +359,7 @@ class RES_ENTER final :
   typedef void DestructorSkippable_;
   struct Impl_ {
     uint64_t playerid_;
+    bool success_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -407,6 +418,26 @@ inline void RES_ENTER::_internal_set_playerid(uint64_t value) {
 inline void RES_ENTER::set_playerid(uint64_t value) {
   _internal_set_playerid(value);
   // @@protoc_insertion_point(field_set:Protocol.RES_ENTER.playerId)
+}
+
+// bool success = 2;
+inline void RES_ENTER::clear_success() {
+  _impl_.success_ = false;
+}
+inline bool RES_ENTER::_internal_success() const {
+  return _impl_.success_;
+}
+inline bool RES_ENTER::success() const {
+  // @@protoc_insertion_point(field_get:Protocol.RES_ENTER.success)
+  return _internal_success();
+}
+inline void RES_ENTER::_internal_set_success(bool value) {
+  
+  _impl_.success_ = value;
+}
+inline void RES_ENTER::set_success(bool value) {
+  _internal_set_success(value);
+  // @@protoc_insertion_point(field_set:Protocol.RES_ENTER.success)
 }
 
 #ifdef __GNUC__
