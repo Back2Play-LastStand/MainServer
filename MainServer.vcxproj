@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Manager.cpp" />
     <ClCompile Include="Manager\ObjectManager.cpp" />
     <ClCompile Include="Object\GameObject.cpp" />
     <ClCompile Include="Protocol\Enum.pb.cc">
@@ -44,6 +45,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Manager.h" />
     <ClInclude Include="Manager\ObjectManager.h" />
     <ClInclude Include="Object\GameObject.h" />
     <ClInclude Include="Protocol\Enum.pb.h" />
