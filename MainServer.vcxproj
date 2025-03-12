@@ -19,7 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Manager.cpp" />
+    <ClCompile Include="Manager\Manager.cpp" />
     <ClCompile Include="Manager\ObjectManager.cpp" />
     <ClCompile Include="Object\GameObject.cpp" />
     <ClCompile Include="Protocol\Enum.pb.cc">
@@ -45,7 +45,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Manager.h" />
+    <ClInclude Include="Manager\Manager.h" />
     <ClInclude Include="Manager\ObjectManager.h" />
     <ClInclude Include="Object\GameObject.h" />
     <ClInclude Include="Protocol\Enum.pb.h" />
@@ -161,7 +161,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(SolutionDir)Libraries\include\;$(SolutionDir)MainServer\Object\;$(SolutionDir)MainServer\Session\;$(SolutionDir)MainServer\pch\;$(SolutionDir)ServerCore\cpp\;$(SolutionDir)ServerCore\h\;$(SolutionDir)ServerCore\cppx\h\;$(SolutionDir)MainServer\Protocol\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Libraries\include\;$(SolutionDir)MainServer\Object\;$(SolutionDir)MainServer\Session\;$(SolutionDir)MainServer\pch\;$(SolutionDir)ServerCore\cpp\;$(SolutionDir)ServerCore\h\;$(SolutionDir)ServerCore\cppx\h\;$(SolutionDir)MainServer\Manager\;$(SolutionDir)MainServer\Protocol\</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -183,7 +183,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(SolutionDir)Libraries\include\;$(SolutionDir)MainServer\Object\;$(SolutionDir)MainServer\Session\;$(SolutionDir)MainServer\pch\;$(SolutionDir)ServerCore\cpp\;$(SolutionDir)ServerCore\h\;$(SolutionDir)ServerCore\cppx\h\;$(SolutionDir)MainServer\Protocol\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Libraries\include\;$(SolutionDir)MainServer\Object\;$(SolutionDir)MainServer\Session\;$(SolutionDir)MainServer\pch\;$(SolutionDir)ServerCore\cpp\;$(SolutionDir)ServerCore\h\;$(SolutionDir)ServerCore\cppx\h\;$(SolutionDir)MainServer\Manager\;$(SolutionDir)MainServer\Protocol\</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
