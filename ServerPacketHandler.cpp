@@ -14,6 +14,6 @@ bool Handle_INVALID(Session* session, BYTE* buffer, int len)
 
 bool Handle_REQ_ENTER(Session* session, Protocol::REQ_ENTER& pkt)
 {	
-	GManager->Object()->HandleEnterGame(session, pkt);
+	GManager->Object()->PushJob(&ObjectManager::HandleEnterGame, session, pkt);
 	return false;
 }

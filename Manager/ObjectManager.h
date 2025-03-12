@@ -1,6 +1,6 @@
 #pragma once
 
-class ObjectManager
+class ObjectManager : public JobSerializer
 {
 public:
 	ObjectManager();
