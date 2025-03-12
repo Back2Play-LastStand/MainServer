@@ -4,6 +4,7 @@ class GameObject : public enable_shared_from_this<GameObject>
 {
 public:
 	GameObject() = default;
+	GameObject(unsigned long long id, Protocol::ObjectType type);
 	virtual ~GameObject();
 
 	unsigned long long GetId() const { return m_objectId; }
@@ -17,6 +18,7 @@ public:
 
 private:
 	unsigned long long m_objectId;
+	Protocol::ObjectType m_objectType;
 	unsigned int m_hp = 0;
 };
 
