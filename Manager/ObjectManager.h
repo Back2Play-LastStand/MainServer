@@ -15,6 +15,8 @@ public:
 		return object;
 	}
 
+	void HandleEnterGame(Session* session, Protocol::REQ_ENTER pkt);
+
 private:
 	atomic<unsigned long long> m_idGenerator;
 	concurrent_unordered_map<unsigned long long, shared_ptr<class GameObject>> m_objects;
