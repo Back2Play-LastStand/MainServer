@@ -1,6 +1,9 @@
 #include "pch.h"
 #include "ServerPacketHandler.h"
 
+#include "Manager.h"
+#include "ObjectManager.h"
+
 PacketHandlerFunc GPacketHandler[UINT16_MAX];
 
 bool Handle_INVALID(Session* session, BYTE* buffer, int len)
