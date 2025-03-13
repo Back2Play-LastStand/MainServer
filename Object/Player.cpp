@@ -25,6 +25,16 @@ shared_ptr<Room> Player::GetRoom() const
 	return m_room.lock();
 }
 
+string Player::GetName() const
+{
+	return m_playerName;
+}
+
+void Player::SetName(string name)
+{
+	m_playerName = name;
+}
+
 void Player::BeginPlay()
 {
 	Super::BeginPlay();

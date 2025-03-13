@@ -14,6 +14,8 @@ public:
 	void SetSession(GameSession* session);
 	GameSession* GetSession() const;
 	shared_ptr<Room> GetRoom() const;
+	string GetName() const;
+	void SetName(string name);
 
 	virtual void BeginPlay() override;
 	virtual void Tick() override;
@@ -24,5 +26,6 @@ public:
 private:
 	GameSession* m_session;
 	weak_ptr<Room> m_room;
+	string m_playerName;
 };
 
