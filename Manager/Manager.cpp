@@ -12,3 +12,5 @@ Manager::Manager()
 Manager::~Manager()
 {
 }
+
+Manager* GManager = new Manager;

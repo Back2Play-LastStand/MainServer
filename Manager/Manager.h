@@ -17,4 +17,4 @@ private:
 	shared_ptr<RoomManager> m_room;
 };
 
-extern shared_ptr<Manager> GManager;
+extern Manager* GManager;
