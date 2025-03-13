@@ -15,11 +15,12 @@ void RoomManager::HandleEnterRoom(Session* session, Protocol::REQ_ENTER_ROOM pkt
 	auto room = myPlayer->GetRoom();
 
 	Protocol::RES_ENTER_ROOM res;
-	auto success = myPlayer->GetRoom() == nullptr;
-	if (success)
-	{
-		res.set_success(success);
+	res.set_success(myPlayer->GetRoom() == nullptr);
+	auto sendBuffer = ServerPacketHandler::MakeSendBuffer(res);
+	session->SendContext(move(*sendBuffer));
 
+	if (res.success())
+	{
 		{
 			myPlayer->EnterRoom(room);
 
