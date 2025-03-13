@@ -2,5 +2,7 @@
 
 class RoomManager
 {
+public:
+	RoomManager();
 };
 
