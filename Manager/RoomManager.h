@@ -2,7 +2,7 @@
 
 class Room;
 
-class RoomManager
+class RoomManager : public JobSerializer
 {
 public:
 	RoomManager();
