@@ -11,6 +11,11 @@ Room::~Room()
 {
 }
 
+unordered_map<unsigned long long, shared_ptr<Player>> Room::GetPlayers()
+{
+	return m_players;
+}
+
 bool Room::EnterPlayer(shared_ptr<Player> player)
 {
 	if (m_players.find(player->GetId()) != m_players.end())
