@@ -3,6 +3,7 @@
 
 #include "Manager.h"
 #include "ObjectManager.h"
+#include "RoomManager.h"
 
 PacketHandlerFunc GPacketHandler[UINT16_MAX];
 
@@ -20,6 +21,7 @@ bool Handle_REQ_ENTER(Session* session, Protocol::REQ_ENTER& pkt)
 
 bool Handle_REQ_ENTER_ROOM(Session* session, Protocol::REQ_ENTER_ROOM& pkt)
 {
+	GManager->Room()->PushJob(&RoomManager::HandleEnterRoom, session, pkt);
 	return false;
 }
 
