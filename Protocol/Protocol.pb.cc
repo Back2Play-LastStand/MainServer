@@ -95,7 +95,7 @@ struct RES_LEAVEDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 RES_LEAVEDefaultTypeInternal _RES_LEAVE_default_instance_;
 PROTOBUF_CONSTEXPR RES_SPAWN::RES_SPAWN(
     ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.players_)*/{}
+    /*decltype(_impl_.player_)*/nullptr
   , /*decltype(_impl_._cached_size_)*/{}} {}
 struct RES_SPAWNDefaultTypeInternal {
   PROTOBUF_CONSTEXPR RES_SPAWNDefaultTypeInternal()
@@ -106,6 +106,19 @@ struct RES_SPAWNDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 RES_SPAWNDefaultTypeInternal _RES_SPAWN_default_instance_;
+PROTOBUF_CONSTEXPR RES_SPAWN_ALL::RES_SPAWN_ALL(
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.players_)*/{}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
+struct RES_SPAWN_ALLDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR RES_SPAWN_ALLDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~RES_SPAWN_ALLDefaultTypeInternal() {}
+  union {
+    RES_SPAWN_ALL _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 RES_SPAWN_ALLDefaultTypeInternal _RES_SPAWN_ALL_default_instance_;
 PROTOBUF_CONSTEXPR RES_DESPAWN::RES_DESPAWN(
     ::_pbi::ConstantInitialized): _impl_{
     /*decltype(_impl_.ids_)*/{}
@@ -121,7 +134,7 @@ struct RES_DESPAWNDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 RES_DESPAWNDefaultTypeInternal _RES_DESPAWN_default_instance_;
 }  // namespace Protocol
-static ::_pb::Metadata file_level_metadata_Protocol_2eproto[8];
+static ::_pb::Metadata file_level_metadata_Protocol_2eproto[9];
 static constexpr ::_pb::EnumDescriptor const** file_level_enum_descriptors_Protocol_2eproto = nullptr;
 static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_Protocol_2eproto = nullptr;
 
@@ -172,7 +185,14 @@ const uint32_t TableStruct_Protocol_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::Protocol::RES_SPAWN, _impl_.players_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::RES_SPAWN, _impl_.player_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::Protocol::RES_SPAWN_ALL, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::Protocol::RES_SPAWN_ALL, _impl_.players_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::Protocol::RES_DESPAWN, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -189,7 +209,8 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 28, -1, -1, sizeof(::Protocol::REQ_LEAVE)},
   { 34, -1, -1, sizeof(::Protocol::RES_LEAVE)},
   { 40, -1, -1, sizeof(::Protocol::RES_SPAWN)},
-  { 47, -1, -1, sizeof(::Protocol::RES_DESPAWN)},
+  { 47, -1, -1, sizeof(::Protocol::RES_SPAWN_ALL)},
+  { 54, -1, -1, sizeof(::Protocol::RES_DESPAWN)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -200,6 +221,7 @@ static const ::_pb::Message* const file_default_instances[] = {
   &::Protocol::_REQ_LEAVE_default_instance_._instance,
   &::Protocol::_RES_LEAVE_default_instance_._instance,
   &::Protocol::_RES_SPAWN_default_instance_._instance,
+  &::Protocol::_RES_SPAWN_ALL_default_instance_._instance,
   &::Protocol::_RES_DESPAWN_default_instance_._instance,
 };
 
@@ -210,9 +232,10 @@ const char descriptor_table_protodef_Protocol_2eproto[] PROTOBUF_SECTION_VARIABL
   "\007success\030\002 \001(\010\"\020\n\016REQ_ENTER_ROOM\"G\n\016RES_"
   "ENTER_ROOM\022$\n\006player\030\001 \001(\0132\024.Protocol.Ob"
   "jectInfo\022\017\n\007success\030\002 \001(\010\"\013\n\tREQ_LEAVE\"\013"
-  "\n\tRES_LEAVE\"2\n\tRES_SPAWN\022%\n\007players\030\001 \003("
-  "\0132\024.Protocol.ObjectInfo\"\032\n\013RES_DESPAWN\022\013"
-  "\n\003ids\030\001 \003(\004b\006proto3"
+  "\n\tRES_LEAVE\"1\n\tRES_SPAWN\022$\n\006player\030\001 \001(\013"
+  "2\024.Protocol.ObjectInfo\"6\n\rRES_SPAWN_ALL\022"
+  "%\n\007players\030\001 \003(\0132\024.Protocol.ObjectInfo\"\032"
+  "\n\013RES_DESPAWN\022\013\n\003ids\030\001 \003(\004b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_Protocol_2eproto_deps[2] = {
   &::descriptor_table_Enum_2eproto,
@@ -220,9 +243,9 @@ static const ::_pbi::DescriptorTable* const descriptor_table_Protocol_2eproto_de
 };
 static ::_pbi::once_flag descriptor_table_Protocol_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_Protocol_2eproto = {
-    false, false, 339, descriptor_table_protodef_Protocol_2eproto,
+    false, false, 394, descriptor_table_protodef_Protocol_2eproto,
     "Protocol.proto",
-    &descriptor_table_Protocol_2eproto_once, descriptor_table_Protocol_2eproto_deps, 2, 8,
+    &descriptor_table_Protocol_2eproto_once, descriptor_table_Protocol_2eproto_deps, 2, 9,
     schemas, file_default_instances, TableStruct_Protocol_2eproto::offsets,
     file_level_metadata_Protocol_2eproto, file_level_enum_descriptors_Protocol_2eproto,
     file_level_service_descriptors_Protocol_2eproto,
@@ -844,10 +867,18 @@ const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*RES_LEAVE::GetClassData() cons
 
 class RES_SPAWN::_Internal {
  public:
+  static const ::Protocol::ObjectInfo& player(const RES_SPAWN* msg);
 };
 
-void RES_SPAWN::clear_players() {
-  _impl_.players_.Clear();
+const ::Protocol::ObjectInfo&
+RES_SPAWN::_Internal::player(const RES_SPAWN* msg) {
+  return *msg->_impl_.player_;
+}
+void RES_SPAWN::clear_player() {
+  if (GetArenaForAllocation() == nullptr && _impl_.player_ != nullptr) {
+    delete _impl_.player_;
+  }
+  _impl_.player_ = nullptr;
 }
 RES_SPAWN::RES_SPAWN(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
@@ -859,10 +890,13 @@ RES_SPAWN::RES_SPAWN(const RES_SPAWN& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
   RES_SPAWN* const _this = this; (void)_this;
   new (&_impl_) Impl_{
-      decltype(_impl_.players_){from._impl_.players_}
+      decltype(_impl_.player_){nullptr}
     , /*decltype(_impl_._cached_size_)*/{}};
 
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  if (from._internal_has_player()) {
+    _this->_impl_.player_ = new ::Protocol::ObjectInfo(*from._impl_.player_);
+  }
   // @@protoc_insertion_point(copy_constructor:Protocol.RES_SPAWN)
 }
 
@@ -871,7 +905,7 @@ inline void RES_SPAWN::SharedCtor(
   (void)arena;
   (void)is_message_owned;
   new (&_impl_) Impl_{
-      decltype(_impl_.players_){arena}
+      decltype(_impl_.player_){nullptr}
     , /*decltype(_impl_._cached_size_)*/{}
   };
 }
@@ -887,7 +921,7 @@ RES_SPAWN::~RES_SPAWN() {
 
 inline void RES_SPAWN::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  _impl_.players_.~RepeatedPtrField();
+  if (this != internal_default_instance()) delete _impl_.player_;
 }
 
 void RES_SPAWN::SetCachedSize(int size) const {
@@ -900,11 +934,199 @@ void RES_SPAWN::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.players_.Clear();
+  if (GetArenaForAllocation() == nullptr && _impl_.player_ != nullptr) {
+    delete _impl_.player_;
+  }
+  _impl_.player_ = nullptr;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 const char* RES_SPAWN::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // .Protocol.ObjectInfo player = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          ptr = ctx->ParseMessage(_internal_mutable_player(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* RES_SPAWN::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Protocol.RES_SPAWN)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // .Protocol.ObjectInfo player = 1;
+  if (this->_internal_has_player()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(1, _Internal::player(this),
+        _Internal::player(this).GetCachedSize(), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Protocol.RES_SPAWN)
+  return target;
+}
+
+size_t RES_SPAWN::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Protocol.RES_SPAWN)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // .Protocol.ObjectInfo player = 1;
+  if (this->_internal_has_player()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *_impl_.player_);
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData RES_SPAWN::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    RES_SPAWN::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*RES_SPAWN::GetClassData() const { return &_class_data_; }
+
+
+void RES_SPAWN::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<RES_SPAWN*>(&to_msg);
+  auto& from = static_cast<const RES_SPAWN&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:Protocol.RES_SPAWN)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from._internal_has_player()) {
+    _this->_internal_mutable_player()->::Protocol::ObjectInfo::MergeFrom(
+        from._internal_player());
+  }
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void RES_SPAWN::CopyFrom(const RES_SPAWN& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Protocol.RES_SPAWN)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool RES_SPAWN::IsInitialized() const {
+  return true;
+}
+
+void RES_SPAWN::InternalSwap(RES_SPAWN* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_.player_, other->_impl_.player_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata RES_SPAWN::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_Protocol_2eproto_getter, &descriptor_table_Protocol_2eproto_once,
+      file_level_metadata_Protocol_2eproto[6]);
+}
+
+// ===================================================================
+
+class RES_SPAWN_ALL::_Internal {
+ public:
+};
+
+void RES_SPAWN_ALL::clear_players() {
+  _impl_.players_.Clear();
+}
+RES_SPAWN_ALL::RES_SPAWN_ALL(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
+  // @@protoc_insertion_point(arena_constructor:Protocol.RES_SPAWN_ALL)
+}
+RES_SPAWN_ALL::RES_SPAWN_ALL(const RES_SPAWN_ALL& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  RES_SPAWN_ALL* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.players_){from._impl_.players_}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  // @@protoc_insertion_point(copy_constructor:Protocol.RES_SPAWN_ALL)
+}
+
+inline void RES_SPAWN_ALL::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.players_){arena}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+}
+
+RES_SPAWN_ALL::~RES_SPAWN_ALL() {
+  // @@protoc_insertion_point(destructor:Protocol.RES_SPAWN_ALL)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void RES_SPAWN_ALL::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.players_.~RepeatedPtrField();
+}
+
+void RES_SPAWN_ALL::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+void RES_SPAWN_ALL::Clear() {
+// @@protoc_insertion_point(message_clear_start:Protocol.RES_SPAWN_ALL)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.players_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* RES_SPAWN_ALL::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
 #define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
   while (!ctx->Done(&ptr)) {
     uint32_t tag;
@@ -946,9 +1168,9 @@ failure:
 #undef CHK_
 }
 
-uint8_t* RES_SPAWN::_InternalSerialize(
+uint8_t* RES_SPAWN_ALL::_InternalSerialize(
     uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:Protocol.RES_SPAWN)
+  // @@protoc_insertion_point(serialize_to_array_start:Protocol.RES_SPAWN_ALL)
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -964,12 +1186,12 @@ uint8_t* RES_SPAWN::_InternalSerialize(
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:Protocol.RES_SPAWN)
+  // @@protoc_insertion_point(serialize_to_array_end:Protocol.RES_SPAWN_ALL)
   return target;
 }
 
-size_t RES_SPAWN::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:Protocol.RES_SPAWN)
+size_t RES_SPAWN_ALL::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Protocol.RES_SPAWN_ALL)
   size_t total_size = 0;
 
   uint32_t cached_has_bits = 0;
@@ -986,17 +1208,17 @@ size_t RES_SPAWN::ByteSizeLong() const {
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData RES_SPAWN::_class_data_ = {
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData RES_SPAWN_ALL::_class_data_ = {
     ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
-    RES_SPAWN::MergeImpl
+    RES_SPAWN_ALL::MergeImpl
 };
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*RES_SPAWN::GetClassData() const { return &_class_data_; }
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*RES_SPAWN_ALL::GetClassData() const { return &_class_data_; }
 
 
-void RES_SPAWN::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<RES_SPAWN*>(&to_msg);
-  auto& from = static_cast<const RES_SPAWN&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:Protocol.RES_SPAWN)
+void RES_SPAWN_ALL::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<RES_SPAWN_ALL*>(&to_msg);
+  auto& from = static_cast<const RES_SPAWN_ALL&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:Protocol.RES_SPAWN_ALL)
   GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
@@ -1005,27 +1227,27 @@ void RES_SPAWN::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROT
   _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
-void RES_SPAWN::CopyFrom(const RES_SPAWN& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:Protocol.RES_SPAWN)
+void RES_SPAWN_ALL::CopyFrom(const RES_SPAWN_ALL& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Protocol.RES_SPAWN_ALL)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-bool RES_SPAWN::IsInitialized() const {
+bool RES_SPAWN_ALL::IsInitialized() const {
   return true;
 }
 
-void RES_SPAWN::InternalSwap(RES_SPAWN* other) {
+void RES_SPAWN_ALL::InternalSwap(RES_SPAWN_ALL* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   _impl_.players_.InternalSwap(&other->_impl_.players_);
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata RES_SPAWN::GetMetadata() const {
+::PROTOBUF_NAMESPACE_ID::Metadata RES_SPAWN_ALL::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_Protocol_2eproto_getter, &descriptor_table_Protocol_2eproto_once,
-      file_level_metadata_Protocol_2eproto[6]);
+      file_level_metadata_Protocol_2eproto[7]);
 }
 
 // ===================================================================
@@ -1218,7 +1440,7 @@ void RES_DESPAWN::InternalSwap(RES_DESPAWN* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata RES_DESPAWN::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_Protocol_2eproto_getter, &descriptor_table_Protocol_2eproto_once,
-      file_level_metadata_Protocol_2eproto[7]);
+      file_level_metadata_Protocol_2eproto[8]);
 }
 
 // @@protoc_insertion_point(namespace_scope)
@@ -1251,6 +1473,10 @@ Arena::CreateMaybeMessage< ::Protocol::RES_LEAVE >(Arena* arena) {
 template<> PROTOBUF_NOINLINE ::Protocol::RES_SPAWN*
 Arena::CreateMaybeMessage< ::Protocol::RES_SPAWN >(Arena* arena) {
   return Arena::CreateMessageInternal< ::Protocol::RES_SPAWN >(arena);
+}
+template<> PROTOBUF_NOINLINE ::Protocol::RES_SPAWN_ALL*
+Arena::CreateMaybeMessage< ::Protocol::RES_SPAWN_ALL >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::Protocol::RES_SPAWN_ALL >(arena);
 }
 template<> PROTOBUF_NOINLINE ::Protocol::RES_DESPAWN*
 Arena::CreateMaybeMessage< ::Protocol::RES_DESPAWN >(Arena* arena) {

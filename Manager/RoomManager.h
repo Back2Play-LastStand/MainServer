@@ -1,6 +1,12 @@
 #pragma once
 
-class RoomManager
+class Room;
+
+class RoomManager : public JobSerializer
 {
+public:
+	RoomManager();
+
+	void HandleEnterRoom(Session* session, Protocol::REQ_ENTER_ROOM pkt);
 };
 

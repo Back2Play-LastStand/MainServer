@@ -1,4 +1,5 @@
 #pragma once
+#include "Enum.pb.h"
 
 class GameObject : public enable_shared_from_this<GameObject>
 {

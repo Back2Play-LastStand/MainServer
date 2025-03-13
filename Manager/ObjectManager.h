@@ -11,7 +11,7 @@ public:
 	shared_ptr<T> CreateObject(Args&&... args)
 	{
 		auto object = MakeShared<T>(m_idGenerator.fetch_add(1),forward<Args>(args)...);
-		m_objects.insert(make_pair(m_idGenerator, object));
+		m_objects.insert({ m_idGenerator, object });
 		return object;
 	}
 
