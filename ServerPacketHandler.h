@@ -13,7 +13,8 @@ enum : unsigned short
 	PKT_REQ_LEAVE = 1004,
 	PKT_RES_LEAVE = 1005,
 	PKT_RES_SPAWN = 1006,
-	PKT_RES_DESPAWN = 1007,
+	PKT_RES_SPAWN_ALL = 1007,
+	PKT_RES_DESPAWN = 1008,
 };
 
 bool Handle_INVALID(Session* session, BYTE* buffer, int len);
@@ -36,6 +37,7 @@ public:
 	static shared_ptr<vector<char>> MakeSendBuffer(Protocol::RES_ENTER_ROOM& pkt) { return MakeSendBuffer(pkt, PKT_RES_ENTER_ROOM); }
 	static shared_ptr<vector<char>> MakeSendBuffer(Protocol::RES_LEAVE& pkt) { return MakeSendBuffer(pkt, PKT_RES_LEAVE); }
 	static shared_ptr<vector<char>> MakeSendBuffer(Protocol::RES_SPAWN& pkt) { return MakeSendBuffer(pkt, PKT_RES_SPAWN); }
+	static shared_ptr<vector<char>> MakeSendBuffer(Protocol::RES_SPAWN_ALL& pkt) { return MakeSendBuffer(pkt, PKT_RES_SPAWN_ALL); }
 	static shared_ptr<vector<char>> MakeSendBuffer(Protocol::RES_DESPAWN& pkt) { return MakeSendBuffer(pkt, PKT_RES_DESPAWN); }
 
 	static bool HandlePacket(Session* session, BYTE* buffer, int len)
