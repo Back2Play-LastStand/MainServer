@@ -5,12 +5,14 @@
 
 Manager::Manager()
 {
-	m_object = MakeShared<ObjectManager>();
-	m_room = MakeShared<RoomManager>();
 }
 
 Manager::~Manager()
 {
 }
 
-Manager* GManager = new Manager;
+void Manager::Init()
+{
+	m_object = MakeShared<ObjectManager>();
+	m_room = MakeShared<RoomManager>();
+}
