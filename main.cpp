@@ -7,6 +7,7 @@ Manager* GManager;
 int main()
 {
 	ServerPacketHandler::Init();
+	cppx::native::init(5);
 	GEngine = new Engine();
 	GManager = new Manager();
 
@@ -18,4 +19,7 @@ int main()
 	server->Run(endpoint);
 
 	GEngine->RunThread(4, 1);
+	while (true)
+	{
+	}
 }
