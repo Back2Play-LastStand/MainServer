@@ -62,11 +62,11 @@ public:
 		const unsigned short dataSize = static_cast<unsigned short>(pkt.ByteSizeLong());
 		const unsigned short packetSize = dataSize + sizeof(PacketHeader);
 
-		shared_ptr<vector<char>> sendBuffer = make_shared<vector<char>>(packetSize);
-		PacketHeader* header = reinterpret_cast<PacketHeader*>(sendBuffer->data() + 4, dataSize);
+		shared_ptr<vector<char>> sendBuffer = MakeShared<vector<char>>(packetSize);
+		PacketHeader* header = reinterpret_cast<PacketHeader*>(sendBuffer->data());
 		header->size = packetSize;
 		header->id = id;
-		assert(pkt.SerializeToArray(&header[1], dataSize));
+		assert(pkt.SerializeToArray(sendBuffer->data(), dataSize));
 
 		return sendBuffer;
 	}
