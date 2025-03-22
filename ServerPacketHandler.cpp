@@ -14,13 +14,15 @@ bool Handle_INVALID(Session* session, BYTE* buffer, int len)
 }
 
 bool Handle_REQ_ENTER(Session* session, Protocol::REQ_ENTER& pkt)
-{	
+{
+	cout << "req enter" << endl;
 	GManager->Object()->PushJob(&ObjectManager::HandleEnterGame, session, pkt);
 	return false;
 }
 
 bool Handle_REQ_ENTER_ROOM(Session* session, Protocol::REQ_ENTER_ROOM& pkt)
 {
+	cout << "req enter room" << endl;
 	GManager->Room()->PushJob(&RoomManager::HandleEnterRoom, session, pkt);
 	return false;
 }
