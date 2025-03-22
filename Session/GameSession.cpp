@@ -3,12 +3,35 @@
 
 void GameSession::OnConnected(endpoint ep)
 {
+	cout << "connected" << endl;
 }
 
 void GameSession::OnRecv(byte* buffer, int len)
 {
+	if (len < 3)
+		return;
+
+	int processLen = 0;
+	PacketHeader header{};
 	auto session = GetSession();
-	ServerPacketHandler::HandlePacket(session, buffer, len);
+
+	while (true)
+	{
+		int dataSize = len - processLen;
+		// 최소한 헤더는 파싱할 수 있어야 한다
+		if (dataSize < sizeof(PacketHeader))
+			break;
+
+		header = *(reinterpret_cast<PacketHeader*>(&buffer[processLen]));
+		// 헤더에 기록된 패킷 크기를 파싱할 수 있어야 한다
+		if (dataSize < header.size)
+			break;
+
+		ServerPacketHandler::HandlePacket(session, &buffer[processLen], header.size);
+		
+		processLen += header.size;
+	}
+
 }
 
 void GameSession::OnSend(int len)
