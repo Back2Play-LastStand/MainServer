@@ -378,9 +378,10 @@ class RES_ENTER final :
 // -------------------------------------------------------------------
 
 class REQ_ENTER_ROOM final :
-    public ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:Protocol.REQ_ENTER_ROOM) */ {
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:Protocol.REQ_ENTER_ROOM) */ {
  public:
   inline REQ_ENTER_ROOM() : REQ_ENTER_ROOM(nullptr) {}
+  ~REQ_ENTER_ROOM() override;
   explicit PROTOBUF_CONSTEXPR REQ_ENTER_ROOM(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
 
   REQ_ENTER_ROOM(const REQ_ENTER_ROOM& from);
@@ -453,15 +454,29 @@ class REQ_ENTER_ROOM final :
   REQ_ENTER_ROOM* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
     return CreateMaybeMessage<REQ_ENTER_ROOM>(arena);
   }
-  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyFrom;
-  inline void CopyFrom(const REQ_ENTER_ROOM& from) {
-    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl(*this, from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const REQ_ENTER_ROOM& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom( const REQ_ENTER_ROOM& from) {
+    REQ_ENTER_ROOM::MergeImpl(*this, from);
   }
-  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeFrom;
-  void MergeFrom(const REQ_ENTER_ROOM& from) {
-    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl(*this, from);
-  }
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
   public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(REQ_ENTER_ROOM* other);
 
   private:
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
@@ -482,6 +497,23 @@ class REQ_ENTER_ROOM final :
 
   // accessors -------------------------------------------------------
 
+  enum : int {
+    kNameFieldNumber = 1,
+  };
+  // string name = 1;
+  void clear_name();
+  const std::string& name() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_name(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_name();
+  PROTOBUF_NODISCARD std::string* release_name();
+  void set_allocated_name(std::string* name);
+  private:
+  const std::string& _internal_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(const std::string& value);
+  std::string* _internal_mutable_name();
+  public:
+
   // @@protoc_insertion_point(class_scope:Protocol.REQ_ENTER_ROOM)
  private:
   class _Internal;
@@ -490,7 +522,10 @@ class REQ_ENTER_ROOM final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   struct Impl_ {
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
+  union { Impl_ _impl_; };
   friend struct ::TableStruct_Protocol_2eproto;
 };
 // -------------------------------------------------------------------
@@ -1448,6 +1483,56 @@ inline void RES_ENTER::set_success(bool value) {
 // -------------------------------------------------------------------
 
 // REQ_ENTER_ROOM
+
+// string name = 1;
+inline void REQ_ENTER_ROOM::clear_name() {
+  _impl_.name_.ClearToEmpty();
+}
+inline const std::string& REQ_ENTER_ROOM::name() const {
+  // @@protoc_insertion_point(field_get:Protocol.REQ_ENTER_ROOM.name)
+  return _internal_name();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void REQ_ENTER_ROOM::set_name(ArgT0&& arg0, ArgT... args) {
+ 
+ _impl_.name_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:Protocol.REQ_ENTER_ROOM.name)
+}
+inline std::string* REQ_ENTER_ROOM::mutable_name() {
+  std::string* _s = _internal_mutable_name();
+  // @@protoc_insertion_point(field_mutable:Protocol.REQ_ENTER_ROOM.name)
+  return _s;
+}
+inline const std::string& REQ_ENTER_ROOM::_internal_name() const {
+  return _impl_.name_.Get();
+}
+inline void REQ_ENTER_ROOM::_internal_set_name(const std::string& value) {
+  
+  _impl_.name_.Set(value, GetArenaForAllocation());
+}
+inline std::string* REQ_ENTER_ROOM::_internal_mutable_name() {
+  
+  return _impl_.name_.Mutable(GetArenaForAllocation());
+}
+inline std::string* REQ_ENTER_ROOM::release_name() {
+  // @@protoc_insertion_point(field_release:Protocol.REQ_ENTER_ROOM.name)
+  return _impl_.name_.Release();
+}
+inline void REQ_ENTER_ROOM::set_allocated_name(std::string* name) {
+  if (name != nullptr) {
+    
+  } else {
+    
+  }
+  _impl_.name_.SetAllocated(name, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (_impl_.name_.IsDefault()) {
+    _impl_.name_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:Protocol.REQ_ENTER_ROOM.name)
+}
 
 // -------------------------------------------------------------------
 
