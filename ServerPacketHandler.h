@@ -66,7 +66,7 @@ public:
 		PacketHeader* header = reinterpret_cast<PacketHeader*>(sendBuffer->data());
 		header->size = packetSize;
 		header->id = id;
-		assert(pkt.SerializeToArray(sendBuffer->data(), dataSize));
+		assert(pkt.SerializeToArray(sendBuffer->data() + 4, dataSize));
 
 		return sendBuffer;
 	}
