@@ -11,8 +11,9 @@ void RoomManager::HandleEnterRoom(Session* session, Protocol::REQ_ENTER_ROOM pkt
 		return;
 
 	auto gameSession = static_cast<GameSession*>(session);
+	auto it = m_rooms.insert({ pkt.name(), make_shared<Room>()});
+	auto& room = it.first->second;
 	auto myPlayer = gameSession->GetPlayer();
-	auto room = myPlayer->GetRoom();
 
 	Protocol::RES_ENTER_ROOM res;
 	res.set_success(myPlayer->GetRoom() == nullptr);
