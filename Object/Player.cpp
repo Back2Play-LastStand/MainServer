@@ -48,7 +48,7 @@ void Player::Tick()
 void Player::EnterRoom(shared_ptr<Room> gameRoom)
 {
 	if (auto room = m_room.lock())
-		return;
+		LeaveRoom();
 
 	m_room = gameRoom;
 	if (auto room = m_room.lock())
@@ -59,7 +59,7 @@ void Player::LeaveRoom()
 {
 	if (auto room = m_room.lock())
 	{
-		room->LeavePlayer(GetId());
+		room->PushJob(&Room::LeavePlayer, GetId());
 		m_room.reset();
 	}
 }
