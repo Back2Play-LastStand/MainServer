@@ -44,8 +44,8 @@ void RoomManager::HandleEnterRoom(Session* session, Protocol::REQ_ENTER_ROOM pkt
 				if (player->GetId() != myPlayer->GetId())
 				{
 					Protocol::ObjectInfo* info = spawn.add_players();
-					info->set_objectid(myPlayer->GetId());
-					info->set_name(myPlayer->GetName());
+					info->set_objectid(player->GetId());
+					info->set_name(player->GetName());
 				}
 			}
 
