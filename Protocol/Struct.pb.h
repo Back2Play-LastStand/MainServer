@@ -186,6 +186,7 @@ class ObjectInfo final :
 
   enum : int {
     kNameFieldNumber = 2,
+    kPosInfoFieldNumber = 3,
     kObjectIdFieldNumber = 1,
   };
   // string name = 2;
@@ -201,6 +202,24 @@ class ObjectInfo final :
   inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(const std::string& value);
   std::string* _internal_mutable_name();
   public:
+
+  // .Protocol.PositionInfo posInfo = 3;
+  bool has_posinfo() const;
+  private:
+  bool _internal_has_posinfo() const;
+  public:
+  void clear_posinfo();
+  const ::Protocol::PositionInfo& posinfo() const;
+  PROTOBUF_NODISCARD ::Protocol::PositionInfo* release_posinfo();
+  ::Protocol::PositionInfo* mutable_posinfo();
+  void set_allocated_posinfo(::Protocol::PositionInfo* posinfo);
+  private:
+  const ::Protocol::PositionInfo& _internal_posinfo() const;
+  ::Protocol::PositionInfo* _internal_mutable_posinfo();
+  public:
+  void unsafe_arena_set_allocated_posinfo(
+      ::Protocol::PositionInfo* posinfo);
+  ::Protocol::PositionInfo* unsafe_arena_release_posinfo();
 
   // uint64 objectId = 1;
   void clear_objectid();
@@ -220,6 +239,7 @@ class ObjectInfo final :
   typedef void DestructorSkippable_;
   struct Impl_ {
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
+    ::Protocol::PositionInfo* posinfo_;
     uint64_t objectid_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
@@ -643,6 +663,96 @@ inline void ObjectInfo::set_allocated_name(std::string* name) {
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   // @@protoc_insertion_point(field_set_allocated:Protocol.ObjectInfo.name)
+}
+
+// .Protocol.PositionInfo posInfo = 3;
+inline bool ObjectInfo::_internal_has_posinfo() const {
+  return this != internal_default_instance() && _impl_.posinfo_ != nullptr;
+}
+inline bool ObjectInfo::has_posinfo() const {
+  return _internal_has_posinfo();
+}
+inline void ObjectInfo::clear_posinfo() {
+  if (GetArenaForAllocation() == nullptr && _impl_.posinfo_ != nullptr) {
+    delete _impl_.posinfo_;
+  }
+  _impl_.posinfo_ = nullptr;
+}
+inline const ::Protocol::PositionInfo& ObjectInfo::_internal_posinfo() const {
+  const ::Protocol::PositionInfo* p = _impl_.posinfo_;
+  return p != nullptr ? *p : reinterpret_cast<const ::Protocol::PositionInfo&>(
+      ::Protocol::_PositionInfo_default_instance_);
+}
+inline const ::Protocol::PositionInfo& ObjectInfo::posinfo() const {
+  // @@protoc_insertion_point(field_get:Protocol.ObjectInfo.posInfo)
+  return _internal_posinfo();
+}
+inline void ObjectInfo::unsafe_arena_set_allocated_posinfo(
+    ::Protocol::PositionInfo* posinfo) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.posinfo_);
+  }
+  _impl_.posinfo_ = posinfo;
+  if (posinfo) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:Protocol.ObjectInfo.posInfo)
+}
+inline ::Protocol::PositionInfo* ObjectInfo::release_posinfo() {
+  
+  ::Protocol::PositionInfo* temp = _impl_.posinfo_;
+  _impl_.posinfo_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::Protocol::PositionInfo* ObjectInfo::unsafe_arena_release_posinfo() {
+  // @@protoc_insertion_point(field_release:Protocol.ObjectInfo.posInfo)
+  
+  ::Protocol::PositionInfo* temp = _impl_.posinfo_;
+  _impl_.posinfo_ = nullptr;
+  return temp;
+}
+inline ::Protocol::PositionInfo* ObjectInfo::_internal_mutable_posinfo() {
+  
+  if (_impl_.posinfo_ == nullptr) {
+    auto* p = CreateMaybeMessage<::Protocol::PositionInfo>(GetArenaForAllocation());
+    _impl_.posinfo_ = p;
+  }
+  return _impl_.posinfo_;
+}
+inline ::Protocol::PositionInfo* ObjectInfo::mutable_posinfo() {
+  ::Protocol::PositionInfo* _msg = _internal_mutable_posinfo();
+  // @@protoc_insertion_point(field_mutable:Protocol.ObjectInfo.posInfo)
+  return _msg;
+}
+inline void ObjectInfo::set_allocated_posinfo(::Protocol::PositionInfo* posinfo) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete _impl_.posinfo_;
+  }
+  if (posinfo) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(posinfo);
+    if (message_arena != submessage_arena) {
+      posinfo = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, posinfo, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  _impl_.posinfo_ = posinfo;
+  // @@protoc_insertion_point(field_set_allocated:Protocol.ObjectInfo.posInfo)
 }
 
 // -------------------------------------------------------------------

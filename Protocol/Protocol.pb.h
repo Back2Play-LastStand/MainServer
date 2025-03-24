@@ -1743,7 +1743,6 @@ class RES_MOVE final :
 
   enum : int {
     kPlayerFieldNumber = 1,
-    kInfoFieldNumber = 2,
   };
   // .Protocol.ObjectInfo player = 1;
   bool has_player() const;
@@ -1763,24 +1762,6 @@ class RES_MOVE final :
       ::Protocol::ObjectInfo* player);
   ::Protocol::ObjectInfo* unsafe_arena_release_player();
 
-  // .Protocol.PositionInfo info = 2;
-  bool has_info() const;
-  private:
-  bool _internal_has_info() const;
-  public:
-  void clear_info();
-  const ::Protocol::PositionInfo& info() const;
-  PROTOBUF_NODISCARD ::Protocol::PositionInfo* release_info();
-  ::Protocol::PositionInfo* mutable_info();
-  void set_allocated_info(::Protocol::PositionInfo* info);
-  private:
-  const ::Protocol::PositionInfo& _internal_info() const;
-  ::Protocol::PositionInfo* _internal_mutable_info();
-  public:
-  void unsafe_arena_set_allocated_info(
-      ::Protocol::PositionInfo* info);
-  ::Protocol::PositionInfo* unsafe_arena_release_info();
-
   // @@protoc_insertion_point(class_scope:Protocol.RES_MOVE)
  private:
   class _Internal;
@@ -1790,7 +1771,6 @@ class RES_MOVE final :
   typedef void DestructorSkippable_;
   struct Impl_ {
     ::Protocol::ObjectInfo* player_;
-    ::Protocol::PositionInfo* info_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -2514,91 +2494,6 @@ inline void RES_MOVE::set_allocated_player(::Protocol::ObjectInfo* player) {
   }
   _impl_.player_ = player;
   // @@protoc_insertion_point(field_set_allocated:Protocol.RES_MOVE.player)
-}
-
-// .Protocol.PositionInfo info = 2;
-inline bool RES_MOVE::_internal_has_info() const {
-  return this != internal_default_instance() && _impl_.info_ != nullptr;
-}
-inline bool RES_MOVE::has_info() const {
-  return _internal_has_info();
-}
-inline const ::Protocol::PositionInfo& RES_MOVE::_internal_info() const {
-  const ::Protocol::PositionInfo* p = _impl_.info_;
-  return p != nullptr ? *p : reinterpret_cast<const ::Protocol::PositionInfo&>(
-      ::Protocol::_PositionInfo_default_instance_);
-}
-inline const ::Protocol::PositionInfo& RES_MOVE::info() const {
-  // @@protoc_insertion_point(field_get:Protocol.RES_MOVE.info)
-  return _internal_info();
-}
-inline void RES_MOVE::unsafe_arena_set_allocated_info(
-    ::Protocol::PositionInfo* info) {
-  if (GetArenaForAllocation() == nullptr) {
-    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.info_);
-  }
-  _impl_.info_ = info;
-  if (info) {
-    
-  } else {
-    
-  }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:Protocol.RES_MOVE.info)
-}
-inline ::Protocol::PositionInfo* RES_MOVE::release_info() {
-  
-  ::Protocol::PositionInfo* temp = _impl_.info_;
-  _impl_.info_ = nullptr;
-#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
-  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
-  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
-  if (GetArenaForAllocation() == nullptr) { delete old; }
-#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
-  if (GetArenaForAllocation() != nullptr) {
-    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
-  }
-#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
-  return temp;
-}
-inline ::Protocol::PositionInfo* RES_MOVE::unsafe_arena_release_info() {
-  // @@protoc_insertion_point(field_release:Protocol.RES_MOVE.info)
-  
-  ::Protocol::PositionInfo* temp = _impl_.info_;
-  _impl_.info_ = nullptr;
-  return temp;
-}
-inline ::Protocol::PositionInfo* RES_MOVE::_internal_mutable_info() {
-  
-  if (_impl_.info_ == nullptr) {
-    auto* p = CreateMaybeMessage<::Protocol::PositionInfo>(GetArenaForAllocation());
-    _impl_.info_ = p;
-  }
-  return _impl_.info_;
-}
-inline ::Protocol::PositionInfo* RES_MOVE::mutable_info() {
-  ::Protocol::PositionInfo* _msg = _internal_mutable_info();
-  // @@protoc_insertion_point(field_mutable:Protocol.RES_MOVE.info)
-  return _msg;
-}
-inline void RES_MOVE::set_allocated_info(::Protocol::PositionInfo* info) {
-  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
-  if (message_arena == nullptr) {
-    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.info_);
-  }
-  if (info) {
-    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
-        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
-                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(info));
-    if (message_arena != submessage_arena) {
-      info = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
-          message_arena, info, submessage_arena);
-    }
-    
-  } else {
-    
-  }
-  _impl_.info_ = info;
-  // @@protoc_insertion_point(field_set_allocated:Protocol.RES_MOVE.info)
 }
 
 #ifdef __GNUC__
