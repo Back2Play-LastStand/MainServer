@@ -100,6 +100,7 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORIT
 PROTOBUF_CONSTEXPR RES_SPAWN::RES_SPAWN(
     ::_pbi::ConstantInitialized): _impl_{
     /*decltype(_impl_.player_)*/nullptr
+  , /*decltype(_impl_.mine_)*/false
   , /*decltype(_impl_._cached_size_)*/{}} {}
 struct RES_SPAWNDefaultTypeInternal {
   PROTOBUF_CONSTEXPR RES_SPAWNDefaultTypeInternal()
@@ -192,6 +193,7 @@ const uint32_t TableStruct_Protocol_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::Protocol::RES_SPAWN, _impl_.player_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::RES_SPAWN, _impl_.mine_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::Protocol::RES_SPAWN_ALL, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -215,8 +217,8 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 30, -1, -1, sizeof(::Protocol::REQ_LEAVE)},
   { 36, -1, -1, sizeof(::Protocol::RES_LEAVE)},
   { 42, -1, -1, sizeof(::Protocol::RES_SPAWN)},
-  { 49, -1, -1, sizeof(::Protocol::RES_SPAWN_ALL)},
-  { 56, -1, -1, sizeof(::Protocol::RES_DESPAWN)},
+  { 50, -1, -1, sizeof(::Protocol::RES_SPAWN_ALL)},
+  { 57, -1, -1, sizeof(::Protocol::RES_DESPAWN)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -238,11 +240,11 @@ const char descriptor_table_protodef_Protocol_2eproto[] PROTOBUF_SECTION_VARIABL
   "ObjectInfo\022\017\n\007success\030\002 \001(\010\"\036\n\016REQ_ENTER"
   "_ROOM\022\014\n\004name\030\001 \001(\t\"G\n\016RES_ENTER_ROOM\022$\n"
   "\006player\030\001 \001(\0132\024.Protocol.ObjectInfo\022\017\n\007s"
-  "uccess\030\002 \001(\010\"\013\n\tREQ_LEAVE\"\013\n\tRES_LEAVE\"1"
+  "uccess\030\002 \001(\010\"\013\n\tREQ_LEAVE\"\013\n\tRES_LEAVE\"\?"
   "\n\tRES_SPAWN\022$\n\006player\030\001 \001(\0132\024.Protocol.O"
-  "bjectInfo\"6\n\rRES_SPAWN_ALL\022%\n\007players\030\001 "
-  "\003(\0132\024.Protocol.ObjectInfo\"\032\n\013RES_DESPAWN"
-  "\022\013\n\003ids\030\001 \003(\004b\006proto3"
+  "bjectInfo\022\014\n\004mine\030\002 \001(\010\"6\n\rRES_SPAWN_ALL"
+  "\022%\n\007players\030\001 \003(\0132\024.Protocol.ObjectInfo\""
+  "\032\n\013RES_DESPAWN\022\013\n\003ids\030\001 \003(\004b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_Protocol_2eproto_deps[2] = {
   &::descriptor_table_Enum_2eproto,
@@ -250,7 +252,7 @@ static const ::_pbi::DescriptorTable* const descriptor_table_Protocol_2eproto_de
 };
 static ::_pbi::once_flag descriptor_table_Protocol_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_Protocol_2eproto = {
-    false, false, 421, descriptor_table_protodef_Protocol_2eproto,
+    false, false, 435, descriptor_table_protodef_Protocol_2eproto,
     "Protocol.proto",
     &descriptor_table_Protocol_2eproto_once, descriptor_table_Protocol_2eproto_deps, 2, 9,
     schemas, file_default_instances, TableStruct_Protocol_2eproto::offsets,
@@ -1239,12 +1241,14 @@ RES_SPAWN::RES_SPAWN(const RES_SPAWN& from)
   RES_SPAWN* const _this = this; (void)_this;
   new (&_impl_) Impl_{
       decltype(_impl_.player_){nullptr}
+    , decltype(_impl_.mine_){}
     , /*decltype(_impl_._cached_size_)*/{}};
 
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   if (from._internal_has_player()) {
     _this->_impl_.player_ = new ::Protocol::ObjectInfo(*from._impl_.player_);
   }
+  _this->_impl_.mine_ = from._impl_.mine_;
   // @@protoc_insertion_point(copy_constructor:Protocol.RES_SPAWN)
 }
 
@@ -1254,6 +1258,7 @@ inline void RES_SPAWN::SharedCtor(
   (void)is_message_owned;
   new (&_impl_) Impl_{
       decltype(_impl_.player_){nullptr}
+    , decltype(_impl_.mine_){false}
     , /*decltype(_impl_._cached_size_)*/{}
   };
 }
@@ -1286,6 +1291,7 @@ void RES_SPAWN::Clear() {
     delete _impl_.player_;
   }
   _impl_.player_ = nullptr;
+  _impl_.mine_ = false;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -1299,6 +1305,14 @@ const char* RES_SPAWN::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
           ptr = ctx->ParseMessage(_internal_mutable_player(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // bool mine = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
+          _impl_.mine_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -1339,6 +1353,12 @@ uint8_t* RES_SPAWN::_InternalSerialize(
         _Internal::player(this).GetCachedSize(), target, stream);
   }
 
+  // bool mine = 2;
+  if (this->_internal_mine() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(2, this->_internal_mine(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -1360,6 +1380,11 @@ size_t RES_SPAWN::ByteSizeLong() const {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
         *_impl_.player_);
+  }
+
+  // bool mine = 2;
+  if (this->_internal_mine() != 0) {
+    total_size += 1 + 1;
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
@@ -1384,6 +1409,9 @@ void RES_SPAWN::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROT
     _this->_internal_mutable_player()->::Protocol::ObjectInfo::MergeFrom(
         from._internal_player());
   }
+  if (from._internal_mine() != 0) {
+    _this->_internal_set_mine(from._internal_mine());
+  }
   _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -1401,7 +1429,12 @@ bool RES_SPAWN::IsInitialized() const {
 void RES_SPAWN::InternalSwap(RES_SPAWN* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(_impl_.player_, other->_impl_.player_);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(RES_SPAWN, _impl_.mine_)
+      + sizeof(RES_SPAWN::_impl_.mine_)
+      - PROTOBUF_FIELD_OFFSET(RES_SPAWN, _impl_.player_)>(
+          reinterpret_cast<char*>(&_impl_.player_),
+          reinterpret_cast<char*>(&other->_impl_.player_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata RES_SPAWN::GetMetadata() const {
