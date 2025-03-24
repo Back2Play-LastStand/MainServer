@@ -30,9 +30,21 @@ void RoomManager::HandleEnterRoom(Session* session, Protocol::REQ_ENTER_ROOM pkt
 			info->set_objectid(myPlayer->GetId());
 			info->set_name(myPlayer->GetName());
 			spawn.set_allocated_player(info);
+			spawn.set_mine(true);
 
 			auto sendBuffer = ServerPacketHandler::MakeSendBuffer(spawn);
 			session->SendContext(move(*sendBuffer));
+		}
+		
+		{
+			Protocol::RES_SPAWN spawn;
+			Protocol::ObjectInfo* info = new Protocol::ObjectInfo();
+			info->set_objectid(myPlayer->GetId());
+			info->set_name(myPlayer->GetName());
+			spawn.set_mine(false);
+
+			auto sendBuffer = ServerPacketHandler::MakeSendBuffer(spawn);
+			room->BroadCast(move(*sendBuffer), info->objectid());
 		}
 
 		// send other player
