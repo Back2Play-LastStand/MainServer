@@ -48,3 +48,31 @@ void Room::BroadCast(vector<char> buffer, unsigned long long exceptId)
 			session->SendContext(buffer);
 	}
 }
+
+void Room::HandleMove(Session* session, Protocol::REQ_MOVE pkt)
+{
+	if (!session)
+		return;
+
+	auto gameSession = static_cast<GameSession*>(session);
+	auto player = gameSession->GetPlayer();
+
+	Protocol::PositionInfo posInfo;
+	posInfo.set_posx(pkt.info().posx());
+	posInfo.set_posy(pkt.info().posy());
+	player->SetPosition(posInfo);
+
+	{
+		Protocol::RES_MOVE move;
+		Protocol::ObjectInfo* info = new Protocol::ObjectInfo();
+		Protocol::PositionInfo* posInfo = new Protocol::PositionInfo();
+		info->set_objectid(player->GetId());
+		posInfo->set_posx(pkt.info().posx());
+		posInfo->set_posy(pkt.info().posy());
+		move.set_allocated_info(posInfo);
+		move.set_allocated_player(info);
+
+		auto sendBuffer = ServerPacketHandler::MakeSendBuffer(move);
+		BroadCast(std::move(*sendBuffer), info->objectid());
+	}
+}
