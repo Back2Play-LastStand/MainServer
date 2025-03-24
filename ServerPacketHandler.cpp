@@ -31,3 +31,8 @@ bool Handle_REQ_LEAVE(Session* session, Protocol::REQ_LEAVE& pkt)
 {
 	return false;
 }
+
+bool Handle_REQ_MOVE(Session* session, Protocol::REQ_MOVE& pkt)
+{
+	return false;
+}
