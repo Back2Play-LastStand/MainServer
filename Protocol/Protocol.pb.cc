@@ -36,7 +36,7 @@ struct REQ_ENTERDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 REQ_ENTERDefaultTypeInternal _REQ_ENTER_default_instance_;
 PROTOBUF_CONSTEXPR RES_ENTER::RES_ENTER(
     ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.players_)*/{}
+    /*decltype(_impl_.player_)*/nullptr
   , /*decltype(_impl_.success_)*/false
   , /*decltype(_impl_._cached_size_)*/{}} {}
 struct RES_ENTERDefaultTypeInternal {
@@ -156,7 +156,7 @@ const uint32_t TableStruct_Protocol_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::Protocol::RES_ENTER, _impl_.players_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::RES_ENTER, _impl_.player_),
   PROTOBUF_FIELD_OFFSET(::Protocol::RES_ENTER, _impl_.success_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::Protocol::REQ_ENTER_ROOM, _internal_metadata_),
@@ -234,15 +234,15 @@ static const ::_pb::Message* const file_default_instances[] = {
 const char descriptor_table_protodef_Protocol_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
   "\n\016Protocol.proto\022\010Protocol\032\nEnum.proto\032\014"
   "Struct.proto\"\031\n\tREQ_ENTER\022\014\n\004name\030\001 \001(\t\""
-  "C\n\tRES_ENTER\022%\n\007players\030\001 \003(\0132\024.Protocol"
-  ".ObjectInfo\022\017\n\007success\030\002 \001(\010\"\036\n\016REQ_ENTE"
-  "R_ROOM\022\014\n\004name\030\001 \001(\t\"G\n\016RES_ENTER_ROOM\022$"
-  "\n\006player\030\001 \001(\0132\024.Protocol.ObjectInfo\022\017\n\007"
-  "success\030\002 \001(\010\"\013\n\tREQ_LEAVE\"\013\n\tRES_LEAVE\""
-  "1\n\tRES_SPAWN\022$\n\006player\030\001 \001(\0132\024.Protocol."
-  "ObjectInfo\"6\n\rRES_SPAWN_ALL\022%\n\007players\030\001"
-  " \003(\0132\024.Protocol.ObjectInfo\"\032\n\013RES_DESPAW"
-  "N\022\013\n\003ids\030\001 \003(\004b\006proto3"
+  "B\n\tRES_ENTER\022$\n\006player\030\001 \001(\0132\024.Protocol."
+  "ObjectInfo\022\017\n\007success\030\002 \001(\010\"\036\n\016REQ_ENTER"
+  "_ROOM\022\014\n\004name\030\001 \001(\t\"G\n\016RES_ENTER_ROOM\022$\n"
+  "\006player\030\001 \001(\0132\024.Protocol.ObjectInfo\022\017\n\007s"
+  "uccess\030\002 \001(\010\"\013\n\tREQ_LEAVE\"\013\n\tRES_LEAVE\"1"
+  "\n\tRES_SPAWN\022$\n\006player\030\001 \001(\0132\024.Protocol.O"
+  "bjectInfo\"6\n\rRES_SPAWN_ALL\022%\n\007players\030\001 "
+  "\003(\0132\024.Protocol.ObjectInfo\"\032\n\013RES_DESPAWN"
+  "\022\013\n\003ids\030\001 \003(\004b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_Protocol_2eproto_deps[2] = {
   &::descriptor_table_Enum_2eproto,
@@ -250,7 +250,7 @@ static const ::_pbi::DescriptorTable* const descriptor_table_Protocol_2eproto_de
 };
 static ::_pbi::once_flag descriptor_table_Protocol_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_Protocol_2eproto = {
-    false, false, 422, descriptor_table_protodef_Protocol_2eproto,
+    false, false, 421, descriptor_table_protodef_Protocol_2eproto,
     "Protocol.proto",
     &descriptor_table_Protocol_2eproto_once, descriptor_table_Protocol_2eproto_deps, 2, 9,
     schemas, file_default_instances, TableStruct_Protocol_2eproto::offsets,
@@ -472,10 +472,18 @@ void REQ_ENTER::InternalSwap(REQ_ENTER* other) {
 
 class RES_ENTER::_Internal {
  public:
+  static const ::Protocol::ObjectInfo& player(const RES_ENTER* msg);
 };
 
-void RES_ENTER::clear_players() {
-  _impl_.players_.Clear();
+const ::Protocol::ObjectInfo&
+RES_ENTER::_Internal::player(const RES_ENTER* msg) {
+  return *msg->_impl_.player_;
+}
+void RES_ENTER::clear_player() {
+  if (GetArenaForAllocation() == nullptr && _impl_.player_ != nullptr) {
+    delete _impl_.player_;
+  }
+  _impl_.player_ = nullptr;
 }
 RES_ENTER::RES_ENTER(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
@@ -487,11 +495,14 @@ RES_ENTER::RES_ENTER(const RES_ENTER& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
   RES_ENTER* const _this = this; (void)_this;
   new (&_impl_) Impl_{
-      decltype(_impl_.players_){from._impl_.players_}
+      decltype(_impl_.player_){nullptr}
     , decltype(_impl_.success_){}
     , /*decltype(_impl_._cached_size_)*/{}};
 
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  if (from._internal_has_player()) {
+    _this->_impl_.player_ = new ::Protocol::ObjectInfo(*from._impl_.player_);
+  }
   _this->_impl_.success_ = from._impl_.success_;
   // @@protoc_insertion_point(copy_constructor:Protocol.RES_ENTER)
 }
@@ -501,7 +512,7 @@ inline void RES_ENTER::SharedCtor(
   (void)arena;
   (void)is_message_owned;
   new (&_impl_) Impl_{
-      decltype(_impl_.players_){arena}
+      decltype(_impl_.player_){nullptr}
     , decltype(_impl_.success_){false}
     , /*decltype(_impl_._cached_size_)*/{}
   };
@@ -518,7 +529,7 @@ RES_ENTER::~RES_ENTER() {
 
 inline void RES_ENTER::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  _impl_.players_.~RepeatedPtrField();
+  if (this != internal_default_instance()) delete _impl_.player_;
 }
 
 void RES_ENTER::SetCachedSize(int size) const {
@@ -531,7 +542,10 @@ void RES_ENTER::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.players_.Clear();
+  if (GetArenaForAllocation() == nullptr && _impl_.player_ != nullptr) {
+    delete _impl_.player_;
+  }
+  _impl_.player_ = nullptr;
   _impl_.success_ = false;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
@@ -542,16 +556,11 @@ const char* RES_ENTER::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx
     uint32_t tag;
     ptr = ::_pbi::ReadTag(ptr, &tag);
     switch (tag >> 3) {
-      // repeated .Protocol.ObjectInfo players = 1;
+      // .Protocol.ObjectInfo player = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
-          ptr -= 1;
-          do {
-            ptr += 1;
-            ptr = ctx->ParseMessage(_internal_add_players(), ptr);
-            CHK_(ptr);
-            if (!ctx->DataAvailable(ptr)) break;
-          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<10>(ptr));
+          ptr = ctx->ParseMessage(_internal_mutable_player(), ptr);
+          CHK_(ptr);
         } else
           goto handle_unusual;
         continue;
@@ -592,12 +601,11 @@ uint8_t* RES_ENTER::_InternalSerialize(
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // repeated .Protocol.ObjectInfo players = 1;
-  for (unsigned i = 0,
-      n = static_cast<unsigned>(this->_internal_players_size()); i < n; i++) {
-    const auto& repfield = this->_internal_players(i);
+  // .Protocol.ObjectInfo player = 1;
+  if (this->_internal_has_player()) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-        InternalWriteMessage(1, repfield, repfield.GetCachedSize(), target, stream);
+      InternalWriteMessage(1, _Internal::player(this),
+        _Internal::player(this).GetCachedSize(), target, stream);
   }
 
   // bool success = 2;
@@ -622,11 +630,11 @@ size_t RES_ENTER::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // repeated .Protocol.ObjectInfo players = 1;
-  total_size += 1UL * this->_internal_players_size();
-  for (const auto& msg : this->_impl_.players_) {
-    total_size +=
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
+  // .Protocol.ObjectInfo player = 1;
+  if (this->_internal_has_player()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *_impl_.player_);
   }
 
   // bool success = 2;
@@ -652,7 +660,10 @@ void RES_ENTER::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROT
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  _this->_impl_.players_.MergeFrom(from._impl_.players_);
+  if (from._internal_has_player()) {
+    _this->_internal_mutable_player()->::Protocol::ObjectInfo::MergeFrom(
+        from._internal_player());
+  }
   if (from._internal_success() != 0) {
     _this->_internal_set_success(from._internal_success());
   }
@@ -673,8 +684,12 @@ bool RES_ENTER::IsInitialized() const {
 void RES_ENTER::InternalSwap(RES_ENTER* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  _impl_.players_.InternalSwap(&other->_impl_.players_);
-  swap(_impl_.success_, other->_impl_.success_);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(RES_ENTER, _impl_.success_)
+      + sizeof(RES_ENTER::_impl_.success_)
+      - PROTOBUF_FIELD_OFFSET(RES_ENTER, _impl_.player_)>(
+          reinterpret_cast<char*>(&_impl_.player_),
+          reinterpret_cast<char*>(&other->_impl_.player_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata RES_ENTER::GetMetadata() const {

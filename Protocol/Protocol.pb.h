@@ -365,26 +365,26 @@ class RES_ENTER final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kPlayersFieldNumber = 1,
+    kPlayerFieldNumber = 1,
     kSuccessFieldNumber = 2,
   };
-  // repeated .Protocol.ObjectInfo players = 1;
-  int players_size() const;
+  // .Protocol.ObjectInfo player = 1;
+  bool has_player() const;
   private:
-  int _internal_players_size() const;
+  bool _internal_has_player() const;
   public:
-  void clear_players();
-  ::Protocol::ObjectInfo* mutable_players(int index);
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::Protocol::ObjectInfo >*
-      mutable_players();
+  void clear_player();
+  const ::Protocol::ObjectInfo& player() const;
+  PROTOBUF_NODISCARD ::Protocol::ObjectInfo* release_player();
+  ::Protocol::ObjectInfo* mutable_player();
+  void set_allocated_player(::Protocol::ObjectInfo* player);
   private:
-  const ::Protocol::ObjectInfo& _internal_players(int index) const;
-  ::Protocol::ObjectInfo* _internal_add_players();
+  const ::Protocol::ObjectInfo& _internal_player() const;
+  ::Protocol::ObjectInfo* _internal_mutable_player();
   public:
-  const ::Protocol::ObjectInfo& players(int index) const;
-  ::Protocol::ObjectInfo* add_players();
-  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::Protocol::ObjectInfo >&
-      players() const;
+  void unsafe_arena_set_allocated_player(
+      ::Protocol::ObjectInfo* player);
+  ::Protocol::ObjectInfo* unsafe_arena_release_player();
 
   // bool success = 2;
   void clear_success();
@@ -403,7 +403,7 @@ class RES_ENTER final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   struct Impl_ {
-    ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::Protocol::ObjectInfo > players_;
+    ::Protocol::ObjectInfo* player_;
     bool success_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
@@ -1508,41 +1508,89 @@ inline void REQ_ENTER::set_allocated_name(std::string* name) {
 
 // RES_ENTER
 
-// repeated .Protocol.ObjectInfo players = 1;
-inline int RES_ENTER::_internal_players_size() const {
-  return _impl_.players_.size();
+// .Protocol.ObjectInfo player = 1;
+inline bool RES_ENTER::_internal_has_player() const {
+  return this != internal_default_instance() && _impl_.player_ != nullptr;
 }
-inline int RES_ENTER::players_size() const {
-  return _internal_players_size();
+inline bool RES_ENTER::has_player() const {
+  return _internal_has_player();
 }
-inline ::Protocol::ObjectInfo* RES_ENTER::mutable_players(int index) {
-  // @@protoc_insertion_point(field_mutable:Protocol.RES_ENTER.players)
-  return _impl_.players_.Mutable(index);
+inline const ::Protocol::ObjectInfo& RES_ENTER::_internal_player() const {
+  const ::Protocol::ObjectInfo* p = _impl_.player_;
+  return p != nullptr ? *p : reinterpret_cast<const ::Protocol::ObjectInfo&>(
+      ::Protocol::_ObjectInfo_default_instance_);
 }
-inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::Protocol::ObjectInfo >*
-RES_ENTER::mutable_players() {
-  // @@protoc_insertion_point(field_mutable_list:Protocol.RES_ENTER.players)
-  return &_impl_.players_;
+inline const ::Protocol::ObjectInfo& RES_ENTER::player() const {
+  // @@protoc_insertion_point(field_get:Protocol.RES_ENTER.player)
+  return _internal_player();
 }
-inline const ::Protocol::ObjectInfo& RES_ENTER::_internal_players(int index) const {
-  return _impl_.players_.Get(index);
+inline void RES_ENTER::unsafe_arena_set_allocated_player(
+    ::Protocol::ObjectInfo* player) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.player_);
+  }
+  _impl_.player_ = player;
+  if (player) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:Protocol.RES_ENTER.player)
 }
-inline const ::Protocol::ObjectInfo& RES_ENTER::players(int index) const {
-  // @@protoc_insertion_point(field_get:Protocol.RES_ENTER.players)
-  return _internal_players(index);
+inline ::Protocol::ObjectInfo* RES_ENTER::release_player() {
+  
+  ::Protocol::ObjectInfo* temp = _impl_.player_;
+  _impl_.player_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
 }
-inline ::Protocol::ObjectInfo* RES_ENTER::_internal_add_players() {
-  return _impl_.players_.Add();
+inline ::Protocol::ObjectInfo* RES_ENTER::unsafe_arena_release_player() {
+  // @@protoc_insertion_point(field_release:Protocol.RES_ENTER.player)
+  
+  ::Protocol::ObjectInfo* temp = _impl_.player_;
+  _impl_.player_ = nullptr;
+  return temp;
 }
-inline ::Protocol::ObjectInfo* RES_ENTER::add_players() {
-  ::Protocol::ObjectInfo* _add = _internal_add_players();
-  // @@protoc_insertion_point(field_add:Protocol.RES_ENTER.players)
-  return _add;
+inline ::Protocol::ObjectInfo* RES_ENTER::_internal_mutable_player() {
+  
+  if (_impl_.player_ == nullptr) {
+    auto* p = CreateMaybeMessage<::Protocol::ObjectInfo>(GetArenaForAllocation());
+    _impl_.player_ = p;
+  }
+  return _impl_.player_;
 }
-inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::Protocol::ObjectInfo >&
-RES_ENTER::players() const {
-  // @@protoc_insertion_point(field_list:Protocol.RES_ENTER.players)
-  return _impl_.players_;
+inline ::Protocol::ObjectInfo* RES_ENTER::mutable_player() {
+  ::Protocol::ObjectInfo* _msg = _internal_mutable_player();
+  // @@protoc_insertion_point(field_mutable:Protocol.RES_ENTER.player)
+  return _msg;
+}
+inline void RES_ENTER::set_allocated_player(::Protocol::ObjectInfo* player) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.player_);
+  }
+  if (player) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(player));
+    if (message_arena != submessage_arena) {
+      player = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, player, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  _impl_.player_ = player;
+  // @@protoc_insertion_point(field_set_allocated:Protocol.RES_ENTER.player)
 }
 
 // bool success = 2;
