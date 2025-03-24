@@ -11,8 +11,9 @@ void RoomManager::HandleEnterRoom(Session* session, Protocol::REQ_ENTER_ROOM pkt
 		return;
 
 	auto gameSession = static_cast<GameSession*>(session);
+	auto it = m_rooms.insert({ pkt.name(), make_shared<Room>()});
+	auto& room = it.first->second;
 	auto myPlayer = gameSession->GetPlayer();
-	auto room = myPlayer->GetRoom();
 
 	Protocol::RES_ENTER_ROOM res;
 	res.set_success(myPlayer->GetRoom() == nullptr);
@@ -29,9 +30,21 @@ void RoomManager::HandleEnterRoom(Session* session, Protocol::REQ_ENTER_ROOM pkt
 			info->set_objectid(myPlayer->GetId());
 			info->set_name(myPlayer->GetName());
 			spawn.set_allocated_player(info);
+			spawn.set_mine(true);
 
 			auto sendBuffer = ServerPacketHandler::MakeSendBuffer(spawn);
 			session->SendContext(move(*sendBuffer));
+		}
+		
+		{
+			Protocol::RES_SPAWN spawn;
+			Protocol::ObjectInfo* info = new Protocol::ObjectInfo();
+			info->set_objectid(myPlayer->GetId());
+			info->set_name(myPlayer->GetName());
+			spawn.set_mine(false);
+
+			auto sendBuffer = ServerPacketHandler::MakeSendBuffer(spawn);
+			room->BroadCast(move(*sendBuffer), info->objectid());
 		}
 
 		// send other player
@@ -43,8 +56,8 @@ void RoomManager::HandleEnterRoom(Session* session, Protocol::REQ_ENTER_ROOM pkt
 				if (player->GetId() != myPlayer->GetId())
 				{
 					Protocol::ObjectInfo* info = spawn.add_players();
-					info->set_objectid(myPlayer->GetId());
-					info->set_name(myPlayer->GetName());
+					info->set_objectid(player->GetId());
+					info->set_name(player->GetName());
 				}
 			}
 

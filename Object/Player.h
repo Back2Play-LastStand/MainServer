@@ -16,6 +16,8 @@ public:
 	shared_ptr<Room> GetRoom() const;
 	string GetName() const;
 	void SetName(string name);
+	void SetPosition(Protocol::PositionInfo posInfo);
+	Protocol::PositionInfo GetPosition();
 
 	virtual void BeginPlay() override;
 	virtual void Tick() override;
@@ -27,5 +29,6 @@ private:
 	GameSession* m_session;
 	weak_ptr<Room> m_room;
 	string m_playerName;
+	Protocol::PositionInfo m_posInfo;
 };
 

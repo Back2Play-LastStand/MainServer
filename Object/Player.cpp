@@ -35,6 +35,16 @@ void Player::SetName(string name)
 	m_playerName = name;
 }
 
+void Player::SetPosition(Protocol::PositionInfo posInfo)
+{
+	m_posInfo = posInfo;
+}
+
+Protocol::PositionInfo Player::GetPosition()
+{
+	return m_posInfo;
+}
+
 void Player::BeginPlay()
 {
 	Super::BeginPlay();
@@ -48,7 +58,7 @@ void Player::Tick()
 void Player::EnterRoom(shared_ptr<Room> gameRoom)
 {
 	if (auto room = m_room.lock())
-		return;
+		LeaveRoom();
 
 	m_room = gameRoom;
 	if (auto room = m_room.lock())
@@ -59,7 +69,7 @@ void Player::LeaveRoom()
 {
 	if (auto room = m_room.lock())
 	{
-		room->LeavePlayer(GetId());
+		room->PushJob(&Room::LeavePlayer, GetId());
 		m_room.reset();
 	}
 }
