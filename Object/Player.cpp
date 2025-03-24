@@ -35,6 +35,16 @@ void Player::SetName(string name)
 	m_playerName = name;
 }
 
+void Player::SetPosition(Protocol::PositionInfo posInfo)
+{
+	m_posInfo = posInfo;
+}
+
+Protocol::PositionInfo Player::GetPosition()
+{
+	return m_posInfo;
+}
+
 void Player::BeginPlay()
 {
 	Super::BeginPlay();
