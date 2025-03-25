@@ -70,6 +70,6 @@ void Room::HandleMove(Session* session, Protocol::REQ_MOVE pkt)
 		info->mutable_posinfo()->set_posy(pkt.info().posy());
 
 		auto sendBuffer = ServerPacketHandler::MakeSendBuffer(move);
-		BroadCast(std::move(*sendBuffer), player->GetId());
+		BroadCast(std::move(*sendBuffer), info->objectid());
 	}
 }
