@@ -57,10 +57,12 @@ void Room::HandleMove(Session* session, Protocol::REQ_MOVE pkt)
 	auto gameSession = static_cast<GameSession*>(session);
 	auto player = gameSession->GetPlayer();
 
-	Protocol::PositionInfo posInfo;
-	posInfo.set_posx(pkt.info().posx());
-	posInfo.set_posy(pkt.info().posy());
-	player->SetPosition(posInfo);
+	Protocol::ObjectInfo info;
+	Protocol::PositionInfo* posInfo = new Protocol::PositionInfo;
+	posInfo->set_posx(pkt.info().posx());
+	posInfo->set_posy(pkt.info().posy());
+	info.set_allocated_posinfo(posInfo);
+	player->SetPosition(info);
 
 	{
 		Protocol::RES_MOVE move;
@@ -69,7 +71,7 @@ void Room::HandleMove(Session* session, Protocol::REQ_MOVE pkt)
 		info->set_objectid(player->GetId());
 		posInfo->set_posx(pkt.info().posx());
 		posInfo->set_posy(pkt.info().posy());
-		move.set_allocated_info(posInfo);
+		info->set_allocated_posinfo(posInfo);
 		move.set_allocated_player(info);
 
 		auto sendBuffer = ServerPacketHandler::MakeSendBuffer(move);

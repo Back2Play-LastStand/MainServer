@@ -1,5 +1,6 @@
 #pragma once
 #include "Network/Session.h"
+#include "Protocol.pb.h"
 
 class Room : public JobSerializer
 {
