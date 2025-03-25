@@ -56,25 +56,20 @@ void Room::HandleMove(Session* session, Protocol::REQ_MOVE pkt)
 
 	auto gameSession = static_cast<GameSession*>(session);
 	auto player = gameSession->GetPlayer();
+	if (!player)
+		return;
 
-	Protocol::ObjectInfo info;
-	Protocol::PositionInfo* posInfo = new Protocol::PositionInfo;
-	posInfo->set_posx(pkt.info().posx());
-	posInfo->set_posy(pkt.info().posy());
-	info.set_allocated_posinfo(posInfo);
-	player->SetPosition(info);
+	player->GetPosition().mutable_posinfo()->set_posx(pkt.info().posx());
+	player->GetPosition().mutable_posinfo()->set_posy(pkt.info().posy());
 
 	{
 		Protocol::RES_MOVE move;
-		Protocol::ObjectInfo* info = new Protocol::ObjectInfo();
-		Protocol::PositionInfo* posInfo = new Protocol::PositionInfo();
+		auto info = move.mutable_player();
 		info->set_objectid(player->GetId());
-		posInfo->set_posx(pkt.info().posx());
-		posInfo->set_posy(pkt.info().posy());
-		info->set_allocated_posinfo(posInfo);
-		move.set_allocated_player(info);
+		info->mutable_posinfo()->set_posx(pkt.info().posx());
+		info->mutable_posinfo()->set_posy(pkt.info().posy());
 
 		auto sendBuffer = ServerPacketHandler::MakeSendBuffer(move);
-		BroadCast(std::move(*sendBuffer), info->objectid());
+		BroadCast(std::move(*sendBuffer), player->GetId());
 	}
 }
