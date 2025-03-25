@@ -17,8 +17,8 @@ public:
 	shared_ptr<Room> GetRoom() const;
 	string GetName() const;
 	void SetName(string name);
-	void SetPosition(Protocol::ObjectInfo info);
-	Protocol::ObjectInfo GetPosition();
+	void SetObjectInfo(Protocol::ObjectInfo info);
+	Protocol::ObjectInfo GetObjectInfo();
 
 	virtual void BeginPlay() override;
 	virtual void Tick() override;

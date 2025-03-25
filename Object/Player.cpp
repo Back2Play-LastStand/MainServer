@@ -35,12 +35,12 @@ void Player::SetName(string name)
 	m_playerName = name;
 }
 
-void Player::SetPosition(Protocol::ObjectInfo info)
+void Player::SetObjectInfo(Protocol::ObjectInfo info)
 {
 	m_info = info;
 }
 
-Protocol::ObjectInfo Player::GetPosition()
+Protocol::ObjectInfo Player::GetObjectInfo()
 {
 	return m_info;
 }

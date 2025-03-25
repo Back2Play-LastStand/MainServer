@@ -59,8 +59,8 @@ void Room::HandleMove(Session* session, Protocol::REQ_MOVE pkt)
 	if (!player)
 		return;
 
-	player->GetPosition().mutable_posinfo()->set_posx(pkt.info().posx());
-	player->GetPosition().mutable_posinfo()->set_posy(pkt.info().posy());
+	player->GetObjectInfo().mutable_posinfo()->set_posx(pkt.info().posx());
+	player->GetObjectInfo().mutable_posinfo()->set_posy(pkt.info().posy());
 
 	{
 		Protocol::RES_MOVE move;

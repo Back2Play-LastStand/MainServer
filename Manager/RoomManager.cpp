@@ -60,7 +60,7 @@ void RoomManager::HandleEnterRoom(Session* session, Protocol::REQ_ENTER_ROOM pkt
 					info->set_name(player->GetName());
 
 					Protocol::PositionInfo* posInfo = new Protocol::PositionInfo();
-					*posInfo = player->GetPosition().posinfo();
+					*posInfo = player->GetObjectInfo().posinfo();
 
 					info->set_allocated_posinfo(posInfo);
 				}
