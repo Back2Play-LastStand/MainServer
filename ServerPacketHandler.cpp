@@ -34,5 +34,6 @@ bool Handle_REQ_LEAVE(Session* session, Protocol::REQ_LEAVE& pkt)
 
 bool Handle_REQ_MOVE(Session* session, Protocol::REQ_MOVE& pkt)
 {
+	GRoom->PushJob(&Room::HandleMove, session, pkt);
 	return false;
 }
