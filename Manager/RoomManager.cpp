@@ -58,6 +58,11 @@ void RoomManager::HandleEnterRoom(Session* session, Protocol::REQ_ENTER_ROOM pkt
 					Protocol::ObjectInfo* info = spawn.add_players();
 					info->set_objectid(player->GetId());
 					info->set_name(player->GetName());
+
+					Protocol::PositionInfo* posInfo = new Protocol::PositionInfo();
+					*posInfo = player->GetPosition().posinfo();
+
+					info->set_allocated_posinfo(posInfo);
 				}
 			}
 
