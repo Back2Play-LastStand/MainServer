@@ -16,6 +16,11 @@ unordered_map<unsigned long long, shared_ptr<Player>> Room::GetPlayers()
 	return m_players;
 }
 
+string Room::GetName()
+{
+	return m_name;
+}
+
 bool Room::EnterPlayer(shared_ptr<Player> player)
 {
 	if (m_players.find(player->GetId()) != m_players.end())
