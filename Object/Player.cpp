@@ -62,7 +62,7 @@ void Player::EnterRoom(shared_ptr<Room> gameRoom)
 
 	m_room = gameRoom;
 	if (auto room = m_room.lock())
-		room->EnterPlayer(static_pointer_cast<Player>(shared_from_this()));
+		gameRoom->EnterPlayer(static_pointer_cast<Player>(shared_from_this()));
 }
 
 void Player::LeaveRoom()

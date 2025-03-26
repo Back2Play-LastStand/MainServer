@@ -29,6 +29,8 @@ void RoomManager::HandleEnterRoom(Session* session, Protocol::REQ_ENTER_ROOM pkt
 			Protocol::ObjectInfo* info = new Protocol::ObjectInfo();
 			info->set_objectid(myPlayer->GetId());
 			info->set_name(myPlayer->GetName());
+			info->mutable_posinfo()->set_posx(10);
+			info->mutable_posinfo()->set_posy(10);
 			spawn.set_allocated_player(info);
 			spawn.set_mine(true);
 
