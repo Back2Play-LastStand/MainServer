@@ -3,7 +3,7 @@
 
 shared_ptr<Room> GRoom = make_shared<Room>();
 
-Room::Room()
+Room::Room(string name) : m_name(name)
 {
 }
 

@@ -5,7 +5,8 @@
 class Room : public JobSerializer
 {
 public:
-	Room();
+	Room() = default;
+	Room(string name);
 	virtual ~Room();
 
 	unordered_map<unsigned long long, shared_ptr<Player>> GetPlayers();
