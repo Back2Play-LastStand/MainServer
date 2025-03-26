@@ -1,5 +1,6 @@
 #pragma once
 #include "GameObject.h"
+#include "Struct.pb.h"
 
 class GameSession;
 class Room;
@@ -16,8 +17,8 @@ public:
 	shared_ptr<Room> GetRoom() const;
 	string GetName() const;
 	void SetName(string name);
-	void SetPosition(Protocol::PositionInfo posInfo);
-	Protocol::PositionInfo GetPosition();
+	void SetObjectInfo(Protocol::ObjectInfo info);
+	Protocol::ObjectInfo GetObjectInfo();
 
 	virtual void BeginPlay() override;
 	virtual void Tick() override;
@@ -29,6 +30,6 @@ private:
 	GameSession* m_session;
 	weak_ptr<Room> m_room;
 	string m_playerName;
-	Protocol::PositionInfo m_posInfo;
+	Protocol::ObjectInfo m_info;
 };
 

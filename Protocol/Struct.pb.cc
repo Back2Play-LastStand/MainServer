@@ -24,6 +24,7 @@ namespace Protocol {
 PROTOBUF_CONSTEXPR ObjectInfo::ObjectInfo(
     ::_pbi::ConstantInitialized): _impl_{
     /*decltype(_impl_.name_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.posinfo_)*/nullptr
   , /*decltype(_impl_.objectid_)*/uint64_t{0u}
   , /*decltype(_impl_._cached_size_)*/{}} {}
 struct ObjectInfoDefaultTypeInternal {
@@ -78,6 +79,7 @@ const uint32_t TableStruct_Struct_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(p
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::Protocol::ObjectInfo, _impl_.objectid_),
   PROTOBUF_FIELD_OFFSET(::Protocol::ObjectInfo, _impl_.name_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::ObjectInfo, _impl_.posinfo_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::Protocol::PositionInfo, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -98,8 +100,8 @@ const uint32_t TableStruct_Struct_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(p
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::Protocol::ObjectInfo)},
-  { 8, -1, -1, sizeof(::Protocol::PositionInfo)},
-  { 17, -1, -1, sizeof(::Protocol::MousePos)},
+  { 9, -1, -1, sizeof(::Protocol::PositionInfo)},
+  { 18, -1, -1, sizeof(::Protocol::MousePos)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -109,15 +111,17 @@ static const ::_pb::Message* const file_default_instances[] = {
 };
 
 const char descriptor_table_protodef_Struct_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
-  "\n\014Struct.proto\022\010Protocol\",\n\nObjectInfo\022\020"
-  "\n\010objectId\030\001 \001(\004\022\014\n\004name\030\002 \001(\t\"P\n\014Positi"
-  "onInfo\022\014\n\004posX\030\001 \001(\005\022\014\n\004posY\030\002 \001(\005\022$\n\010mo"
-  "usePos\030\003 \001(\0132\022.Protocol.MousePos\"&\n\010Mous"
-  "ePos\022\014\n\004posX\030\001 \001(\005\022\014\n\004posY\030\002 \001(\005b\006proto3"
+  "\n\014Struct.proto\022\010Protocol\"U\n\nObjectInfo\022\020"
+  "\n\010objectId\030\001 \001(\004\022\014\n\004name\030\002 \001(\t\022\'\n\007posInf"
+  "o\030\003 \001(\0132\026.Protocol.PositionInfo\"P\n\014Posit"
+  "ionInfo\022\014\n\004posX\030\001 \001(\005\022\014\n\004posY\030\002 \001(\005\022$\n\010m"
+  "ousePos\030\003 \001(\0132\022.Protocol.MousePos\"&\n\010Mou"
+  "sePos\022\014\n\004posX\030\001 \001(\005\022\014\n\004posY\030\002 \001(\005b\006proto"
+  "3"
   ;
 static ::_pbi::once_flag descriptor_table_Struct_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_Struct_2eproto = {
-    false, false, 200, descriptor_table_protodef_Struct_2eproto,
+    false, false, 241, descriptor_table_protodef_Struct_2eproto,
     "Struct.proto",
     &descriptor_table_Struct_2eproto_once, nullptr, 0, 3,
     schemas, file_default_instances, TableStruct_Struct_2eproto::offsets,
@@ -136,8 +140,13 @@ namespace Protocol {
 
 class ObjectInfo::_Internal {
  public:
+  static const ::Protocol::PositionInfo& posinfo(const ObjectInfo* msg);
 };
 
+const ::Protocol::PositionInfo&
+ObjectInfo::_Internal::posinfo(const ObjectInfo* msg) {
+  return *msg->_impl_.posinfo_;
+}
 ObjectInfo::ObjectInfo(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
@@ -149,6 +158,7 @@ ObjectInfo::ObjectInfo(const ObjectInfo& from)
   ObjectInfo* const _this = this; (void)_this;
   new (&_impl_) Impl_{
       decltype(_impl_.name_){}
+    , decltype(_impl_.posinfo_){nullptr}
     , decltype(_impl_.objectid_){}
     , /*decltype(_impl_._cached_size_)*/{}};
 
@@ -161,6 +171,9 @@ ObjectInfo::ObjectInfo(const ObjectInfo& from)
     _this->_impl_.name_.Set(from._internal_name(), 
       _this->GetArenaForAllocation());
   }
+  if (from._internal_has_posinfo()) {
+    _this->_impl_.posinfo_ = new ::Protocol::PositionInfo(*from._impl_.posinfo_);
+  }
   _this->_impl_.objectid_ = from._impl_.objectid_;
   // @@protoc_insertion_point(copy_constructor:Protocol.ObjectInfo)
 }
@@ -171,6 +184,7 @@ inline void ObjectInfo::SharedCtor(
   (void)is_message_owned;
   new (&_impl_) Impl_{
       decltype(_impl_.name_){}
+    , decltype(_impl_.posinfo_){nullptr}
     , decltype(_impl_.objectid_){uint64_t{0u}}
     , /*decltype(_impl_._cached_size_)*/{}
   };
@@ -192,6 +206,7 @@ ObjectInfo::~ObjectInfo() {
 inline void ObjectInfo::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
   _impl_.name_.Destroy();
+  if (this != internal_default_instance()) delete _impl_.posinfo_;
 }
 
 void ObjectInfo::SetCachedSize(int size) const {
@@ -205,6 +220,10 @@ void ObjectInfo::Clear() {
   (void) cached_has_bits;
 
   _impl_.name_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && _impl_.posinfo_ != nullptr) {
+    delete _impl_.posinfo_;
+  }
+  _impl_.posinfo_ = nullptr;
   _impl_.objectid_ = uint64_t{0u};
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
@@ -230,6 +249,14 @@ const char* ObjectInfo::_InternalParse(const char* ptr, ::_pbi::ParseContext* ct
           ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(ptr);
           CHK_(::_pbi::VerifyUTF8(str, "Protocol.ObjectInfo.name"));
+        } else
+          goto handle_unusual;
+        continue;
+      // .Protocol.PositionInfo posInfo = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
+          ptr = ctx->ParseMessage(_internal_mutable_posinfo(), ptr);
+          CHK_(ptr);
         } else
           goto handle_unusual;
         continue;
@@ -278,6 +305,13 @@ uint8_t* ObjectInfo::_InternalSerialize(
         2, this->_internal_name(), target);
   }
 
+  // .Protocol.PositionInfo posInfo = 3;
+  if (this->_internal_has_posinfo()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(3, _Internal::posinfo(this),
+        _Internal::posinfo(this).GetCachedSize(), target, stream);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -299,6 +333,13 @@ size_t ObjectInfo::ByteSizeLong() const {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
         this->_internal_name());
+  }
+
+  // .Protocol.PositionInfo posInfo = 3;
+  if (this->_internal_has_posinfo()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *_impl_.posinfo_);
   }
 
   // uint64 objectId = 1;
@@ -327,6 +368,10 @@ void ObjectInfo::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PRO
   if (!from._internal_name().empty()) {
     _this->_internal_set_name(from._internal_name());
   }
+  if (from._internal_has_posinfo()) {
+    _this->_internal_mutable_posinfo()->::Protocol::PositionInfo::MergeFrom(
+        from._internal_posinfo());
+  }
   if (from._internal_objectid() != 0) {
     _this->_internal_set_objectid(from._internal_objectid());
   }
@@ -353,7 +398,12 @@ void ObjectInfo::InternalSwap(ObjectInfo* other) {
       &_impl_.name_, lhs_arena,
       &other->_impl_.name_, rhs_arena
   );
-  swap(_impl_.objectid_, other->_impl_.objectid_);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(ObjectInfo, _impl_.objectid_)
+      + sizeof(ObjectInfo::_impl_.objectid_)
+      - PROTOBUF_FIELD_OFFSET(ObjectInfo, _impl_.posinfo_)>(
+          reinterpret_cast<char*>(&_impl_.posinfo_),
+          reinterpret_cast<char*>(&other->_impl_.posinfo_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata ObjectInfo::GetMetadata() const {

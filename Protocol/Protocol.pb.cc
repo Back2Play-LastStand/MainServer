@@ -154,7 +154,6 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORIT
 PROTOBUF_CONSTEXPR RES_MOVE::RES_MOVE(
     ::_pbi::ConstantInitialized): _impl_{
     /*decltype(_impl_.player_)*/nullptr
-  , /*decltype(_impl_.info_)*/nullptr
   , /*decltype(_impl_._cached_size_)*/{}} {}
 struct RES_MOVEDefaultTypeInternal {
   PROTOBUF_CONSTEXPR RES_MOVEDefaultTypeInternal()
@@ -249,7 +248,6 @@ const uint32_t TableStruct_Protocol_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::Protocol::RES_MOVE, _impl_.player_),
-  PROTOBUF_FIELD_OFFSET(::Protocol::RES_MOVE, _impl_.info_),
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::Protocol::REQ_ENTER)},
@@ -291,10 +289,9 @@ const char descriptor_table_protodef_Protocol_2eproto[] PROTOBUF_SECTION_VARIABL
   "bjectInfo\022\014\n\004mine\030\002 \001(\010\"6\n\rRES_SPAWN_ALL"
   "\022%\n\007players\030\001 \003(\0132\024.Protocol.ObjectInfo\""
   "\032\n\013RES_DESPAWN\022\013\n\003ids\030\001 \003(\004\"0\n\010REQ_MOVE\022"
-  "$\n\004info\030\001 \001(\0132\026.Protocol.PositionInfo\"V\n"
+  "$\n\004info\030\001 \001(\0132\026.Protocol.PositionInfo\"0\n"
   "\010RES_MOVE\022$\n\006player\030\001 \001(\0132\024.Protocol.Obj"
-  "ectInfo\022$\n\004info\030\002 \001(\0132\026.Protocol.Positio"
-  "nInfob\006proto3"
+  "ectInfob\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_Protocol_2eproto_deps[2] = {
   &::descriptor_table_Enum_2eproto,
@@ -302,7 +299,7 @@ static const ::_pbi::DescriptorTable* const descriptor_table_Protocol_2eproto_de
 };
 static ::_pbi::once_flag descriptor_table_Protocol_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_Protocol_2eproto = {
-    false, false, 573, descriptor_table_protodef_Protocol_2eproto,
+    false, false, 535, descriptor_table_protodef_Protocol_2eproto,
     "Protocol.proto",
     &descriptor_table_Protocol_2eproto_once, descriptor_table_Protocol_2eproto_deps, 2, 11,
     schemas, file_default_instances, TableStruct_Protocol_2eproto::offsets,
@@ -2078,28 +2075,17 @@ void REQ_MOVE::InternalSwap(REQ_MOVE* other) {
 class RES_MOVE::_Internal {
  public:
   static const ::Protocol::ObjectInfo& player(const RES_MOVE* msg);
-  static const ::Protocol::PositionInfo& info(const RES_MOVE* msg);
 };
 
 const ::Protocol::ObjectInfo&
 RES_MOVE::_Internal::player(const RES_MOVE* msg) {
   return *msg->_impl_.player_;
 }
-const ::Protocol::PositionInfo&
-RES_MOVE::_Internal::info(const RES_MOVE* msg) {
-  return *msg->_impl_.info_;
-}
 void RES_MOVE::clear_player() {
   if (GetArenaForAllocation() == nullptr && _impl_.player_ != nullptr) {
     delete _impl_.player_;
   }
   _impl_.player_ = nullptr;
-}
-void RES_MOVE::clear_info() {
-  if (GetArenaForAllocation() == nullptr && _impl_.info_ != nullptr) {
-    delete _impl_.info_;
-  }
-  _impl_.info_ = nullptr;
 }
 RES_MOVE::RES_MOVE(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
@@ -2112,15 +2098,11 @@ RES_MOVE::RES_MOVE(const RES_MOVE& from)
   RES_MOVE* const _this = this; (void)_this;
   new (&_impl_) Impl_{
       decltype(_impl_.player_){nullptr}
-    , decltype(_impl_.info_){nullptr}
     , /*decltype(_impl_._cached_size_)*/{}};
 
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   if (from._internal_has_player()) {
     _this->_impl_.player_ = new ::Protocol::ObjectInfo(*from._impl_.player_);
-  }
-  if (from._internal_has_info()) {
-    _this->_impl_.info_ = new ::Protocol::PositionInfo(*from._impl_.info_);
   }
   // @@protoc_insertion_point(copy_constructor:Protocol.RES_MOVE)
 }
@@ -2131,7 +2113,6 @@ inline void RES_MOVE::SharedCtor(
   (void)is_message_owned;
   new (&_impl_) Impl_{
       decltype(_impl_.player_){nullptr}
-    , decltype(_impl_.info_){nullptr}
     , /*decltype(_impl_._cached_size_)*/{}
   };
 }
@@ -2148,7 +2129,6 @@ RES_MOVE::~RES_MOVE() {
 inline void RES_MOVE::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
   if (this != internal_default_instance()) delete _impl_.player_;
-  if (this != internal_default_instance()) delete _impl_.info_;
 }
 
 void RES_MOVE::SetCachedSize(int size) const {
@@ -2165,10 +2145,6 @@ void RES_MOVE::Clear() {
     delete _impl_.player_;
   }
   _impl_.player_ = nullptr;
-  if (GetArenaForAllocation() == nullptr && _impl_.info_ != nullptr) {
-    delete _impl_.info_;
-  }
-  _impl_.info_ = nullptr;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -2182,14 +2158,6 @@ const char* RES_MOVE::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx)
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
           ptr = ctx->ParseMessage(_internal_mutable_player(), ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // .Protocol.PositionInfo info = 2;
-      case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
-          ptr = ctx->ParseMessage(_internal_mutable_info(), ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -2230,13 +2198,6 @@ uint8_t* RES_MOVE::_InternalSerialize(
         _Internal::player(this).GetCachedSize(), target, stream);
   }
 
-  // .Protocol.PositionInfo info = 2;
-  if (this->_internal_has_info()) {
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(2, _Internal::info(this),
-        _Internal::info(this).GetCachedSize(), target, stream);
-  }
-
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -2258,13 +2219,6 @@ size_t RES_MOVE::ByteSizeLong() const {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
         *_impl_.player_);
-  }
-
-  // .Protocol.PositionInfo info = 2;
-  if (this->_internal_has_info()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *_impl_.info_);
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
@@ -2289,10 +2243,6 @@ void RES_MOVE::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTO
     _this->_internal_mutable_player()->::Protocol::ObjectInfo::MergeFrom(
         from._internal_player());
   }
-  if (from._internal_has_info()) {
-    _this->_internal_mutable_info()->::Protocol::PositionInfo::MergeFrom(
-        from._internal_info());
-  }
   _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -2310,12 +2260,7 @@ bool RES_MOVE::IsInitialized() const {
 void RES_MOVE::InternalSwap(RES_MOVE* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(RES_MOVE, _impl_.info_)
-      + sizeof(RES_MOVE::_impl_.info_)
-      - PROTOBUF_FIELD_OFFSET(RES_MOVE, _impl_.player_)>(
-          reinterpret_cast<char*>(&_impl_.player_),
-          reinterpret_cast<char*>(&other->_impl_.player_));
+  swap(_impl_.player_, other->_impl_.player_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata RES_MOVE::GetMetadata() const {

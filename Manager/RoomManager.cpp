@@ -11,12 +11,14 @@ void RoomManager::HandleEnterRoom(Session* session, Protocol::REQ_ENTER_ROOM pkt
 		return;
 
 	auto gameSession = static_cast<GameSession*>(session);
-	auto it = m_rooms.insert({ pkt.name(), make_shared<Room>()});
-	auto& room = it.first->second;
+	if (m_rooms.find(pkt.name()) == m_rooms.end()) {
+		m_rooms[pkt.name()] = MakeShared<Room>();
+	}
+	auto& room = m_rooms[pkt.name()];
 	auto myPlayer = gameSession->GetPlayer();
 
 	Protocol::RES_ENTER_ROOM res;
-	res.set_success(myPlayer->GetRoom() == nullptr);
+	res.set_success(room != nullptr && myPlayer->GetRoom() != room);
 	auto sendBuffer = ServerPacketHandler::MakeSendBuffer(res);
 	session->SendContext(move(*sendBuffer));
 
@@ -29,13 +31,15 @@ void RoomManager::HandleEnterRoom(Session* session, Protocol::REQ_ENTER_ROOM pkt
 			Protocol::ObjectInfo* info = new Protocol::ObjectInfo();
 			info->set_objectid(myPlayer->GetId());
 			info->set_name(myPlayer->GetName());
+			info->mutable_posinfo()->set_posx(10);
+			info->mutable_posinfo()->set_posy(10);
 			spawn.set_allocated_player(info);
 			spawn.set_mine(true);
 
 			auto sendBuffer = ServerPacketHandler::MakeSendBuffer(spawn);
 			session->SendContext(move(*sendBuffer));
 		}
-		
+
 		{
 			Protocol::RES_SPAWN spawn;
 			Protocol::ObjectInfo* info = new Protocol::ObjectInfo();
@@ -58,6 +62,11 @@ void RoomManager::HandleEnterRoom(Session* session, Protocol::REQ_ENTER_ROOM pkt
 					Protocol::ObjectInfo* info = spawn.add_players();
 					info->set_objectid(player->GetId());
 					info->set_name(player->GetName());
+
+					Protocol::PositionInfo* posInfo = new Protocol::PositionInfo();
+					*posInfo = player->GetObjectInfo().posinfo();
+
+					info->set_allocated_posinfo(posInfo);
 				}
 			}
 

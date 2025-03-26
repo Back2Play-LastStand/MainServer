@@ -35,14 +35,14 @@ void Player::SetName(string name)
 	m_playerName = name;
 }
 
-void Player::SetPosition(Protocol::PositionInfo posInfo)
+void Player::SetObjectInfo(Protocol::ObjectInfo info)
 {
-	m_posInfo = posInfo;
+	m_info = info;
 }
 
-Protocol::PositionInfo Player::GetPosition()
+Protocol::ObjectInfo Player::GetObjectInfo()
 {
-	return m_posInfo;
+	return m_info;
 }
 
 void Player::BeginPlay()
@@ -62,7 +62,7 @@ void Player::EnterRoom(shared_ptr<Room> gameRoom)
 
 	m_room = gameRoom;
 	if (auto room = m_room.lock())
-		room->EnterPlayer(static_pointer_cast<Player>(shared_from_this()));
+		gameRoom->EnterPlayer(static_pointer_cast<Player>(shared_from_this()));
 }
 
 void Player::LeaveRoom()
