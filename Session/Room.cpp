@@ -21,7 +21,7 @@ bool Room::EnterPlayer(shared_ptr<Player> player)
 	if (m_players.find(player->GetId()) != m_players.end())
 		return false;
 
-	m_players.insert(make_pair(player->GetId(), player));
+	m_players.insert({ player->GetId(), player });
 
 	return true;
 }
@@ -38,10 +38,9 @@ bool Room::LeavePlayer(unsigned long long objectId)
 
 void Room::BroadCast(vector<char> buffer, unsigned long long exceptId)
 {
-	for (auto& item : m_players)
+	for (const auto& [id, player] : m_players)
 	{
-		shared_ptr<Player> player = item.second;
-		if (player->GetId() == exceptId)
+		if (id == exceptId)
 			continue;
 
 		if (auto session = player->GetSession())
@@ -70,6 +69,10 @@ void Room::HandleMove(Session* session, Protocol::REQ_MOVE pkt)
 		info->mutable_posinfo()->set_posy(pkt.info().posy());
 
 		auto sendBuffer = ServerPacketHandler::MakeSendBuffer(move);
-		BroadCast(std::move(*sendBuffer), info->objectid());
+
+		for (auto p : m_players)
+		{
+			session->SendContext(std::move(*sendBuffer));
+		}
 	}
 }
