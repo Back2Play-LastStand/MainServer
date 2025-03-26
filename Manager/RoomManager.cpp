@@ -11,11 +11,14 @@ void RoomManager::HandleEnterRoom(Session* session, Protocol::REQ_ENTER_ROOM pkt
 		return;
 
 	auto gameSession = static_cast<GameSession*>(session);
-	const auto& room = m_rooms[pkt.name()];
+	if (m_rooms.find(pkt.name()) == m_rooms.end()) {
+		m_rooms[pkt.name()] = MakeShared<Room>();
+	}
+	auto& room = m_rooms[pkt.name()];
 	auto myPlayer = gameSession->GetPlayer();
 
 	Protocol::RES_ENTER_ROOM res;
-	res.set_success(myPlayer->GetRoom() == nullptr);
+	res.set_success(room != nullptr && myPlayer->GetRoom() != room);
 	auto sendBuffer = ServerPacketHandler::MakeSendBuffer(res);
 	session->SendContext(move(*sendBuffer));
 
@@ -36,7 +39,7 @@ void RoomManager::HandleEnterRoom(Session* session, Protocol::REQ_ENTER_ROOM pkt
 			auto sendBuffer = ServerPacketHandler::MakeSendBuffer(spawn);
 			session->SendContext(move(*sendBuffer));
 		}
-		
+
 		{
 			Protocol::RES_SPAWN spawn;
 			Protocol::ObjectInfo* info = new Protocol::ObjectInfo();
