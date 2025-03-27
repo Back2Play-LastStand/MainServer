@@ -75,7 +75,7 @@ void Room::HandleMove(Session* session, Protocol::REQ_MOVE pkt)
 
 		auto sendBuffer = ServerPacketHandler::MakeSendBuffer(move);
 
-		for (auto p : m_players)
+		for (auto& p : m_players)
 		{
 			session->SendContext(std::move(*sendBuffer));
 		}
