@@ -3,6 +3,7 @@
 
 RoomManager::RoomManager()
 {
+	m_rooms.insert({ "roomname", MakeShared<Room>("roomname") });
 }
 
 void RoomManager::HandleEnterRoom(Session* session, Protocol::REQ_ENTER_ROOM pkt)
@@ -11,9 +12,6 @@ void RoomManager::HandleEnterRoom(Session* session, Protocol::REQ_ENTER_ROOM pkt
 		return;
 
 	auto gameSession = static_cast<GameSession*>(session);
-	if (m_rooms.find(pkt.name()) == m_rooms.end()) {
-		m_rooms[pkt.name()] = MakeShared<Room>();
-	}
 	auto& room = m_rooms[pkt.name()];
 	auto myPlayer = gameSession->GetPlayer();
 
