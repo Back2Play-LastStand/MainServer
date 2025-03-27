@@ -45,9 +45,6 @@ struct TableStruct_Struct_2eproto {
 };
 extern const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_Struct_2eproto;
 namespace Protocol {
-class MousePos;
-struct MousePosDefaultTypeInternal;
-extern MousePosDefaultTypeInternal _MousePos_default_instance_;
 class ObjectInfo;
 struct ObjectInfoDefaultTypeInternal;
 extern ObjectInfoDefaultTypeInternal _ObjectInfo_default_instance_;
@@ -56,7 +53,6 @@ struct PositionInfoDefaultTypeInternal;
 extern PositionInfoDefaultTypeInternal _PositionInfo_default_instance_;
 }  // namespace Protocol
 PROTOBUF_NAMESPACE_OPEN
-template<> ::Protocol::MousePos* Arena::CreateMaybeMessage<::Protocol::MousePos>(Arena*);
 template<> ::Protocol::ObjectInfo* Arena::CreateMaybeMessage<::Protocol::ObjectInfo>(Arena*);
 template<> ::Protocol::PositionInfo* Arena::CreateMaybeMessage<::Protocol::PositionInfo>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
@@ -369,28 +365,9 @@ class PositionInfo final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kMousePosFieldNumber = 3,
     kPosXFieldNumber = 1,
     kPosYFieldNumber = 2,
   };
-  // .Protocol.MousePos mousePos = 3;
-  bool has_mousepos() const;
-  private:
-  bool _internal_has_mousepos() const;
-  public:
-  void clear_mousepos();
-  const ::Protocol::MousePos& mousepos() const;
-  PROTOBUF_NODISCARD ::Protocol::MousePos* release_mousepos();
-  ::Protocol::MousePos* mutable_mousepos();
-  void set_allocated_mousepos(::Protocol::MousePos* mousepos);
-  private:
-  const ::Protocol::MousePos& _internal_mousepos() const;
-  ::Protocol::MousePos* _internal_mutable_mousepos();
-  public:
-  void unsafe_arena_set_allocated_mousepos(
-      ::Protocol::MousePos* mousepos);
-  ::Protocol::MousePos* unsafe_arena_release_mousepos();
-
   // int32 posX = 1;
   void clear_posx();
   int32_t posx() const;
@@ -410,166 +387,6 @@ class PositionInfo final :
   public:
 
   // @@protoc_insertion_point(class_scope:Protocol.PositionInfo)
- private:
-  class _Internal;
-
-  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
-  typedef void InternalArenaConstructable_;
-  typedef void DestructorSkippable_;
-  struct Impl_ {
-    ::Protocol::MousePos* mousepos_;
-    int32_t posx_;
-    int32_t posy_;
-    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-  };
-  union { Impl_ _impl_; };
-  friend struct ::TableStruct_Struct_2eproto;
-};
-// -------------------------------------------------------------------
-
-class MousePos final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:Protocol.MousePos) */ {
- public:
-  inline MousePos() : MousePos(nullptr) {}
-  ~MousePos() override;
-  explicit PROTOBUF_CONSTEXPR MousePos(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
-
-  MousePos(const MousePos& from);
-  MousePos(MousePos&& from) noexcept
-    : MousePos() {
-    *this = ::std::move(from);
-  }
-
-  inline MousePos& operator=(const MousePos& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline MousePos& operator=(MousePos&& from) noexcept {
-    if (this == &from) return *this;
-    if (GetOwningArena() == from.GetOwningArena()
-  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-        && GetOwningArena() != nullptr
-  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-    ) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const MousePos& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const MousePos* internal_default_instance() {
-    return reinterpret_cast<const MousePos*>(
-               &_MousePos_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    2;
-
-  friend void swap(MousePos& a, MousePos& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(MousePos* other) {
-    if (other == this) return;
-  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() != nullptr &&
-        GetOwningArena() == other->GetOwningArena()) {
-   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() == other->GetOwningArena()) {
-  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-      InternalSwap(other);
-    } else {
-      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(MousePos* other) {
-    if (other == this) return;
-    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  MousePos* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<MousePos>(arena);
-  }
-  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const MousePos& from);
-  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom( const MousePos& from) {
-    MousePos::MergeImpl(*this, from);
-  }
-  private:
-  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
-  public:
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
-
-  size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
-  uint8_t* _InternalSerialize(
-      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
-
-  private:
-  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
-  void SharedDtor();
-  void SetCachedSize(int size) const final;
-  void InternalSwap(MousePos* other);
-
-  private:
-  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "Protocol.MousePos";
-  }
-  protected:
-  explicit MousePos(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                       bool is_message_owned = false);
-  public:
-
-  static const ClassData _class_data_;
-  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
-
-  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-
-  enum : int {
-    kPosXFieldNumber = 1,
-    kPosYFieldNumber = 2,
-  };
-  // int32 posX = 1;
-  void clear_posx();
-  int32_t posx() const;
-  void set_posx(int32_t value);
-  private:
-  int32_t _internal_posx() const;
-  void _internal_set_posx(int32_t value);
-  public:
-
-  // int32 posY = 2;
-  void clear_posy();
-  int32_t posy() const;
-  void set_posy(int32_t value);
-  private:
-  int32_t _internal_posy() const;
-  void _internal_set_posy(int32_t value);
-  public:
-
-  // @@protoc_insertion_point(class_scope:Protocol.MousePos)
  private:
   class _Internal;
 
@@ -799,145 +616,9 @@ inline void PositionInfo::set_posy(int32_t value) {
   // @@protoc_insertion_point(field_set:Protocol.PositionInfo.posY)
 }
 
-// .Protocol.MousePos mousePos = 3;
-inline bool PositionInfo::_internal_has_mousepos() const {
-  return this != internal_default_instance() && _impl_.mousepos_ != nullptr;
-}
-inline bool PositionInfo::has_mousepos() const {
-  return _internal_has_mousepos();
-}
-inline void PositionInfo::clear_mousepos() {
-  if (GetArenaForAllocation() == nullptr && _impl_.mousepos_ != nullptr) {
-    delete _impl_.mousepos_;
-  }
-  _impl_.mousepos_ = nullptr;
-}
-inline const ::Protocol::MousePos& PositionInfo::_internal_mousepos() const {
-  const ::Protocol::MousePos* p = _impl_.mousepos_;
-  return p != nullptr ? *p : reinterpret_cast<const ::Protocol::MousePos&>(
-      ::Protocol::_MousePos_default_instance_);
-}
-inline const ::Protocol::MousePos& PositionInfo::mousepos() const {
-  // @@protoc_insertion_point(field_get:Protocol.PositionInfo.mousePos)
-  return _internal_mousepos();
-}
-inline void PositionInfo::unsafe_arena_set_allocated_mousepos(
-    ::Protocol::MousePos* mousepos) {
-  if (GetArenaForAllocation() == nullptr) {
-    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.mousepos_);
-  }
-  _impl_.mousepos_ = mousepos;
-  if (mousepos) {
-    
-  } else {
-    
-  }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:Protocol.PositionInfo.mousePos)
-}
-inline ::Protocol::MousePos* PositionInfo::release_mousepos() {
-  
-  ::Protocol::MousePos* temp = _impl_.mousepos_;
-  _impl_.mousepos_ = nullptr;
-#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
-  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
-  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
-  if (GetArenaForAllocation() == nullptr) { delete old; }
-#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
-  if (GetArenaForAllocation() != nullptr) {
-    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
-  }
-#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
-  return temp;
-}
-inline ::Protocol::MousePos* PositionInfo::unsafe_arena_release_mousepos() {
-  // @@protoc_insertion_point(field_release:Protocol.PositionInfo.mousePos)
-  
-  ::Protocol::MousePos* temp = _impl_.mousepos_;
-  _impl_.mousepos_ = nullptr;
-  return temp;
-}
-inline ::Protocol::MousePos* PositionInfo::_internal_mutable_mousepos() {
-  
-  if (_impl_.mousepos_ == nullptr) {
-    auto* p = CreateMaybeMessage<::Protocol::MousePos>(GetArenaForAllocation());
-    _impl_.mousepos_ = p;
-  }
-  return _impl_.mousepos_;
-}
-inline ::Protocol::MousePos* PositionInfo::mutable_mousepos() {
-  ::Protocol::MousePos* _msg = _internal_mutable_mousepos();
-  // @@protoc_insertion_point(field_mutable:Protocol.PositionInfo.mousePos)
-  return _msg;
-}
-inline void PositionInfo::set_allocated_mousepos(::Protocol::MousePos* mousepos) {
-  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
-  if (message_arena == nullptr) {
-    delete _impl_.mousepos_;
-  }
-  if (mousepos) {
-    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
-        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(mousepos);
-    if (message_arena != submessage_arena) {
-      mousepos = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
-          message_arena, mousepos, submessage_arena);
-    }
-    
-  } else {
-    
-  }
-  _impl_.mousepos_ = mousepos;
-  // @@protoc_insertion_point(field_set_allocated:Protocol.PositionInfo.mousePos)
-}
-
-// -------------------------------------------------------------------
-
-// MousePos
-
-// int32 posX = 1;
-inline void MousePos::clear_posx() {
-  _impl_.posx_ = 0;
-}
-inline int32_t MousePos::_internal_posx() const {
-  return _impl_.posx_;
-}
-inline int32_t MousePos::posx() const {
-  // @@protoc_insertion_point(field_get:Protocol.MousePos.posX)
-  return _internal_posx();
-}
-inline void MousePos::_internal_set_posx(int32_t value) {
-  
-  _impl_.posx_ = value;
-}
-inline void MousePos::set_posx(int32_t value) {
-  _internal_set_posx(value);
-  // @@protoc_insertion_point(field_set:Protocol.MousePos.posX)
-}
-
-// int32 posY = 2;
-inline void MousePos::clear_posy() {
-  _impl_.posy_ = 0;
-}
-inline int32_t MousePos::_internal_posy() const {
-  return _impl_.posy_;
-}
-inline int32_t MousePos::posy() const {
-  // @@protoc_insertion_point(field_get:Protocol.MousePos.posY)
-  return _internal_posy();
-}
-inline void MousePos::_internal_set_posy(int32_t value) {
-  
-  _impl_.posy_ = value;
-}
-inline void MousePos::set_posy(int32_t value) {
-  _internal_set_posy(value);
-  // @@protoc_insertion_point(field_set:Protocol.MousePos.posY)
-}
-
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
-// -------------------------------------------------------------------
-
 // -------------------------------------------------------------------
 
 

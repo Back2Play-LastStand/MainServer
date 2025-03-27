@@ -6,7 +6,7 @@ void GameSession::OnConnected(endpoint ep)
 	cout << "connected" << endl;
 }
 
-void GameSession::OnRecv(byte* buffer, int len)
+void GameSession::OnRecv(BYTE* buffer, int len)
 {
 	if (len < 3)
 		return;
