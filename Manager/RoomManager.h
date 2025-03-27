@@ -1,4 +1,5 @@
 #pragma once
+#include <tbb/tbb.h>
 
 class Room;
 
@@ -10,6 +11,6 @@ public:
 	void HandleEnterRoom(Session* session, Protocol::REQ_ENTER_ROOM pkt);
 
 private:
-	concurrent_unordered_map<string, shared_ptr<Room>> m_rooms;
+	tbb::concurrent_unordered_map<string, shared_ptr<Room>> m_rooms;
 };
 
