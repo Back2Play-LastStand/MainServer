@@ -40,7 +40,7 @@ void Player::SetObjectInfo(Protocol::ObjectInfo info)
 	m_info = info;
 }
 
-Protocol::ObjectInfo Player::GetObjectInfo()
+Protocol::ObjectInfo& Player::GetObjectInfo()
 {
 	return m_info;
 }
