@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "RoomManager.h"
+#include <random>
 
 RoomManager::RoomManager()
 {
@@ -29,8 +30,12 @@ void RoomManager::HandleEnterRoom(Session* session, Protocol::REQ_ENTER_ROOM pkt
 			Protocol::ObjectInfo* info = new Protocol::ObjectInfo();
 			info->set_objectid(myPlayer->GetId());
 			info->set_name(myPlayer->GetName());
-			info->mutable_posinfo()->set_posx(10);
-			info->mutable_posinfo()->set_posy(10);
+			// Temp
+			random_device rd;
+			mt19937 gen(rd());
+			uniform_int_distribution<int> dis(-2, 2);
+			info->mutable_posinfo()->set_posx(dis(gen));
+			info->mutable_posinfo()->set_posy(dis(gen));
 			spawn.set_allocated_player(info);
 			spawn.set_mine(true);
 
