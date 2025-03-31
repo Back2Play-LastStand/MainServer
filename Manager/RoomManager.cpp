@@ -45,9 +45,11 @@ void RoomManager::HandleEnterRoom(Session* session, Protocol::REQ_ENTER_ROOM pkt
 
 		{
 			Protocol::RES_SPAWN spawn;
-			Protocol::ObjectInfo* info = new Protocol::ObjectInfo();
+			auto info = spawn.mutable_player();
 			info->set_objectid(myPlayer->GetId());
 			info->set_name(myPlayer->GetName());
+			info->mutable_posinfo()->set_posx(myPlayer->GetObjectInfo().posinfo().posx());
+			info->mutable_posinfo()->set_posy(myPlayer->GetObjectInfo().posinfo().posy());
 			spawn.set_mine(false);
 
 			auto sendBuffer = ServerPacketHandler::MakeSendBuffer(spawn);
