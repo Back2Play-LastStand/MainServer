@@ -368,22 +368,22 @@ class PositionInfo final :
     kPosXFieldNumber = 1,
     kPosYFieldNumber = 2,
   };
-  // int32 posX = 1;
+  // float posX = 1;
   void clear_posx();
-  int32_t posx() const;
-  void set_posx(int32_t value);
+  float posx() const;
+  void set_posx(float value);
   private:
-  int32_t _internal_posx() const;
-  void _internal_set_posx(int32_t value);
+  float _internal_posx() const;
+  void _internal_set_posx(float value);
   public:
 
-  // int32 posY = 2;
+  // float posY = 2;
   void clear_posy();
-  int32_t posy() const;
-  void set_posy(int32_t value);
+  float posy() const;
+  void set_posy(float value);
   private:
-  int32_t _internal_posy() const;
-  void _internal_set_posy(int32_t value);
+  float _internal_posy() const;
+  void _internal_set_posy(float value);
   public:
 
   // @@protoc_insertion_point(class_scope:Protocol.PositionInfo)
@@ -394,8 +394,8 @@ class PositionInfo final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   struct Impl_ {
-    int32_t posx_;
-    int32_t posy_;
+    float posx_;
+    float posy_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -576,42 +576,42 @@ inline void ObjectInfo::set_allocated_posinfo(::Protocol::PositionInfo* posinfo)
 
 // PositionInfo
 
-// int32 posX = 1;
+// float posX = 1;
 inline void PositionInfo::clear_posx() {
   _impl_.posx_ = 0;
 }
-inline int32_t PositionInfo::_internal_posx() const {
+inline float PositionInfo::_internal_posx() const {
   return _impl_.posx_;
 }
-inline int32_t PositionInfo::posx() const {
+inline float PositionInfo::posx() const {
   // @@protoc_insertion_point(field_get:Protocol.PositionInfo.posX)
   return _internal_posx();
 }
-inline void PositionInfo::_internal_set_posx(int32_t value) {
+inline void PositionInfo::_internal_set_posx(float value) {
   
   _impl_.posx_ = value;
 }
-inline void PositionInfo::set_posx(int32_t value) {
+inline void PositionInfo::set_posx(float value) {
   _internal_set_posx(value);
   // @@protoc_insertion_point(field_set:Protocol.PositionInfo.posX)
 }
 
-// int32 posY = 2;
+// float posY = 2;
 inline void PositionInfo::clear_posy() {
   _impl_.posy_ = 0;
 }
-inline int32_t PositionInfo::_internal_posy() const {
+inline float PositionInfo::_internal_posy() const {
   return _impl_.posy_;
 }
-inline int32_t PositionInfo::posy() const {
+inline float PositionInfo::posy() const {
   // @@protoc_insertion_point(field_get:Protocol.PositionInfo.posY)
   return _internal_posy();
 }
-inline void PositionInfo::_internal_set_posy(int32_t value) {
+inline void PositionInfo::_internal_set_posy(float value) {
   
   _impl_.posy_ = value;
 }
-inline void PositionInfo::set_posy(int32_t value) {
+inline void PositionInfo::set_posy(float value) {
   _internal_set_posy(value);
   // @@protoc_insertion_point(field_set:Protocol.PositionInfo.posY)
 }
