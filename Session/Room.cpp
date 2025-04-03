@@ -72,7 +72,7 @@ void Room::HandleMove(Session* session, Protocol::REQ_MOVE pkt)
 		info->set_objectid(player->GetId());
 		info->mutable_posinfo()->set_posx(pkt.info().posx());
 		info->mutable_posinfo()->set_posy(pkt.info().posy());
-
+		info->mutable_posinfo()->set_movedir(pkt.info().movedir());
 		auto sendBuffer = ServerPacketHandler::MakeSendBuffer(move);
 
 		for (auto& [id, p] : m_players)
