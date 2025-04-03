@@ -63,18 +63,14 @@ void Room::HandleMove(Session* session, Protocol::REQ_MOVE pkt)
 	if (!player)
 		return;
 
-	player->GetObjectInfo().mutable_posinfo()->set_posx(pkt.info().posx());
-	player->GetObjectInfo().mutable_posinfo()->set_posy(pkt.info().posy());
-
+	player->GetObjectInfo().mutable_posinfo()->CopyFrom(pkt.info());
 	{
 		Protocol::RES_MOVE move;
 		auto info = move.mutable_player();
 		info->set_objectid(player->GetId());
-		info->mutable_posinfo()->set_posx(pkt.info().posx());
-		info->mutable_posinfo()->set_posy(pkt.info().posy());
-
+		info->mutable_posinfo()->CopyFrom(pkt.info());
+		
 		auto sendBuffer = ServerPacketHandler::MakeSendBuffer(move);
-
 		for (auto& [id, p] : m_players)
 		{
 			if (auto s = p->GetSession())

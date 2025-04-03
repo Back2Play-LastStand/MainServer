@@ -40,6 +40,7 @@ PROTOBUF_CONSTEXPR PositionInfo::PositionInfo(
     ::_pbi::ConstantInitialized): _impl_{
     /*decltype(_impl_.posx_)*/0
   , /*decltype(_impl_.posy_)*/0
+  , /*decltype(_impl_.movedir_)*/0
   , /*decltype(_impl_._cached_size_)*/{}} {}
 struct PositionInfoDefaultTypeInternal {
   PROTOBUF_CONSTEXPR PositionInfoDefaultTypeInternal()
@@ -73,6 +74,7 @@ const uint32_t TableStruct_Struct_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(p
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::Protocol::PositionInfo, _impl_.posx_),
   PROTOBUF_FIELD_OFFSET(::Protocol::PositionInfo, _impl_.posy_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::PositionInfo, _impl_.movedir_),
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::Protocol::ObjectInfo)},
@@ -85,17 +87,21 @@ static const ::_pb::Message* const file_default_instances[] = {
 };
 
 const char descriptor_table_protodef_Struct_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
-  "\n\014Struct.proto\022\010Protocol\"U\n\nObjectInfo\022\020"
-  "\n\010objectId\030\001 \001(\004\022\014\n\004name\030\002 \001(\t\022\'\n\007posInf"
-  "o\030\003 \001(\0132\026.Protocol.PositionInfo\"*\n\014Posit"
-  "ionInfo\022\014\n\004posX\030\001 \001(\002\022\014\n\004posY\030\002 \001(\002b\006pro"
-  "to3"
+  "\n\014Struct.proto\022\010Protocol\032\nEnum.proto\"U\n\n"
+  "ObjectInfo\022\020\n\010objectId\030\001 \001(\004\022\014\n\004name\030\002 \001"
+  "(\t\022\'\n\007posInfo\030\003 \001(\0132\026.Protocol.PositionI"
+  "nfo\"N\n\014PositionInfo\022\014\n\004posX\030\001 \001(\002\022\014\n\004pos"
+  "Y\030\002 \001(\002\022\"\n\007moveDir\030\003 \001(\0162\021.Protocol.Move"
+  "Dirb\006proto3"
   ;
+static const ::_pbi::DescriptorTable* const descriptor_table_Struct_2eproto_deps[1] = {
+  &::descriptor_table_Enum_2eproto,
+};
 static ::_pbi::once_flag descriptor_table_Struct_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_Struct_2eproto = {
-    false, false, 163, descriptor_table_protodef_Struct_2eproto,
+    false, false, 211, descriptor_table_protodef_Struct_2eproto,
     "Struct.proto",
-    &descriptor_table_Struct_2eproto_once, nullptr, 0, 2,
+    &descriptor_table_Struct_2eproto_once, descriptor_table_Struct_2eproto_deps, 1, 2,
     schemas, file_default_instances, TableStruct_Struct_2eproto::offsets,
     file_level_metadata_Struct_2eproto, file_level_enum_descriptors_Struct_2eproto,
     file_level_service_descriptors_Struct_2eproto,
@@ -402,12 +408,13 @@ PositionInfo::PositionInfo(const PositionInfo& from)
   new (&_impl_) Impl_{
       decltype(_impl_.posx_){}
     , decltype(_impl_.posy_){}
+    , decltype(_impl_.movedir_){}
     , /*decltype(_impl_._cached_size_)*/{}};
 
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::memcpy(&_impl_.posx_, &from._impl_.posx_,
-    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.posy_) -
-    reinterpret_cast<char*>(&_impl_.posx_)) + sizeof(_impl_.posy_));
+    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.movedir_) -
+    reinterpret_cast<char*>(&_impl_.posx_)) + sizeof(_impl_.movedir_));
   // @@protoc_insertion_point(copy_constructor:Protocol.PositionInfo)
 }
 
@@ -418,6 +425,7 @@ inline void PositionInfo::SharedCtor(
   new (&_impl_) Impl_{
       decltype(_impl_.posx_){0}
     , decltype(_impl_.posy_){0}
+    , decltype(_impl_.movedir_){0}
     , /*decltype(_impl_._cached_size_)*/{}
   };
 }
@@ -446,8 +454,8 @@ void PositionInfo::Clear() {
   (void) cached_has_bits;
 
   ::memset(&_impl_.posx_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&_impl_.posy_) -
-      reinterpret_cast<char*>(&_impl_.posx_)) + sizeof(_impl_.posy_));
+      reinterpret_cast<char*>(&_impl_.movedir_) -
+      reinterpret_cast<char*>(&_impl_.posx_)) + sizeof(_impl_.movedir_));
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -470,6 +478,15 @@ const char* PositionInfo::_InternalParse(const char* ptr, ::_pbi::ParseContext* 
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 21)) {
           _impl_.posy_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
+        } else
+          goto handle_unusual;
+        continue;
+      // .Protocol.MoveDir moveDir = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 24)) {
+          uint64_t val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+          _internal_set_movedir(static_cast<::Protocol::MoveDir>(val));
         } else
           goto handle_unusual;
         continue;
@@ -522,6 +539,13 @@ uint8_t* PositionInfo::_InternalSerialize(
     target = ::_pbi::WireFormatLite::WriteFloatToArray(2, this->_internal_posy(), target);
   }
 
+  // .Protocol.MoveDir moveDir = 3;
+  if (this->_internal_movedir() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
+      3, this->_internal_movedir(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -556,6 +580,12 @@ size_t PositionInfo::ByteSizeLong() const {
     total_size += 1 + 4;
   }
 
+  // .Protocol.MoveDir moveDir = 3;
+  if (this->_internal_movedir() != 0) {
+    total_size += 1 +
+      ::_pbi::WireFormatLite::EnumSize(this->_internal_movedir());
+  }
+
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
@@ -588,6 +618,9 @@ void PositionInfo::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::P
   if (raw_posy != 0) {
     _this->_internal_set_posy(from._internal_posy());
   }
+  if (from._internal_movedir() != 0) {
+    _this->_internal_set_movedir(from._internal_movedir());
+  }
   _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -606,8 +639,8 @@ void PositionInfo::InternalSwap(PositionInfo* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(PositionInfo, _impl_.posy_)
-      + sizeof(PositionInfo::_impl_.posy_)
+      PROTOBUF_FIELD_OFFSET(PositionInfo, _impl_.movedir_)
+      + sizeof(PositionInfo::_impl_.movedir_)
       - PROTOBUF_FIELD_OFFSET(PositionInfo, _impl_.posx_)>(
           reinterpret_cast<char*>(&_impl_.posx_),
           reinterpret_cast<char*>(&other->_impl_.posx_));
