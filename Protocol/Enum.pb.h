@@ -72,6 +72,34 @@ inline bool ObjectType_Parse(
   return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<ObjectType>(
     ObjectType_descriptor(), name, value);
 }
+enum MoveDir : int {
+  NONE = 0,
+  UP = 1,
+  DOWN = 2,
+  LEFT = 3,
+  RIGHT = 4,
+  MoveDir_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::min(),
+  MoveDir_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::max()
+};
+bool MoveDir_IsValid(int value);
+constexpr MoveDir MoveDir_MIN = NONE;
+constexpr MoveDir MoveDir_MAX = RIGHT;
+constexpr int MoveDir_ARRAYSIZE = MoveDir_MAX + 1;
+
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* MoveDir_descriptor();
+template<typename T>
+inline const std::string& MoveDir_Name(T enum_t_value) {
+  static_assert(::std::is_same<T, MoveDir>::value ||
+    ::std::is_integral<T>::value,
+    "Incorrect type passed to function MoveDir_Name.");
+  return ::PROTOBUF_NAMESPACE_ID::internal::NameOfEnum(
+    MoveDir_descriptor(), enum_t_value);
+}
+inline bool MoveDir_Parse(
+    ::PROTOBUF_NAMESPACE_ID::ConstStringParam name, MoveDir* value) {
+  return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<MoveDir>(
+    MoveDir_descriptor(), name, value);
+}
 // ===================================================================
 
 
@@ -98,6 +126,11 @@ template <> struct is_proto_enum< ::Protocol::ObjectType> : ::std::true_type {};
 template <>
 inline const EnumDescriptor* GetEnumDescriptor< ::Protocol::ObjectType>() {
   return ::Protocol::ObjectType_descriptor();
+}
+template <> struct is_proto_enum< ::Protocol::MoveDir> : ::std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor< ::Protocol::MoveDir>() {
+  return ::Protocol::MoveDir_descriptor();
 }
 
 PROTOBUF_NAMESPACE_CLOSE

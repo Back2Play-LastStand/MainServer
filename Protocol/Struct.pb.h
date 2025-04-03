@@ -30,6 +30,7 @@
 #include <google/protobuf/repeated_field.h>  // IWYU pragma: export
 #include <google/protobuf/extension_set.h>  // IWYU pragma: export
 #include <google/protobuf/unknown_field_set.h>
+#include "Enum.pb.h"
 // @@protoc_insertion_point(includes)
 #include <google/protobuf/port_def.inc>
 #define PROTOBUF_INTERNAL_EXPORT_Struct_2eproto
@@ -367,6 +368,7 @@ class PositionInfo final :
   enum : int {
     kPosXFieldNumber = 1,
     kPosYFieldNumber = 2,
+    kMoveDirFieldNumber = 3,
   };
   // float posX = 1;
   void clear_posx();
@@ -386,6 +388,15 @@ class PositionInfo final :
   void _internal_set_posy(float value);
   public:
 
+  // .Protocol.MoveDir moveDir = 3;
+  void clear_movedir();
+  ::Protocol::MoveDir movedir() const;
+  void set_movedir(::Protocol::MoveDir value);
+  private:
+  ::Protocol::MoveDir _internal_movedir() const;
+  void _internal_set_movedir(::Protocol::MoveDir value);
+  public:
+
   // @@protoc_insertion_point(class_scope:Protocol.PositionInfo)
  private:
   class _Internal;
@@ -396,6 +407,7 @@ class PositionInfo final :
   struct Impl_ {
     float posx_;
     float posy_;
+    int movedir_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -614,6 +626,26 @@ inline void PositionInfo::_internal_set_posy(float value) {
 inline void PositionInfo::set_posy(float value) {
   _internal_set_posy(value);
   // @@protoc_insertion_point(field_set:Protocol.PositionInfo.posY)
+}
+
+// .Protocol.MoveDir moveDir = 3;
+inline void PositionInfo::clear_movedir() {
+  _impl_.movedir_ = 0;
+}
+inline ::Protocol::MoveDir PositionInfo::_internal_movedir() const {
+  return static_cast< ::Protocol::MoveDir >(_impl_.movedir_);
+}
+inline ::Protocol::MoveDir PositionInfo::movedir() const {
+  // @@protoc_insertion_point(field_get:Protocol.PositionInfo.moveDir)
+  return _internal_movedir();
+}
+inline void PositionInfo::_internal_set_movedir(::Protocol::MoveDir value) {
+  
+  _impl_.movedir_ = value;
+}
+inline void PositionInfo::set_movedir(::Protocol::MoveDir value) {
+  _internal_set_movedir(value);
+  // @@protoc_insertion_point(field_set:Protocol.PositionInfo.moveDir)
 }
 
 #ifdef __GNUC__
