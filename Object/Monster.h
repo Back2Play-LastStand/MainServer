@@ -8,5 +8,8 @@ class Monster : public GameObject
 public:
 	Monster();
 	virtual ~Monster();
+
+	virtual void BeginPlay() override;
+	virtual void Tick() override;
 };
 
