@@ -4,7 +4,9 @@
 #include "CorePch.h"
 
 #include <unordered_map>
+#include "GameObject.h"
 #include "Player.h"
+#include "Monster.h"
 #include "Room.h"
 #include "GameSession.h"
 #include "../ServerPacketHandler.h"
