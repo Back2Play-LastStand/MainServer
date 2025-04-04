@@ -23,6 +23,7 @@
     <ClCompile Include="Manager\ObjectManager.cpp" />
     <ClCompile Include="Manager\RoomManager.cpp" />
     <ClCompile Include="Object\GameObject.cpp" />
+    <ClCompile Include="Object\Monster.cpp" />
     <ClCompile Include="Protocol\Enum.pb.cc">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
@@ -50,6 +51,7 @@
     <ClInclude Include="Manager\ObjectManager.h" />
     <ClInclude Include="Manager\RoomManager.h" />
     <ClInclude Include="Object\GameObject.h" />
+    <ClInclude Include="Object\Monster.h" />
     <ClInclude Include="Protocol\Enum.pb.h" />
     <ClInclude Include="Protocol\Protocol.pb.h" />
     <ClInclude Include="Protocol\Struct.pb.h" />
