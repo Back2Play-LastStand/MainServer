@@ -40,6 +40,7 @@ void GameSession::OnSend(int len)
 
 void GameSession::OnDisconnected()
 {
+	cout << "disconnected: " << m_player->GetId() << endl;
 	m_player->LeaveRoom();
 	// TODO
 }
