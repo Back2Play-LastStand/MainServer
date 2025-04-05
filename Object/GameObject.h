@@ -10,9 +10,11 @@ public:
 
 	unsigned long long GetId() const { return m_objectId; }
 	unsigned int GetHp() const { return m_hp; }
+	unsigned int GetPower() const { return m_power; }
 
 	void SetId(unsigned long long id) { m_objectId = id; }
 	void SetHp(unsigned int hp) { m_hp = hp; }
+	void SetPower(unsigned int power) { m_power = power; }
 
 	virtual void BeginPlay() {};
 	virtual void Tick() {};
@@ -21,5 +23,6 @@ private:
 	unsigned long long m_objectId;
 	Protocol::ObjectType m_objectType;
 	unsigned int m_hp = 0;
+	unsigned int m_power = 0;
 };
 
