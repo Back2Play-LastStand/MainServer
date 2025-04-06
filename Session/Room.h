@@ -20,6 +20,7 @@ public:
 
 private:
 	unordered_map<unsigned long long, shared_ptr<Player>> m_players;
+	unordered_map<unsigned long long, shared_ptr<Monster>> m_monsters;
 	string m_name;
 };
 
