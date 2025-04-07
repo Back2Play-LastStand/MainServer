@@ -21,22 +21,46 @@ string Room::GetName()
 	return m_name;
 }
 
-bool Room::EnterPlayer(shared_ptr<Player> player)
+bool Room::EnterObject(shared_ptr<GameObject> object)
 {
-	if (m_players.find(player->GetId()) != m_players.end())
-		return false;
+	Protocol::ObjectType type = object->GetType();
+	if (type == Protocol::PLAYER)
+	{
+		if (m_players.find(object->GetId()) != m_players.end())
+			return false;
 
-	m_players.insert({ player->GetId(), player });
+		m_players.insert({ object->GetId(), static_pointer_cast<Player>(object) });
+	}
+	else if (type >= Protocol::MONSTER)
+	{
+		if (m_monsters.find(object->GetId()) != m_monsters.end())
+			return false;
+
+		m_monsters.insert({ object->GetId(), static_pointer_cast<Monster>(object) });
+
+	}
 
 	return true;
 }
 
-bool Room::LeavePlayer(unsigned long long objectId)
+bool Room::LeaveObject(shared_ptr<GameObject> object)
 {
-	if (m_players.find(objectId) == m_players.end())
-		return false;
+	unsigned long long objectId = object->GetId();
+	Protocol::ObjectType type = object->GetType();
+	if (type == Protocol::PLAYER)
+	{
+		if (m_players.find(objectId) == m_players.end())
+			return false;
 
-	m_players.erase(objectId);
+		m_players.erase(objectId);
+	}
+	else if (type >= Protocol::MONSTER)
+	{
+		if (m_monsters.find(objectId) == m_monsters.end())
+			return false;
+
+		m_monsters.erase(objectId);
+	}
 
 	return true;
 }
@@ -69,7 +93,7 @@ void Room::HandleMove(Session* session, Protocol::REQ_MOVE pkt)
 		auto info = move.mutable_player();
 		info->set_objectid(player->GetId());
 		info->mutable_posinfo()->CopyFrom(pkt.info());
-		
+
 		auto sendBuffer = ServerPacketHandler::MakeSendBuffer(move);
 		for (auto& [id, p] : m_players)
 		{

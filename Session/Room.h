@@ -12,14 +12,15 @@ public:
 	unordered_map<unsigned long long, shared_ptr<Player>> GetPlayers();
 	string GetName();
 
-	bool EnterPlayer(shared_ptr<Player> player);
-	bool LeavePlayer(unsigned long long objectId);
+	bool EnterObject(shared_ptr<GameObject> object);
+	bool LeaveObject(shared_ptr<GameObject> object);
 	void BroadCast(vector<char> buffer, unsigned long long exceptId = 0);
  
 	void HandleMove(Session* session, Protocol::REQ_MOVE pkt);
 
 private:
 	unordered_map<unsigned long long, shared_ptr<Player>> m_players;
+	unordered_map<unsigned long long, shared_ptr<Monster>> m_monsters;
 	string m_name;
 };
 

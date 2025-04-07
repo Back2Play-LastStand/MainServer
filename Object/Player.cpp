@@ -62,14 +62,14 @@ void Player::EnterRoom(shared_ptr<Room> gameRoom)
 
 	m_room = gameRoom;
 	if (auto room = m_room.lock())
-		gameRoom->EnterPlayer(static_pointer_cast<Player>(shared_from_this()));
+		gameRoom->EnterObject(static_pointer_cast<Player>(shared_from_this()));
 }
 
 void Player::LeaveRoom()
 {
 	if (auto room = m_room.lock())
 	{
-		room->PushJob(&Room::LeavePlayer, GetId());
+		room->PushJob(&Room::LeaveObject, shared_from_this());
 		m_room.reset();
 	}
 }
