@@ -14,6 +14,9 @@ public:
 
 	virtual void BeginPlay() override;
 	virtual void Tick() override;
+
+	virtual void Attack() {};
+
 private:
 	shared_ptr<Room> m_room;
 };
