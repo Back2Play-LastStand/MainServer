@@ -9,6 +9,11 @@ Monster::~Monster()
 {
 }
 
+shared_ptr<Room> Monster::GetRoom()
+{
+	return m_room;
+}
+
 void Monster::BeginPlay()
 {
 	Super::BeginPlay();
