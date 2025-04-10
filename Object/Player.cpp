@@ -4,6 +4,7 @@
 Player::Player(unsigned long long id)
 {
 	SetId(id);
+	SetType(Protocol::PLAYER);
 }
 
 Player::~Player()
