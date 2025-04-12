@@ -10,6 +10,7 @@ public:
 	virtual ~Room();
 
 	unordered_map<unsigned long long, shared_ptr<Player>> GetPlayers();
+	unordered_map<unsigned long long, shared_ptr<Monster>> GetMonsters();
 	string GetName();
 
 	bool EnterObject(shared_ptr<GameObject> object);

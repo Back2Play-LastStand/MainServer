@@ -16,6 +16,11 @@ unordered_map<unsigned long long, shared_ptr<Player>> Room::GetPlayers()
 	return m_players;
 }
 
+unordered_map<unsigned long long, shared_ptr<Monster>> Room::GetMonsters()
+{
+	return m_monsters;
+}
+
 string Room::GetName()
 {
 	return m_name;
