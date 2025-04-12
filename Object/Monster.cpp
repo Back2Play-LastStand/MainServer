@@ -3,6 +3,7 @@
 
 Monster::Monster()
 {
+	SetType(Protocol::MONSTER);
 }
 
 Monster::~Monster()
