@@ -164,8 +164,19 @@ struct RES_MOVEDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 RES_MOVEDefaultTypeInternal _RES_MOVE_default_instance_;
+PROTOBUF_CONSTEXPR RES_SPAWN_MONSTER::RES_SPAWN_MONSTER(
+    ::_pbi::ConstantInitialized) {}
+struct RES_SPAWN_MONSTERDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR RES_SPAWN_MONSTERDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~RES_SPAWN_MONSTERDefaultTypeInternal() {}
+  union {
+    RES_SPAWN_MONSTER _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 RES_SPAWN_MONSTERDefaultTypeInternal _RES_SPAWN_MONSTER_default_instance_;
 }  // namespace Protocol
-static ::_pb::Metadata file_level_metadata_Protocol_2eproto[11];
+static ::_pb::Metadata file_level_metadata_Protocol_2eproto[12];
 static constexpr ::_pb::EnumDescriptor const** file_level_enum_descriptors_Protocol_2eproto = nullptr;
 static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_Protocol_2eproto = nullptr;
 
@@ -248,6 +259,12 @@ const uint32_t TableStruct_Protocol_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::Protocol::RES_MOVE, _impl_.player_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::Protocol::RES_SPAWN_MONSTER, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::Protocol::REQ_ENTER)},
@@ -261,6 +278,7 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 57, -1, -1, sizeof(::Protocol::RES_DESPAWN)},
   { 64, -1, -1, sizeof(::Protocol::REQ_MOVE)},
   { 71, -1, -1, sizeof(::Protocol::RES_MOVE)},
+  { 78, -1, -1, sizeof(::Protocol::RES_SPAWN_MONSTER)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -275,6 +293,7 @@ static const ::_pb::Message* const file_default_instances[] = {
   &::Protocol::_RES_DESPAWN_default_instance_._instance,
   &::Protocol::_REQ_MOVE_default_instance_._instance,
   &::Protocol::_RES_MOVE_default_instance_._instance,
+  &::Protocol::_RES_SPAWN_MONSTER_default_instance_._instance,
 };
 
 const char descriptor_table_protodef_Protocol_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
@@ -291,7 +310,7 @@ const char descriptor_table_protodef_Protocol_2eproto[] PROTOBUF_SECTION_VARIABL
   "\032\n\013RES_DESPAWN\022\013\n\003ids\030\001 \003(\004\"0\n\010REQ_MOVE\022"
   "$\n\004info\030\001 \001(\0132\026.Protocol.PositionInfo\"0\n"
   "\010RES_MOVE\022$\n\006player\030\001 \001(\0132\024.Protocol.Obj"
-  "ectInfob\006proto3"
+  "ectInfo\"\023\n\021RES_SPAWN_MONSTERb\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_Protocol_2eproto_deps[2] = {
   &::descriptor_table_Enum_2eproto,
@@ -299,9 +318,9 @@ static const ::_pbi::DescriptorTable* const descriptor_table_Protocol_2eproto_de
 };
 static ::_pbi::once_flag descriptor_table_Protocol_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_Protocol_2eproto = {
-    false, false, 535, descriptor_table_protodef_Protocol_2eproto,
+    false, false, 556, descriptor_table_protodef_Protocol_2eproto,
     "Protocol.proto",
-    &descriptor_table_Protocol_2eproto_once, descriptor_table_Protocol_2eproto_deps, 2, 11,
+    &descriptor_table_Protocol_2eproto_once, descriptor_table_Protocol_2eproto_deps, 2, 12,
     schemas, file_default_instances, TableStruct_Protocol_2eproto::offsets,
     file_level_metadata_Protocol_2eproto, file_level_enum_descriptors_Protocol_2eproto,
     file_level_service_descriptors_Protocol_2eproto,
@@ -2269,6 +2288,46 @@ void RES_MOVE::InternalSwap(RES_MOVE* other) {
       file_level_metadata_Protocol_2eproto[10]);
 }
 
+// ===================================================================
+
+class RES_SPAWN_MONSTER::_Internal {
+ public:
+};
+
+RES_SPAWN_MONSTER::RES_SPAWN_MONSTER(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase(arena, is_message_owned) {
+  // @@protoc_insertion_point(arena_constructor:Protocol.RES_SPAWN_MONSTER)
+}
+RES_SPAWN_MONSTER::RES_SPAWN_MONSTER(const RES_SPAWN_MONSTER& from)
+  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase() {
+  RES_SPAWN_MONSTER* const _this = this; (void)_this;
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  // @@protoc_insertion_point(copy_constructor:Protocol.RES_SPAWN_MONSTER)
+}
+
+
+
+
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData RES_SPAWN_MONSTER::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl,
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl,
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*RES_SPAWN_MONSTER::GetClassData() const { return &_class_data_; }
+
+
+
+
+
+
+
+::PROTOBUF_NAMESPACE_ID::Metadata RES_SPAWN_MONSTER::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_Protocol_2eproto_getter, &descriptor_table_Protocol_2eproto_once,
+      file_level_metadata_Protocol_2eproto[11]);
+}
+
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace Protocol
 PROTOBUF_NAMESPACE_OPEN
@@ -2315,6 +2374,10 @@ Arena::CreateMaybeMessage< ::Protocol::REQ_MOVE >(Arena* arena) {
 template<> PROTOBUF_NOINLINE ::Protocol::RES_MOVE*
 Arena::CreateMaybeMessage< ::Protocol::RES_MOVE >(Arena* arena) {
   return Arena::CreateMessageInternal< ::Protocol::RES_MOVE >(arena);
+}
+template<> PROTOBUF_NOINLINE ::Protocol::RES_SPAWN_MONSTER*
+Arena::CreateMaybeMessage< ::Protocol::RES_SPAWN_MONSTER >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::Protocol::RES_SPAWN_MONSTER >(arena);
 }
 PROTOBUF_NAMESPACE_CLOSE
 

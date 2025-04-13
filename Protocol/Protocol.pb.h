@@ -81,6 +81,9 @@ extern RES_SPAWNDefaultTypeInternal _RES_SPAWN_default_instance_;
 class RES_SPAWN_ALL;
 struct RES_SPAWN_ALLDefaultTypeInternal;
 extern RES_SPAWN_ALLDefaultTypeInternal _RES_SPAWN_ALL_default_instance_;
+class RES_SPAWN_MONSTER;
+struct RES_SPAWN_MONSTERDefaultTypeInternal;
+extern RES_SPAWN_MONSTERDefaultTypeInternal _RES_SPAWN_MONSTER_default_instance_;
 }  // namespace Protocol
 PROTOBUF_NAMESPACE_OPEN
 template<> ::Protocol::REQ_ENTER* Arena::CreateMaybeMessage<::Protocol::REQ_ENTER>(Arena*);
@@ -94,6 +97,7 @@ template<> ::Protocol::RES_LEAVE* Arena::CreateMaybeMessage<::Protocol::RES_LEAV
 template<> ::Protocol::RES_MOVE* Arena::CreateMaybeMessage<::Protocol::RES_MOVE>(Arena*);
 template<> ::Protocol::RES_SPAWN* Arena::CreateMaybeMessage<::Protocol::RES_SPAWN>(Arena*);
 template<> ::Protocol::RES_SPAWN_ALL* Arena::CreateMaybeMessage<::Protocol::RES_SPAWN_ALL>(Arena*);
+template<> ::Protocol::RES_SPAWN_MONSTER* Arena::CreateMaybeMessage<::Protocol::RES_SPAWN_MONSTER>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
 namespace Protocol {
 
@@ -1776,6 +1780,124 @@ class RES_MOVE final :
   union { Impl_ _impl_; };
   friend struct ::TableStruct_Protocol_2eproto;
 };
+// -------------------------------------------------------------------
+
+class RES_SPAWN_MONSTER final :
+    public ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:Protocol.RES_SPAWN_MONSTER) */ {
+ public:
+  inline RES_SPAWN_MONSTER() : RES_SPAWN_MONSTER(nullptr) {}
+  explicit PROTOBUF_CONSTEXPR RES_SPAWN_MONSTER(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  RES_SPAWN_MONSTER(const RES_SPAWN_MONSTER& from);
+  RES_SPAWN_MONSTER(RES_SPAWN_MONSTER&& from) noexcept
+    : RES_SPAWN_MONSTER() {
+    *this = ::std::move(from);
+  }
+
+  inline RES_SPAWN_MONSTER& operator=(const RES_SPAWN_MONSTER& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline RES_SPAWN_MONSTER& operator=(RES_SPAWN_MONSTER&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const RES_SPAWN_MONSTER& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const RES_SPAWN_MONSTER* internal_default_instance() {
+    return reinterpret_cast<const RES_SPAWN_MONSTER*>(
+               &_RES_SPAWN_MONSTER_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    11;
+
+  friend void swap(RES_SPAWN_MONSTER& a, RES_SPAWN_MONSTER& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(RES_SPAWN_MONSTER* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(RES_SPAWN_MONSTER* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  RES_SPAWN_MONSTER* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<RES_SPAWN_MONSTER>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyFrom;
+  inline void CopyFrom(const RES_SPAWN_MONSTER& from) {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl(*this, from);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeFrom;
+  void MergeFrom(const RES_SPAWN_MONSTER& from) {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl(*this, from);
+  }
+  public:
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "Protocol.RES_SPAWN_MONSTER";
+  }
+  protected:
+  explicit RES_SPAWN_MONSTER(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // @@protoc_insertion_point(class_scope:Protocol.RES_SPAWN_MONSTER)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+  };
+  friend struct ::TableStruct_Protocol_2eproto;
+};
 // ===================================================================
 
 
@@ -2496,9 +2618,15 @@ inline void RES_MOVE::set_allocated_player(::Protocol::ObjectInfo* player) {
   // @@protoc_insertion_point(field_set_allocated:Protocol.RES_MOVE.player)
 }
 
+// -------------------------------------------------------------------
+
+// RES_SPAWN_MONSTER
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
