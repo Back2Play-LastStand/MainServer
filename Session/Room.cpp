@@ -50,6 +50,11 @@ bool Room::EnterObject(shared_ptr<GameObject> object)
 bool Room::LeaveObject(shared_ptr<GameObject> object)
 {
 	unsigned long long objectId = object->GetId();
+	Protocol::RES_LEAVE leave;
+	Protocol::ObjectInfo* info = new Protocol::ObjectInfo;
+	info->set_objectid(objectId);
+	leave.set_allocated_object(info);
+
 	Protocol::ObjectType type = object->GetType();
 	if (type == Protocol::PLAYER)
 	{
@@ -65,6 +70,8 @@ bool Room::LeaveObject(shared_ptr<GameObject> object)
 
 		m_monsters.erase(objectId);
 	}
+	auto sendBuffer = ServerPacketHandler::MakeSendBuffer(leave);
+	BroadCast(move(*sendBuffer));
 
 	return true;
 }
