@@ -42,7 +42,6 @@ bool Room::EnterObject(shared_ptr<GameObject> object)
 			return false;
 
 		m_monsters.insert({ object->GetId(), static_pointer_cast<Monster>(object) });
-
 	}
 
 	return true;

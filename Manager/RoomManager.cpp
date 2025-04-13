@@ -78,5 +78,19 @@ void RoomManager::HandleEnterRoom(Session* session, Protocol::REQ_ENTER_ROOM pkt
 			auto sendBuffer = ServerPacketHandler::MakeSendBuffer(spawn);
 			session->SendContext(move(*sendBuffer));
 		}
+
+		// spawn monster
+		{
+			Protocol::RES_SPAWN_MONSTER spawn;
+			for (auto& it : room->GetMonsters())
+			{
+				auto& monster = it.second;
+				Protocol::ObjectInfo* info{};
+				info->set_objectid(monster->GetId());
+			}
+			
+			auto sendBuffer = ServerPacketHandler::MakeSendBuffer(spawn);
+			session->SendContext(move(*sendBuffer));
+		}
 	}
 }
