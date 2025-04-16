@@ -7,7 +7,7 @@ class Monster : public GameObject
 {
 	using Super = GameObject;
 public:
-	Monster();
+	Monster(unsigned long long id);
 	virtual ~Monster();
 
 	shared_ptr<Room> GetRoom();

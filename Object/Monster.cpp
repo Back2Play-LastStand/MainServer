@@ -1,8 +1,9 @@
 #include "pch.h"
 #include "Monster.h"
 
-Monster::Monster()
+Monster::Monster(unsigned long long id)
 {
+	SetId(id);
 	SetType(Protocol::MONSTER);
 }
 
