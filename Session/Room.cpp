@@ -112,4 +112,15 @@ void Room::HandleMove(Session* session, Protocol::REQ_MOVE pkt)
 				s->SendContext(*sendBuffer);
 		}
 	}
+void Room::Tick()
+{
+	TimerPushJob(33 ,&Room::Tick); // 30FPS
+	for (auto& [id, player] : m_players)
+	{
+		player->Tick();
+	}
+	for (auto& [id, monster] : m_monsters)
+	{
+		monster->Tick();
+	}
 }

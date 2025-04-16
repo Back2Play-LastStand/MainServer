@@ -19,6 +19,8 @@ public:
  
 	void HandleMove(Session* session, Protocol::REQ_MOVE pkt);
 
+	void Tick();
+
 private:
 	unordered_map<unsigned long long, shared_ptr<Player>> m_players;
 	unordered_map<unsigned long long, shared_ptr<Monster>> m_monsters;
