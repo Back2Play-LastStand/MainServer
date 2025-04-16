@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "Room.h"
+#include "ObjectManager.h"
 
 shared_ptr<Room> GRoom = make_shared<Room>();
 
@@ -112,6 +113,25 @@ void Room::HandleMove(Session* session, Protocol::REQ_MOVE pkt)
 				s->SendContext(*sendBuffer);
 		}
 	}
+}
+
+void Room::SpawnMonster()
+{
+	TimerPushJob(120000, &Room::SpawnMonster); // 2min
+	Protocol::RES_SPAWN_MONSTER spawn;
+	auto monster = GManager->Object()->CreateObject<Monster>();
+	{
+		monster->BeginPlay();
+		m_monsters[monster->GetId()] = monster;
+		Protocol::ObjectInfo* info = new Protocol::ObjectInfo();
+		info->set_objectid(monster->GetId());
+
+		spawn.set_allocated_monsters(info);
+	}
+	auto sendBuffer = ServerPacketHandler::MakeSendBuffer(spawn);
+	BroadCast(move(*sendBuffer));
+}
+
 void Room::Tick()
 {
 	TimerPushJob(33 ,&Room::Tick); // 30FPS
