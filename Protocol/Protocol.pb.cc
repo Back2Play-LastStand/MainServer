@@ -168,7 +168,7 @@ struct RES_MOVEDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 RES_MOVEDefaultTypeInternal _RES_MOVE_default_instance_;
 PROTOBUF_CONSTEXPR RES_SPAWN_MONSTER::RES_SPAWN_MONSTER(
     ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.monsters_)*/nullptr
+    /*decltype(_impl_.monsters_)*/{}
   , /*decltype(_impl_._cached_size_)*/{}} {}
 struct RES_SPAWN_MONSTERDefaultTypeInternal {
   PROTOBUF_CONSTEXPR RES_SPAWN_MONSTERDefaultTypeInternal()
@@ -318,7 +318,7 @@ const char descriptor_table_protodef_Protocol_2eproto[] PROTOBUF_SECTION_VARIABL
   "\004info\030\001 \001(\0132\026.Protocol.PositionInfo\"0\n\010R"
   "ES_MOVE\022$\n\006player\030\001 \001(\0132\024.Protocol.Objec"
   "tInfo\";\n\021RES_SPAWN_MONSTER\022&\n\010monsters\030\001"
-  " \001(\0132\024.Protocol.ObjectInfob\006proto3"
+  " \003(\0132\024.Protocol.ObjectInfob\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_Protocol_2eproto_deps[2] = {
   &::descriptor_table_Enum_2eproto,
@@ -2459,18 +2459,10 @@ void RES_MOVE::InternalSwap(RES_MOVE* other) {
 
 class RES_SPAWN_MONSTER::_Internal {
  public:
-  static const ::Protocol::ObjectInfo& monsters(const RES_SPAWN_MONSTER* msg);
 };
 
-const ::Protocol::ObjectInfo&
-RES_SPAWN_MONSTER::_Internal::monsters(const RES_SPAWN_MONSTER* msg) {
-  return *msg->_impl_.monsters_;
-}
 void RES_SPAWN_MONSTER::clear_monsters() {
-  if (GetArenaForAllocation() == nullptr && _impl_.monsters_ != nullptr) {
-    delete _impl_.monsters_;
-  }
-  _impl_.monsters_ = nullptr;
+  _impl_.monsters_.Clear();
 }
 RES_SPAWN_MONSTER::RES_SPAWN_MONSTER(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
@@ -2482,13 +2474,10 @@ RES_SPAWN_MONSTER::RES_SPAWN_MONSTER(const RES_SPAWN_MONSTER& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
   RES_SPAWN_MONSTER* const _this = this; (void)_this;
   new (&_impl_) Impl_{
-      decltype(_impl_.monsters_){nullptr}
+      decltype(_impl_.monsters_){from._impl_.monsters_}
     , /*decltype(_impl_._cached_size_)*/{}};
 
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  if (from._internal_has_monsters()) {
-    _this->_impl_.monsters_ = new ::Protocol::ObjectInfo(*from._impl_.monsters_);
-  }
   // @@protoc_insertion_point(copy_constructor:Protocol.RES_SPAWN_MONSTER)
 }
 
@@ -2497,7 +2486,7 @@ inline void RES_SPAWN_MONSTER::SharedCtor(
   (void)arena;
   (void)is_message_owned;
   new (&_impl_) Impl_{
-      decltype(_impl_.monsters_){nullptr}
+      decltype(_impl_.monsters_){arena}
     , /*decltype(_impl_._cached_size_)*/{}
   };
 }
@@ -2513,7 +2502,7 @@ RES_SPAWN_MONSTER::~RES_SPAWN_MONSTER() {
 
 inline void RES_SPAWN_MONSTER::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  if (this != internal_default_instance()) delete _impl_.monsters_;
+  _impl_.monsters_.~RepeatedPtrField();
 }
 
 void RES_SPAWN_MONSTER::SetCachedSize(int size) const {
@@ -2526,10 +2515,7 @@ void RES_SPAWN_MONSTER::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  if (GetArenaForAllocation() == nullptr && _impl_.monsters_ != nullptr) {
-    delete _impl_.monsters_;
-  }
-  _impl_.monsters_ = nullptr;
+  _impl_.monsters_.Clear();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -2539,11 +2525,16 @@ const char* RES_SPAWN_MONSTER::_InternalParse(const char* ptr, ::_pbi::ParseCont
     uint32_t tag;
     ptr = ::_pbi::ReadTag(ptr, &tag);
     switch (tag >> 3) {
-      // .Protocol.ObjectInfo monsters = 1;
+      // repeated .Protocol.ObjectInfo monsters = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
-          ptr = ctx->ParseMessage(_internal_mutable_monsters(), ptr);
-          CHK_(ptr);
+          ptr -= 1;
+          do {
+            ptr += 1;
+            ptr = ctx->ParseMessage(_internal_add_monsters(), ptr);
+            CHK_(ptr);
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<10>(ptr));
         } else
           goto handle_unusual;
         continue;
@@ -2576,11 +2567,12 @@ uint8_t* RES_SPAWN_MONSTER::_InternalSerialize(
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // .Protocol.ObjectInfo monsters = 1;
-  if (this->_internal_has_monsters()) {
+  // repeated .Protocol.ObjectInfo monsters = 1;
+  for (unsigned i = 0,
+      n = static_cast<unsigned>(this->_internal_monsters_size()); i < n; i++) {
+    const auto& repfield = this->_internal_monsters(i);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(1, _Internal::monsters(this),
-        _Internal::monsters(this).GetCachedSize(), target, stream);
+        InternalWriteMessage(1, repfield, repfield.GetCachedSize(), target, stream);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -2599,11 +2591,11 @@ size_t RES_SPAWN_MONSTER::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // .Protocol.ObjectInfo monsters = 1;
-  if (this->_internal_has_monsters()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *_impl_.monsters_);
+  // repeated .Protocol.ObjectInfo monsters = 1;
+  total_size += 1UL * this->_internal_monsters_size();
+  for (const auto& msg : this->_impl_.monsters_) {
+    total_size +=
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
@@ -2624,10 +2616,7 @@ void RES_SPAWN_MONSTER::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, cons
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (from._internal_has_monsters()) {
-    _this->_internal_mutable_monsters()->::Protocol::ObjectInfo::MergeFrom(
-        from._internal_monsters());
-  }
+  _this->_impl_.monsters_.MergeFrom(from._impl_.monsters_);
   _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -2645,7 +2634,7 @@ bool RES_SPAWN_MONSTER::IsInitialized() const {
 void RES_SPAWN_MONSTER::InternalSwap(RES_SPAWN_MONSTER* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(_impl_.monsters_, other->_impl_.monsters_);
+  _impl_.monsters_.InternalSwap(&other->_impl_.monsters_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata RES_SPAWN_MONSTER::GetMetadata() const {
