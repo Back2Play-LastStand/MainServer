@@ -4,7 +4,13 @@
 
 RoomManager::RoomManager()
 {
-	m_rooms.insert({ "roomname", MakeShared<Room>("roomname") });
+	auto names = vector<string>{ "roomname", "room1", "room2" };
+	for (auto& name : names)
+	{
+		auto room = MakeShared<Room>(name);
+		room->BeginPlay();
+		m_rooms.insert({ name ,room });
+	}
 }
 
 void RoomManager::HandleEnterRoom(Session* session, Protocol::REQ_ENTER_ROOM pkt)
