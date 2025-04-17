@@ -20,6 +20,7 @@ public:
 	void HandleMove(Session* session, Protocol::REQ_MOVE pkt);
 	void SpawnMonster();
 
+	void BeginPlay();
 	void Tick();
 
 private:

@@ -123,13 +123,16 @@ void Room::SpawnMonster()
 	{
 		monster->BeginPlay();
 		m_monsters[monster->GetId()] = monster;
-		Protocol::ObjectInfo* info = new Protocol::ObjectInfo();
+		Protocol::ObjectInfo* info = spawn.add_monsters();
 		info->set_objectid(monster->GetId());
-
-		spawn.set_allocated_monsters(info);
 	}
 	auto sendBuffer = ServerPacketHandler::MakeSendBuffer(spawn);
 	BroadCast(move(*sendBuffer));
+}
+
+void Room::BeginPlay()
+{
+	TimerPushJob(1000, &Room::SpawnMonster);
 }
 
 void Room::Tick()
