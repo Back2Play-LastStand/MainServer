@@ -4,7 +4,13 @@
 
 RoomManager::RoomManager()
 {
-	m_rooms.insert({ "roomname", MakeShared<Room>("roomname") });
+	auto names = vector<string>{ "roomname", "room1", "room2" };
+	for (auto& name : names)
+	{
+		auto room = MakeShared<Room>(name);
+		room->BeginPlay();
+		m_rooms.insert({ name ,room });
+	}
 }
 
 void RoomManager::HandleEnterRoom(Session* session, Protocol::REQ_ENTER_ROOM pkt)
@@ -75,6 +81,21 @@ void RoomManager::HandleEnterRoom(Session* session, Protocol::REQ_ENTER_ROOM pkt
 				}
 			}
 
+			auto sendBuffer = ServerPacketHandler::MakeSendBuffer(spawn);
+			session->SendContext(move(*sendBuffer));
+		}
+
+		// spawn monster
+		{
+			Protocol::RES_SPAWN_MONSTER spawn;
+			for (auto& it : room->GetMonsters())
+			{
+				auto& monster = it.second;
+				Protocol::ObjectInfo* info = spawn.add_monsters();
+				info->set_objectid(monster->GetId());
+				// TODO
+			}
+			
 			auto sendBuffer = ServerPacketHandler::MakeSendBuffer(spawn);
 			session->SendContext(move(*sendBuffer));
 		}

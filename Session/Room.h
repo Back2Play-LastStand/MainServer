@@ -10,6 +10,7 @@ public:
 	virtual ~Room();
 
 	unordered_map<unsigned long long, shared_ptr<Player>> GetPlayers();
+	unordered_map<unsigned long long, shared_ptr<Monster>> GetMonsters();
 	string GetName();
 
 	bool EnterObject(shared_ptr<GameObject> object);
@@ -17,6 +18,10 @@ public:
 	void BroadCast(vector<char> buffer, unsigned long long exceptId = 0);
  
 	void HandleMove(Session* session, Protocol::REQ_MOVE pkt);
+	void SpawnMonster();
+
+	void BeginPlay();
+	void Tick();
 
 private:
 	unordered_map<unsigned long long, shared_ptr<Player>> m_players;

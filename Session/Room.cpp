@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "Room.h"
+#include "ObjectManager.h"
 
 shared_ptr<Room> GRoom = make_shared<Room>();
 
@@ -14,6 +15,11 @@ Room::~Room()
 unordered_map<unsigned long long, shared_ptr<Player>> Room::GetPlayers()
 {
 	return m_players;
+}
+
+unordered_map<unsigned long long, shared_ptr<Monster>> Room::GetMonsters()
+{
+	return m_monsters;
 }
 
 string Room::GetName()
@@ -37,7 +43,6 @@ bool Room::EnterObject(shared_ptr<GameObject> object)
 			return false;
 
 		m_monsters.insert({ object->GetId(), static_pointer_cast<Monster>(object) });
-
 	}
 
 	return true;
@@ -46,6 +51,11 @@ bool Room::EnterObject(shared_ptr<GameObject> object)
 bool Room::LeaveObject(shared_ptr<GameObject> object)
 {
 	unsigned long long objectId = object->GetId();
+	Protocol::RES_LEAVE leave;
+	Protocol::ObjectInfo* info = new Protocol::ObjectInfo;
+	info->set_objectid(objectId);
+	leave.set_allocated_object(info);
+
 	Protocol::ObjectType type = object->GetType();
 	if (type == Protocol::PLAYER)
 	{
@@ -61,6 +71,8 @@ bool Room::LeaveObject(shared_ptr<GameObject> object)
 
 		m_monsters.erase(objectId);
 	}
+	auto sendBuffer = ServerPacketHandler::MakeSendBuffer(leave);
+	BroadCast(move(*sendBuffer));
 
 	return true;
 }
@@ -100,5 +112,38 @@ void Room::HandleMove(Session* session, Protocol::REQ_MOVE pkt)
 			if (auto s = p->GetSession())
 				s->SendContext(*sendBuffer);
 		}
+	}
+}
+
+void Room::SpawnMonster()
+{
+	TimerPushJob(120000, &Room::SpawnMonster); // 2min
+	Protocol::RES_SPAWN_MONSTER spawn;
+	auto monster = GManager->Object()->CreateObject<Monster>();
+	{
+		monster->BeginPlay();
+		m_monsters[monster->GetId()] = monster;
+		Protocol::ObjectInfo* info = spawn.add_monsters();
+		info->set_objectid(monster->GetId());
+	}
+	auto sendBuffer = ServerPacketHandler::MakeSendBuffer(spawn);
+	BroadCast(move(*sendBuffer));
+}
+
+void Room::BeginPlay()
+{
+	TimerPushJob(1000, &Room::SpawnMonster);
+}
+
+void Room::Tick()
+{
+	TimerPushJob(33 ,&Room::Tick); // 30FPS
+	for (auto& [id, player] : m_players)
+	{
+		player->Tick();
+	}
+	for (auto& [id, monster] : m_monsters)
+	{
+		monster->Tick();
 	}
 }

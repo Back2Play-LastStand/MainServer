@@ -19,12 +19,14 @@ public:
 	void SetPower(unsigned int power) { m_power = power; }
 
 	virtual void BeginPlay() {};
-	virtual void Tick() {};
+	virtual void Tick();
 
 private:
 	unsigned long long m_objectId;
 	Protocol::ObjectType m_objectType;
 	unsigned int m_hp = 0;
 	unsigned int m_power = 0;
+	unsigned long long m_delta = 0;
+	unsigned long long m_lastTick;
 };
 
