@@ -21,6 +21,8 @@ public:
 	virtual void BeginPlay() {};
 	virtual void Tick();
 
+	virtual void TakeDamage(int amount) {};
+
 private:
 	unsigned long long m_objectId;
 	Protocol::ObjectType m_objectType;
