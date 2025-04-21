@@ -26,6 +26,13 @@ Protocol::ObjectInfo& Monster::GetObjectInfo()
 	return m_info;
 }
 
+float Monster::GetDistance(const Protocol::PositionInfo& myPos, const Protocol::PositionInfo& targetPos)
+{
+	float x = targetPos.posx() - myPos.posx();
+	float y = targetPos.posy() - myPos.posy();
+	return x * x + y * y;
+}
+
 void Monster::BeginPlay()
 {
 	Super::BeginPlay();

@@ -14,6 +14,8 @@ public:
 	void SetObjectInfo(Protocol::ObjectInfo info);
 	Protocol::ObjectInfo& GetObjectInfo();
 
+	float GetDistance(const Protocol::PositionInfo& myPos, const Protocol::PositionInfo& targetPos);
+
 	virtual void BeginPlay() override;
 	virtual void Tick() override;
 
