@@ -15,7 +15,7 @@ class Monster : public GameObject
 {
 	using Super = GameObject;
 public:
-	Monster(unsigned long long id);
+	Monster(unsigned long long id, unsigned int power = 10);
 	virtual ~Monster();
 
 	shared_ptr<Room> GetRoom();
@@ -28,12 +28,13 @@ public:
 	virtual void BeginPlay() override;
 	virtual void Tick() override;
 
-	virtual void Attack() {};
+	virtual void Attack();
 
 private:
 	shared_ptr<Room> m_room;
 	Protocol::ObjectInfo m_info;
 	shared_ptr<Player> m_target = nullptr;
 	MonsterState m_state = MonsterState::Idle;
+	uint64_t m_lastAttackTime = 0;
 };
 

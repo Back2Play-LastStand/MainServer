@@ -2,9 +2,10 @@
 #include "Monster.h"
 #include <cmath>
 
-Monster::Monster(unsigned long long id)
+Monster::Monster(unsigned long long id, unsigned int power)
 {
 	SetId(id);
+	SetPower(power);
 	SetType(Protocol::MONSTER);
 }
 
@@ -93,4 +94,16 @@ void Monster::Tick()
 			break;
 		}
 	}
+}
+
+void Monster::Attack()
+{
+	if (!m_target)
+		return;
+
+	uint64_t now = ::GetTickCount64();
+	if (now - m_lastAttackTime < 2000) return;
+	m_lastAttackTime = now;
+
+	m_target->TakeDamage(GetPower());
 }
