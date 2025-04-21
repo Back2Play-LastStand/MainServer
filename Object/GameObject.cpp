@@ -15,3 +15,14 @@ void GameObject::Tick()
 	m_delta = static_cast<float>(now - m_lastTick);
 	m_lastTick = GetTickCount64();
 }
+
+void GameObject::TakeDamage(int amount)
+{
+	m_hp -= amount;
+	if (m_hp <= 0)
+	{
+		m_hp = 0;
+		// Destroy
+		return;
+	}
+}

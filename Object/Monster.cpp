@@ -96,6 +96,11 @@ void Monster::Tick()
 	}
 }
 
+void Monster::TakeDamage(int amount)
+{
+	Super::TakeDamage(amount);
+}
+
 void Monster::Attack()
 {
 	if (!m_target)

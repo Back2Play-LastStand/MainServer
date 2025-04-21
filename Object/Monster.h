@@ -27,6 +27,7 @@ public:
 
 	virtual void BeginPlay() override;
 	virtual void Tick() override;
+	virtual void TakeDamage(int amount) override;
 
 	virtual void Attack();
 
