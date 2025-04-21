@@ -3,6 +3,14 @@
 class GameOjbect;
 class Room;
 
+enum class MonsterState
+{
+	Idle,
+	Chase,
+	Attack,
+	Dead,
+};
+
 class Monster : public GameObject
 {
 	using Super = GameObject;
@@ -15,6 +23,7 @@ public:
 	Protocol::ObjectInfo& GetObjectInfo();
 
 	float GetDistance(const Protocol::PositionInfo& myPos, const Protocol::PositionInfo& targetPos);
+	void UpdateState(float dist);
 
 	virtual void BeginPlay() override;
 	virtual void Tick() override;
@@ -24,5 +33,6 @@ public:
 private:
 	shared_ptr<Room> m_room;
 	Protocol::ObjectInfo m_info;
+	MonsterState m_state = MonsterState::Idle;
 };
 

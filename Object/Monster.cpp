@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "Monster.h"
+#include <cmath>
 
 Monster::Monster(unsigned long long id)
 {
@@ -31,6 +32,19 @@ float Monster::GetDistance(const Protocol::PositionInfo& myPos, const Protocol::
 	float x = targetPos.posx() - myPos.posx();
 	float y = targetPos.posy() - myPos.posy();
 	return x * x + y * y;
+}
+
+void Monster::UpdateState(float dist)
+{
+	if (m_state == MonsterState::Dead)
+		return;
+
+	if (dist <= 5.f)
+		m_state = MonsterState::Attack;
+	else if (dist <= 10.f)
+		m_state = MonsterState::Chase;
+	else
+		m_state = MonsterState::Idle;
 }
 
 void Monster::BeginPlay()
