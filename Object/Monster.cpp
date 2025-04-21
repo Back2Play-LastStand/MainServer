@@ -55,4 +55,40 @@ void Monster::BeginPlay()
 void Monster::Tick()
 {
 	Super::Tick();
+
+	float best = FLT_MAX;
+	shared_ptr<Player> ret = nullptr;
+	for (const auto& [id, player] : m_room->GetPlayers())
+	{
+		if (player)
+		{
+			auto& playerPos = player->GetObjectInfo().posinfo();
+			auto& monsterPos = m_info.posinfo();
+			auto now = GetDistance(monsterPos, playerPos);
+
+			if (best > now)
+			{
+				best = now;
+				ret = player;
+			}
+		}
+	}
+
+	if (ret)
+	{
+		UpdateState(sqrtf(best));
+
+		switch (m_state)
+		{
+		case MonsterState::Idle:
+			break;
+		case MonsterState::Chase:
+			break;
+		case MonsterState::Attack:
+			Attack();
+			break;
+		case MonsterState::Dead:
+			break;
+		}
+	}
 }
