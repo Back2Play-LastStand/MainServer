@@ -36,8 +36,11 @@ float Monster::GetDistance(const Protocol::PositionInfo& myPos, const Protocol::
 
 void Monster::UpdateState(float dist)
 {
-	if (m_state == MonsterState::Dead)
+	if (GetHp() <= 0)
+	{
+		m_state = MonsterState::Dead;
 		return;
+	}
 
 	if (dist <= 5.f)
 		m_state = MonsterState::Attack;
