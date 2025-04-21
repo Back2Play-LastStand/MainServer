@@ -60,7 +60,6 @@ void Monster::Tick()
 	Super::Tick();
 
 	float best = FLT_MAX;
-	shared_ptr<Player> ret = nullptr;
 	for (const auto& [id, player] : m_room->GetPlayers())
 	{
 		if (player)
@@ -72,12 +71,12 @@ void Monster::Tick()
 			if (best > now)
 			{
 				best = now;
-				ret = player;
+				m_target = player;
 			}
 		}
 	}
 
-	if (ret)
+	if (m_target)
 	{
 		UpdateState(sqrtf(best));
 

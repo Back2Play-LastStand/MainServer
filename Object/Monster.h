@@ -33,6 +33,7 @@ public:
 private:
 	shared_ptr<Room> m_room;
 	Protocol::ObjectInfo m_info;
+	shared_ptr<Player> m_target = nullptr;
 	MonsterState m_state = MonsterState::Idle;
 };
 
