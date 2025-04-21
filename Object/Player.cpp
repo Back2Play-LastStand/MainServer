@@ -56,6 +56,18 @@ void Player::Tick()
 	Super::Tick();
 }
 
+void Player::TakeDamage(int amount)
+{
+	if (GetHp() <= 0)
+	{
+		SetHp(0);
+		return;
+	}
+	auto nowHp = GetHp();
+	nowHp -= amount;
+	SetHp(nowHp);
+}
+
 void Player::EnterRoom(shared_ptr<Room> gameRoom)
 {
 	if (auto room = m_room.lock())
