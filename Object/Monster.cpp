@@ -101,6 +101,14 @@ void Monster::TakeDamage(int amount)
 	Super::TakeDamage(amount);
 }
 
+void Monster::Idle()
+{
+}
+
+void Monster::Chase()
+{
+}
+
 void Monster::Attack()
 {
 	if (!m_target)

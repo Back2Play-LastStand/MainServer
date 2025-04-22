@@ -29,6 +29,8 @@ public:
 	virtual void Tick() override;
 	virtual void TakeDamage(int amount) override;
 
+	virtual void Idle();
+	virtual void Chase();
 	virtual void Attack();
 
 private:
