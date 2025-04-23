@@ -84,8 +84,10 @@ void Monster::Tick()
 		switch (m_state)
 		{
 		case MonsterState::Idle:
+			Idle();
 			break;
 		case MonsterState::Chase:
+			Chase();
 			break;
 		case MonsterState::Attack:
 			Attack();
