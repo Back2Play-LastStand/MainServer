@@ -56,6 +56,11 @@ void Player::Tick()
 	Super::Tick();
 }
 
+void Player::TakeDamage(int amount)
+{
+	Super::TakeDamage(amount);
+}
+
 void Player::EnterRoom(shared_ptr<Room> gameRoom)
 {
 	if (auto room = m_room.lock())
