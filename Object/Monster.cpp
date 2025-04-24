@@ -130,6 +130,11 @@ void Monster::Chase()
 	pos->set_posx(pos->posx() + dx);
 	pos->set_posy(pos->posy() + dz);
 	m_info.set_allocated_posinfo(pos);
+
+	Protocol::RES_MOVE_MONSTER move;
+	move.set_allocated_monster(&m_info);
+	auto sendBuffer = ServerPacketHandler::MakeSendBuffer(move);
+	m_room->BroadCast(std::move(*sendBuffer));
 }
 
 void Monster::Attack()
@@ -142,4 +147,17 @@ void Monster::Attack()
 	m_lastAttackTime = now;
 
 	m_target->TakeDamage(GetPower());
+
+	Protocol::RES_ATTACK_MONSTER attack;
+	attack.set_allocated_attacker(&m_info);
+
+	Protocol::ObjectInfo* player = nullptr;
+	player->set_name(m_target->GetName());
+	player->set_objectid(m_target->GetId());
+	attack.set_allocated_target(&m_info);
+
+	attack.set_power(GetPower());
+
+	auto sendBuffer = ServerPacketHandler::MakeSendBuffer(attack);
+	m_room->BroadCast(move(*sendBuffer));
 }
