@@ -109,6 +109,27 @@ void Monster::Idle()
 
 void Monster::Chase()
 {
+	if (!m_target)
+		return;
+
+	auto& monsterPos = m_info.posinfo();
+	auto& target = m_target->GetObjectInfo().posinfo();
+
+	float dx = target.posx() - monsterPos.posx();
+	float dz = target.posy() - monsterPos.posy();
+
+	float lenSq = dx * dx * dz * dz;
+	if (lenSq < 0.0001f)
+		return;
+
+	float len = sqrtf(lenSq);
+	dx /= len;
+	dz /= len;
+
+	Protocol::PositionInfo* pos = m_info.mutable_posinfo();
+	pos->set_posx(pos->posx() + dx);
+	pos->set_posy(pos->posy() + dz);
+	m_info.set_allocated_posinfo(pos);
 }
 
 void Monster::Attack()
