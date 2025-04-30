@@ -15,4 +15,6 @@ void Manager::Init()
 {
 	m_object = MakeShared<ObjectManager>();
 	m_room = MakeShared<RoomManager>();
+
+	m_object->Init();
 }
