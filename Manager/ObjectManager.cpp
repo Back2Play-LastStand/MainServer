@@ -7,7 +7,7 @@ ObjectManager::ObjectManager()
 
 void ObjectManager::Init()
 {
-	m_idGenerator = 0;
+	m_idGenerator = 1;
 }
 
 void ObjectManager::HandleEnterGame(Session* session, Protocol::REQ_ENTER pkt)
