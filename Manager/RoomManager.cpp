@@ -93,11 +93,12 @@ void RoomManager::HandleEnterRoom(Session* session, Protocol::REQ_ENTER_ROOM pkt
 				auto& monster = it.second;
 				Protocol::ObjectInfo* info = spawn.add_monsters();
 				info->set_objectid(monster->GetId());
+				*info->mutable_posinfo() = monster->GetObjectInfo().posinfo();
 				// TODO
 			}
 			
 			auto sendBuffer = ServerPacketHandler::MakeSendBuffer(spawn);
-			session->SendContext(move(*sendBuffer));
+			room->BroadCast(move(*sendBuffer));
 		}
 	}
 }
