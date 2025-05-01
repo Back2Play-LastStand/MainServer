@@ -139,6 +139,9 @@ void Room::SpawnMonster()
 		Protocol::PositionInfo* posInfo = new Protocol::PositionInfo();
 		*posInfo = monster->GetObjectInfo().posinfo();
 		info->set_allocated_posinfo(posInfo);
+
+		cout << m_name << endl;
+		cout << spawn.DebugString() << endl;
 	}
 	auto sendBuffer = ServerPacketHandler::MakeSendBuffer(spawn);
 	BroadCast(move(*sendBuffer));
@@ -146,12 +149,13 @@ void Room::SpawnMonster()
 
 void Room::BeginPlay()
 {
-	TimerPushJob(1000, &Room::SpawnMonster);
+	PushJob(&Room::SpawnMonster);
+	//TimerPushJob(1000, [this]() { this->SpawnMonster(); });
 }
 
 void Room::Tick()
 {
-	TimerPushJob(33 ,&Room::Tick); // 30FPS
+	TimerPushJob(33, &Room::Tick); // 30FPS
 	for (auto& [id, player] : m_players)
 	{
 		player->Tick();
