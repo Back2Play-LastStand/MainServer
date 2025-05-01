@@ -121,10 +121,24 @@ void Room::SpawnMonster()
 	Protocol::RES_SPAWN_MONSTER spawn;
 	auto monster = GManager->Object()->CreateObject<Monster>();
 	{
+		random_device rd;
+		mt19937 gen(rd());
+		uniform_int_distribution<int> dis(-10, 10);
+
+		Protocol::PositionInfo* pos = new Protocol::PositionInfo();
+		pos->set_posx(dis(gen));
+		pos->set_posy(dis(gen));
+		monster->GetObjectInfo().set_allocated_posinfo(pos);
+
 		monster->BeginPlay();
 		m_monsters[monster->GetId()] = monster;
 		Protocol::ObjectInfo* info = spawn.add_monsters();
 		info->set_objectid(monster->GetId());
+		info->set_name("monster");
+
+		Protocol::PositionInfo* posInfo = new Protocol::PositionInfo();
+		*posInfo = monster->GetObjectInfo().posinfo();
+		info->set_allocated_posinfo(posInfo);
 	}
 	auto sendBuffer = ServerPacketHandler::MakeSendBuffer(spawn);
 	BroadCast(move(*sendBuffer));
