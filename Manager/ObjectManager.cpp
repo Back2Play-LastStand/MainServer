@@ -10,6 +10,11 @@ void ObjectManager::Init()
 	m_idGenerator = 1;
 }
 
+shared_ptr<class GameObject> ObjectManager::FindById(unsigned long long id)
+{
+	return m_objects[id];
+}
+
 void ObjectManager::HandleEnterGame(Session* session, Protocol::REQ_ENTER pkt)
 {
 	if (!session)

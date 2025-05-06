@@ -115,6 +115,21 @@ void Room::HandleMove(Session* session, Protocol::REQ_MOVE pkt)
 	}
 }
 
+void Room::HandleAttack(Session* session, Protocol::REQ_ATTACK_OBJECT pkt)
+{
+	auto object = GManager->Object()->FindById(pkt.objectid());
+	if (object)
+	{
+		Protocol::RES_ATTACK_OBJECT attack;
+		object->TakeDamage(pkt.damage());
+		attack.set_objectid(object->GetId());    
+		attack.set_damage(object->GetPower());
+
+		auto sendBuffer = ServerPacketHandler::MakeSendBuffer(attack);
+		BroadCast(move(*sendBuffer));
+	}
+}
+
 void Room::SpawnMonster()
 {
 	TimerPushJob(120000, &Room::SpawnMonster); // 2min

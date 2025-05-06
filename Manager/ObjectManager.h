@@ -14,6 +14,7 @@ public:
 		m_objects.insert({ m_idGenerator, object });
 		return object;
 	}
+	shared_ptr<class GameObject> FindById(unsigned long long id);
 
 	void HandleEnterGame(Session* session, Protocol::REQ_ENTER pkt);
 

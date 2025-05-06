@@ -19,7 +19,8 @@ enum : unsigned short
 	PKT_RES_MOVE = 1010,
 	PKT_RES_SPAWN_MONSTER = 1011,
 	PKT_RES_MOVE_MONSTER = 1012,
-	PKT_RES_ATTACK_MONSTER = 1013,
+	PKT_REQ_ATTACK_OBJECT = 1013,
+	PKT_RES_ATTACK_OBJECT = 1014,
 };
 
 bool Handle_INVALID(Session* session, BYTE* buffer, int len);
@@ -27,6 +28,7 @@ bool Handle_REQ_ENTER(Session* session, Protocol::REQ_ENTER& pkt);
 bool Handle_REQ_ENTER_ROOM(Session* session, Protocol::REQ_ENTER_ROOM& pkt);
 bool Handle_REQ_LEAVE(Session* session, Protocol::REQ_LEAVE& pkt);
 bool Handle_REQ_MOVE(Session* session, Protocol::REQ_MOVE& pkt);
+bool Handle_REQ_ATTACK_OBJECT(Session* session, Protocol::REQ_ATTACK_OBJECT& pkt);
 
 class ServerPacketHandler
 {
@@ -39,6 +41,7 @@ public:
 		GPacketHandler[PKT_REQ_ENTER_ROOM] = [](Session* session, BYTE* buffer, int len) {return HandlePacket<Protocol::REQ_ENTER_ROOM>(Handle_REQ_ENTER_ROOM, session, buffer, len); };
 		GPacketHandler[PKT_REQ_LEAVE] = [](Session* session, BYTE* buffer, int len) {return HandlePacket<Protocol::REQ_LEAVE>(Handle_REQ_LEAVE, session, buffer, len); };
 		GPacketHandler[PKT_REQ_MOVE] = [](Session* session, BYTE* buffer, int len) {return HandlePacket<Protocol::REQ_MOVE>(Handle_REQ_MOVE, session, buffer, len); };
+		GPacketHandler[PKT_REQ_ATTACK_OBJECT] = [](Session* session, BYTE* buffer, int len) {return HandlePacket<Protocol::REQ_ATTACK_OBJECT>(Handle_REQ_ATTACK_OBJECT, session, buffer, len); };
 	}
 	static shared_ptr<vector<char>> MakeSendBuffer(Protocol::RES_ENTER& pkt) { return MakeSendBuffer(pkt, PKT_RES_ENTER); }
 	static shared_ptr<vector<char>> MakeSendBuffer(Protocol::RES_ENTER_ROOM& pkt) { return MakeSendBuffer(pkt, PKT_RES_ENTER_ROOM); }
@@ -49,7 +52,7 @@ public:
 	static shared_ptr<vector<char>> MakeSendBuffer(Protocol::RES_MOVE& pkt) { return MakeSendBuffer(pkt, PKT_RES_MOVE); }
 	static shared_ptr<vector<char>> MakeSendBuffer(Protocol::RES_SPAWN_MONSTER& pkt) { return MakeSendBuffer(pkt, PKT_RES_SPAWN_MONSTER); }
 	static shared_ptr<vector<char>> MakeSendBuffer(Protocol::RES_MOVE_MONSTER& pkt) { return MakeSendBuffer(pkt, PKT_RES_MOVE_MONSTER); }
-	static shared_ptr<vector<char>> MakeSendBuffer(Protocol::RES_ATTACK_MONSTER& pkt) { return MakeSendBuffer(pkt, PKT_RES_ATTACK_MONSTER); }
+	static shared_ptr<vector<char>> MakeSendBuffer(Protocol::RES_ATTACK_OBJECT& pkt) { return MakeSendBuffer(pkt, PKT_RES_ATTACK_OBJECT); }
 
 	static bool HandlePacket(Session* session, BYTE* buffer, int len)
 	{
