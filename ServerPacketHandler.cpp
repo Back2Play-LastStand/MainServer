@@ -42,5 +42,8 @@ bool Handle_REQ_MOVE(Session* session, Protocol::REQ_MOVE& pkt)
 
 bool Handle_REQ_ATTACK_OBJECT(Session* session, Protocol::RES_ATTACK_MONSTER& pkt)
 {
+	auto gameSession = static_cast<GameSession*>(session);
+	if (auto room = gameSession->GetPlayer()->GetRoom())
+		room->PushJob(&Room::HandleAttack, session, pkt);
 	return false;
 }

@@ -115,6 +115,10 @@ void Room::HandleMove(Session* session, Protocol::REQ_MOVE pkt)
 	}
 }
 
+void Room::HandleAttack(Session* session, Protocol::REQ_ATTACK_OBJECT pkt)
+{
+}
+
 void Room::SpawnMonster()
 {
 	TimerPushJob(120000, &Room::SpawnMonster); // 2min

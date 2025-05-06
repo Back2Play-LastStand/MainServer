@@ -18,6 +18,7 @@ public:
 	void BroadCast(vector<char> buffer, unsigned long long exceptId = 0);
  
 	void HandleMove(Session* session, Protocol::REQ_MOVE pkt);
+	void HandleAttack(Session* session, Protocol::REQ_ATTACK_OBJECT pkt);
 	void SpawnMonster();
 
 	void BeginPlay();
