@@ -39,3 +39,8 @@ bool Handle_REQ_MOVE(Session* session, Protocol::REQ_MOVE& pkt)
 		room->PushJob(&Room::HandleMove, session, pkt);
 	return false;
 }
+
+bool Handle_REQ_ATTACK_OBJECT(Session* session, Protocol::RES_ATTACK_MONSTER& pkt)
+{
+	return false;
+}

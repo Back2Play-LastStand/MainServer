@@ -192,23 +192,36 @@ struct RES_MOVE_MONSTERDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 RES_MOVE_MONSTERDefaultTypeInternal _RES_MOVE_MONSTER_default_instance_;
-PROTOBUF_CONSTEXPR RES_ATTACK_MONSTER::RES_ATTACK_MONSTER(
+PROTOBUF_CONSTEXPR REQ_ATTACK_OBJECT::REQ_ATTACK_OBJECT(
     ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.attacker_)*/nullptr
-  , /*decltype(_impl_.target_)*/nullptr
-  , /*decltype(_impl_.power_)*/0u
+    /*decltype(_impl_.objectid_)*/uint64_t{0u}
+  , /*decltype(_impl_.damage_)*/0u
   , /*decltype(_impl_._cached_size_)*/{}} {}
-struct RES_ATTACK_MONSTERDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR RES_ATTACK_MONSTERDefaultTypeInternal()
+struct REQ_ATTACK_OBJECTDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR REQ_ATTACK_OBJECTDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
-  ~RES_ATTACK_MONSTERDefaultTypeInternal() {}
+  ~REQ_ATTACK_OBJECTDefaultTypeInternal() {}
   union {
-    RES_ATTACK_MONSTER _instance;
+    REQ_ATTACK_OBJECT _instance;
   };
 };
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 RES_ATTACK_MONSTERDefaultTypeInternal _RES_ATTACK_MONSTER_default_instance_;
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 REQ_ATTACK_OBJECTDefaultTypeInternal _REQ_ATTACK_OBJECT_default_instance_;
+PROTOBUF_CONSTEXPR RES_ATTACK_OBJECT::RES_ATTACK_OBJECT(
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.objectid_)*/uint64_t{0u}
+  , /*decltype(_impl_.damage_)*/0u
+  , /*decltype(_impl_._cached_size_)*/{}} {}
+struct RES_ATTACK_OBJECTDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR RES_ATTACK_OBJECTDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~RES_ATTACK_OBJECTDefaultTypeInternal() {}
+  union {
+    RES_ATTACK_OBJECT _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 RES_ATTACK_OBJECTDefaultTypeInternal _RES_ATTACK_OBJECT_default_instance_;
 }  // namespace Protocol
-static ::_pb::Metadata file_level_metadata_Protocol_2eproto[14];
+static ::_pb::Metadata file_level_metadata_Protocol_2eproto[15];
 static constexpr ::_pb::EnumDescriptor const** file_level_enum_descriptors_Protocol_2eproto = nullptr;
 static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_Protocol_2eproto = nullptr;
 
@@ -307,14 +320,21 @@ const uint32_t TableStruct_Protocol_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::Protocol::RES_MOVE_MONSTER, _impl_.monster_),
   ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::Protocol::RES_ATTACK_MONSTER, _internal_metadata_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::REQ_ATTACK_OBJECT, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::Protocol::RES_ATTACK_MONSTER, _impl_.attacker_),
-  PROTOBUF_FIELD_OFFSET(::Protocol::RES_ATTACK_MONSTER, _impl_.target_),
-  PROTOBUF_FIELD_OFFSET(::Protocol::RES_ATTACK_MONSTER, _impl_.power_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::REQ_ATTACK_OBJECT, _impl_.objectid_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::REQ_ATTACK_OBJECT, _impl_.damage_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::Protocol::RES_ATTACK_OBJECT, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::Protocol::RES_ATTACK_OBJECT, _impl_.objectid_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::RES_ATTACK_OBJECT, _impl_.damage_),
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::Protocol::REQ_ENTER)},
@@ -330,7 +350,8 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 72, -1, -1, sizeof(::Protocol::RES_MOVE)},
   { 79, -1, -1, sizeof(::Protocol::RES_SPAWN_MONSTER)},
   { 86, -1, -1, sizeof(::Protocol::RES_MOVE_MONSTER)},
-  { 93, -1, -1, sizeof(::Protocol::RES_ATTACK_MONSTER)},
+  { 93, -1, -1, sizeof(::Protocol::REQ_ATTACK_OBJECT)},
+  { 101, -1, -1, sizeof(::Protocol::RES_ATTACK_OBJECT)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -347,7 +368,8 @@ static const ::_pb::Message* const file_default_instances[] = {
   &::Protocol::_RES_MOVE_default_instance_._instance,
   &::Protocol::_RES_SPAWN_MONSTER_default_instance_._instance,
   &::Protocol::_RES_MOVE_MONSTER_default_instance_._instance,
-  &::Protocol::_RES_ATTACK_MONSTER_default_instance_._instance,
+  &::Protocol::_REQ_ATTACK_OBJECT_default_instance_._instance,
+  &::Protocol::_RES_ATTACK_OBJECT_default_instance_._instance,
 };
 
 const char descriptor_table_protodef_Protocol_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
@@ -368,10 +390,10 @@ const char descriptor_table_protodef_Protocol_2eproto[] PROTOBUF_SECTION_VARIABL
   "tInfo\";\n\021RES_SPAWN_MONSTER\022&\n\010monsters\030\001"
   " \003(\0132\024.Protocol.ObjectInfo\"9\n\020RES_MOVE_M"
   "ONSTER\022%\n\007monster\030\001 \001(\0132\024.Protocol.Objec"
-  "tInfo\"q\n\022RES_ATTACK_MONSTER\022&\n\010attacker\030"
-  "\001 \001(\0132\024.Protocol.ObjectInfo\022$\n\006target\030\002 "
-  "\001(\0132\024.Protocol.ObjectInfo\022\r\n\005power\030\003 \001(\r"
-  "b\006proto3"
+  "tInfo\"5\n\021REQ_ATTACK_OBJECT\022\020\n\010objectId\030\001"
+  " \001(\004\022\016\n\006damage\030\002 \001(\r\"5\n\021RES_ATTACK_OBJEC"
+  "T\022\020\n\010objectId\030\001 \001(\004\022\016\n\006damage\030\002 \001(\rb\006pro"
+  "to3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_Protocol_2eproto_deps[2] = {
   &::descriptor_table_Enum_2eproto,
@@ -379,9 +401,9 @@ static const ::_pbi::DescriptorTable* const descriptor_table_Protocol_2eproto_de
 };
 static ::_pbi::once_flag descriptor_table_Protocol_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_Protocol_2eproto = {
-    false, false, 808, descriptor_table_protodef_Protocol_2eproto,
+    false, false, 803, descriptor_table_protodef_Protocol_2eproto,
     "Protocol.proto",
-    &descriptor_table_Protocol_2eproto_once, descriptor_table_Protocol_2eproto_deps, 2, 14,
+    &descriptor_table_Protocol_2eproto_once, descriptor_table_Protocol_2eproto_deps, 2, 15,
     schemas, file_default_instances, TableStruct_Protocol_2eproto::offsets,
     file_level_metadata_Protocol_2eproto, file_level_enum_descriptors_Protocol_2eproto,
     file_level_service_descriptors_Protocol_2eproto,
@@ -2897,72 +2919,44 @@ void RES_MOVE_MONSTER::InternalSwap(RES_MOVE_MONSTER* other) {
 
 // ===================================================================
 
-class RES_ATTACK_MONSTER::_Internal {
+class REQ_ATTACK_OBJECT::_Internal {
  public:
-  static const ::Protocol::ObjectInfo& attacker(const RES_ATTACK_MONSTER* msg);
-  static const ::Protocol::ObjectInfo& target(const RES_ATTACK_MONSTER* msg);
 };
 
-const ::Protocol::ObjectInfo&
-RES_ATTACK_MONSTER::_Internal::attacker(const RES_ATTACK_MONSTER* msg) {
-  return *msg->_impl_.attacker_;
-}
-const ::Protocol::ObjectInfo&
-RES_ATTACK_MONSTER::_Internal::target(const RES_ATTACK_MONSTER* msg) {
-  return *msg->_impl_.target_;
-}
-void RES_ATTACK_MONSTER::clear_attacker() {
-  if (GetArenaForAllocation() == nullptr && _impl_.attacker_ != nullptr) {
-    delete _impl_.attacker_;
-  }
-  _impl_.attacker_ = nullptr;
-}
-void RES_ATTACK_MONSTER::clear_target() {
-  if (GetArenaForAllocation() == nullptr && _impl_.target_ != nullptr) {
-    delete _impl_.target_;
-  }
-  _impl_.target_ = nullptr;
-}
-RES_ATTACK_MONSTER::RES_ATTACK_MONSTER(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+REQ_ATTACK_OBJECT::REQ_ATTACK_OBJECT(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
   SharedCtor(arena, is_message_owned);
-  // @@protoc_insertion_point(arena_constructor:Protocol.RES_ATTACK_MONSTER)
+  // @@protoc_insertion_point(arena_constructor:Protocol.REQ_ATTACK_OBJECT)
 }
-RES_ATTACK_MONSTER::RES_ATTACK_MONSTER(const RES_ATTACK_MONSTER& from)
+REQ_ATTACK_OBJECT::REQ_ATTACK_OBJECT(const REQ_ATTACK_OBJECT& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
-  RES_ATTACK_MONSTER* const _this = this; (void)_this;
+  REQ_ATTACK_OBJECT* const _this = this; (void)_this;
   new (&_impl_) Impl_{
-      decltype(_impl_.attacker_){nullptr}
-    , decltype(_impl_.target_){nullptr}
-    , decltype(_impl_.power_){}
+      decltype(_impl_.objectid_){}
+    , decltype(_impl_.damage_){}
     , /*decltype(_impl_._cached_size_)*/{}};
 
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  if (from._internal_has_attacker()) {
-    _this->_impl_.attacker_ = new ::Protocol::ObjectInfo(*from._impl_.attacker_);
-  }
-  if (from._internal_has_target()) {
-    _this->_impl_.target_ = new ::Protocol::ObjectInfo(*from._impl_.target_);
-  }
-  _this->_impl_.power_ = from._impl_.power_;
-  // @@protoc_insertion_point(copy_constructor:Protocol.RES_ATTACK_MONSTER)
+  ::memcpy(&_impl_.objectid_, &from._impl_.objectid_,
+    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.damage_) -
+    reinterpret_cast<char*>(&_impl_.objectid_)) + sizeof(_impl_.damage_));
+  // @@protoc_insertion_point(copy_constructor:Protocol.REQ_ATTACK_OBJECT)
 }
 
-inline void RES_ATTACK_MONSTER::SharedCtor(
+inline void REQ_ATTACK_OBJECT::SharedCtor(
     ::_pb::Arena* arena, bool is_message_owned) {
   (void)arena;
   (void)is_message_owned;
   new (&_impl_) Impl_{
-      decltype(_impl_.attacker_){nullptr}
-    , decltype(_impl_.target_){nullptr}
-    , decltype(_impl_.power_){0u}
+      decltype(_impl_.objectid_){uint64_t{0u}}
+    , decltype(_impl_.damage_){0u}
     , /*decltype(_impl_._cached_size_)*/{}
   };
 }
 
-RES_ATTACK_MONSTER::~RES_ATTACK_MONSTER() {
-  // @@protoc_insertion_point(destructor:Protocol.RES_ATTACK_MONSTER)
+REQ_ATTACK_OBJECT::~REQ_ATTACK_OBJECT() {
+  // @@protoc_insertion_point(destructor:Protocol.REQ_ATTACK_OBJECT)
   if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
   (void)arena;
     return;
@@ -2970,60 +2964,44 @@ RES_ATTACK_MONSTER::~RES_ATTACK_MONSTER() {
   SharedDtor();
 }
 
-inline void RES_ATTACK_MONSTER::SharedDtor() {
+inline void REQ_ATTACK_OBJECT::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  if (this != internal_default_instance()) delete _impl_.attacker_;
-  if (this != internal_default_instance()) delete _impl_.target_;
 }
 
-void RES_ATTACK_MONSTER::SetCachedSize(int size) const {
+void REQ_ATTACK_OBJECT::SetCachedSize(int size) const {
   _impl_._cached_size_.Set(size);
 }
 
-void RES_ATTACK_MONSTER::Clear() {
-// @@protoc_insertion_point(message_clear_start:Protocol.RES_ATTACK_MONSTER)
+void REQ_ATTACK_OBJECT::Clear() {
+// @@protoc_insertion_point(message_clear_start:Protocol.REQ_ATTACK_OBJECT)
   uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  if (GetArenaForAllocation() == nullptr && _impl_.attacker_ != nullptr) {
-    delete _impl_.attacker_;
-  }
-  _impl_.attacker_ = nullptr;
-  if (GetArenaForAllocation() == nullptr && _impl_.target_ != nullptr) {
-    delete _impl_.target_;
-  }
-  _impl_.target_ = nullptr;
-  _impl_.power_ = 0u;
+  ::memset(&_impl_.objectid_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&_impl_.damage_) -
+      reinterpret_cast<char*>(&_impl_.objectid_)) + sizeof(_impl_.damage_));
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-const char* RES_ATTACK_MONSTER::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+const char* REQ_ATTACK_OBJECT::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
 #define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
   while (!ctx->Done(&ptr)) {
     uint32_t tag;
     ptr = ::_pbi::ReadTag(ptr, &tag);
     switch (tag >> 3) {
-      // .Protocol.ObjectInfo attacker = 1;
+      // uint64 objectId = 1;
       case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
-          ptr = ctx->ParseMessage(_internal_mutable_attacker(), ptr);
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
+          _impl_.objectid_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
         continue;
-      // .Protocol.ObjectInfo target = 2;
+      // uint32 damage = 2;
       case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
-          ptr = ctx->ParseMessage(_internal_mutable_target(), ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // uint32 power = 3;
-      case 3:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 24)) {
-          _impl_.power_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
+          _impl_.damage_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -3051,125 +3029,314 @@ failure:
 #undef CHK_
 }
 
-uint8_t* RES_ATTACK_MONSTER::_InternalSerialize(
+uint8_t* REQ_ATTACK_OBJECT::_InternalSerialize(
     uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:Protocol.RES_ATTACK_MONSTER)
+  // @@protoc_insertion_point(serialize_to_array_start:Protocol.REQ_ATTACK_OBJECT)
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // .Protocol.ObjectInfo attacker = 1;
-  if (this->_internal_has_attacker()) {
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(1, _Internal::attacker(this),
-        _Internal::attacker(this).GetCachedSize(), target, stream);
-  }
-
-  // .Protocol.ObjectInfo target = 2;
-  if (this->_internal_has_target()) {
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(2, _Internal::target(this),
-        _Internal::target(this).GetCachedSize(), target, stream);
-  }
-
-  // uint32 power = 3;
-  if (this->_internal_power() != 0) {
+  // uint64 objectId = 1;
+  if (this->_internal_objectid() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(3, this->_internal_power(), target);
+    target = ::_pbi::WireFormatLite::WriteUInt64ToArray(1, this->_internal_objectid(), target);
+  }
+
+  // uint32 damage = 2;
+  if (this->_internal_damage() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(2, this->_internal_damage(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:Protocol.RES_ATTACK_MONSTER)
+  // @@protoc_insertion_point(serialize_to_array_end:Protocol.REQ_ATTACK_OBJECT)
   return target;
 }
 
-size_t RES_ATTACK_MONSTER::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:Protocol.RES_ATTACK_MONSTER)
+size_t REQ_ATTACK_OBJECT::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Protocol.REQ_ATTACK_OBJECT)
   size_t total_size = 0;
 
   uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // .Protocol.ObjectInfo attacker = 1;
-  if (this->_internal_has_attacker()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *_impl_.attacker_);
+  // uint64 objectId = 1;
+  if (this->_internal_objectid() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(this->_internal_objectid());
   }
 
-  // .Protocol.ObjectInfo target = 2;
-  if (this->_internal_has_target()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *_impl_.target_);
-  }
-
-  // uint32 power = 3;
-  if (this->_internal_power() != 0) {
-    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(this->_internal_power());
+  // uint32 damage = 2;
+  if (this->_internal_damage() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(this->_internal_damage());
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData RES_ATTACK_MONSTER::_class_data_ = {
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData REQ_ATTACK_OBJECT::_class_data_ = {
     ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
-    RES_ATTACK_MONSTER::MergeImpl
+    REQ_ATTACK_OBJECT::MergeImpl
 };
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*RES_ATTACK_MONSTER::GetClassData() const { return &_class_data_; }
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*REQ_ATTACK_OBJECT::GetClassData() const { return &_class_data_; }
 
 
-void RES_ATTACK_MONSTER::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<RES_ATTACK_MONSTER*>(&to_msg);
-  auto& from = static_cast<const RES_ATTACK_MONSTER&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:Protocol.RES_ATTACK_MONSTER)
+void REQ_ATTACK_OBJECT::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<REQ_ATTACK_OBJECT*>(&to_msg);
+  auto& from = static_cast<const REQ_ATTACK_OBJECT&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:Protocol.REQ_ATTACK_OBJECT)
   GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (from._internal_has_attacker()) {
-    _this->_internal_mutable_attacker()->::Protocol::ObjectInfo::MergeFrom(
-        from._internal_attacker());
+  if (from._internal_objectid() != 0) {
+    _this->_internal_set_objectid(from._internal_objectid());
   }
-  if (from._internal_has_target()) {
-    _this->_internal_mutable_target()->::Protocol::ObjectInfo::MergeFrom(
-        from._internal_target());
-  }
-  if (from._internal_power() != 0) {
-    _this->_internal_set_power(from._internal_power());
+  if (from._internal_damage() != 0) {
+    _this->_internal_set_damage(from._internal_damage());
   }
   _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
-void RES_ATTACK_MONSTER::CopyFrom(const RES_ATTACK_MONSTER& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:Protocol.RES_ATTACK_MONSTER)
+void REQ_ATTACK_OBJECT::CopyFrom(const REQ_ATTACK_OBJECT& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Protocol.REQ_ATTACK_OBJECT)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-bool RES_ATTACK_MONSTER::IsInitialized() const {
+bool REQ_ATTACK_OBJECT::IsInitialized() const {
   return true;
 }
 
-void RES_ATTACK_MONSTER::InternalSwap(RES_ATTACK_MONSTER* other) {
+void REQ_ATTACK_OBJECT::InternalSwap(REQ_ATTACK_OBJECT* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(RES_ATTACK_MONSTER, _impl_.power_)
-      + sizeof(RES_ATTACK_MONSTER::_impl_.power_)
-      - PROTOBUF_FIELD_OFFSET(RES_ATTACK_MONSTER, _impl_.attacker_)>(
-          reinterpret_cast<char*>(&_impl_.attacker_),
-          reinterpret_cast<char*>(&other->_impl_.attacker_));
+      PROTOBUF_FIELD_OFFSET(REQ_ATTACK_OBJECT, _impl_.damage_)
+      + sizeof(REQ_ATTACK_OBJECT::_impl_.damage_)
+      - PROTOBUF_FIELD_OFFSET(REQ_ATTACK_OBJECT, _impl_.objectid_)>(
+          reinterpret_cast<char*>(&_impl_.objectid_),
+          reinterpret_cast<char*>(&other->_impl_.objectid_));
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata RES_ATTACK_MONSTER::GetMetadata() const {
+::PROTOBUF_NAMESPACE_ID::Metadata REQ_ATTACK_OBJECT::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_Protocol_2eproto_getter, &descriptor_table_Protocol_2eproto_once,
       file_level_metadata_Protocol_2eproto[13]);
+}
+
+// ===================================================================
+
+class RES_ATTACK_OBJECT::_Internal {
+ public:
+};
+
+RES_ATTACK_OBJECT::RES_ATTACK_OBJECT(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
+  // @@protoc_insertion_point(arena_constructor:Protocol.RES_ATTACK_OBJECT)
+}
+RES_ATTACK_OBJECT::RES_ATTACK_OBJECT(const RES_ATTACK_OBJECT& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  RES_ATTACK_OBJECT* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.objectid_){}
+    , decltype(_impl_.damage_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::memcpy(&_impl_.objectid_, &from._impl_.objectid_,
+    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.damage_) -
+    reinterpret_cast<char*>(&_impl_.objectid_)) + sizeof(_impl_.damage_));
+  // @@protoc_insertion_point(copy_constructor:Protocol.RES_ATTACK_OBJECT)
+}
+
+inline void RES_ATTACK_OBJECT::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.objectid_){uint64_t{0u}}
+    , decltype(_impl_.damage_){0u}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+}
+
+RES_ATTACK_OBJECT::~RES_ATTACK_OBJECT() {
+  // @@protoc_insertion_point(destructor:Protocol.RES_ATTACK_OBJECT)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void RES_ATTACK_OBJECT::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+}
+
+void RES_ATTACK_OBJECT::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+void RES_ATTACK_OBJECT::Clear() {
+// @@protoc_insertion_point(message_clear_start:Protocol.RES_ATTACK_OBJECT)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  ::memset(&_impl_.objectid_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&_impl_.damage_) -
+      reinterpret_cast<char*>(&_impl_.objectid_)) + sizeof(_impl_.damage_));
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* RES_ATTACK_OBJECT::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // uint64 objectId = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
+          _impl_.objectid_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // uint32 damage = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
+          _impl_.damage_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* RES_ATTACK_OBJECT::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Protocol.RES_ATTACK_OBJECT)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // uint64 objectId = 1;
+  if (this->_internal_objectid() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt64ToArray(1, this->_internal_objectid(), target);
+  }
+
+  // uint32 damage = 2;
+  if (this->_internal_damage() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(2, this->_internal_damage(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Protocol.RES_ATTACK_OBJECT)
+  return target;
+}
+
+size_t RES_ATTACK_OBJECT::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Protocol.RES_ATTACK_OBJECT)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // uint64 objectId = 1;
+  if (this->_internal_objectid() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(this->_internal_objectid());
+  }
+
+  // uint32 damage = 2;
+  if (this->_internal_damage() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(this->_internal_damage());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData RES_ATTACK_OBJECT::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    RES_ATTACK_OBJECT::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*RES_ATTACK_OBJECT::GetClassData() const { return &_class_data_; }
+
+
+void RES_ATTACK_OBJECT::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<RES_ATTACK_OBJECT*>(&to_msg);
+  auto& from = static_cast<const RES_ATTACK_OBJECT&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:Protocol.RES_ATTACK_OBJECT)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from._internal_objectid() != 0) {
+    _this->_internal_set_objectid(from._internal_objectid());
+  }
+  if (from._internal_damage() != 0) {
+    _this->_internal_set_damage(from._internal_damage());
+  }
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void RES_ATTACK_OBJECT::CopyFrom(const RES_ATTACK_OBJECT& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Protocol.RES_ATTACK_OBJECT)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool RES_ATTACK_OBJECT::IsInitialized() const {
+  return true;
+}
+
+void RES_ATTACK_OBJECT::InternalSwap(RES_ATTACK_OBJECT* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(RES_ATTACK_OBJECT, _impl_.damage_)
+      + sizeof(RES_ATTACK_OBJECT::_impl_.damage_)
+      - PROTOBUF_FIELD_OFFSET(RES_ATTACK_OBJECT, _impl_.objectid_)>(
+          reinterpret_cast<char*>(&_impl_.objectid_),
+          reinterpret_cast<char*>(&other->_impl_.objectid_));
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata RES_ATTACK_OBJECT::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_Protocol_2eproto_getter, &descriptor_table_Protocol_2eproto_once,
+      file_level_metadata_Protocol_2eproto[14]);
 }
 
 // @@protoc_insertion_point(namespace_scope)
@@ -3227,9 +3394,13 @@ template<> PROTOBUF_NOINLINE ::Protocol::RES_MOVE_MONSTER*
 Arena::CreateMaybeMessage< ::Protocol::RES_MOVE_MONSTER >(Arena* arena) {
   return Arena::CreateMessageInternal< ::Protocol::RES_MOVE_MONSTER >(arena);
 }
-template<> PROTOBUF_NOINLINE ::Protocol::RES_ATTACK_MONSTER*
-Arena::CreateMaybeMessage< ::Protocol::RES_ATTACK_MONSTER >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::Protocol::RES_ATTACK_MONSTER >(arena);
+template<> PROTOBUF_NOINLINE ::Protocol::REQ_ATTACK_OBJECT*
+Arena::CreateMaybeMessage< ::Protocol::REQ_ATTACK_OBJECT >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::Protocol::REQ_ATTACK_OBJECT >(arena);
+}
+template<> PROTOBUF_NOINLINE ::Protocol::RES_ATTACK_OBJECT*
+Arena::CreateMaybeMessage< ::Protocol::RES_ATTACK_OBJECT >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::Protocol::RES_ATTACK_OBJECT >(arena);
 }
 PROTOBUF_NAMESPACE_CLOSE
 
