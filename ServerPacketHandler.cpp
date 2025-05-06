@@ -40,7 +40,7 @@ bool Handle_REQ_MOVE(Session* session, Protocol::REQ_MOVE& pkt)
 	return false;
 }
 
-bool Handle_REQ_ATTACK_OBJECT(Session* session, Protocol::RES_ATTACK_OBJECT& pkt)
+bool Handle_REQ_ATTACK_OBJECT(Session* session, Protocol::REQ_ATTACK_OBJECT& pkt)
 {
 	auto gameSession = static_cast<GameSession*>(session);
 	if (auto room = gameSession->GetPlayer()->GetRoom())
