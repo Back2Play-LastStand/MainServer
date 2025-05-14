@@ -98,7 +98,7 @@ void RoomManager::HandleEnterRoom(Session* session, Protocol::REQ_ENTER_ROOM pkt
 			}
 			
 			auto sendBuffer = ServerPacketHandler::MakeSendBuffer(spawn);
-			room->BroadCast(move(*sendBuffer));
+			session->SendContext(move(*sendBuffer));
 		}
 	}
 }
