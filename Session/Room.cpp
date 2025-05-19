@@ -149,9 +149,11 @@ void Room::SpawnMonster()
 		monster->GetObjectInfo().set_allocated_posinfo(pos);
 
 		monster->BeginPlay();
+		monster->SetHp(100);
 		m_monsters[monster->GetId()] = monster;
 		Protocol::ObjectInfo* info = spawn.add_monsters();
 		info->set_objectid(monster->GetId());
+		info->set_health(monster->GetHp());
 		info->set_name("monster");
 
 		Protocol::PositionInfo* posInfo = new Protocol::PositionInfo();

@@ -31,6 +31,7 @@ void ObjectManager::HandleEnterGame(Session* session, Protocol::REQ_ENTER pkt)
 
 		auto player = CreateObject<Player>();
 		player->SetName(pkt.name());
+		player->SetHp(100);
 		cout << "player name: " << player->GetName() << endl;
 		player->SetSession(gameSession);
 		player->BeginPlay();
