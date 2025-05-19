@@ -194,7 +194,8 @@ struct RES_MOVE_MONSTERDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 RES_MOVE_MONSTERDefaultTypeInternal _RES_MOVE_MONSTER_default_instance_;
 PROTOBUF_CONSTEXPR REQ_ATTACK_OBJECT::REQ_ATTACK_OBJECT(
     ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.objectid_)*/uint64_t{0u}
+    /*decltype(_impl_.attacker_)*/uint64_t{0u}
+  , /*decltype(_impl_.objectid_)*/uint64_t{0u}
   , /*decltype(_impl_.damage_)*/0u
   , /*decltype(_impl_._cached_size_)*/{}} {}
 struct REQ_ATTACK_OBJECTDefaultTypeInternal {
@@ -208,8 +209,10 @@ struct REQ_ATTACK_OBJECTDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 REQ_ATTACK_OBJECTDefaultTypeInternal _REQ_ATTACK_OBJECT_default_instance_;
 PROTOBUF_CONSTEXPR RES_ATTACK_OBJECT::RES_ATTACK_OBJECT(
     ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.objectid_)*/uint64_t{0u}
+    /*decltype(_impl_.attacker_)*/uint64_t{0u}
+  , /*decltype(_impl_.objectid_)*/uint64_t{0u}
   , /*decltype(_impl_.damage_)*/0u
+  , /*decltype(_impl_.remainhp_)*/0u
   , /*decltype(_impl_._cached_size_)*/{}} {}
 struct RES_ATTACK_OBJECTDefaultTypeInternal {
   PROTOBUF_CONSTEXPR RES_ATTACK_OBJECTDefaultTypeInternal()
@@ -325,6 +328,7 @@ const uint32_t TableStruct_Protocol_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::Protocol::REQ_ATTACK_OBJECT, _impl_.attacker_),
   PROTOBUF_FIELD_OFFSET(::Protocol::REQ_ATTACK_OBJECT, _impl_.objectid_),
   PROTOBUF_FIELD_OFFSET(::Protocol::REQ_ATTACK_OBJECT, _impl_.damage_),
   ~0u,  // no _has_bits_
@@ -333,8 +337,10 @@ const uint32_t TableStruct_Protocol_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::Protocol::RES_ATTACK_OBJECT, _impl_.attacker_),
   PROTOBUF_FIELD_OFFSET(::Protocol::RES_ATTACK_OBJECT, _impl_.objectid_),
   PROTOBUF_FIELD_OFFSET(::Protocol::RES_ATTACK_OBJECT, _impl_.damage_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::RES_ATTACK_OBJECT, _impl_.remainhp_),
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::Protocol::REQ_ENTER)},
@@ -351,7 +357,7 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 79, -1, -1, sizeof(::Protocol::RES_SPAWN_MONSTER)},
   { 86, -1, -1, sizeof(::Protocol::RES_MOVE_MONSTER)},
   { 93, -1, -1, sizeof(::Protocol::REQ_ATTACK_OBJECT)},
-  { 101, -1, -1, sizeof(::Protocol::RES_ATTACK_OBJECT)},
+  { 102, -1, -1, sizeof(::Protocol::RES_ATTACK_OBJECT)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -390,10 +396,11 @@ const char descriptor_table_protodef_Protocol_2eproto[] PROTOBUF_SECTION_VARIABL
   "tInfo\";\n\021RES_SPAWN_MONSTER\022&\n\010monsters\030\001"
   " \003(\0132\024.Protocol.ObjectInfo\"9\n\020RES_MOVE_M"
   "ONSTER\022%\n\007monster\030\001 \001(\0132\024.Protocol.Objec"
-  "tInfo\"5\n\021REQ_ATTACK_OBJECT\022\020\n\010objectId\030\001"
-  " \001(\004\022\016\n\006damage\030\002 \001(\r\"5\n\021RES_ATTACK_OBJEC"
-  "T\022\020\n\010objectId\030\001 \001(\004\022\016\n\006damage\030\002 \001(\rb\006pro"
-  "to3"
+  "tInfo\"G\n\021REQ_ATTACK_OBJECT\022\020\n\010attacker\030\001"
+  " \001(\004\022\020\n\010objectId\030\002 \001(\004\022\016\n\006damage\030\003 \001(\r\"Y"
+  "\n\021RES_ATTACK_OBJECT\022\020\n\010attacker\030\001 \001(\004\022\020\n"
+  "\010objectId\030\002 \001(\004\022\016\n\006damage\030\003 \001(\r\022\020\n\010remai"
+  "nHp\030\004 \001(\rb\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_Protocol_2eproto_deps[2] = {
   &::descriptor_table_Enum_2eproto,
@@ -401,7 +408,7 @@ static const ::_pbi::DescriptorTable* const descriptor_table_Protocol_2eproto_de
 };
 static ::_pbi::once_flag descriptor_table_Protocol_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_Protocol_2eproto = {
-    false, false, 803, descriptor_table_protodef_Protocol_2eproto,
+    false, false, 857, descriptor_table_protodef_Protocol_2eproto,
     "Protocol.proto",
     &descriptor_table_Protocol_2eproto_once, descriptor_table_Protocol_2eproto_deps, 2, 15,
     schemas, file_default_instances, TableStruct_Protocol_2eproto::offsets,
@@ -2933,14 +2940,15 @@ REQ_ATTACK_OBJECT::REQ_ATTACK_OBJECT(const REQ_ATTACK_OBJECT& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
   REQ_ATTACK_OBJECT* const _this = this; (void)_this;
   new (&_impl_) Impl_{
-      decltype(_impl_.objectid_){}
+      decltype(_impl_.attacker_){}
+    , decltype(_impl_.objectid_){}
     , decltype(_impl_.damage_){}
     , /*decltype(_impl_._cached_size_)*/{}};
 
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  ::memcpy(&_impl_.objectid_, &from._impl_.objectid_,
+  ::memcpy(&_impl_.attacker_, &from._impl_.attacker_,
     static_cast<size_t>(reinterpret_cast<char*>(&_impl_.damage_) -
-    reinterpret_cast<char*>(&_impl_.objectid_)) + sizeof(_impl_.damage_));
+    reinterpret_cast<char*>(&_impl_.attacker_)) + sizeof(_impl_.damage_));
   // @@protoc_insertion_point(copy_constructor:Protocol.REQ_ATTACK_OBJECT)
 }
 
@@ -2949,7 +2957,8 @@ inline void REQ_ATTACK_OBJECT::SharedCtor(
   (void)arena;
   (void)is_message_owned;
   new (&_impl_) Impl_{
-      decltype(_impl_.objectid_){uint64_t{0u}}
+      decltype(_impl_.attacker_){uint64_t{0u}}
+    , decltype(_impl_.objectid_){uint64_t{0u}}
     , decltype(_impl_.damage_){0u}
     , /*decltype(_impl_._cached_size_)*/{}
   };
@@ -2978,9 +2987,9 @@ void REQ_ATTACK_OBJECT::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  ::memset(&_impl_.objectid_, 0, static_cast<size_t>(
+  ::memset(&_impl_.attacker_, 0, static_cast<size_t>(
       reinterpret_cast<char*>(&_impl_.damage_) -
-      reinterpret_cast<char*>(&_impl_.objectid_)) + sizeof(_impl_.damage_));
+      reinterpret_cast<char*>(&_impl_.attacker_)) + sizeof(_impl_.damage_));
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -2990,17 +2999,25 @@ const char* REQ_ATTACK_OBJECT::_InternalParse(const char* ptr, ::_pbi::ParseCont
     uint32_t tag;
     ptr = ::_pbi::ReadTag(ptr, &tag);
     switch (tag >> 3) {
-      // uint64 objectId = 1;
+      // uint64 attacker = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
+          _impl_.attacker_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // uint64 objectId = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
           _impl_.objectid_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
         continue;
-      // uint32 damage = 2;
-      case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
+      // uint32 damage = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 24)) {
           _impl_.damage_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
         } else
@@ -3035,16 +3052,22 @@ uint8_t* REQ_ATTACK_OBJECT::_InternalSerialize(
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // uint64 objectId = 1;
-  if (this->_internal_objectid() != 0) {
+  // uint64 attacker = 1;
+  if (this->_internal_attacker() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteUInt64ToArray(1, this->_internal_objectid(), target);
+    target = ::_pbi::WireFormatLite::WriteUInt64ToArray(1, this->_internal_attacker(), target);
   }
 
-  // uint32 damage = 2;
+  // uint64 objectId = 2;
+  if (this->_internal_objectid() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt64ToArray(2, this->_internal_objectid(), target);
+  }
+
+  // uint32 damage = 3;
   if (this->_internal_damage() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(2, this->_internal_damage(), target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(3, this->_internal_damage(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -3063,12 +3086,17 @@ size_t REQ_ATTACK_OBJECT::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // uint64 objectId = 1;
+  // uint64 attacker = 1;
+  if (this->_internal_attacker() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(this->_internal_attacker());
+  }
+
+  // uint64 objectId = 2;
   if (this->_internal_objectid() != 0) {
     total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(this->_internal_objectid());
   }
 
-  // uint32 damage = 2;
+  // uint32 damage = 3;
   if (this->_internal_damage() != 0) {
     total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(this->_internal_damage());
   }
@@ -3091,6 +3119,9 @@ void REQ_ATTACK_OBJECT::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, cons
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
+  if (from._internal_attacker() != 0) {
+    _this->_internal_set_attacker(from._internal_attacker());
+  }
   if (from._internal_objectid() != 0) {
     _this->_internal_set_objectid(from._internal_objectid());
   }
@@ -3117,9 +3148,9 @@ void REQ_ATTACK_OBJECT::InternalSwap(REQ_ATTACK_OBJECT* other) {
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
       PROTOBUF_FIELD_OFFSET(REQ_ATTACK_OBJECT, _impl_.damage_)
       + sizeof(REQ_ATTACK_OBJECT::_impl_.damage_)
-      - PROTOBUF_FIELD_OFFSET(REQ_ATTACK_OBJECT, _impl_.objectid_)>(
-          reinterpret_cast<char*>(&_impl_.objectid_),
-          reinterpret_cast<char*>(&other->_impl_.objectid_));
+      - PROTOBUF_FIELD_OFFSET(REQ_ATTACK_OBJECT, _impl_.attacker_)>(
+          reinterpret_cast<char*>(&_impl_.attacker_),
+          reinterpret_cast<char*>(&other->_impl_.attacker_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata REQ_ATTACK_OBJECT::GetMetadata() const {
@@ -3144,14 +3175,16 @@ RES_ATTACK_OBJECT::RES_ATTACK_OBJECT(const RES_ATTACK_OBJECT& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
   RES_ATTACK_OBJECT* const _this = this; (void)_this;
   new (&_impl_) Impl_{
-      decltype(_impl_.objectid_){}
+      decltype(_impl_.attacker_){}
+    , decltype(_impl_.objectid_){}
     , decltype(_impl_.damage_){}
+    , decltype(_impl_.remainhp_){}
     , /*decltype(_impl_._cached_size_)*/{}};
 
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  ::memcpy(&_impl_.objectid_, &from._impl_.objectid_,
-    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.damage_) -
-    reinterpret_cast<char*>(&_impl_.objectid_)) + sizeof(_impl_.damage_));
+  ::memcpy(&_impl_.attacker_, &from._impl_.attacker_,
+    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.remainhp_) -
+    reinterpret_cast<char*>(&_impl_.attacker_)) + sizeof(_impl_.remainhp_));
   // @@protoc_insertion_point(copy_constructor:Protocol.RES_ATTACK_OBJECT)
 }
 
@@ -3160,8 +3193,10 @@ inline void RES_ATTACK_OBJECT::SharedCtor(
   (void)arena;
   (void)is_message_owned;
   new (&_impl_) Impl_{
-      decltype(_impl_.objectid_){uint64_t{0u}}
+      decltype(_impl_.attacker_){uint64_t{0u}}
+    , decltype(_impl_.objectid_){uint64_t{0u}}
     , decltype(_impl_.damage_){0u}
+    , decltype(_impl_.remainhp_){0u}
     , /*decltype(_impl_._cached_size_)*/{}
   };
 }
@@ -3189,9 +3224,9 @@ void RES_ATTACK_OBJECT::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  ::memset(&_impl_.objectid_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&_impl_.damage_) -
-      reinterpret_cast<char*>(&_impl_.objectid_)) + sizeof(_impl_.damage_));
+  ::memset(&_impl_.attacker_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&_impl_.remainhp_) -
+      reinterpret_cast<char*>(&_impl_.attacker_)) + sizeof(_impl_.remainhp_));
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -3201,18 +3236,34 @@ const char* RES_ATTACK_OBJECT::_InternalParse(const char* ptr, ::_pbi::ParseCont
     uint32_t tag;
     ptr = ::_pbi::ReadTag(ptr, &tag);
     switch (tag >> 3) {
-      // uint64 objectId = 1;
+      // uint64 attacker = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
+          _impl_.attacker_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // uint64 objectId = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
           _impl_.objectid_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
         continue;
-      // uint32 damage = 2;
-      case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
+      // uint32 damage = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 24)) {
           _impl_.damage_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // uint32 remainHp = 4;
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 32)) {
+          _impl_.remainhp_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -3246,16 +3297,28 @@ uint8_t* RES_ATTACK_OBJECT::_InternalSerialize(
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // uint64 objectId = 1;
-  if (this->_internal_objectid() != 0) {
+  // uint64 attacker = 1;
+  if (this->_internal_attacker() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteUInt64ToArray(1, this->_internal_objectid(), target);
+    target = ::_pbi::WireFormatLite::WriteUInt64ToArray(1, this->_internal_attacker(), target);
   }
 
-  // uint32 damage = 2;
+  // uint64 objectId = 2;
+  if (this->_internal_objectid() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt64ToArray(2, this->_internal_objectid(), target);
+  }
+
+  // uint32 damage = 3;
   if (this->_internal_damage() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(2, this->_internal_damage(), target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(3, this->_internal_damage(), target);
+  }
+
+  // uint32 remainHp = 4;
+  if (this->_internal_remainhp() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(4, this->_internal_remainhp(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -3274,14 +3337,24 @@ size_t RES_ATTACK_OBJECT::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // uint64 objectId = 1;
+  // uint64 attacker = 1;
+  if (this->_internal_attacker() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(this->_internal_attacker());
+  }
+
+  // uint64 objectId = 2;
   if (this->_internal_objectid() != 0) {
     total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(this->_internal_objectid());
   }
 
-  // uint32 damage = 2;
+  // uint32 damage = 3;
   if (this->_internal_damage() != 0) {
     total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(this->_internal_damage());
+  }
+
+  // uint32 remainHp = 4;
+  if (this->_internal_remainhp() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(this->_internal_remainhp());
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
@@ -3302,11 +3375,17 @@ void RES_ATTACK_OBJECT::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, cons
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
+  if (from._internal_attacker() != 0) {
+    _this->_internal_set_attacker(from._internal_attacker());
+  }
   if (from._internal_objectid() != 0) {
     _this->_internal_set_objectid(from._internal_objectid());
   }
   if (from._internal_damage() != 0) {
     _this->_internal_set_damage(from._internal_damage());
+  }
+  if (from._internal_remainhp() != 0) {
+    _this->_internal_set_remainhp(from._internal_remainhp());
   }
   _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
@@ -3326,11 +3405,11 @@ void RES_ATTACK_OBJECT::InternalSwap(RES_ATTACK_OBJECT* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(RES_ATTACK_OBJECT, _impl_.damage_)
-      + sizeof(RES_ATTACK_OBJECT::_impl_.damage_)
-      - PROTOBUF_FIELD_OFFSET(RES_ATTACK_OBJECT, _impl_.objectid_)>(
-          reinterpret_cast<char*>(&_impl_.objectid_),
-          reinterpret_cast<char*>(&other->_impl_.objectid_));
+      PROTOBUF_FIELD_OFFSET(RES_ATTACK_OBJECT, _impl_.remainhp_)
+      + sizeof(RES_ATTACK_OBJECT::_impl_.remainhp_)
+      - PROTOBUF_FIELD_OFFSET(RES_ATTACK_OBJECT, _impl_.attacker_)>(
+          reinterpret_cast<char*>(&_impl_.attacker_),
+          reinterpret_cast<char*>(&other->_impl_.attacker_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata RES_ATTACK_OBJECT::GetMetadata() const {

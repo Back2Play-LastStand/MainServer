@@ -2268,10 +2268,20 @@ class REQ_ATTACK_OBJECT final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kObjectIdFieldNumber = 1,
-    kDamageFieldNumber = 2,
+    kAttackerFieldNumber = 1,
+    kObjectIdFieldNumber = 2,
+    kDamageFieldNumber = 3,
   };
-  // uint64 objectId = 1;
+  // uint64 attacker = 1;
+  void clear_attacker();
+  uint64_t attacker() const;
+  void set_attacker(uint64_t value);
+  private:
+  uint64_t _internal_attacker() const;
+  void _internal_set_attacker(uint64_t value);
+  public:
+
+  // uint64 objectId = 2;
   void clear_objectid();
   uint64_t objectid() const;
   void set_objectid(uint64_t value);
@@ -2280,7 +2290,7 @@ class REQ_ATTACK_OBJECT final :
   void _internal_set_objectid(uint64_t value);
   public:
 
-  // uint32 damage = 2;
+  // uint32 damage = 3;
   void clear_damage();
   uint32_t damage() const;
   void set_damage(uint32_t value);
@@ -2297,6 +2307,7 @@ class REQ_ATTACK_OBJECT final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   struct Impl_ {
+    uint64_t attacker_;
     uint64_t objectid_;
     uint32_t damage_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
@@ -2427,10 +2438,21 @@ class RES_ATTACK_OBJECT final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kObjectIdFieldNumber = 1,
-    kDamageFieldNumber = 2,
+    kAttackerFieldNumber = 1,
+    kObjectIdFieldNumber = 2,
+    kDamageFieldNumber = 3,
+    kRemainHpFieldNumber = 4,
   };
-  // uint64 objectId = 1;
+  // uint64 attacker = 1;
+  void clear_attacker();
+  uint64_t attacker() const;
+  void set_attacker(uint64_t value);
+  private:
+  uint64_t _internal_attacker() const;
+  void _internal_set_attacker(uint64_t value);
+  public:
+
+  // uint64 objectId = 2;
   void clear_objectid();
   uint64_t objectid() const;
   void set_objectid(uint64_t value);
@@ -2439,13 +2461,22 @@ class RES_ATTACK_OBJECT final :
   void _internal_set_objectid(uint64_t value);
   public:
 
-  // uint32 damage = 2;
+  // uint32 damage = 3;
   void clear_damage();
   uint32_t damage() const;
   void set_damage(uint32_t value);
   private:
   uint32_t _internal_damage() const;
   void _internal_set_damage(uint32_t value);
+  public:
+
+  // uint32 remainHp = 4;
+  void clear_remainhp();
+  uint32_t remainhp() const;
+  void set_remainhp(uint32_t value);
+  private:
+  uint32_t _internal_remainhp() const;
+  void _internal_set_remainhp(uint32_t value);
   public:
 
   // @@protoc_insertion_point(class_scope:Protocol.RES_ATTACK_OBJECT)
@@ -2456,8 +2487,10 @@ class RES_ATTACK_OBJECT final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   struct Impl_ {
+    uint64_t attacker_;
     uint64_t objectid_;
     uint32_t damage_;
+    uint32_t remainhp_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -3402,7 +3435,27 @@ inline void RES_MOVE_MONSTER::set_allocated_monster(::Protocol::ObjectInfo* mons
 
 // REQ_ATTACK_OBJECT
 
-// uint64 objectId = 1;
+// uint64 attacker = 1;
+inline void REQ_ATTACK_OBJECT::clear_attacker() {
+  _impl_.attacker_ = uint64_t{0u};
+}
+inline uint64_t REQ_ATTACK_OBJECT::_internal_attacker() const {
+  return _impl_.attacker_;
+}
+inline uint64_t REQ_ATTACK_OBJECT::attacker() const {
+  // @@protoc_insertion_point(field_get:Protocol.REQ_ATTACK_OBJECT.attacker)
+  return _internal_attacker();
+}
+inline void REQ_ATTACK_OBJECT::_internal_set_attacker(uint64_t value) {
+  
+  _impl_.attacker_ = value;
+}
+inline void REQ_ATTACK_OBJECT::set_attacker(uint64_t value) {
+  _internal_set_attacker(value);
+  // @@protoc_insertion_point(field_set:Protocol.REQ_ATTACK_OBJECT.attacker)
+}
+
+// uint64 objectId = 2;
 inline void REQ_ATTACK_OBJECT::clear_objectid() {
   _impl_.objectid_ = uint64_t{0u};
 }
@@ -3422,7 +3475,7 @@ inline void REQ_ATTACK_OBJECT::set_objectid(uint64_t value) {
   // @@protoc_insertion_point(field_set:Protocol.REQ_ATTACK_OBJECT.objectId)
 }
 
-// uint32 damage = 2;
+// uint32 damage = 3;
 inline void REQ_ATTACK_OBJECT::clear_damage() {
   _impl_.damage_ = 0u;
 }
@@ -3446,7 +3499,27 @@ inline void REQ_ATTACK_OBJECT::set_damage(uint32_t value) {
 
 // RES_ATTACK_OBJECT
 
-// uint64 objectId = 1;
+// uint64 attacker = 1;
+inline void RES_ATTACK_OBJECT::clear_attacker() {
+  _impl_.attacker_ = uint64_t{0u};
+}
+inline uint64_t RES_ATTACK_OBJECT::_internal_attacker() const {
+  return _impl_.attacker_;
+}
+inline uint64_t RES_ATTACK_OBJECT::attacker() const {
+  // @@protoc_insertion_point(field_get:Protocol.RES_ATTACK_OBJECT.attacker)
+  return _internal_attacker();
+}
+inline void RES_ATTACK_OBJECT::_internal_set_attacker(uint64_t value) {
+  
+  _impl_.attacker_ = value;
+}
+inline void RES_ATTACK_OBJECT::set_attacker(uint64_t value) {
+  _internal_set_attacker(value);
+  // @@protoc_insertion_point(field_set:Protocol.RES_ATTACK_OBJECT.attacker)
+}
+
+// uint64 objectId = 2;
 inline void RES_ATTACK_OBJECT::clear_objectid() {
   _impl_.objectid_ = uint64_t{0u};
 }
@@ -3466,7 +3539,7 @@ inline void RES_ATTACK_OBJECT::set_objectid(uint64_t value) {
   // @@protoc_insertion_point(field_set:Protocol.RES_ATTACK_OBJECT.objectId)
 }
 
-// uint32 damage = 2;
+// uint32 damage = 3;
 inline void RES_ATTACK_OBJECT::clear_damage() {
   _impl_.damage_ = 0u;
 }
@@ -3484,6 +3557,26 @@ inline void RES_ATTACK_OBJECT::_internal_set_damage(uint32_t value) {
 inline void RES_ATTACK_OBJECT::set_damage(uint32_t value) {
   _internal_set_damage(value);
   // @@protoc_insertion_point(field_set:Protocol.RES_ATTACK_OBJECT.damage)
+}
+
+// uint32 remainHp = 4;
+inline void RES_ATTACK_OBJECT::clear_remainhp() {
+  _impl_.remainhp_ = 0u;
+}
+inline uint32_t RES_ATTACK_OBJECT::_internal_remainhp() const {
+  return _impl_.remainhp_;
+}
+inline uint32_t RES_ATTACK_OBJECT::remainhp() const {
+  // @@protoc_insertion_point(field_get:Protocol.RES_ATTACK_OBJECT.remainHp)
+  return _internal_remainhp();
+}
+inline void RES_ATTACK_OBJECT::_internal_set_remainhp(uint32_t value) {
+  
+  _impl_.remainhp_ = value;
+}
+inline void RES_ATTACK_OBJECT::set_remainhp(uint32_t value) {
+  _internal_set_remainhp(value);
+  // @@protoc_insertion_point(field_set:Protocol.RES_ATTACK_OBJECT.remainHp)
 }
 
 #ifdef __GNUC__

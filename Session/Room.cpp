@@ -117,13 +117,16 @@ void Room::HandleMove(Session* session, Protocol::REQ_MOVE pkt)
 
 void Room::HandleAttack(Session* session, Protocol::REQ_ATTACK_OBJECT pkt)
 {
+	auto attacker = GManager->Object()->FindById(pkt.attacker());
 	auto object = GManager->Object()->FindById(pkt.objectid());
 	if (object)
 	{
 		Protocol::RES_ATTACK_OBJECT attack;
 		object->TakeDamage(pkt.damage());
+		attack.set_attacker(attacker->GetId());
 		attack.set_objectid(object->GetId());    
 		attack.set_damage(object->GetPower());
+		attack.set_remainhp(object->GetHp());
 
 		auto sendBuffer = ServerPacketHandler::MakeSendBuffer(attack);
 		BroadCast(move(*sendBuffer));
