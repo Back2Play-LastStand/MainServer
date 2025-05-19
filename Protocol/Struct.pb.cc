@@ -26,6 +26,7 @@ PROTOBUF_CONSTEXPR ObjectInfo::ObjectInfo(
     /*decltype(_impl_.name_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
   , /*decltype(_impl_.posinfo_)*/nullptr
   , /*decltype(_impl_.objectid_)*/uint64_t{0u}
+  , /*decltype(_impl_.health_)*/0u
   , /*decltype(_impl_._cached_size_)*/{}} {}
 struct ObjectInfoDefaultTypeInternal {
   PROTOBUF_CONSTEXPR ObjectInfoDefaultTypeInternal()
@@ -65,6 +66,7 @@ const uint32_t TableStruct_Struct_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(p
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::Protocol::ObjectInfo, _impl_.objectid_),
   PROTOBUF_FIELD_OFFSET(::Protocol::ObjectInfo, _impl_.name_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::ObjectInfo, _impl_.health_),
   PROTOBUF_FIELD_OFFSET(::Protocol::ObjectInfo, _impl_.posinfo_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::Protocol::PositionInfo, _internal_metadata_),
@@ -78,7 +80,7 @@ const uint32_t TableStruct_Struct_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(p
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::Protocol::ObjectInfo)},
-  { 9, -1, -1, sizeof(::Protocol::PositionInfo)},
+  { 10, -1, -1, sizeof(::Protocol::PositionInfo)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -87,19 +89,19 @@ static const ::_pb::Message* const file_default_instances[] = {
 };
 
 const char descriptor_table_protodef_Struct_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
-  "\n\014Struct.proto\022\010Protocol\032\nEnum.proto\"U\n\n"
+  "\n\014Struct.proto\022\010Protocol\032\nEnum.proto\"e\n\n"
   "ObjectInfo\022\020\n\010objectId\030\001 \001(\004\022\014\n\004name\030\002 \001"
-  "(\t\022\'\n\007posInfo\030\003 \001(\0132\026.Protocol.PositionI"
-  "nfo\"N\n\014PositionInfo\022\014\n\004posX\030\001 \001(\002\022\014\n\004pos"
-  "Y\030\002 \001(\002\022\"\n\007moveDir\030\003 \001(\0162\021.Protocol.Move"
-  "Dirb\006proto3"
+  "(\t\022\016\n\006health\030\003 \001(\r\022\'\n\007posInfo\030\004 \001(\0132\026.Pr"
+  "otocol.PositionInfo\"N\n\014PositionInfo\022\014\n\004p"
+  "osX\030\001 \001(\002\022\014\n\004posY\030\002 \001(\002\022\"\n\007moveDir\030\003 \001(\016"
+  "2\021.Protocol.MoveDirb\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_Struct_2eproto_deps[1] = {
   &::descriptor_table_Enum_2eproto,
 };
 static ::_pbi::once_flag descriptor_table_Struct_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_Struct_2eproto = {
-    false, false, 211, descriptor_table_protodef_Struct_2eproto,
+    false, false, 227, descriptor_table_protodef_Struct_2eproto,
     "Struct.proto",
     &descriptor_table_Struct_2eproto_once, descriptor_table_Struct_2eproto_deps, 1, 2,
     schemas, file_default_instances, TableStruct_Struct_2eproto::offsets,
@@ -138,6 +140,7 @@ ObjectInfo::ObjectInfo(const ObjectInfo& from)
       decltype(_impl_.name_){}
     , decltype(_impl_.posinfo_){nullptr}
     , decltype(_impl_.objectid_){}
+    , decltype(_impl_.health_){}
     , /*decltype(_impl_._cached_size_)*/{}};
 
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
@@ -152,7 +155,9 @@ ObjectInfo::ObjectInfo(const ObjectInfo& from)
   if (from._internal_has_posinfo()) {
     _this->_impl_.posinfo_ = new ::Protocol::PositionInfo(*from._impl_.posinfo_);
   }
-  _this->_impl_.objectid_ = from._impl_.objectid_;
+  ::memcpy(&_impl_.objectid_, &from._impl_.objectid_,
+    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.health_) -
+    reinterpret_cast<char*>(&_impl_.objectid_)) + sizeof(_impl_.health_));
   // @@protoc_insertion_point(copy_constructor:Protocol.ObjectInfo)
 }
 
@@ -164,6 +169,7 @@ inline void ObjectInfo::SharedCtor(
       decltype(_impl_.name_){}
     , decltype(_impl_.posinfo_){nullptr}
     , decltype(_impl_.objectid_){uint64_t{0u}}
+    , decltype(_impl_.health_){0u}
     , /*decltype(_impl_._cached_size_)*/{}
   };
   _impl_.name_.InitDefault();
@@ -202,7 +208,9 @@ void ObjectInfo::Clear() {
     delete _impl_.posinfo_;
   }
   _impl_.posinfo_ = nullptr;
-  _impl_.objectid_ = uint64_t{0u};
+  ::memset(&_impl_.objectid_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&_impl_.health_) -
+      reinterpret_cast<char*>(&_impl_.objectid_)) + sizeof(_impl_.health_));
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -230,9 +238,17 @@ const char* ObjectInfo::_InternalParse(const char* ptr, ::_pbi::ParseContext* ct
         } else
           goto handle_unusual;
         continue;
-      // .Protocol.PositionInfo posInfo = 3;
+      // uint32 health = 3;
       case 3:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 24)) {
+          _impl_.health_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // .Protocol.PositionInfo posInfo = 4;
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 34)) {
           ptr = ctx->ParseMessage(_internal_mutable_posinfo(), ptr);
           CHK_(ptr);
         } else
@@ -283,10 +299,16 @@ uint8_t* ObjectInfo::_InternalSerialize(
         2, this->_internal_name(), target);
   }
 
-  // .Protocol.PositionInfo posInfo = 3;
+  // uint32 health = 3;
+  if (this->_internal_health() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(3, this->_internal_health(), target);
+  }
+
+  // .Protocol.PositionInfo posInfo = 4;
   if (this->_internal_has_posinfo()) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(3, _Internal::posinfo(this),
+      InternalWriteMessage(4, _Internal::posinfo(this),
         _Internal::posinfo(this).GetCachedSize(), target, stream);
   }
 
@@ -313,7 +335,7 @@ size_t ObjectInfo::ByteSizeLong() const {
         this->_internal_name());
   }
 
-  // .Protocol.PositionInfo posInfo = 3;
+  // .Protocol.PositionInfo posInfo = 4;
   if (this->_internal_has_posinfo()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
@@ -323,6 +345,11 @@ size_t ObjectInfo::ByteSizeLong() const {
   // uint64 objectId = 1;
   if (this->_internal_objectid() != 0) {
     total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(this->_internal_objectid());
+  }
+
+  // uint32 health = 3;
+  if (this->_internal_health() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(this->_internal_health());
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
@@ -353,6 +380,9 @@ void ObjectInfo::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PRO
   if (from._internal_objectid() != 0) {
     _this->_internal_set_objectid(from._internal_objectid());
   }
+  if (from._internal_health() != 0) {
+    _this->_internal_set_health(from._internal_health());
+  }
   _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -377,8 +407,8 @@ void ObjectInfo::InternalSwap(ObjectInfo* other) {
       &other->_impl_.name_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(ObjectInfo, _impl_.objectid_)
-      + sizeof(ObjectInfo::_impl_.objectid_)
+      PROTOBUF_FIELD_OFFSET(ObjectInfo, _impl_.health_)
+      + sizeof(ObjectInfo::_impl_.health_)
       - PROTOBUF_FIELD_OFFSET(ObjectInfo, _impl_.posinfo_)>(
           reinterpret_cast<char*>(&_impl_.posinfo_),
           reinterpret_cast<char*>(&other->_impl_.posinfo_));
