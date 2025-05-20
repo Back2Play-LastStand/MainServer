@@ -36,6 +36,7 @@ void RoomManager::HandleEnterRoom(Session* session, Protocol::REQ_ENTER_ROOM pkt
 			Protocol::ObjectInfo* info = new Protocol::ObjectInfo();
 			info->set_objectid(myPlayer->GetId());
 			info->set_name(myPlayer->GetName());
+			info->set_health(myPlayer->GetHp());
 			// Temp
 			random_device rd;
 			mt19937 gen(rd());

@@ -10,8 +10,9 @@ public:
 	template<typename T, typename... Args>
 	shared_ptr<T> CreateObject(Args&&... args)
 	{
-		auto object = MakeShared<T>(m_idGenerator.fetch_add(1),forward<Args>(args)...);
-		m_objects.insert({ m_idGenerator, object });
+		auto id = m_idGenerator.fetch_add(1);
+		auto object = MakeShared<T>(id, forward<Args>(args)...);
+		m_objects.insert({ id, object });
 		return object;
 	}
 	shared_ptr<class GameObject> FindById(unsigned long long id);

@@ -183,8 +183,9 @@ class ObjectInfo final :
 
   enum : int {
     kNameFieldNumber = 2,
-    kPosInfoFieldNumber = 3,
+    kPosInfoFieldNumber = 4,
     kObjectIdFieldNumber = 1,
+    kHealthFieldNumber = 3,
   };
   // string name = 2;
   void clear_name();
@@ -200,7 +201,7 @@ class ObjectInfo final :
   std::string* _internal_mutable_name();
   public:
 
-  // .Protocol.PositionInfo posInfo = 3;
+  // .Protocol.PositionInfo posInfo = 4;
   bool has_posinfo() const;
   private:
   bool _internal_has_posinfo() const;
@@ -227,6 +228,15 @@ class ObjectInfo final :
   void _internal_set_objectid(uint64_t value);
   public:
 
+  // uint32 health = 3;
+  void clear_health();
+  uint32_t health() const;
+  void set_health(uint32_t value);
+  private:
+  uint32_t _internal_health() const;
+  void _internal_set_health(uint32_t value);
+  public:
+
   // @@protoc_insertion_point(class_scope:Protocol.ObjectInfo)
  private:
   class _Internal;
@@ -238,6 +248,7 @@ class ObjectInfo final :
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
     ::Protocol::PositionInfo* posinfo_;
     uint64_t objectid_;
+    uint32_t health_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -494,7 +505,27 @@ inline void ObjectInfo::set_allocated_name(std::string* name) {
   // @@protoc_insertion_point(field_set_allocated:Protocol.ObjectInfo.name)
 }
 
-// .Protocol.PositionInfo posInfo = 3;
+// uint32 health = 3;
+inline void ObjectInfo::clear_health() {
+  _impl_.health_ = 0u;
+}
+inline uint32_t ObjectInfo::_internal_health() const {
+  return _impl_.health_;
+}
+inline uint32_t ObjectInfo::health() const {
+  // @@protoc_insertion_point(field_get:Protocol.ObjectInfo.health)
+  return _internal_health();
+}
+inline void ObjectInfo::_internal_set_health(uint32_t value) {
+  
+  _impl_.health_ = value;
+}
+inline void ObjectInfo::set_health(uint32_t value) {
+  _internal_set_health(value);
+  // @@protoc_insertion_point(field_set:Protocol.ObjectInfo.health)
+}
+
+// .Protocol.PositionInfo posInfo = 4;
 inline bool ObjectInfo::_internal_has_posinfo() const {
   return this != internal_default_instance() && _impl_.posinfo_ != nullptr;
 }
