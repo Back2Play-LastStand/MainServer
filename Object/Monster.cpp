@@ -33,7 +33,7 @@ void Monster::Tick()
 	Super::Tick();
 }
 
-void Monster::TakeDamage(int amount)
+void Monster::TakeDamage(shared_ptr<GameObject> attacker, int amount)
 {
-	Super::TakeDamage(amount);
+	Super::TakeDamage(attacker, amount);
 }

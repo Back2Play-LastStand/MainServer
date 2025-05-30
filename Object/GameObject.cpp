@@ -21,9 +21,16 @@ void GameObject::Tick()
 	m_lastTick = GetTickCount64();
 }
 
-void GameObject::TakeDamage(int amount)
+void GameObject::TakeDamage(shared_ptr<GameObject> attacker, int amount)
 {
 	m_hp -= amount;
+
+	auto change = new Protocol::RES_CHANGE_HP;
+	change->set_objectid(m_objectId);
+	change->set_hp(m_hp);
+	auto sendBuffer = ServerPacketHandler::MakeSendBuffer(*change);
+	m_room.lock()->BroadCast(move(*sendBuffer));
+
 	if (m_hp <= 0)
 	{
 		m_hp = 0;

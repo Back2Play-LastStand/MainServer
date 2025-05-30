@@ -51,9 +51,9 @@ void Player::Tick()
 	Super::Tick();
 }
 
-void Player::TakeDamage(int amount)
+void Player::TakeDamage(shared_ptr<GameObject> attacker, int amount)
 {
-	Super::TakeDamage(amount);
+	Super::TakeDamage(attacker, amount);
 }
 
 void Player::EnterRoom(shared_ptr<Room> gameRoom)

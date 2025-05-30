@@ -22,7 +22,7 @@ public:
 
 	virtual void BeginPlay() override;
 	virtual void Tick() override;
-	virtual void TakeDamage(int amount) override;
+	virtual void TakeDamage(shared_ptr<GameObject> attacker, int amount) override;
 
 private:
 	Protocol::ObjectInfo m_info;

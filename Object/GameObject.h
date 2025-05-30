@@ -24,7 +24,7 @@ public:
 	virtual void BeginPlay() {};
 	virtual void Tick();
 
-	virtual void TakeDamage(int amount);
+	virtual void TakeDamage(shared_ptr<GameObject> attacker, int amount);
 
 protected:
 	weak_ptr<Room> m_room;
