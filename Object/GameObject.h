@@ -25,6 +25,7 @@ public:
 	virtual void Tick();
 
 	virtual void TakeDamage(shared_ptr<GameObject> attacker, int amount);
+	virtual void OnDead(shared_ptr<GameObject> attacker);
 
 protected:
 	weak_ptr<Room> m_room;

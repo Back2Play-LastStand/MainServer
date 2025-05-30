@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "GameObject.h"
+#include "Manager/ObjectManager.h"
 
 GameObject::GameObject(unsigned long long id, Protocol::ObjectType type) : m_objectId(id), m_objectType(type), m_lastTick(GetTickCount64())
 {
@@ -34,7 +35,19 @@ void GameObject::TakeDamage(shared_ptr<GameObject> attacker, int amount)
 	if (m_hp <= 0)
 	{
 		m_hp = 0;
-		// Destroy
+		OnDead(attacker);
 		return;
 	}
+}
+
+void GameObject::OnDead(shared_ptr<GameObject> attacker)
+{
+	auto die = new Protocol::RES_DIE;
+	die->set_objectid(m_objectId);
+	die->set_attacker(attacker->GetId());
+	auto sendBuffer = ServerPacketHandler::MakeSendBuffer(*die);
+	m_room.lock()->BroadCast(move(*sendBuffer));
+
+	shared_ptr<Room> room = m_room.lock();
+	room->LeaveObject(GManager->Object()->FindById(m_objectId));
 }
