@@ -9,6 +9,11 @@ GameObject::~GameObject()
 {
 }
 
+shared_ptr<Room> GameObject::GetRoom() const
+{
+	return m_room.lock();
+}
+
 void GameObject::Tick()
 {
 	uint64_t now = GetTickCount64();

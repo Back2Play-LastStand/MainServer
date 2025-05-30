@@ -3,7 +3,6 @@
 #include "Struct.pb.h"
 
 class GameSession;
-class Room;
 
 class Player : public GameObject
 {
@@ -14,7 +13,6 @@ public:
 
 	void SetSession(GameSession* session);
 	GameSession* GetSession() const;
-	shared_ptr<Room> GetRoom() const;
 	string GetName() const;
 	void SetName(string name);
 	void SetObjectInfo(Protocol::ObjectInfo info);
@@ -29,7 +27,6 @@ public:
 
 private:
 	GameSession* m_session;
-	weak_ptr<Room> m_room;
 	string m_playerName;
 	Protocol::ObjectInfo m_info;
 };

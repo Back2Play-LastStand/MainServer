@@ -1,7 +1,6 @@
 #pragma once
 
 class GameOjbect;
-class Room;
 
 enum class MonsterState
 {
@@ -18,7 +17,6 @@ public:
 	Monster(unsigned long long id, unsigned int power = 10);
 	virtual ~Monster();
 
-	shared_ptr<Room> GetRoom();
 	void SetObjectInfo(Protocol::ObjectInfo info);
 	Protocol::ObjectInfo& GetObjectInfo();
 
@@ -27,7 +25,6 @@ public:
 	virtual void TakeDamage(int amount) override;
 
 private:
-	shared_ptr<Room> m_room;
 	Protocol::ObjectInfo m_info;
 	shared_ptr<Player> m_target = nullptr;
 	MonsterState m_state = MonsterState::Idle;

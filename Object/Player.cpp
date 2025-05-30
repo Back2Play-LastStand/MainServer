@@ -21,11 +21,6 @@ GameSession* Player::GetSession() const
 	return m_session;
 }
 
-shared_ptr<Room> Player::GetRoom() const
-{
-	return m_room.lock();
-}
-
 string Player::GetName() const
 {
 	return m_playerName;
