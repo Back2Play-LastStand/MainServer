@@ -1808,6 +1808,7 @@ class RES_DIE final :
 
   enum : int {
     kObjectIdFieldNumber = 1,
+    kAttackerFieldNumber = 2,
   };
   // uint64 objectId = 1;
   void clear_objectid();
@@ -1816,6 +1817,15 @@ class RES_DIE final :
   private:
   uint64_t _internal_objectid() const;
   void _internal_set_objectid(uint64_t value);
+  public:
+
+  // uint64 attacker = 2;
+  void clear_attacker();
+  uint64_t attacker() const;
+  void set_attacker(uint64_t value);
+  private:
+  uint64_t _internal_attacker() const;
+  void _internal_set_attacker(uint64_t value);
   public:
 
   // @@protoc_insertion_point(class_scope:Protocol.RES_DIE)
@@ -1827,6 +1837,7 @@ class RES_DIE final :
   typedef void DestructorSkippable_;
   struct Impl_ {
     uint64_t objectid_;
+    uint64_t attacker_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -3504,6 +3515,26 @@ inline void RES_DIE::_internal_set_objectid(uint64_t value) {
 inline void RES_DIE::set_objectid(uint64_t value) {
   _internal_set_objectid(value);
   // @@protoc_insertion_point(field_set:Protocol.RES_DIE.objectId)
+}
+
+// uint64 attacker = 2;
+inline void RES_DIE::clear_attacker() {
+  _impl_.attacker_ = uint64_t{0u};
+}
+inline uint64_t RES_DIE::_internal_attacker() const {
+  return _impl_.attacker_;
+}
+inline uint64_t RES_DIE::attacker() const {
+  // @@protoc_insertion_point(field_get:Protocol.RES_DIE.attacker)
+  return _internal_attacker();
+}
+inline void RES_DIE::_internal_set_attacker(uint64_t value) {
+  
+  _impl_.attacker_ = value;
+}
+inline void RES_DIE::set_attacker(uint64_t value) {
+  _internal_set_attacker(value);
+  // @@protoc_insertion_point(field_set:Protocol.RES_DIE.attacker)
 }
 
 // -------------------------------------------------------------------

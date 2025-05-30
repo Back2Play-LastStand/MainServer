@@ -157,6 +157,7 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORIT
 PROTOBUF_CONSTEXPR RES_DIE::RES_DIE(
     ::_pbi::ConstantInitialized): _impl_{
     /*decltype(_impl_.objectid_)*/uint64_t{0u}
+  , /*decltype(_impl_.attacker_)*/uint64_t{0u}
   , /*decltype(_impl_._cached_size_)*/{}} {}
 struct RES_DIEDefaultTypeInternal {
   PROTOBUF_CONSTEXPR RES_DIEDefaultTypeInternal()
@@ -336,6 +337,7 @@ const uint32_t TableStruct_Protocol_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::Protocol::RES_DIE, _impl_.objectid_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::RES_DIE, _impl_.attacker_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::Protocol::REQ_MOVE, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -396,12 +398,12 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 58, -1, -1, sizeof(::Protocol::RES_DESPAWN)},
   { 65, -1, -1, sizeof(::Protocol::RES_CHANGE_HP)},
   { 73, -1, -1, sizeof(::Protocol::RES_DIE)},
-  { 80, -1, -1, sizeof(::Protocol::REQ_MOVE)},
-  { 87, -1, -1, sizeof(::Protocol::RES_MOVE)},
-  { 94, -1, -1, sizeof(::Protocol::RES_SPAWN_MONSTER)},
-  { 101, -1, -1, sizeof(::Protocol::RES_MOVE_MONSTER)},
-  { 108, -1, -1, sizeof(::Protocol::REQ_ATTACK_OBJECT)},
-  { 117, -1, -1, sizeof(::Protocol::RES_ATTACK_OBJECT)},
+  { 81, -1, -1, sizeof(::Protocol::REQ_MOVE)},
+  { 88, -1, -1, sizeof(::Protocol::RES_MOVE)},
+  { 95, -1, -1, sizeof(::Protocol::RES_SPAWN_MONSTER)},
+  { 102, -1, -1, sizeof(::Protocol::RES_MOVE_MONSTER)},
+  { 109, -1, -1, sizeof(::Protocol::REQ_ATTACK_OBJECT)},
+  { 118, -1, -1, sizeof(::Protocol::RES_ATTACK_OBJECT)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -437,18 +439,18 @@ const char descriptor_table_protodef_Protocol_2eproto[] PROTOBUF_SECTION_VARIABL
   "ectInfo\022\014\n\004mine\030\002 \001(\010\"6\n\rRES_SPAWN_ALL\022%"
   "\n\007players\030\001 \003(\0132\024.Protocol.ObjectInfo\"\032\n"
   "\013RES_DESPAWN\022\013\n\003ids\030\001 \003(\004\"-\n\rRES_CHANGE_"
-  "HP\022\020\n\010objectId\030\001 \001(\004\022\n\n\002hp\030\002 \001(\r\"\033\n\007RES_"
-  "DIE\022\020\n\010objectId\030\001 \001(\004\"0\n\010REQ_MOVE\022$\n\004inf"
-  "o\030\001 \001(\0132\026.Protocol.PositionInfo\"0\n\010RES_M"
-  "OVE\022$\n\006player\030\001 \001(\0132\024.Protocol.ObjectInf"
-  "o\";\n\021RES_SPAWN_MONSTER\022&\n\010monsters\030\001 \003(\013"
-  "2\024.Protocol.ObjectInfo\"9\n\020RES_MOVE_MONST"
-  "ER\022%\n\007monster\030\001 \001(\0132\024.Protocol.ObjectInf"
-  "o\"G\n\021REQ_ATTACK_OBJECT\022\020\n\010attacker\030\001 \001(\004"
-  "\022\020\n\010objectId\030\002 \001(\004\022\016\n\006damage\030\003 \001(\r\"Y\n\021RE"
-  "S_ATTACK_OBJECT\022\020\n\010attacker\030\001 \001(\004\022\020\n\010obj"
-  "ectId\030\002 \001(\004\022\016\n\006damage\030\003 \001(\r\022\020\n\010remainHp\030"
-  "\004 \001(\rb\006proto3"
+  "HP\022\020\n\010objectId\030\001 \001(\004\022\n\n\002hp\030\002 \001(\r\"-\n\007RES_"
+  "DIE\022\020\n\010objectId\030\001 \001(\004\022\020\n\010attacker\030\002 \001(\004\""
+  "0\n\010REQ_MOVE\022$\n\004info\030\001 \001(\0132\026.Protocol.Pos"
+  "itionInfo\"0\n\010RES_MOVE\022$\n\006player\030\001 \001(\0132\024."
+  "Protocol.ObjectInfo\";\n\021RES_SPAWN_MONSTER"
+  "\022&\n\010monsters\030\001 \003(\0132\024.Protocol.ObjectInfo"
+  "\"9\n\020RES_MOVE_MONSTER\022%\n\007monster\030\001 \001(\0132\024."
+  "Protocol.ObjectInfo\"G\n\021REQ_ATTACK_OBJECT"
+  "\022\020\n\010attacker\030\001 \001(\004\022\020\n\010objectId\030\002 \001(\004\022\016\n\006"
+  "damage\030\003 \001(\r\"Y\n\021RES_ATTACK_OBJECT\022\020\n\010att"
+  "acker\030\001 \001(\004\022\020\n\010objectId\030\002 \001(\004\022\016\n\006damage\030"
+  "\003 \001(\r\022\020\n\010remainHp\030\004 \001(\rb\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_Protocol_2eproto_deps[2] = {
   &::descriptor_table_Enum_2eproto,
@@ -456,7 +458,7 @@ static const ::_pbi::DescriptorTable* const descriptor_table_Protocol_2eproto_de
 };
 static ::_pbi::once_flag descriptor_table_Protocol_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_Protocol_2eproto = {
-    false, false, 933, descriptor_table_protodef_Protocol_2eproto,
+    false, false, 951, descriptor_table_protodef_Protocol_2eproto,
     "Protocol.proto",
     &descriptor_table_Protocol_2eproto_once, descriptor_table_Protocol_2eproto_deps, 2, 17,
     schemas, file_default_instances, TableStruct_Protocol_2eproto::offsets,
@@ -2415,10 +2417,13 @@ RES_DIE::RES_DIE(const RES_DIE& from)
   RES_DIE* const _this = this; (void)_this;
   new (&_impl_) Impl_{
       decltype(_impl_.objectid_){}
+    , decltype(_impl_.attacker_){}
     , /*decltype(_impl_._cached_size_)*/{}};
 
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  _this->_impl_.objectid_ = from._impl_.objectid_;
+  ::memcpy(&_impl_.objectid_, &from._impl_.objectid_,
+    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.attacker_) -
+    reinterpret_cast<char*>(&_impl_.objectid_)) + sizeof(_impl_.attacker_));
   // @@protoc_insertion_point(copy_constructor:Protocol.RES_DIE)
 }
 
@@ -2428,6 +2433,7 @@ inline void RES_DIE::SharedCtor(
   (void)is_message_owned;
   new (&_impl_) Impl_{
       decltype(_impl_.objectid_){uint64_t{0u}}
+    , decltype(_impl_.attacker_){uint64_t{0u}}
     , /*decltype(_impl_._cached_size_)*/{}
   };
 }
@@ -2455,7 +2461,9 @@ void RES_DIE::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.objectid_ = uint64_t{0u};
+  ::memset(&_impl_.objectid_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&_impl_.attacker_) -
+      reinterpret_cast<char*>(&_impl_.objectid_)) + sizeof(_impl_.attacker_));
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -2469,6 +2477,14 @@ const char* RES_DIE::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) 
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
           _impl_.objectid_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // uint64 attacker = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
+          _impl_.attacker_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -2508,6 +2524,12 @@ uint8_t* RES_DIE::_InternalSerialize(
     target = ::_pbi::WireFormatLite::WriteUInt64ToArray(1, this->_internal_objectid(), target);
   }
 
+  // uint64 attacker = 2;
+  if (this->_internal_attacker() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt64ToArray(2, this->_internal_attacker(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -2527,6 +2549,11 @@ size_t RES_DIE::ByteSizeLong() const {
   // uint64 objectId = 1;
   if (this->_internal_objectid() != 0) {
     total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(this->_internal_objectid());
+  }
+
+  // uint64 attacker = 2;
+  if (this->_internal_attacker() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(this->_internal_attacker());
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
@@ -2550,6 +2577,9 @@ void RES_DIE::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOB
   if (from._internal_objectid() != 0) {
     _this->_internal_set_objectid(from._internal_objectid());
   }
+  if (from._internal_attacker() != 0) {
+    _this->_internal_set_attacker(from._internal_attacker());
+  }
   _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -2567,7 +2597,12 @@ bool RES_DIE::IsInitialized() const {
 void RES_DIE::InternalSwap(RES_DIE* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(_impl_.objectid_, other->_impl_.objectid_);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(RES_DIE, _impl_.attacker_)
+      + sizeof(RES_DIE::_impl_.attacker_)
+      - PROTOBUF_FIELD_OFFSET(RES_DIE, _impl_.objectid_)>(
+          reinterpret_cast<char*>(&_impl_.objectid_),
+          reinterpret_cast<char*>(&other->_impl_.objectid_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata RES_DIE::GetMetadata() const {
