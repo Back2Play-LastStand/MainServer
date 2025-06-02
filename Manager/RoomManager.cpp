@@ -55,6 +55,7 @@ void RoomManager::HandleEnterRoom(Session* session, Protocol::REQ_ENTER_ROOM pkt
 			auto info = spawn.mutable_player();
 			info->set_objectid(myPlayer->GetId());
 			info->set_name(myPlayer->GetName());
+			info->set_health(myPlayer->GetHp());
 			info->mutable_posinfo()->set_posx(myPlayer->GetObjectInfo().posinfo().posx());
 			info->mutable_posinfo()->set_posy(myPlayer->GetObjectInfo().posinfo().posy());
 			spawn.set_mine(false);
@@ -74,6 +75,7 @@ void RoomManager::HandleEnterRoom(Session* session, Protocol::REQ_ENTER_ROOM pkt
 					Protocol::ObjectInfo* info = spawn.add_players();
 					info->set_objectid(player->GetId());
 					info->set_name(player->GetName());
+					info->set_health(player->GetHp());
 
 					Protocol::PositionInfo* posInfo = new Protocol::PositionInfo();
 					*posInfo = player->GetObjectInfo().posinfo();
