@@ -52,9 +52,7 @@ bool Room::LeaveObject(shared_ptr<GameObject> object)
 {
 	unsigned long long objectId = object->GetId();
 	Protocol::RES_LEAVE leave;
-	Protocol::ObjectInfo* info = new Protocol::ObjectInfo;
-	info->set_objectid(objectId);
-	leave.set_allocated_object(info);
+	leave.set_objectid(objectId);
 
 	Protocol::ObjectType type = object->GetType();
 	if (type == Protocol::PLAYER)

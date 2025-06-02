@@ -88,7 +88,7 @@ struct REQ_LEAVEDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 REQ_LEAVEDefaultTypeInternal _REQ_LEAVE_default_instance_;
 PROTOBUF_CONSTEXPR RES_LEAVE::RES_LEAVE(
     ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.object_)*/nullptr
+    /*decltype(_impl_.objectid_)*/uint64_t{0u}
   , /*decltype(_impl_._cached_size_)*/{}} {}
 struct RES_LEAVEDefaultTypeInternal {
   PROTOBUF_CONSTEXPR RES_LEAVEDefaultTypeInternal()
@@ -299,7 +299,7 @@ const uint32_t TableStruct_Protocol_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::Protocol::RES_LEAVE, _impl_.object_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::RES_LEAVE, _impl_.objectid_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::Protocol::RES_SPAWN, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -433,24 +433,24 @@ const char descriptor_table_protodef_Protocol_2eproto[] PROTOBUF_SECTION_VARIABL
   "ObjectInfo\022\017\n\007success\030\002 \001(\010\"\036\n\016REQ_ENTER"
   "_ROOM\022\014\n\004name\030\001 \001(\t\"G\n\016RES_ENTER_ROOM\022$\n"
   "\006player\030\001 \001(\0132\024.Protocol.ObjectInfo\022\017\n\007s"
-  "uccess\030\002 \001(\010\"\013\n\tREQ_LEAVE\"1\n\tRES_LEAVE\022$"
-  "\n\006object\030\001 \001(\0132\024.Protocol.ObjectInfo\"\?\n\t"
-  "RES_SPAWN\022$\n\006player\030\001 \001(\0132\024.Protocol.Obj"
-  "ectInfo\022\014\n\004mine\030\002 \001(\010\"6\n\rRES_SPAWN_ALL\022%"
-  "\n\007players\030\001 \003(\0132\024.Protocol.ObjectInfo\"\032\n"
-  "\013RES_DESPAWN\022\013\n\003ids\030\001 \003(\004\"-\n\rRES_CHANGE_"
-  "HP\022\020\n\010objectId\030\001 \001(\004\022\n\n\002hp\030\002 \001(\r\"-\n\007RES_"
-  "DIE\022\020\n\010objectId\030\001 \001(\004\022\020\n\010attacker\030\002 \001(\004\""
-  "0\n\010REQ_MOVE\022$\n\004info\030\001 \001(\0132\026.Protocol.Pos"
-  "itionInfo\"0\n\010RES_MOVE\022$\n\006player\030\001 \001(\0132\024."
-  "Protocol.ObjectInfo\";\n\021RES_SPAWN_MONSTER"
-  "\022&\n\010monsters\030\001 \003(\0132\024.Protocol.ObjectInfo"
-  "\"9\n\020RES_MOVE_MONSTER\022%\n\007monster\030\001 \001(\0132\024."
-  "Protocol.ObjectInfo\"G\n\021REQ_ATTACK_OBJECT"
-  "\022\020\n\010attacker\030\001 \001(\004\022\020\n\010objectId\030\002 \001(\004\022\016\n\006"
-  "damage\030\003 \001(\r\"Y\n\021RES_ATTACK_OBJECT\022\020\n\010att"
-  "acker\030\001 \001(\004\022\020\n\010objectId\030\002 \001(\004\022\016\n\006damage\030"
-  "\003 \001(\r\022\020\n\010remainHp\030\004 \001(\rb\006proto3"
+  "uccess\030\002 \001(\010\"\013\n\tREQ_LEAVE\"\035\n\tRES_LEAVE\022\020"
+  "\n\010objectId\030\001 \001(\004\"\?\n\tRES_SPAWN\022$\n\006player\030"
+  "\001 \001(\0132\024.Protocol.ObjectInfo\022\014\n\004mine\030\002 \001("
+  "\010\"6\n\rRES_SPAWN_ALL\022%\n\007players\030\001 \003(\0132\024.Pr"
+  "otocol.ObjectInfo\"\032\n\013RES_DESPAWN\022\013\n\003ids\030"
+  "\001 \003(\004\"-\n\rRES_CHANGE_HP\022\020\n\010objectId\030\001 \001(\004"
+  "\022\n\n\002hp\030\002 \001(\r\"-\n\007RES_DIE\022\020\n\010objectId\030\001 \001("
+  "\004\022\020\n\010attacker\030\002 \001(\004\"0\n\010REQ_MOVE\022$\n\004info\030"
+  "\001 \001(\0132\026.Protocol.PositionInfo\"0\n\010RES_MOV"
+  "E\022$\n\006player\030\001 \001(\0132\024.Protocol.ObjectInfo\""
+  ";\n\021RES_SPAWN_MONSTER\022&\n\010monsters\030\001 \003(\0132\024"
+  ".Protocol.ObjectInfo\"9\n\020RES_MOVE_MONSTER"
+  "\022%\n\007monster\030\001 \001(\0132\024.Protocol.ObjectInfo\""
+  "G\n\021REQ_ATTACK_OBJECT\022\020\n\010attacker\030\001 \001(\004\022\020"
+  "\n\010objectId\030\002 \001(\004\022\016\n\006damage\030\003 \001(\r\"Y\n\021RES_"
+  "ATTACK_OBJECT\022\020\n\010attacker\030\001 \001(\004\022\020\n\010objec"
+  "tId\030\002 \001(\004\022\016\n\006damage\030\003 \001(\r\022\020\n\010remainHp\030\004 "
+  "\001(\rb\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_Protocol_2eproto_deps[2] = {
   &::descriptor_table_Enum_2eproto,
@@ -458,7 +458,7 @@ static const ::_pbi::DescriptorTable* const descriptor_table_Protocol_2eproto_de
 };
 static ::_pbi::once_flag descriptor_table_Protocol_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_Protocol_2eproto = {
-    false, false, 951, descriptor_table_protodef_Protocol_2eproto,
+    false, false, 931, descriptor_table_protodef_Protocol_2eproto,
     "Protocol.proto",
     &descriptor_table_Protocol_2eproto_once, descriptor_table_Protocol_2eproto_deps, 2, 17,
     schemas, file_default_instances, TableStruct_Protocol_2eproto::offsets,
@@ -1383,19 +1383,8 @@ const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*REQ_LEAVE::GetClassData() cons
 
 class RES_LEAVE::_Internal {
  public:
-  static const ::Protocol::ObjectInfo& object(const RES_LEAVE* msg);
 };
 
-const ::Protocol::ObjectInfo&
-RES_LEAVE::_Internal::object(const RES_LEAVE* msg) {
-  return *msg->_impl_.object_;
-}
-void RES_LEAVE::clear_object() {
-  if (GetArenaForAllocation() == nullptr && _impl_.object_ != nullptr) {
-    delete _impl_.object_;
-  }
-  _impl_.object_ = nullptr;
-}
 RES_LEAVE::RES_LEAVE(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
@@ -1406,13 +1395,11 @@ RES_LEAVE::RES_LEAVE(const RES_LEAVE& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
   RES_LEAVE* const _this = this; (void)_this;
   new (&_impl_) Impl_{
-      decltype(_impl_.object_){nullptr}
+      decltype(_impl_.objectid_){}
     , /*decltype(_impl_._cached_size_)*/{}};
 
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  if (from._internal_has_object()) {
-    _this->_impl_.object_ = new ::Protocol::ObjectInfo(*from._impl_.object_);
-  }
+  _this->_impl_.objectid_ = from._impl_.objectid_;
   // @@protoc_insertion_point(copy_constructor:Protocol.RES_LEAVE)
 }
 
@@ -1421,7 +1408,7 @@ inline void RES_LEAVE::SharedCtor(
   (void)arena;
   (void)is_message_owned;
   new (&_impl_) Impl_{
-      decltype(_impl_.object_){nullptr}
+      decltype(_impl_.objectid_){uint64_t{0u}}
     , /*decltype(_impl_._cached_size_)*/{}
   };
 }
@@ -1437,7 +1424,6 @@ RES_LEAVE::~RES_LEAVE() {
 
 inline void RES_LEAVE::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  if (this != internal_default_instance()) delete _impl_.object_;
 }
 
 void RES_LEAVE::SetCachedSize(int size) const {
@@ -1450,10 +1436,7 @@ void RES_LEAVE::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  if (GetArenaForAllocation() == nullptr && _impl_.object_ != nullptr) {
-    delete _impl_.object_;
-  }
-  _impl_.object_ = nullptr;
+  _impl_.objectid_ = uint64_t{0u};
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -1463,10 +1446,10 @@ const char* RES_LEAVE::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx
     uint32_t tag;
     ptr = ::_pbi::ReadTag(ptr, &tag);
     switch (tag >> 3) {
-      // .Protocol.ObjectInfo object = 1;
+      // uint64 objectId = 1;
       case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
-          ptr = ctx->ParseMessage(_internal_mutable_object(), ptr);
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
+          _impl_.objectid_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -1500,11 +1483,10 @@ uint8_t* RES_LEAVE::_InternalSerialize(
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // .Protocol.ObjectInfo object = 1;
-  if (this->_internal_has_object()) {
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(1, _Internal::object(this),
-        _Internal::object(this).GetCachedSize(), target, stream);
+  // uint64 objectId = 1;
+  if (this->_internal_objectid() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt64ToArray(1, this->_internal_objectid(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -1523,11 +1505,9 @@ size_t RES_LEAVE::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // .Protocol.ObjectInfo object = 1;
-  if (this->_internal_has_object()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *_impl_.object_);
+  // uint64 objectId = 1;
+  if (this->_internal_objectid() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(this->_internal_objectid());
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
@@ -1548,9 +1528,8 @@ void RES_LEAVE::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROT
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (from._internal_has_object()) {
-    _this->_internal_mutable_object()->::Protocol::ObjectInfo::MergeFrom(
-        from._internal_object());
+  if (from._internal_objectid() != 0) {
+    _this->_internal_set_objectid(from._internal_objectid());
   }
   _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
@@ -1569,7 +1548,7 @@ bool RES_LEAVE::IsInitialized() const {
 void RES_LEAVE::InternalSwap(RES_LEAVE* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(_impl_.object_, other->_impl_.object_);
+  swap(_impl_.objectid_, other->_impl_.objectid_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata RES_LEAVE::GetMetadata() const {

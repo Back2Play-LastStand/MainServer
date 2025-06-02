@@ -1004,25 +1004,16 @@ class RES_LEAVE final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kObjectFieldNumber = 1,
+    kObjectIdFieldNumber = 1,
   };
-  // .Protocol.ObjectInfo object = 1;
-  bool has_object() const;
+  // uint64 objectId = 1;
+  void clear_objectid();
+  uint64_t objectid() const;
+  void set_objectid(uint64_t value);
   private:
-  bool _internal_has_object() const;
+  uint64_t _internal_objectid() const;
+  void _internal_set_objectid(uint64_t value);
   public:
-  void clear_object();
-  const ::Protocol::ObjectInfo& object() const;
-  PROTOBUF_NODISCARD ::Protocol::ObjectInfo* release_object();
-  ::Protocol::ObjectInfo* mutable_object();
-  void set_allocated_object(::Protocol::ObjectInfo* object);
-  private:
-  const ::Protocol::ObjectInfo& _internal_object() const;
-  ::Protocol::ObjectInfo* _internal_mutable_object();
-  public:
-  void unsafe_arena_set_allocated_object(
-      ::Protocol::ObjectInfo* object);
-  ::Protocol::ObjectInfo* unsafe_arena_release_object();
 
   // @@protoc_insertion_point(class_scope:Protocol.RES_LEAVE)
  private:
@@ -1032,7 +1023,7 @@ class RES_LEAVE final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   struct Impl_ {
-    ::Protocol::ObjectInfo* object_;
+    uint64_t objectid_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -3163,89 +3154,24 @@ inline void RES_ENTER_ROOM::set_success(bool value) {
 
 // RES_LEAVE
 
-// .Protocol.ObjectInfo object = 1;
-inline bool RES_LEAVE::_internal_has_object() const {
-  return this != internal_default_instance() && _impl_.object_ != nullptr;
+// uint64 objectId = 1;
+inline void RES_LEAVE::clear_objectid() {
+  _impl_.objectid_ = uint64_t{0u};
 }
-inline bool RES_LEAVE::has_object() const {
-  return _internal_has_object();
+inline uint64_t RES_LEAVE::_internal_objectid() const {
+  return _impl_.objectid_;
 }
-inline const ::Protocol::ObjectInfo& RES_LEAVE::_internal_object() const {
-  const ::Protocol::ObjectInfo* p = _impl_.object_;
-  return p != nullptr ? *p : reinterpret_cast<const ::Protocol::ObjectInfo&>(
-      ::Protocol::_ObjectInfo_default_instance_);
+inline uint64_t RES_LEAVE::objectid() const {
+  // @@protoc_insertion_point(field_get:Protocol.RES_LEAVE.objectId)
+  return _internal_objectid();
 }
-inline const ::Protocol::ObjectInfo& RES_LEAVE::object() const {
-  // @@protoc_insertion_point(field_get:Protocol.RES_LEAVE.object)
-  return _internal_object();
-}
-inline void RES_LEAVE::unsafe_arena_set_allocated_object(
-    ::Protocol::ObjectInfo* object) {
-  if (GetArenaForAllocation() == nullptr) {
-    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.object_);
-  }
-  _impl_.object_ = object;
-  if (object) {
-    
-  } else {
-    
-  }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:Protocol.RES_LEAVE.object)
-}
-inline ::Protocol::ObjectInfo* RES_LEAVE::release_object() {
+inline void RES_LEAVE::_internal_set_objectid(uint64_t value) {
   
-  ::Protocol::ObjectInfo* temp = _impl_.object_;
-  _impl_.object_ = nullptr;
-#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
-  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
-  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
-  if (GetArenaForAllocation() == nullptr) { delete old; }
-#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
-  if (GetArenaForAllocation() != nullptr) {
-    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
-  }
-#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
-  return temp;
+  _impl_.objectid_ = value;
 }
-inline ::Protocol::ObjectInfo* RES_LEAVE::unsafe_arena_release_object() {
-  // @@protoc_insertion_point(field_release:Protocol.RES_LEAVE.object)
-  
-  ::Protocol::ObjectInfo* temp = _impl_.object_;
-  _impl_.object_ = nullptr;
-  return temp;
-}
-inline ::Protocol::ObjectInfo* RES_LEAVE::_internal_mutable_object() {
-  
-  if (_impl_.object_ == nullptr) {
-    auto* p = CreateMaybeMessage<::Protocol::ObjectInfo>(GetArenaForAllocation());
-    _impl_.object_ = p;
-  }
-  return _impl_.object_;
-}
-inline ::Protocol::ObjectInfo* RES_LEAVE::mutable_object() {
-  ::Protocol::ObjectInfo* _msg = _internal_mutable_object();
-  // @@protoc_insertion_point(field_mutable:Protocol.RES_LEAVE.object)
-  return _msg;
-}
-inline void RES_LEAVE::set_allocated_object(::Protocol::ObjectInfo* object) {
-  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
-  if (message_arena == nullptr) {
-    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.object_);
-  }
-  if (object) {
-    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
-        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
-                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(object));
-    if (message_arena != submessage_arena) {
-      object = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
-          message_arena, object, submessage_arena);
-    }
-    
-  } else {
-    
-  }
-  _impl_.object_ = object;
-  // @@protoc_insertion_point(field_set_allocated:Protocol.RES_LEAVE.object)
+inline void RES_LEAVE::set_objectid(uint64_t value) {
+  _internal_set_objectid(value);
+  // @@protoc_insertion_point(field_set:Protocol.RES_LEAVE.objectId)
 }
 
 // -------------------------------------------------------------------
