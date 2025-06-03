@@ -24,6 +24,9 @@ public:
 	virtual void Tick() override;
 	virtual void TakeDamage(shared_ptr<GameObject> attacker, int amount) override;
 
+	virtual void EnterRoom(shared_ptr<Room> gameRoom) override;
+	virtual void LeaveRoom() override;
+
 private:
 	Protocol::ObjectInfo m_info;
 	shared_ptr<Player> m_target = nullptr;

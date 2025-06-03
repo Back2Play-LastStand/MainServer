@@ -22,8 +22,8 @@ public:
 	virtual void Tick() override;
 	virtual void TakeDamage(shared_ptr<GameObject> attacker, int amount) override;
 
-	void EnterRoom(shared_ptr<Room> gameRoom);
-	void LeaveRoom();
+	virtual void EnterRoom(shared_ptr<Room> gameRoom) override;
+	virtual void LeaveRoom() override;
 
 private:
 	GameSession* m_session;
