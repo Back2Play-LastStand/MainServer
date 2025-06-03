@@ -99,6 +99,20 @@ struct RES_LEAVEDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 RES_LEAVEDefaultTypeInternal _RES_LEAVE_default_instance_;
+PROTOBUF_CONSTEXPR REQ_RESPAWN::REQ_RESPAWN(
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.name_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.objectid_)*/uint64_t{0u}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
+struct REQ_RESPAWNDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR REQ_RESPAWNDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~REQ_RESPAWNDefaultTypeInternal() {}
+  union {
+    REQ_RESPAWN _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 REQ_RESPAWNDefaultTypeInternal _REQ_RESPAWN_default_instance_;
 PROTOBUF_CONSTEXPR RES_SPAWN::RES_SPAWN(
     ::_pbi::ConstantInitialized): _impl_{
     /*decltype(_impl_.player_)*/nullptr
@@ -252,7 +266,7 @@ struct RES_ATTACK_OBJECTDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 RES_ATTACK_OBJECTDefaultTypeInternal _RES_ATTACK_OBJECT_default_instance_;
 }  // namespace Protocol
-static ::_pb::Metadata file_level_metadata_Protocol_2eproto[17];
+static ::_pb::Metadata file_level_metadata_Protocol_2eproto[18];
 static constexpr ::_pb::EnumDescriptor const** file_level_enum_descriptors_Protocol_2eproto = nullptr;
 static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_Protocol_2eproto = nullptr;
 
@@ -300,6 +314,14 @@ const uint32_t TableStruct_Protocol_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::Protocol::RES_LEAVE, _impl_.objectid_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::Protocol::REQ_RESPAWN, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::Protocol::REQ_RESPAWN, _impl_.objectid_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::REQ_RESPAWN, _impl_.name_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::Protocol::RES_SPAWN, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -393,17 +415,18 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 22, -1, -1, sizeof(::Protocol::RES_ENTER_ROOM)},
   { 30, -1, -1, sizeof(::Protocol::REQ_LEAVE)},
   { 36, -1, -1, sizeof(::Protocol::RES_LEAVE)},
-  { 43, -1, -1, sizeof(::Protocol::RES_SPAWN)},
-  { 51, -1, -1, sizeof(::Protocol::RES_SPAWN_ALL)},
-  { 58, -1, -1, sizeof(::Protocol::RES_DESPAWN)},
-  { 65, -1, -1, sizeof(::Protocol::RES_CHANGE_HP)},
-  { 73, -1, -1, sizeof(::Protocol::RES_DIE)},
-  { 81, -1, -1, sizeof(::Protocol::REQ_MOVE)},
-  { 88, -1, -1, sizeof(::Protocol::RES_MOVE)},
-  { 95, -1, -1, sizeof(::Protocol::RES_SPAWN_MONSTER)},
-  { 102, -1, -1, sizeof(::Protocol::RES_MOVE_MONSTER)},
-  { 109, -1, -1, sizeof(::Protocol::REQ_ATTACK_OBJECT)},
-  { 118, -1, -1, sizeof(::Protocol::RES_ATTACK_OBJECT)},
+  { 43, -1, -1, sizeof(::Protocol::REQ_RESPAWN)},
+  { 51, -1, -1, sizeof(::Protocol::RES_SPAWN)},
+  { 59, -1, -1, sizeof(::Protocol::RES_SPAWN_ALL)},
+  { 66, -1, -1, sizeof(::Protocol::RES_DESPAWN)},
+  { 73, -1, -1, sizeof(::Protocol::RES_CHANGE_HP)},
+  { 81, -1, -1, sizeof(::Protocol::RES_DIE)},
+  { 89, -1, -1, sizeof(::Protocol::REQ_MOVE)},
+  { 96, -1, -1, sizeof(::Protocol::RES_MOVE)},
+  { 103, -1, -1, sizeof(::Protocol::RES_SPAWN_MONSTER)},
+  { 110, -1, -1, sizeof(::Protocol::RES_MOVE_MONSTER)},
+  { 117, -1, -1, sizeof(::Protocol::REQ_ATTACK_OBJECT)},
+  { 126, -1, -1, sizeof(::Protocol::RES_ATTACK_OBJECT)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -413,6 +436,7 @@ static const ::_pb::Message* const file_default_instances[] = {
   &::Protocol::_RES_ENTER_ROOM_default_instance_._instance,
   &::Protocol::_REQ_LEAVE_default_instance_._instance,
   &::Protocol::_RES_LEAVE_default_instance_._instance,
+  &::Protocol::_REQ_RESPAWN_default_instance_._instance,
   &::Protocol::_RES_SPAWN_default_instance_._instance,
   &::Protocol::_RES_SPAWN_ALL_default_instance_._instance,
   &::Protocol::_RES_DESPAWN_default_instance_._instance,
@@ -434,23 +458,24 @@ const char descriptor_table_protodef_Protocol_2eproto[] PROTOBUF_SECTION_VARIABL
   "_ROOM\022\014\n\004name\030\001 \001(\t\"G\n\016RES_ENTER_ROOM\022$\n"
   "\006player\030\001 \001(\0132\024.Protocol.ObjectInfo\022\017\n\007s"
   "uccess\030\002 \001(\010\"\013\n\tREQ_LEAVE\"\035\n\tRES_LEAVE\022\020"
-  "\n\010objectId\030\001 \001(\004\"\?\n\tRES_SPAWN\022$\n\006player\030"
-  "\001 \001(\0132\024.Protocol.ObjectInfo\022\014\n\004mine\030\002 \001("
-  "\010\"6\n\rRES_SPAWN_ALL\022%\n\007players\030\001 \003(\0132\024.Pr"
-  "otocol.ObjectInfo\"\032\n\013RES_DESPAWN\022\013\n\003ids\030"
-  "\001 \003(\004\"-\n\rRES_CHANGE_HP\022\020\n\010objectId\030\001 \001(\004"
-  "\022\n\n\002hp\030\002 \001(\r\"-\n\007RES_DIE\022\020\n\010objectId\030\001 \001("
-  "\004\022\020\n\010attacker\030\002 \001(\004\"0\n\010REQ_MOVE\022$\n\004info\030"
-  "\001 \001(\0132\026.Protocol.PositionInfo\"0\n\010RES_MOV"
-  "E\022$\n\006player\030\001 \001(\0132\024.Protocol.ObjectInfo\""
-  ";\n\021RES_SPAWN_MONSTER\022&\n\010monsters\030\001 \003(\0132\024"
-  ".Protocol.ObjectInfo\"9\n\020RES_MOVE_MONSTER"
-  "\022%\n\007monster\030\001 \001(\0132\024.Protocol.ObjectInfo\""
-  "G\n\021REQ_ATTACK_OBJECT\022\020\n\010attacker\030\001 \001(\004\022\020"
-  "\n\010objectId\030\002 \001(\004\022\016\n\006damage\030\003 \001(\r\"Y\n\021RES_"
-  "ATTACK_OBJECT\022\020\n\010attacker\030\001 \001(\004\022\020\n\010objec"
-  "tId\030\002 \001(\004\022\016\n\006damage\030\003 \001(\r\022\020\n\010remainHp\030\004 "
-  "\001(\rb\006proto3"
+  "\n\010objectId\030\001 \001(\004\"-\n\013REQ_RESPAWN\022\020\n\010objec"
+  "tId\030\001 \001(\004\022\014\n\004name\030\002 \001(\t\"\?\n\tRES_SPAWN\022$\n\006"
+  "player\030\001 \001(\0132\024.Protocol.ObjectInfo\022\014\n\004mi"
+  "ne\030\002 \001(\010\"6\n\rRES_SPAWN_ALL\022%\n\007players\030\001 \003"
+  "(\0132\024.Protocol.ObjectInfo\"\032\n\013RES_DESPAWN\022"
+  "\013\n\003ids\030\001 \003(\004\"-\n\rRES_CHANGE_HP\022\020\n\010objectI"
+  "d\030\001 \001(\004\022\n\n\002hp\030\002 \001(\r\"-\n\007RES_DIE\022\020\n\010object"
+  "Id\030\001 \001(\004\022\020\n\010attacker\030\002 \001(\004\"0\n\010REQ_MOVE\022$"
+  "\n\004info\030\001 \001(\0132\026.Protocol.PositionInfo\"0\n\010"
+  "RES_MOVE\022$\n\006player\030\001 \001(\0132\024.Protocol.Obje"
+  "ctInfo\";\n\021RES_SPAWN_MONSTER\022&\n\010monsters\030"
+  "\001 \003(\0132\024.Protocol.ObjectInfo\"9\n\020RES_MOVE_"
+  "MONSTER\022%\n\007monster\030\001 \001(\0132\024.Protocol.Obje"
+  "ctInfo\"G\n\021REQ_ATTACK_OBJECT\022\020\n\010attacker\030"
+  "\001 \001(\004\022\020\n\010objectId\030\002 \001(\004\022\016\n\006damage\030\003 \001(\r\""
+  "Y\n\021RES_ATTACK_OBJECT\022\020\n\010attacker\030\001 \001(\004\022\020"
+  "\n\010objectId\030\002 \001(\004\022\016\n\006damage\030\003 \001(\r\022\020\n\010rema"
+  "inHp\030\004 \001(\rb\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_Protocol_2eproto_deps[2] = {
   &::descriptor_table_Enum_2eproto,
@@ -458,9 +483,9 @@ static const ::_pbi::DescriptorTable* const descriptor_table_Protocol_2eproto_de
 };
 static ::_pbi::once_flag descriptor_table_Protocol_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_Protocol_2eproto = {
-    false, false, 931, descriptor_table_protodef_Protocol_2eproto,
+    false, false, 978, descriptor_table_protodef_Protocol_2eproto,
     "Protocol.proto",
-    &descriptor_table_Protocol_2eproto_once, descriptor_table_Protocol_2eproto_deps, 2, 17,
+    &descriptor_table_Protocol_2eproto_once, descriptor_table_Protocol_2eproto_deps, 2, 18,
     schemas, file_default_instances, TableStruct_Protocol_2eproto::offsets,
     file_level_metadata_Protocol_2eproto, file_level_enum_descriptors_Protocol_2eproto,
     file_level_service_descriptors_Protocol_2eproto,
@@ -1559,6 +1584,236 @@ void RES_LEAVE::InternalSwap(RES_LEAVE* other) {
 
 // ===================================================================
 
+class REQ_RESPAWN::_Internal {
+ public:
+};
+
+REQ_RESPAWN::REQ_RESPAWN(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
+  // @@protoc_insertion_point(arena_constructor:Protocol.REQ_RESPAWN)
+}
+REQ_RESPAWN::REQ_RESPAWN(const REQ_RESPAWN& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  REQ_RESPAWN* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.name_){}
+    , decltype(_impl_.objectid_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _impl_.name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_name().empty()) {
+    _this->_impl_.name_.Set(from._internal_name(), 
+      _this->GetArenaForAllocation());
+  }
+  _this->_impl_.objectid_ = from._impl_.objectid_;
+  // @@protoc_insertion_point(copy_constructor:Protocol.REQ_RESPAWN)
+}
+
+inline void REQ_RESPAWN::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.name_){}
+    , decltype(_impl_.objectid_){uint64_t{0u}}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+}
+
+REQ_RESPAWN::~REQ_RESPAWN() {
+  // @@protoc_insertion_point(destructor:Protocol.REQ_RESPAWN)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void REQ_RESPAWN::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.name_.Destroy();
+}
+
+void REQ_RESPAWN::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+void REQ_RESPAWN::Clear() {
+// @@protoc_insertion_point(message_clear_start:Protocol.REQ_RESPAWN)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.name_.ClearToEmpty();
+  _impl_.objectid_ = uint64_t{0u};
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* REQ_RESPAWN::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // uint64 objectId = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
+          _impl_.objectid_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // string name = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+          auto str = _internal_mutable_name();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "Protocol.REQ_RESPAWN.name"));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* REQ_RESPAWN::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Protocol.REQ_RESPAWN)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // uint64 objectId = 1;
+  if (this->_internal_objectid() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt64ToArray(1, this->_internal_objectid(), target);
+  }
+
+  // string name = 2;
+  if (!this->_internal_name().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_name().data(), static_cast<int>(this->_internal_name().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.REQ_RESPAWN.name");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_name(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Protocol.REQ_RESPAWN)
+  return target;
+}
+
+size_t REQ_RESPAWN::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Protocol.REQ_RESPAWN)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string name = 2;
+  if (!this->_internal_name().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_name());
+  }
+
+  // uint64 objectId = 1;
+  if (this->_internal_objectid() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(this->_internal_objectid());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData REQ_RESPAWN::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    REQ_RESPAWN::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*REQ_RESPAWN::GetClassData() const { return &_class_data_; }
+
+
+void REQ_RESPAWN::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<REQ_RESPAWN*>(&to_msg);
+  auto& from = static_cast<const REQ_RESPAWN&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:Protocol.REQ_RESPAWN)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_name().empty()) {
+    _this->_internal_set_name(from._internal_name());
+  }
+  if (from._internal_objectid() != 0) {
+    _this->_internal_set_objectid(from._internal_objectid());
+  }
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void REQ_RESPAWN::CopyFrom(const REQ_RESPAWN& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Protocol.REQ_RESPAWN)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool REQ_RESPAWN::IsInitialized() const {
+  return true;
+}
+
+void REQ_RESPAWN::InternalSwap(REQ_RESPAWN* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.name_, lhs_arena,
+      &other->_impl_.name_, rhs_arena
+  );
+  swap(_impl_.objectid_, other->_impl_.objectid_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata REQ_RESPAWN::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_Protocol_2eproto_getter, &descriptor_table_Protocol_2eproto_once,
+      file_level_metadata_Protocol_2eproto[6]);
+}
+
+// ===================================================================
+
 class RES_SPAWN::_Internal {
  public:
   static const ::Protocol::ObjectInfo& player(const RES_SPAWN* msg);
@@ -1784,7 +2039,7 @@ void RES_SPAWN::InternalSwap(RES_SPAWN* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata RES_SPAWN::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_Protocol_2eproto_getter, &descriptor_table_Protocol_2eproto_once,
-      file_level_metadata_Protocol_2eproto[6]);
+      file_level_metadata_Protocol_2eproto[7]);
 }
 
 // ===================================================================
@@ -1972,7 +2227,7 @@ void RES_SPAWN_ALL::InternalSwap(RES_SPAWN_ALL* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata RES_SPAWN_ALL::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_Protocol_2eproto_getter, &descriptor_table_Protocol_2eproto_once,
-      file_level_metadata_Protocol_2eproto[7]);
+      file_level_metadata_Protocol_2eproto[8]);
 }
 
 // ===================================================================
@@ -2165,7 +2420,7 @@ void RES_DESPAWN::InternalSwap(RES_DESPAWN* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata RES_DESPAWN::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_Protocol_2eproto_getter, &descriptor_table_Protocol_2eproto_once,
-      file_level_metadata_Protocol_2eproto[8]);
+      file_level_metadata_Protocol_2eproto[9]);
 }
 
 // ===================================================================
@@ -2376,7 +2631,7 @@ void RES_CHANGE_HP::InternalSwap(RES_CHANGE_HP* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata RES_CHANGE_HP::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_Protocol_2eproto_getter, &descriptor_table_Protocol_2eproto_once,
-      file_level_metadata_Protocol_2eproto[9]);
+      file_level_metadata_Protocol_2eproto[10]);
 }
 
 // ===================================================================
@@ -2587,7 +2842,7 @@ void RES_DIE::InternalSwap(RES_DIE* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata RES_DIE::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_Protocol_2eproto_getter, &descriptor_table_Protocol_2eproto_once,
-      file_level_metadata_Protocol_2eproto[10]);
+      file_level_metadata_Protocol_2eproto[11]);
 }
 
 // ===================================================================
@@ -2786,7 +3041,7 @@ void REQ_MOVE::InternalSwap(REQ_MOVE* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata REQ_MOVE::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_Protocol_2eproto_getter, &descriptor_table_Protocol_2eproto_once,
-      file_level_metadata_Protocol_2eproto[11]);
+      file_level_metadata_Protocol_2eproto[12]);
 }
 
 // ===================================================================
@@ -2985,7 +3240,7 @@ void RES_MOVE::InternalSwap(RES_MOVE* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata RES_MOVE::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_Protocol_2eproto_getter, &descriptor_table_Protocol_2eproto_once,
-      file_level_metadata_Protocol_2eproto[12]);
+      file_level_metadata_Protocol_2eproto[13]);
 }
 
 // ===================================================================
@@ -3173,7 +3428,7 @@ void RES_SPAWN_MONSTER::InternalSwap(RES_SPAWN_MONSTER* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata RES_SPAWN_MONSTER::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_Protocol_2eproto_getter, &descriptor_table_Protocol_2eproto_once,
-      file_level_metadata_Protocol_2eproto[13]);
+      file_level_metadata_Protocol_2eproto[14]);
 }
 
 // ===================================================================
@@ -3372,7 +3627,7 @@ void RES_MOVE_MONSTER::InternalSwap(RES_MOVE_MONSTER* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata RES_MOVE_MONSTER::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_Protocol_2eproto_getter, &descriptor_table_Protocol_2eproto_once,
-      file_level_metadata_Protocol_2eproto[14]);
+      file_level_metadata_Protocol_2eproto[15]);
 }
 
 // ===================================================================
@@ -3607,7 +3862,7 @@ void REQ_ATTACK_OBJECT::InternalSwap(REQ_ATTACK_OBJECT* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata REQ_ATTACK_OBJECT::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_Protocol_2eproto_getter, &descriptor_table_Protocol_2eproto_once,
-      file_level_metadata_Protocol_2eproto[15]);
+      file_level_metadata_Protocol_2eproto[16]);
 }
 
 // ===================================================================
@@ -3866,7 +4121,7 @@ void RES_ATTACK_OBJECT::InternalSwap(RES_ATTACK_OBJECT* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata RES_ATTACK_OBJECT::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_Protocol_2eproto_getter, &descriptor_table_Protocol_2eproto_once,
-      file_level_metadata_Protocol_2eproto[16]);
+      file_level_metadata_Protocol_2eproto[17]);
 }
 
 // @@protoc_insertion_point(namespace_scope)
@@ -3895,6 +4150,10 @@ Arena::CreateMaybeMessage< ::Protocol::REQ_LEAVE >(Arena* arena) {
 template<> PROTOBUF_NOINLINE ::Protocol::RES_LEAVE*
 Arena::CreateMaybeMessage< ::Protocol::RES_LEAVE >(Arena* arena) {
   return Arena::CreateMessageInternal< ::Protocol::RES_LEAVE >(arena);
+}
+template<> PROTOBUF_NOINLINE ::Protocol::REQ_RESPAWN*
+Arena::CreateMaybeMessage< ::Protocol::REQ_RESPAWN >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::Protocol::REQ_RESPAWN >(arena);
 }
 template<> PROTOBUF_NOINLINE ::Protocol::RES_SPAWN*
 Arena::CreateMaybeMessage< ::Protocol::RES_SPAWN >(Arena* arena) {
