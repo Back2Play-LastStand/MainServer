@@ -21,11 +21,6 @@ GameSession* Player::GetSession() const
 	return m_session;
 }
 
-shared_ptr<Room> Player::GetRoom() const
-{
-	return m_room.lock();
-}
-
 string Player::GetName() const
 {
 	return m_playerName;
@@ -56,9 +51,9 @@ void Player::Tick()
 	Super::Tick();
 }
 
-void Player::TakeDamage(int amount)
+void Player::TakeDamage(shared_ptr<GameObject> attacker, int amount)
 {
-	Super::TakeDamage(amount);
+	Super::TakeDamage(attacker, amount);
 }
 
 void Player::EnterRoom(shared_ptr<Room> gameRoom)

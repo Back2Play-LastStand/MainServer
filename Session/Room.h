@@ -19,6 +19,7 @@ public:
  
 	void HandleMove(Session* session, Protocol::REQ_MOVE pkt);
 	void HandleAttack(Session* session, Protocol::REQ_ATTACK_OBJECT pkt);
+	void HandleRespawnPlayer(Session* session, Protocol::REQ_RESPAWN pkt);
 	void SpawnMonster();
 
 	void BeginPlay();

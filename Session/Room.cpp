@@ -52,9 +52,7 @@ bool Room::LeaveObject(shared_ptr<GameObject> object)
 {
 	unsigned long long objectId = object->GetId();
 	Protocol::RES_LEAVE leave;
-	Protocol::ObjectInfo* info = new Protocol::ObjectInfo;
-	info->set_objectid(objectId);
-	leave.set_allocated_object(info);
+	leave.set_objectid(objectId);
 
 	Protocol::ObjectType type = object->GetType();
 	if (type == Protocol::PLAYER)
@@ -122,7 +120,7 @@ void Room::HandleAttack(Session* session, Protocol::REQ_ATTACK_OBJECT pkt)
 	if (object)
 	{
 		Protocol::RES_ATTACK_OBJECT attack;
-		object->TakeDamage(pkt.damage());
+		object->TakeDamage(attacker, pkt.damage());
 		attack.set_attacker(attacker->GetId());
 		attack.set_objectid(object->GetId());    
 		attack.set_damage(object->GetPower());
@@ -130,6 +128,53 @@ void Room::HandleAttack(Session* session, Protocol::REQ_ATTACK_OBJECT pkt)
 
 		auto sendBuffer = ServerPacketHandler::MakeSendBuffer(attack);
 		BroadCast(move(*sendBuffer));
+	}
+}
+
+void Room::HandleRespawnPlayer(Session* session, Protocol::REQ_RESPAWN pkt)
+{
+	if (!session)
+		return;
+
+	auto gameSession = static_cast<GameSession*>(session);
+	auto player = gameSession->GetPlayer();
+	if (!player)
+		return;
+
+	{
+		EnterObject(player);
+
+		player->SetHp(100);
+		player->GetObjectInfo().mutable_posinfo()->set_posx(0);
+		player->GetObjectInfo().mutable_posinfo()->set_posy(0);
+
+
+		Protocol::RES_SPAWN spawn;
+		auto info = new Protocol::ObjectInfo();
+		info->set_objectid(player->GetId());
+		info->set_name(player->GetName());
+		info->set_health(player->GetHp());
+		info->mutable_posinfo()->set_posx(0);
+		info->mutable_posinfo()->set_posy(0);
+		spawn.set_allocated_player(info);
+		spawn.set_mine(true);
+
+		auto sendBuffer = ServerPacketHandler::MakeSendBuffer(spawn);
+		session->SendContext(move(*sendBuffer));
+	}
+
+	{
+		Protocol::RES_SPAWN spawn;
+		auto info = spawn.mutable_player();
+		info->set_objectid(player->GetId());
+		info->set_name(player->GetName());
+		info->set_health(player->GetHp());
+		info->mutable_posinfo()->set_posx(0);
+		info->mutable_posinfo()->set_posy(0);
+		spawn.set_mine(false);
+
+		auto sendBuffer = ServerPacketHandler::MakeSendBuffer(spawn);
+		player->GetRoom()->BroadCast(move(*sendBuffer), player->GetId()); // ³ª Á¦¿Ü
 	}
 }
 

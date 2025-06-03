@@ -1,6 +1,8 @@
 #pragma once
 #include "Enum.pb.h"
 
+class Room;
+
 class GameObject : public enable_shared_from_this<GameObject>
 {
 public:
@@ -12,6 +14,7 @@ public:
 	Protocol::ObjectType GetType() const { return m_objectType; }
 	unsigned int GetHp() const { return m_hp; }
 	unsigned int GetPower() const { return m_power; }
+	virtual shared_ptr<Room> GetRoom() const;
 
 	void SetId(unsigned long long id) { m_objectId = id; }
 	void SetType(Protocol::ObjectType type) { m_objectType = type; }
@@ -21,7 +24,11 @@ public:
 	virtual void BeginPlay() {};
 	virtual void Tick();
 
-	virtual void TakeDamage(int amount);
+	virtual void TakeDamage(shared_ptr<GameObject> attacker, int amount);
+	virtual void OnDead(shared_ptr<GameObject> attacker);
+
+protected:
+	weak_ptr<Room> m_room;
 
 private:
 	unsigned long long m_objectId;
