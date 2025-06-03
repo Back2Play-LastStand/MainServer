@@ -37,3 +37,22 @@ void Monster::TakeDamage(shared_ptr<GameObject> attacker, int amount)
 {
 	Super::TakeDamage(attacker, amount);
 }
+
+void Monster::EnterRoom(shared_ptr<Room> gameRoom)
+{
+	if (auto room = m_room.lock())
+		LeaveRoom();
+
+	m_room = gameRoom;
+	if (auto room = m_room.lock())
+		gameRoom->EnterObject(static_pointer_cast<Monster>(shared_from_this()));
+}
+
+void Monster::LeaveRoom()
+{
+	if (auto room = m_room.lock())
+	{
+		room->PushJob(&Room::LeaveObject, shared_from_this());
+		m_room.reset();
+	}
+}

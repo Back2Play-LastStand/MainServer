@@ -20,12 +20,16 @@ public:
 	void SetType(Protocol::ObjectType type) { m_objectType = type; }
 	void SetHp(unsigned int hp) { m_hp = hp; }
 	void SetPower(unsigned int power) { m_power = power; }
+	void SetRoom(shared_ptr<Room> room) { m_room = room; }
 
 	virtual void BeginPlay() {};
 	virtual void Tick();
 
 	virtual void TakeDamage(shared_ptr<GameObject> attacker, int amount);
 	virtual void OnDead(shared_ptr<GameObject> attacker);
+
+	virtual void EnterRoom(shared_ptr<Room> gameRoom) {};
+	virtual void LeaveRoom() {};
 
 protected:
 	weak_ptr<Room> m_room;

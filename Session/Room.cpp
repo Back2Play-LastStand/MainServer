@@ -122,7 +122,7 @@ void Room::HandleAttack(Session* session, Protocol::REQ_ATTACK_OBJECT pkt)
 		Protocol::RES_ATTACK_OBJECT attack;
 		object->TakeDamage(attacker, pkt.damage());
 		attack.set_attacker(attacker->GetId());
-		attack.set_objectid(object->GetId());    
+		attack.set_objectid(object->GetId());
 		attack.set_damage(object->GetPower());
 		attack.set_remainhp(object->GetHp());
 
@@ -195,6 +195,8 @@ void Room::SpawnMonster()
 
 		monster->BeginPlay();
 		monster->SetHp(100);
+		auto room = static_pointer_cast<Room>(shared_from_this());
+		monster->EnterRoom(room);
 		m_monsters[monster->GetId()] = monster;
 		Protocol::ObjectInfo* info = spawn.add_monsters();
 		info->set_objectid(monster->GetId());
