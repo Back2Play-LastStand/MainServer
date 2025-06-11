@@ -29,5 +29,7 @@ private:
 	GameSession* m_session;
 	string m_playerName;
 	Protocol::ObjectInfo m_info;
+
+	float m_lastRegenTime = 0;
 };
 
