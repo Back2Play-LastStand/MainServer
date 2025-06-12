@@ -30,6 +30,6 @@ private:
 	string m_playerName;
 	Protocol::ObjectInfo m_info;
 
-	float m_lastRegenTime = 0;
+	uint64_t m_lastRegenTime = 0;
 };
 

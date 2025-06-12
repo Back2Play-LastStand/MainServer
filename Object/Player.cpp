@@ -49,7 +49,7 @@ void Player::BeginPlay()
 void Player::Tick()
 {
 	Super::Tick();
-	float now = GetTickCount64();
+	uint64_t now = GetTickCount64();
 
 	if (now < m_lastHitTime + 3000) // 3s
 		return;

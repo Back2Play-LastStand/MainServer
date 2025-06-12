@@ -33,7 +33,7 @@ public:
 
 protected:
 	weak_ptr<Room> m_room;
-	float m_lastHitTime = 0;
+	uint64_t m_lastHitTime = 0;
 	unsigned int m_maxHp = 100;
 
 private:
