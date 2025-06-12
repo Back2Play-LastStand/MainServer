@@ -33,6 +33,8 @@ public:
 
 protected:
 	weak_ptr<Room> m_room;
+	uint64_t m_lastHitTime = 0;
+	unsigned int m_maxHp = 100;
 
 private:
 	unsigned long long m_objectId;

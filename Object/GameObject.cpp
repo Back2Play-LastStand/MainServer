@@ -25,6 +25,7 @@ void GameObject::Tick()
 void GameObject::TakeDamage(shared_ptr<GameObject> attacker, int amount)
 {
 	m_hp -= amount;
+	m_lastHitTime = GetTickCount64();
 
 	auto change = new Protocol::RES_CHANGE_HP;
 	change->set_objectid(m_objectId);

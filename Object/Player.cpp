@@ -49,6 +49,24 @@ void Player::BeginPlay()
 void Player::Tick()
 {
 	Super::Tick();
+	uint64_t now = GetTickCount64();
+
+	if (now < m_lastHitTime + 3000) // 3s
+		return;
+
+	if (now >= m_lastRegenTime + 5000) // 5s
+	{
+		m_lastRegenTime = now;
+		unsigned int hp = GetHp();
+		hp += 10;
+		SetHp(min(hp, m_maxHp));
+
+		auto change = new Protocol::RES_CHANGE_HP;
+		change->set_objectid(GetId());
+		change->set_hp(GetHp());
+		auto sendBuffer = ServerPacketHandler::MakeSendBuffer(*change);
+		m_room.lock()->BroadCast(move(*sendBuffer));
+	}
 }
 
 void Player::TakeDamage(shared_ptr<GameObject> attacker, int amount)

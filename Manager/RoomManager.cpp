@@ -9,6 +9,7 @@ RoomManager::RoomManager()
 	{
 		auto room = MakeShared<Room>(name);
 		room->BeginPlay();
+		room->Tick();
 		m_rooms.insert({ name ,room });
 	}
 }
