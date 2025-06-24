@@ -8,26 +8,32 @@ enum : unsigned short
 {
 	PKT_REQ_ENTER = 1000,
 	PKT_RES_ENTER = 1001,
-	PKT_REQ_ENTER_ROOM = 1002,
-	PKT_RES_ENTER_ROOM = 1003,
-	PKT_REQ_LEAVE = 1004,
-	PKT_RES_LEAVE = 1005,
-	PKT_REQ_RESPAWN = 1006,
-	PKT_RES_SPAWN = 1007,
-	PKT_RES_SPAWN_ALL = 1008,
-	PKT_RES_DESPAWN = 1009,
-	PKT_RES_CHANGE_HP = 1010,
-	PKT_RES_DIE = 1011,
-	PKT_REQ_MOVE = 1012,
-	PKT_RES_MOVE = 1013,
-	PKT_RES_SPAWN_MONSTER = 1014,
-	PKT_RES_MOVE_MONSTER = 1015,
-	PKT_REQ_ATTACK_OBJECT = 1016,
-	PKT_RES_ATTACK_OBJECT = 1017,
+	PKT_REQ_ENTER_GAMEROOM = 1002,
+	PKT_RES_ENTER_GAMEROOM = 1003,
+	PKT_REQ_LEAVE_GAMEROOM = 1004,
+	PKT_RES_LEAVE_GAMEROOM = 1005,
+	PKT_REQ_ENTER_ROOM = 1006,
+	PKT_RES_ENTER_ROOM = 1007,
+	PKT_REQ_LEAVE = 1008,
+	PKT_RES_LEAVE = 1009,
+	PKT_REQ_RESPAWN = 1010,
+	PKT_RES_SPAWN = 1011,
+	PKT_RES_SPAWN_ALL = 1012,
+	PKT_RES_DESPAWN = 1013,
+	PKT_RES_CHANGE_HP = 1014,
+	PKT_RES_DIE = 1015,
+	PKT_REQ_MOVE = 1016,
+	PKT_RES_MOVE = 1017,
+	PKT_RES_SPAWN_MONSTER = 1018,
+	PKT_RES_MOVE_MONSTER = 1019,
+	PKT_REQ_ATTACK_OBJECT = 1020,
+	PKT_RES_ATTACK_OBJECT = 1021,
 };
 
 bool Handle_INVALID(Session* session, BYTE* buffer, int len);
 bool Handle_REQ_ENTER(Session* session, Protocol::REQ_ENTER& pkt);
+bool Handle_REQ_ENTER_GAMEROOM(Session* session, Protocol::REQ_ENTER_GAMEROOM& pkt);
+bool Handle_REQ_LEAVE_GAMEROOM(Session* session, Protocol::REQ_LEAVE_GAMEROOM& pkt);
 bool Handle_REQ_ENTER_ROOM(Session* session, Protocol::REQ_ENTER_ROOM& pkt);
 bool Handle_REQ_LEAVE(Session* session, Protocol::REQ_LEAVE& pkt);
 bool Handle_REQ_RESPAWN(Session* session, Protocol::REQ_RESPAWN& pkt);
@@ -42,6 +48,8 @@ public:
 		for (int i = 0; i < UINT16_MAX; i++)
 			GPacketHandler[i] = Handle_INVALID;
 		GPacketHandler[PKT_REQ_ENTER] = [](Session* session, BYTE* buffer, int len) {return HandlePacket<Protocol::REQ_ENTER>(Handle_REQ_ENTER, session, buffer, len); };
+		GPacketHandler[PKT_REQ_ENTER_GAMEROOM] = [](Session* session, BYTE* buffer, int len) {return HandlePacket<Protocol::REQ_ENTER_GAMEROOM>(Handle_REQ_ENTER_GAMEROOM, session, buffer, len); };
+		GPacketHandler[PKT_REQ_LEAVE_GAMEROOM] = [](Session* session, BYTE* buffer, int len) {return HandlePacket<Protocol::REQ_LEAVE_GAMEROOM>(Handle_REQ_LEAVE_GAMEROOM, session, buffer, len); };
 		GPacketHandler[PKT_REQ_ENTER_ROOM] = [](Session* session, BYTE* buffer, int len) {return HandlePacket<Protocol::REQ_ENTER_ROOM>(Handle_REQ_ENTER_ROOM, session, buffer, len); };
 		GPacketHandler[PKT_REQ_LEAVE] = [](Session* session, BYTE* buffer, int len) {return HandlePacket<Protocol::REQ_LEAVE>(Handle_REQ_LEAVE, session, buffer, len); };
 		GPacketHandler[PKT_REQ_RESPAWN] = [](Session* session, BYTE* buffer, int len) {return HandlePacket<Protocol::REQ_RESPAWN>(Handle_REQ_RESPAWN, session, buffer, len); };
@@ -49,6 +57,8 @@ public:
 		GPacketHandler[PKT_REQ_ATTACK_OBJECT] = [](Session* session, BYTE* buffer, int len) {return HandlePacket<Protocol::REQ_ATTACK_OBJECT>(Handle_REQ_ATTACK_OBJECT, session, buffer, len); };
 	}
 	static shared_ptr<vector<char>> MakeSendBuffer(Protocol::RES_ENTER& pkt) { return MakeSendBuffer(pkt, PKT_RES_ENTER); }
+	static shared_ptr<vector<char>> MakeSendBuffer(Protocol::RES_ENTER_GAMEROOM& pkt) { return MakeSendBuffer(pkt, PKT_RES_ENTER_GAMEROOM); }
+	static shared_ptr<vector<char>> MakeSendBuffer(Protocol::RES_LEAVE_GAMEROOM& pkt) { return MakeSendBuffer(pkt, PKT_RES_LEAVE_GAMEROOM); }
 	static shared_ptr<vector<char>> MakeSendBuffer(Protocol::RES_ENTER_ROOM& pkt) { return MakeSendBuffer(pkt, PKT_RES_ENTER_ROOM); }
 	static shared_ptr<vector<char>> MakeSendBuffer(Protocol::RES_LEAVE& pkt) { return MakeSendBuffer(pkt, PKT_RES_LEAVE); }
 	static shared_ptr<vector<char>> MakeSendBuffer(Protocol::RES_SPAWN& pkt) { return MakeSendBuffer(pkt, PKT_RES_SPAWN); }
