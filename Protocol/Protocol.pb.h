@@ -586,7 +586,7 @@ class REQ_ENTER_GAMEROOM final :
 
   enum : int {
     kNameFieldNumber = 1,
-    kObjectIdFieldNumber = 2,
+    kIsCreateFieldNumber = 3,
   };
   // string name = 1;
   void clear_name();
@@ -602,13 +602,13 @@ class REQ_ENTER_GAMEROOM final :
   std::string* _internal_mutable_name();
   public:
 
-  // uint64 objectId = 2;
-  void clear_objectid();
-  uint64_t objectid() const;
-  void set_objectid(uint64_t value);
+  // bool isCreate = 3;
+  void clear_iscreate();
+  bool iscreate() const;
+  void set_iscreate(bool value);
   private:
-  uint64_t _internal_objectid() const;
-  void _internal_set_objectid(uint64_t value);
+  bool _internal_iscreate() const;
+  void _internal_set_iscreate(bool value);
   public:
 
   // @@protoc_insertion_point(class_scope:Protocol.REQ_ENTER_GAMEROOM)
@@ -620,7 +620,7 @@ class REQ_ENTER_GAMEROOM final :
   typedef void DestructorSkippable_;
   struct Impl_ {
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
-    uint64_t objectid_;
+    bool iscreate_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -749,15 +749,34 @@ class RES_ENTER_GAMEROOM final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kObjectIdFieldNumber = 1,
+    kPlayersFieldNumber = 2,
+    kMemberCountFieldNumber = 1,
   };
-  // uint64 objectId = 1;
-  void clear_objectid();
-  uint64_t objectid() const;
-  void set_objectid(uint64_t value);
+  // repeated .Protocol.ObjectInfo players = 2;
+  int players_size() const;
   private:
-  uint64_t _internal_objectid() const;
-  void _internal_set_objectid(uint64_t value);
+  int _internal_players_size() const;
+  public:
+  void clear_players();
+  ::Protocol::ObjectInfo* mutable_players(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::Protocol::ObjectInfo >*
+      mutable_players();
+  private:
+  const ::Protocol::ObjectInfo& _internal_players(int index) const;
+  ::Protocol::ObjectInfo* _internal_add_players();
+  public:
+  const ::Protocol::ObjectInfo& players(int index) const;
+  ::Protocol::ObjectInfo* add_players();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::Protocol::ObjectInfo >&
+      players() const;
+
+  // uint32 memberCount = 1;
+  void clear_membercount();
+  uint32_t membercount() const;
+  void set_membercount(uint32_t value);
+  private:
+  uint32_t _internal_membercount() const;
+  void _internal_set_membercount(uint32_t value);
   public:
 
   // @@protoc_insertion_point(class_scope:Protocol.RES_ENTER_GAMEROOM)
@@ -768,7 +787,8 @@ class RES_ENTER_GAMEROOM final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   struct Impl_ {
-    uint64_t objectid_;
+    ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::Protocol::ObjectInfo > players_;
+    uint32_t membercount_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -3845,48 +3865,85 @@ inline void REQ_ENTER_GAMEROOM::set_allocated_name(std::string* name) {
   // @@protoc_insertion_point(field_set_allocated:Protocol.REQ_ENTER_GAMEROOM.name)
 }
 
-// uint64 objectId = 2;
-inline void REQ_ENTER_GAMEROOM::clear_objectid() {
-  _impl_.objectid_ = uint64_t{0u};
+// bool isCreate = 3;
+inline void REQ_ENTER_GAMEROOM::clear_iscreate() {
+  _impl_.iscreate_ = false;
 }
-inline uint64_t REQ_ENTER_GAMEROOM::_internal_objectid() const {
-  return _impl_.objectid_;
+inline bool REQ_ENTER_GAMEROOM::_internal_iscreate() const {
+  return _impl_.iscreate_;
 }
-inline uint64_t REQ_ENTER_GAMEROOM::objectid() const {
-  // @@protoc_insertion_point(field_get:Protocol.REQ_ENTER_GAMEROOM.objectId)
-  return _internal_objectid();
+inline bool REQ_ENTER_GAMEROOM::iscreate() const {
+  // @@protoc_insertion_point(field_get:Protocol.REQ_ENTER_GAMEROOM.isCreate)
+  return _internal_iscreate();
 }
-inline void REQ_ENTER_GAMEROOM::_internal_set_objectid(uint64_t value) {
+inline void REQ_ENTER_GAMEROOM::_internal_set_iscreate(bool value) {
   
-  _impl_.objectid_ = value;
+  _impl_.iscreate_ = value;
 }
-inline void REQ_ENTER_GAMEROOM::set_objectid(uint64_t value) {
-  _internal_set_objectid(value);
-  // @@protoc_insertion_point(field_set:Protocol.REQ_ENTER_GAMEROOM.objectId)
+inline void REQ_ENTER_GAMEROOM::set_iscreate(bool value) {
+  _internal_set_iscreate(value);
+  // @@protoc_insertion_point(field_set:Protocol.REQ_ENTER_GAMEROOM.isCreate)
 }
 
 // -------------------------------------------------------------------
 
 // RES_ENTER_GAMEROOM
 
-// uint64 objectId = 1;
-inline void RES_ENTER_GAMEROOM::clear_objectid() {
-  _impl_.objectid_ = uint64_t{0u};
+// uint32 memberCount = 1;
+inline void RES_ENTER_GAMEROOM::clear_membercount() {
+  _impl_.membercount_ = 0u;
 }
-inline uint64_t RES_ENTER_GAMEROOM::_internal_objectid() const {
-  return _impl_.objectid_;
+inline uint32_t RES_ENTER_GAMEROOM::_internal_membercount() const {
+  return _impl_.membercount_;
 }
-inline uint64_t RES_ENTER_GAMEROOM::objectid() const {
-  // @@protoc_insertion_point(field_get:Protocol.RES_ENTER_GAMEROOM.objectId)
-  return _internal_objectid();
+inline uint32_t RES_ENTER_GAMEROOM::membercount() const {
+  // @@protoc_insertion_point(field_get:Protocol.RES_ENTER_GAMEROOM.memberCount)
+  return _internal_membercount();
 }
-inline void RES_ENTER_GAMEROOM::_internal_set_objectid(uint64_t value) {
+inline void RES_ENTER_GAMEROOM::_internal_set_membercount(uint32_t value) {
   
-  _impl_.objectid_ = value;
+  _impl_.membercount_ = value;
 }
-inline void RES_ENTER_GAMEROOM::set_objectid(uint64_t value) {
-  _internal_set_objectid(value);
-  // @@protoc_insertion_point(field_set:Protocol.RES_ENTER_GAMEROOM.objectId)
+inline void RES_ENTER_GAMEROOM::set_membercount(uint32_t value) {
+  _internal_set_membercount(value);
+  // @@protoc_insertion_point(field_set:Protocol.RES_ENTER_GAMEROOM.memberCount)
+}
+
+// repeated .Protocol.ObjectInfo players = 2;
+inline int RES_ENTER_GAMEROOM::_internal_players_size() const {
+  return _impl_.players_.size();
+}
+inline int RES_ENTER_GAMEROOM::players_size() const {
+  return _internal_players_size();
+}
+inline ::Protocol::ObjectInfo* RES_ENTER_GAMEROOM::mutable_players(int index) {
+  // @@protoc_insertion_point(field_mutable:Protocol.RES_ENTER_GAMEROOM.players)
+  return _impl_.players_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::Protocol::ObjectInfo >*
+RES_ENTER_GAMEROOM::mutable_players() {
+  // @@protoc_insertion_point(field_mutable_list:Protocol.RES_ENTER_GAMEROOM.players)
+  return &_impl_.players_;
+}
+inline const ::Protocol::ObjectInfo& RES_ENTER_GAMEROOM::_internal_players(int index) const {
+  return _impl_.players_.Get(index);
+}
+inline const ::Protocol::ObjectInfo& RES_ENTER_GAMEROOM::players(int index) const {
+  // @@protoc_insertion_point(field_get:Protocol.RES_ENTER_GAMEROOM.players)
+  return _internal_players(index);
+}
+inline ::Protocol::ObjectInfo* RES_ENTER_GAMEROOM::_internal_add_players() {
+  return _impl_.players_.Add();
+}
+inline ::Protocol::ObjectInfo* RES_ENTER_GAMEROOM::add_players() {
+  ::Protocol::ObjectInfo* _add = _internal_add_players();
+  // @@protoc_insertion_point(field_add:Protocol.RES_ENTER_GAMEROOM.players)
+  return _add;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::Protocol::ObjectInfo >&
+RES_ENTER_GAMEROOM::players() const {
+  // @@protoc_insertion_point(field_list:Protocol.RES_ENTER_GAMEROOM.players)
+  return _impl_.players_;
 }
 
 // -------------------------------------------------------------------
