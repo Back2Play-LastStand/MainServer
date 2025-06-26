@@ -14,6 +14,13 @@ RoomManager::RoomManager()
 	}
 }
 
+void RoomManager::HandleCreateRoom(string roomName)
+{
+	auto room = MakeShared<Room>(roomName);
+	room->BeginPlay();
+	room->Tick();
+	m_rooms.insert({ roomName,room });
+}
 void RoomManager::HandleEnterRoom(Session* session, Protocol::REQ_ENTER_ROOM pkt)
 {
 	if (!session)

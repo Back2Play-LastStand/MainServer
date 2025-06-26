@@ -8,6 +8,7 @@ class RoomManager : public JobSerializer
 public:
 	RoomManager();
 
+	void HandleCreateRoom(string roomName);
 	void HandleEnterRoom(Session* session, Protocol::REQ_ENTER_ROOM pkt);
 
 private:
