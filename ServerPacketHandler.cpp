@@ -20,6 +20,19 @@ bool Handle_REQ_ENTER(Session* session, Protocol::REQ_ENTER& pkt)
 	return false;
 }
 
+bool Handle_REQ_ENTER_GAMEROOM(Session* session, Protocol::REQ_ENTER_GAMEROOM& pkt)
+{
+	cout << "req enter game room" << endl;
+	GManager->Room()->PushJob(&RoomManager::HandleJoinGameRoom, session, pkt);
+	return false;
+}
+
+bool Handle_REQ_LEAVE_GAMEROOM(Session* session, Protocol::REQ_LEAVE_GAMEROOM& pkt)
+{
+	cout << "req leave game room" << endl;
+	return false;
+}
+
 bool Handle_REQ_ENTER_ROOM(Session* session, Protocol::REQ_ENTER_ROOM& pkt)
 {
 	cout << "req enter room" << endl;
