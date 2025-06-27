@@ -23,9 +23,7 @@ bool Handle_REQ_ENTER(Session* session, Protocol::REQ_ENTER& pkt)
 bool Handle_REQ_ENTER_GAMEROOM(Session* session, Protocol::REQ_ENTER_GAMEROOM& pkt)
 {
 	cout << "req enter game room" << endl;
-	auto gameSession = static_cast<GameSession*>(session);
-	if (auto room = gameSession->GetPlayer()->GetRoom())
-		room->PushJob(&RoomManager::HandleJoinGameRoom, session, pkt);
+	GManager->Room()->PushJob(&RoomManager::HandleJoinGameRoom, session, pkt);
 	return false;
 }
 
