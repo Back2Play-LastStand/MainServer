@@ -17,10 +17,47 @@ RoomManager::RoomManager()
 void RoomManager::HandleCreateRoom(string roomName)
 {
 	auto room = MakeShared<Room>(roomName);
-	room->BeginPlay();
-	room->Tick();
 	m_rooms.insert({ roomName,room });
 }
+
+void RoomManager::HandleJoinGameRoom(Session* session, Protocol::REQ_ENTER_GAMEROOM pkt)
+{
+	auto gameSession = static_cast<GameSession*>(session);
+	auto myPlayer = gameSession->GetPlayer();
+	Protocol::RES_ENTER_GAMEROOM enter;
+
+	int count = 1;
+	if (pkt.iscreate())
+		HandleCreateRoom(pkt.name());
+
+	for (auto& it : m_rooms)
+	{
+		if (it.first == pkt.name())
+		{
+			auto& room = it.second;
+			myPlayer->EnterRoom(it.second);
+			for (auto& i : room->GetPlayers())
+			{
+				auto info = enter.add_players();
+				info->set_name(i.second->GetName());
+				count++;
+			}
+		}
+	}
+
+	enter.set_membercount(count);
+	auto sendBuffer = ServerPacketHandler::MakeSendBuffer(enter);
+	session->SendContext(move(*sendBuffer));
+}
+
+void RoomManager::HandleLeaveGameRoom(Session* session, Protocol::REQ_LEAVE_GAMEROOM pkt)
+{
+	auto gameSession = static_cast<GameSession*>(session);
+	auto myPlayer = gameSession->GetPlayer();
+
+	myPlayer->LeaveRoom();
+}
+
 void RoomManager::HandleEnterRoom(Session* session, Protocol::REQ_ENTER_ROOM pkt)
 {
 	if (!session)
@@ -28,18 +65,21 @@ void RoomManager::HandleEnterRoom(Session* session, Protocol::REQ_ENTER_ROOM pkt
 
 	auto gameSession = static_cast<GameSession*>(session);
 	auto& room = m_rooms[pkt.name()];
+	room->BeginPlay();
+	room->Tick();
 	auto myPlayer = gameSession->GetPlayer();
 
+	cout << room.get() << endl;
+	cout << myPlayer->GetRoom().get() << endl;
+
 	Protocol::RES_ENTER_ROOM res;
-	res.set_success(room != nullptr && myPlayer->GetRoom() != room);
+	res.set_success(room != nullptr && myPlayer->GetRoom().get() == room.get());
 	auto sendBuffer = ServerPacketHandler::MakeSendBuffer(res);
 	session->SendContext(move(*sendBuffer));
 
 	if (res.success())
 	{
 		{
-			myPlayer->EnterRoom(room);
-
 			Protocol::RES_SPAWN spawn;
 			Protocol::ObjectInfo* info = new Protocol::ObjectInfo();
 			info->set_objectid(myPlayer->GetId());
@@ -107,7 +147,7 @@ void RoomManager::HandleEnterRoom(Session* session, Protocol::REQ_ENTER_ROOM pkt
 				*info->mutable_posinfo() = monster->GetObjectInfo().posinfo();
 				// TODO
 			}
-			
+
 			auto sendBuffer = ServerPacketHandler::MakeSendBuffer(spawn);
 			session->SendContext(move(*sendBuffer));
 		}
