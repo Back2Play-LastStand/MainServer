@@ -4,14 +4,6 @@
 
 RoomManager::RoomManager()
 {
-	auto names = vector<string>{ "roomname", "room1", "room2" };
-	for (auto& name : names)
-	{
-		auto room = MakeShared<Room>(name);
-		room->BeginPlay();
-		room->Tick();
-		m_rooms.insert({ name ,room });
-	}
 }
 
 void RoomManager::HandleCreateRoom(string roomName)
