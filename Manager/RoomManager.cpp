@@ -70,7 +70,7 @@ void RoomManager::HandleEnterRoom(Session* session, Protocol::REQ_ENTER_ROOM pkt
 	Protocol::RES_ENTER_ROOM res;
 	res.set_success(room != nullptr && myPlayer->GetRoom().get() == room.get());
 	auto sendBuffer = ServerPacketHandler::MakeSendBuffer(res);
-	session->SendContext(move(*sendBuffer));
+	room->BroadCast(move(*sendBuffer));
 
 	if (res.success())
 	{
