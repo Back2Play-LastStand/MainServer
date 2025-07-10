@@ -20,7 +20,10 @@ void RoomManager::HandleJoinGameRoom(Session* session, Protocol::REQ_ENTER_GAMER
 
 	int count = 1;
 	if (pkt.iscreate())
+	{
 		HandleCreateRoom(pkt.name());
+		enter.set_iscreate(true);
+	}
 
 	for (auto& it : m_rooms)
 	{
