@@ -27,16 +27,16 @@ bool MapData::LoadMapFromTxt(const std::string& path)
 			row.push_back(stoi(cell));
 		}
 
-		walkableMap.push_back(row);
+		_walkableMap.push_back(row);
 	}
 
-	cout << "Map loaded: " << walkableMap.size() << endl;
+	cout << "Map loaded: " << _walkableMap.size() << endl;
 	return true;
 }
 
 bool MapData::IsWalkable(int x, int z)
 {
-	if (x < 0 || z < 0 || z >= walkableMap.size() || x >= walkableMap[z].size())
+	if (x < 0 || z < 0 || z >= _walkableMap.size() || x >= _walkableMap[z].size())
 		return false;
-	return walkableMap[z][x] == 1;
+	return _walkableMap[z][x] == 1;
 }
