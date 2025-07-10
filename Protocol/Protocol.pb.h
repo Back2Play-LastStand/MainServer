@@ -751,6 +751,7 @@ class RES_ENTER_GAMEROOM final :
   enum : int {
     kPlayersFieldNumber = 2,
     kMemberCountFieldNumber = 1,
+    kIsCreateFieldNumber = 3,
   };
   // repeated .Protocol.ObjectInfo players = 2;
   int players_size() const;
@@ -779,6 +780,15 @@ class RES_ENTER_GAMEROOM final :
   void _internal_set_membercount(uint32_t value);
   public:
 
+  // bool isCreate = 3;
+  void clear_iscreate();
+  bool iscreate() const;
+  void set_iscreate(bool value);
+  private:
+  bool _internal_iscreate() const;
+  void _internal_set_iscreate(bool value);
+  public:
+
   // @@protoc_insertion_point(class_scope:Protocol.RES_ENTER_GAMEROOM)
  private:
   class _Internal;
@@ -789,6 +799,7 @@ class RES_ENTER_GAMEROOM final :
   struct Impl_ {
     ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::Protocol::ObjectInfo > players_;
     uint32_t membercount_;
+    bool iscreate_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -3944,6 +3955,26 @@ inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::Protocol::ObjectInfo >
 RES_ENTER_GAMEROOM::players() const {
   // @@protoc_insertion_point(field_list:Protocol.RES_ENTER_GAMEROOM.players)
   return _impl_.players_;
+}
+
+// bool isCreate = 3;
+inline void RES_ENTER_GAMEROOM::clear_iscreate() {
+  _impl_.iscreate_ = false;
+}
+inline bool RES_ENTER_GAMEROOM::_internal_iscreate() const {
+  return _impl_.iscreate_;
+}
+inline bool RES_ENTER_GAMEROOM::iscreate() const {
+  // @@protoc_insertion_point(field_get:Protocol.RES_ENTER_GAMEROOM.isCreate)
+  return _internal_iscreate();
+}
+inline void RES_ENTER_GAMEROOM::_internal_set_iscreate(bool value) {
+  
+  _impl_.iscreate_ = value;
+}
+inline void RES_ENTER_GAMEROOM::set_iscreate(bool value) {
+  _internal_set_iscreate(value);
+  // @@protoc_insertion_point(field_set:Protocol.RES_ENTER_GAMEROOM.isCreate)
 }
 
 // -------------------------------------------------------------------

@@ -4,14 +4,6 @@
 
 RoomManager::RoomManager()
 {
-	auto names = vector<string>{ "roomname", "room1", "room2" };
-	for (auto& name : names)
-	{
-		auto room = MakeShared<Room>(name);
-		room->BeginPlay();
-		room->Tick();
-		m_rooms.insert({ name ,room });
-	}
 }
 
 void RoomManager::HandleCreateRoom(string roomName)
@@ -28,7 +20,10 @@ void RoomManager::HandleJoinGameRoom(Session* session, Protocol::REQ_ENTER_GAMER
 
 	int count = 1;
 	if (pkt.iscreate())
+	{
 		HandleCreateRoom(pkt.name());
+		enter.set_iscreate(true);
+	}
 
 	for (auto& it : m_rooms)
 	{
@@ -75,7 +70,7 @@ void RoomManager::HandleEnterRoom(Session* session, Protocol::REQ_ENTER_ROOM pkt
 	Protocol::RES_ENTER_ROOM res;
 	res.set_success(room != nullptr && myPlayer->GetRoom().get() == room.get());
 	auto sendBuffer = ServerPacketHandler::MakeSendBuffer(res);
-	session->SendContext(move(*sendBuffer));
+	room->BroadCast(move(*sendBuffer));
 
 	if (res.success())
 	{
