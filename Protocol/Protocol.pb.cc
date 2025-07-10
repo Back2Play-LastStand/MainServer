@@ -66,6 +66,7 @@ PROTOBUF_CONSTEXPR RES_ENTER_GAMEROOM::RES_ENTER_GAMEROOM(
     ::_pbi::ConstantInitialized): _impl_{
     /*decltype(_impl_.players_)*/{}
   , /*decltype(_impl_.membercount_)*/0u
+  , /*decltype(_impl_.iscreate_)*/false
   , /*decltype(_impl_._cached_size_)*/{}} {}
 struct RES_ENTER_GAMEROOMDefaultTypeInternal {
   PROTOBUF_CONSTEXPR RES_ENTER_GAMEROOMDefaultTypeInternal()
@@ -357,6 +358,7 @@ const uint32_t TableStruct_Protocol_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::Protocol::RES_ENTER_GAMEROOM, _impl_.membercount_),
   PROTOBUF_FIELD_OFFSET(::Protocol::RES_ENTER_GAMEROOM, _impl_.players_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::RES_ENTER_GAMEROOM, _impl_.iscreate_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::Protocol::REQ_LEAVE_GAMEROOM, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -499,24 +501,24 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 7, -1, -1, sizeof(::Protocol::RES_ENTER)},
   { 15, -1, -1, sizeof(::Protocol::REQ_ENTER_GAMEROOM)},
   { 23, -1, -1, sizeof(::Protocol::RES_ENTER_GAMEROOM)},
-  { 31, -1, -1, sizeof(::Protocol::REQ_LEAVE_GAMEROOM)},
-  { 38, -1, -1, sizeof(::Protocol::RES_LEAVE_GAMEROOM)},
-  { 46, -1, -1, sizeof(::Protocol::REQ_ENTER_ROOM)},
-  { 53, -1, -1, sizeof(::Protocol::RES_ENTER_ROOM)},
-  { 61, -1, -1, sizeof(::Protocol::REQ_LEAVE)},
-  { 67, -1, -1, sizeof(::Protocol::RES_LEAVE)},
-  { 74, -1, -1, sizeof(::Protocol::REQ_RESPAWN)},
-  { 82, -1, -1, sizeof(::Protocol::RES_SPAWN)},
-  { 90, -1, -1, sizeof(::Protocol::RES_SPAWN_ALL)},
-  { 97, -1, -1, sizeof(::Protocol::RES_DESPAWN)},
-  { 104, -1, -1, sizeof(::Protocol::RES_CHANGE_HP)},
-  { 112, -1, -1, sizeof(::Protocol::RES_DIE)},
-  { 120, -1, -1, sizeof(::Protocol::REQ_MOVE)},
-  { 127, -1, -1, sizeof(::Protocol::RES_MOVE)},
-  { 134, -1, -1, sizeof(::Protocol::RES_SPAWN_MONSTER)},
-  { 141, -1, -1, sizeof(::Protocol::RES_MOVE_MONSTER)},
-  { 148, -1, -1, sizeof(::Protocol::REQ_ATTACK_OBJECT)},
-  { 157, -1, -1, sizeof(::Protocol::RES_ATTACK_OBJECT)},
+  { 32, -1, -1, sizeof(::Protocol::REQ_LEAVE_GAMEROOM)},
+  { 39, -1, -1, sizeof(::Protocol::RES_LEAVE_GAMEROOM)},
+  { 47, -1, -1, sizeof(::Protocol::REQ_ENTER_ROOM)},
+  { 54, -1, -1, sizeof(::Protocol::RES_ENTER_ROOM)},
+  { 62, -1, -1, sizeof(::Protocol::REQ_LEAVE)},
+  { 68, -1, -1, sizeof(::Protocol::RES_LEAVE)},
+  { 75, -1, -1, sizeof(::Protocol::REQ_RESPAWN)},
+  { 83, -1, -1, sizeof(::Protocol::RES_SPAWN)},
+  { 91, -1, -1, sizeof(::Protocol::RES_SPAWN_ALL)},
+  { 98, -1, -1, sizeof(::Protocol::RES_DESPAWN)},
+  { 105, -1, -1, sizeof(::Protocol::RES_CHANGE_HP)},
+  { 113, -1, -1, sizeof(::Protocol::RES_DIE)},
+  { 121, -1, -1, sizeof(::Protocol::REQ_MOVE)},
+  { 128, -1, -1, sizeof(::Protocol::RES_MOVE)},
+  { 135, -1, -1, sizeof(::Protocol::RES_SPAWN_MONSTER)},
+  { 142, -1, -1, sizeof(::Protocol::RES_MOVE_MONSTER)},
+  { 149, -1, -1, sizeof(::Protocol::REQ_ATTACK_OBJECT)},
+  { 158, -1, -1, sizeof(::Protocol::RES_ATTACK_OBJECT)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -550,32 +552,32 @@ const char descriptor_table_protodef_Protocol_2eproto[] PROTOBUF_SECTION_VARIABL
   "B\n\tRES_ENTER\022$\n\006player\030\001 \001(\0132\024.Protocol."
   "ObjectInfo\022\017\n\007success\030\002 \001(\010\"4\n\022REQ_ENTER"
   "_GAMEROOM\022\014\n\004name\030\001 \001(\t\022\020\n\010isCreate\030\003 \001("
-  "\010\"P\n\022RES_ENTER_GAMEROOM\022\023\n\013memberCount\030\001"
+  "\010\"b\n\022RES_ENTER_GAMEROOM\022\023\n\013memberCount\030\001"
   " \001(\r\022%\n\007players\030\002 \003(\0132\024.Protocol.ObjectI"
-  "nfo\"&\n\022REQ_LEAVE_GAMEROOM\022\020\n\010objectId\030\001 "
-  "\001(\004\"8\n\022RES_LEAVE_GAMEROOM\022\020\n\010roomName\030\001 "
-  "\001(\t\022\020\n\010objectId\030\002 \001(\004\"\036\n\016REQ_ENTER_ROOM\022"
-  "\014\n\004name\030\001 \001(\t\"G\n\016RES_ENTER_ROOM\022$\n\006playe"
-  "r\030\001 \001(\0132\024.Protocol.ObjectInfo\022\017\n\007success"
-  "\030\002 \001(\010\"\013\n\tREQ_LEAVE\"\035\n\tRES_LEAVE\022\020\n\010obje"
-  "ctId\030\001 \001(\004\"-\n\013REQ_RESPAWN\022\020\n\010objectId\030\001 "
-  "\001(\004\022\014\n\004name\030\002 \001(\t\"\?\n\tRES_SPAWN\022$\n\006player"
-  "\030\001 \001(\0132\024.Protocol.ObjectInfo\022\014\n\004mine\030\002 \001"
-  "(\010\"6\n\rRES_SPAWN_ALL\022%\n\007players\030\001 \003(\0132\024.P"
-  "rotocol.ObjectInfo\"\032\n\013RES_DESPAWN\022\013\n\003ids"
-  "\030\001 \003(\004\"-\n\rRES_CHANGE_HP\022\020\n\010objectId\030\001 \001("
-  "\004\022\n\n\002hp\030\002 \001(\r\"-\n\007RES_DIE\022\020\n\010objectId\030\001 \001"
-  "(\004\022\020\n\010attacker\030\002 \001(\004\"0\n\010REQ_MOVE\022$\n\004info"
-  "\030\001 \001(\0132\026.Protocol.PositionInfo\"0\n\010RES_MO"
-  "VE\022$\n\006player\030\001 \001(\0132\024.Protocol.ObjectInfo"
-  "\";\n\021RES_SPAWN_MONSTER\022&\n\010monsters\030\001 \003(\0132"
-  "\024.Protocol.ObjectInfo\"9\n\020RES_MOVE_MONSTE"
-  "R\022%\n\007monster\030\001 \001(\0132\024.Protocol.ObjectInfo"
-  "\"G\n\021REQ_ATTACK_OBJECT\022\020\n\010attacker\030\001 \001(\004\022"
-  "\020\n\010objectId\030\002 \001(\004\022\016\n\006damage\030\003 \001(\r\"Y\n\021RES"
-  "_ATTACK_OBJECT\022\020\n\010attacker\030\001 \001(\004\022\020\n\010obje"
-  "ctId\030\002 \001(\004\022\016\n\006damage\030\003 \001(\r\022\020\n\010remainHp\030\004"
-  " \001(\rb\006proto3"
+  "nfo\022\020\n\010isCreate\030\003 \001(\010\"&\n\022REQ_LEAVE_GAMER"
+  "OOM\022\020\n\010objectId\030\001 \001(\004\"8\n\022RES_LEAVE_GAMER"
+  "OOM\022\020\n\010roomName\030\001 \001(\t\022\020\n\010objectId\030\002 \001(\004\""
+  "\036\n\016REQ_ENTER_ROOM\022\014\n\004name\030\001 \001(\t\"G\n\016RES_E"
+  "NTER_ROOM\022$\n\006player\030\001 \001(\0132\024.Protocol.Obj"
+  "ectInfo\022\017\n\007success\030\002 \001(\010\"\013\n\tREQ_LEAVE\"\035\n"
+  "\tRES_LEAVE\022\020\n\010objectId\030\001 \001(\004\"-\n\013REQ_RESP"
+  "AWN\022\020\n\010objectId\030\001 \001(\004\022\014\n\004name\030\002 \001(\t\"\?\n\tR"
+  "ES_SPAWN\022$\n\006player\030\001 \001(\0132\024.Protocol.Obje"
+  "ctInfo\022\014\n\004mine\030\002 \001(\010\"6\n\rRES_SPAWN_ALL\022%\n"
+  "\007players\030\001 \003(\0132\024.Protocol.ObjectInfo\"\032\n\013"
+  "RES_DESPAWN\022\013\n\003ids\030\001 \003(\004\"-\n\rRES_CHANGE_H"
+  "P\022\020\n\010objectId\030\001 \001(\004\022\n\n\002hp\030\002 \001(\r\"-\n\007RES_D"
+  "IE\022\020\n\010objectId\030\001 \001(\004\022\020\n\010attacker\030\002 \001(\004\"0"
+  "\n\010REQ_MOVE\022$\n\004info\030\001 \001(\0132\026.Protocol.Posi"
+  "tionInfo\"0\n\010RES_MOVE\022$\n\006player\030\001 \001(\0132\024.P"
+  "rotocol.ObjectInfo\";\n\021RES_SPAWN_MONSTER\022"
+  "&\n\010monsters\030\001 \003(\0132\024.Protocol.ObjectInfo\""
+  "9\n\020RES_MOVE_MONSTER\022%\n\007monster\030\001 \001(\0132\024.P"
+  "rotocol.ObjectInfo\"G\n\021REQ_ATTACK_OBJECT\022"
+  "\020\n\010attacker\030\001 \001(\004\022\020\n\010objectId\030\002 \001(\004\022\016\n\006d"
+  "amage\030\003 \001(\r\"Y\n\021RES_ATTACK_OBJECT\022\020\n\010atta"
+  "cker\030\001 \001(\004\022\020\n\010objectId\030\002 \001(\004\022\016\n\006damage\030\003"
+  " \001(\r\022\020\n\010remainHp\030\004 \001(\rb\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_Protocol_2eproto_deps[2] = {
   &::descriptor_table_Enum_2eproto,
@@ -583,7 +585,7 @@ static const ::_pbi::DescriptorTable* const descriptor_table_Protocol_2eproto_de
 };
 static ::_pbi::once_flag descriptor_table_Protocol_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_Protocol_2eproto = {
-    false, false, 1212, descriptor_table_protodef_Protocol_2eproto,
+    false, false, 1230, descriptor_table_protodef_Protocol_2eproto,
     "Protocol.proto",
     &descriptor_table_Protocol_2eproto_once, descriptor_table_Protocol_2eproto_deps, 2, 22,
     schemas, file_default_instances, TableStruct_Protocol_2eproto::offsets,
@@ -1282,10 +1284,13 @@ RES_ENTER_GAMEROOM::RES_ENTER_GAMEROOM(const RES_ENTER_GAMEROOM& from)
   new (&_impl_) Impl_{
       decltype(_impl_.players_){from._impl_.players_}
     , decltype(_impl_.membercount_){}
+    , decltype(_impl_.iscreate_){}
     , /*decltype(_impl_._cached_size_)*/{}};
 
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  _this->_impl_.membercount_ = from._impl_.membercount_;
+  ::memcpy(&_impl_.membercount_, &from._impl_.membercount_,
+    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.iscreate_) -
+    reinterpret_cast<char*>(&_impl_.membercount_)) + sizeof(_impl_.iscreate_));
   // @@protoc_insertion_point(copy_constructor:Protocol.RES_ENTER_GAMEROOM)
 }
 
@@ -1296,6 +1301,7 @@ inline void RES_ENTER_GAMEROOM::SharedCtor(
   new (&_impl_) Impl_{
       decltype(_impl_.players_){arena}
     , decltype(_impl_.membercount_){0u}
+    , decltype(_impl_.iscreate_){false}
     , /*decltype(_impl_._cached_size_)*/{}
   };
 }
@@ -1325,7 +1331,9 @@ void RES_ENTER_GAMEROOM::Clear() {
   (void) cached_has_bits;
 
   _impl_.players_.Clear();
-  _impl_.membercount_ = 0u;
+  ::memset(&_impl_.membercount_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&_impl_.iscreate_) -
+      reinterpret_cast<char*>(&_impl_.membercount_)) + sizeof(_impl_.iscreate_));
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -1353,6 +1361,14 @@ const char* RES_ENTER_GAMEROOM::_InternalParse(const char* ptr, ::_pbi::ParseCon
             CHK_(ptr);
             if (!ctx->DataAvailable(ptr)) break;
           } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<18>(ptr));
+        } else
+          goto handle_unusual;
+        continue;
+      // bool isCreate = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 24)) {
+          _impl_.iscreate_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
         } else
           goto handle_unusual;
         continue;
@@ -1399,6 +1415,12 @@ uint8_t* RES_ENTER_GAMEROOM::_InternalSerialize(
         InternalWriteMessage(2, repfield, repfield.GetCachedSize(), target, stream);
   }
 
+  // bool isCreate = 3;
+  if (this->_internal_iscreate() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(3, this->_internal_iscreate(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -1427,6 +1449,11 @@ size_t RES_ENTER_GAMEROOM::ByteSizeLong() const {
     total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(this->_internal_membercount());
   }
 
+  // bool isCreate = 3;
+  if (this->_internal_iscreate() != 0) {
+    total_size += 1 + 1;
+  }
+
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
@@ -1449,6 +1476,9 @@ void RES_ENTER_GAMEROOM::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, con
   if (from._internal_membercount() != 0) {
     _this->_internal_set_membercount(from._internal_membercount());
   }
+  if (from._internal_iscreate() != 0) {
+    _this->_internal_set_iscreate(from._internal_iscreate());
+  }
   _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -1467,7 +1497,12 @@ void RES_ENTER_GAMEROOM::InternalSwap(RES_ENTER_GAMEROOM* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   _impl_.players_.InternalSwap(&other->_impl_.players_);
-  swap(_impl_.membercount_, other->_impl_.membercount_);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(RES_ENTER_GAMEROOM, _impl_.iscreate_)
+      + sizeof(RES_ENTER_GAMEROOM::_impl_.iscreate_)
+      - PROTOBUF_FIELD_OFFSET(RES_ENTER_GAMEROOM, _impl_.membercount_)>(
+          reinterpret_cast<char*>(&_impl_.membercount_),
+          reinterpret_cast<char*>(&other->_impl_.membercount_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata RES_ENTER_GAMEROOM::GetMetadata() const {
