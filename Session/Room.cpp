@@ -1,11 +1,13 @@
 #include "pch.h"
 #include "Room.h"
 #include "ObjectManager.h"
+#include "Storage/MapData.h"
 
 shared_ptr<Room> GRoom = make_shared<Room>();
 
 Room::Room(string name) : m_name(name)
 {
+	GMapData->LoadMapFromTxt("C:/Users/User/Documents/GitHub/GameServer/Binaries/x64/MeshMap.txt");
 }
 
 Room::~Room()
@@ -180,17 +182,30 @@ void Room::HandleRespawnPlayer(Session* session, Protocol::REQ_RESPAWN pkt)
 
 void Room::SpawnMonster()
 {
-	TimerPushJob(120000, &Room::SpawnMonster); // 2min
+	TimerPushJob(12000, &Room::SpawnMonster);
 	Protocol::RES_SPAWN_MONSTER spawn;
-	auto monster = GManager->Object()->CreateObject<Monster>();
+
+	const auto& walkable = GMapData->GetAllWalkablePositions();
+	if (walkable.empty())
+	{
+		cout << "walkable 위치 없음" << endl;
+		return;
+	}
+
 	{
 		random_device rd;
 		mt19937 gen(rd());
-		uniform_int_distribution<int> dis(-10, 10);
+		uniform_int_distribution<int> dis(0, static_cast<int>(walkable.size()) - 1);
+		auto& [mapX, mapZ] = walkable[dis(gen)];
 
+		int offset = 100;
+		int worldX = mapX - offset;
+		int worldZ = mapZ - offset;
+
+		auto monster = GManager->Object()->CreateObject<Monster>();
 		Protocol::PositionInfo* pos = new Protocol::PositionInfo();
-		pos->set_posx(dis(gen));
-		pos->set_posy(dis(gen));
+		pos->set_posx(worldX);
+		pos->set_posy(worldZ);
 		monster->GetObjectInfo().set_allocated_posinfo(pos);
 
 		monster->BeginPlay();
