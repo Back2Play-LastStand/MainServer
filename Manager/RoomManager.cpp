@@ -25,24 +25,29 @@ void RoomManager::HandleJoinGameRoom(Session* session, Protocol::REQ_ENTER_GAMER
 		enter.set_iscreate(true);
 	}
 
-	for (auto& it : m_rooms)
+	auto& room = m_rooms[pkt.name()];
+	myPlayer->EnterRoom(room);
+
 	{
-		if (it.first == pkt.name())
+		for (auto& iter : room->GetPlayers())
 		{
-			auto& room = it.second;
-			myPlayer->EnterRoom(it.second);
-			for (auto& i : room->GetPlayers())
-			{
-				auto info = enter.add_players();
-				info->set_name(i.second->GetName());
-				count++;
-			}
+			auto info = enter.add_players();
+			info->set_objectid(iter.second->GetId());
+			info->set_name(iter.second->GetName());
 		}
+		auto sendBuffer = ServerPacketHandler::MakeSendBuffer(enter);
+		session->SendContext(move(*sendBuffer));
 	}
 
-	enter.set_membercount(count);
-	auto sendBuffer = ServerPacketHandler::MakeSendBuffer(enter);
-	session->SendContext(move(*sendBuffer));
+	{
+		Protocol::RES_ENTER_GAMEROOM_ALL notify;
+		auto info = notify.add_players();
+		info->set_objectid(myPlayer->GetId());
+		info->set_name(myPlayer->GetName());
+
+		auto sendBuffer = ServerPacketHandler::MakeSendBuffer(notify);
+		room->BroadCast(move(*sendBuffer), myPlayer->GetId());
+	}
 }
 
 void RoomManager::HandleLeaveGameRoom(Session* session, Protocol::REQ_LEAVE_GAMEROOM pkt)
