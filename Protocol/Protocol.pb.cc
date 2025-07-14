@@ -67,6 +67,7 @@ PROTOBUF_CONSTEXPR RES_ENTER_GAMEROOM::RES_ENTER_GAMEROOM(
     /*decltype(_impl_.players_)*/{}
   , /*decltype(_impl_.membercount_)*/0u
   , /*decltype(_impl_.iscreate_)*/false
+  , /*decltype(_impl_.mine_)*/false
   , /*decltype(_impl_._cached_size_)*/{}} {}
 struct RES_ENTER_GAMEROOMDefaultTypeInternal {
   PROTOBUF_CONSTEXPR RES_ENTER_GAMEROOMDefaultTypeInternal()
@@ -77,6 +78,19 @@ struct RES_ENTER_GAMEROOMDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 RES_ENTER_GAMEROOMDefaultTypeInternal _RES_ENTER_GAMEROOM_default_instance_;
+PROTOBUF_CONSTEXPR RES_ENTER_GAMEROOM_ALL::RES_ENTER_GAMEROOM_ALL(
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.players_)*/{}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
+struct RES_ENTER_GAMEROOM_ALLDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR RES_ENTER_GAMEROOM_ALLDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~RES_ENTER_GAMEROOM_ALLDefaultTypeInternal() {}
+  union {
+    RES_ENTER_GAMEROOM_ALL _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 RES_ENTER_GAMEROOM_ALLDefaultTypeInternal _RES_ENTER_GAMEROOM_ALL_default_instance_;
 PROTOBUF_CONSTEXPR REQ_LEAVE_GAMEROOM::REQ_LEAVE_GAMEROOM(
     ::_pbi::ConstantInitialized): _impl_{
     /*decltype(_impl_.objectid_)*/uint64_t{0u}
@@ -322,7 +336,7 @@ struct RES_ATTACK_OBJECTDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 RES_ATTACK_OBJECTDefaultTypeInternal _RES_ATTACK_OBJECT_default_instance_;
 }  // namespace Protocol
-static ::_pb::Metadata file_level_metadata_Protocol_2eproto[22];
+static ::_pb::Metadata file_level_metadata_Protocol_2eproto[23];
 static constexpr ::_pb::EnumDescriptor const** file_level_enum_descriptors_Protocol_2eproto = nullptr;
 static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_Protocol_2eproto = nullptr;
 
@@ -359,6 +373,14 @@ const uint32_t TableStruct_Protocol_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE
   PROTOBUF_FIELD_OFFSET(::Protocol::RES_ENTER_GAMEROOM, _impl_.membercount_),
   PROTOBUF_FIELD_OFFSET(::Protocol::RES_ENTER_GAMEROOM, _impl_.players_),
   PROTOBUF_FIELD_OFFSET(::Protocol::RES_ENTER_GAMEROOM, _impl_.iscreate_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::RES_ENTER_GAMEROOM, _impl_.mine_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::Protocol::RES_ENTER_GAMEROOM_ALL, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::Protocol::RES_ENTER_GAMEROOM_ALL, _impl_.players_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::Protocol::REQ_LEAVE_GAMEROOM, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -501,24 +523,25 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 7, -1, -1, sizeof(::Protocol::RES_ENTER)},
   { 15, -1, -1, sizeof(::Protocol::REQ_ENTER_GAMEROOM)},
   { 23, -1, -1, sizeof(::Protocol::RES_ENTER_GAMEROOM)},
-  { 32, -1, -1, sizeof(::Protocol::REQ_LEAVE_GAMEROOM)},
-  { 39, -1, -1, sizeof(::Protocol::RES_LEAVE_GAMEROOM)},
-  { 47, -1, -1, sizeof(::Protocol::REQ_ENTER_ROOM)},
-  { 54, -1, -1, sizeof(::Protocol::RES_ENTER_ROOM)},
-  { 62, -1, -1, sizeof(::Protocol::REQ_LEAVE)},
-  { 68, -1, -1, sizeof(::Protocol::RES_LEAVE)},
-  { 75, -1, -1, sizeof(::Protocol::REQ_RESPAWN)},
-  { 83, -1, -1, sizeof(::Protocol::RES_SPAWN)},
-  { 91, -1, -1, sizeof(::Protocol::RES_SPAWN_ALL)},
-  { 98, -1, -1, sizeof(::Protocol::RES_DESPAWN)},
-  { 105, -1, -1, sizeof(::Protocol::RES_CHANGE_HP)},
-  { 113, -1, -1, sizeof(::Protocol::RES_DIE)},
-  { 121, -1, -1, sizeof(::Protocol::REQ_MOVE)},
-  { 128, -1, -1, sizeof(::Protocol::RES_MOVE)},
-  { 135, -1, -1, sizeof(::Protocol::RES_SPAWN_MONSTER)},
-  { 142, -1, -1, sizeof(::Protocol::RES_MOVE_MONSTER)},
-  { 149, -1, -1, sizeof(::Protocol::REQ_ATTACK_OBJECT)},
-  { 158, -1, -1, sizeof(::Protocol::RES_ATTACK_OBJECT)},
+  { 33, -1, -1, sizeof(::Protocol::RES_ENTER_GAMEROOM_ALL)},
+  { 40, -1, -1, sizeof(::Protocol::REQ_LEAVE_GAMEROOM)},
+  { 47, -1, -1, sizeof(::Protocol::RES_LEAVE_GAMEROOM)},
+  { 55, -1, -1, sizeof(::Protocol::REQ_ENTER_ROOM)},
+  { 62, -1, -1, sizeof(::Protocol::RES_ENTER_ROOM)},
+  { 70, -1, -1, sizeof(::Protocol::REQ_LEAVE)},
+  { 76, -1, -1, sizeof(::Protocol::RES_LEAVE)},
+  { 83, -1, -1, sizeof(::Protocol::REQ_RESPAWN)},
+  { 91, -1, -1, sizeof(::Protocol::RES_SPAWN)},
+  { 99, -1, -1, sizeof(::Protocol::RES_SPAWN_ALL)},
+  { 106, -1, -1, sizeof(::Protocol::RES_DESPAWN)},
+  { 113, -1, -1, sizeof(::Protocol::RES_CHANGE_HP)},
+  { 121, -1, -1, sizeof(::Protocol::RES_DIE)},
+  { 129, -1, -1, sizeof(::Protocol::REQ_MOVE)},
+  { 136, -1, -1, sizeof(::Protocol::RES_MOVE)},
+  { 143, -1, -1, sizeof(::Protocol::RES_SPAWN_MONSTER)},
+  { 150, -1, -1, sizeof(::Protocol::RES_MOVE_MONSTER)},
+  { 157, -1, -1, sizeof(::Protocol::REQ_ATTACK_OBJECT)},
+  { 166, -1, -1, sizeof(::Protocol::RES_ATTACK_OBJECT)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -526,6 +549,7 @@ static const ::_pb::Message* const file_default_instances[] = {
   &::Protocol::_RES_ENTER_default_instance_._instance,
   &::Protocol::_REQ_ENTER_GAMEROOM_default_instance_._instance,
   &::Protocol::_RES_ENTER_GAMEROOM_default_instance_._instance,
+  &::Protocol::_RES_ENTER_GAMEROOM_ALL_default_instance_._instance,
   &::Protocol::_REQ_LEAVE_GAMEROOM_default_instance_._instance,
   &::Protocol::_RES_LEAVE_GAMEROOM_default_instance_._instance,
   &::Protocol::_REQ_ENTER_ROOM_default_instance_._instance,
@@ -552,32 +576,34 @@ const char descriptor_table_protodef_Protocol_2eproto[] PROTOBUF_SECTION_VARIABL
   "B\n\tRES_ENTER\022$\n\006player\030\001 \001(\0132\024.Protocol."
   "ObjectInfo\022\017\n\007success\030\002 \001(\010\"4\n\022REQ_ENTER"
   "_GAMEROOM\022\014\n\004name\030\001 \001(\t\022\020\n\010isCreate\030\003 \001("
-  "\010\"b\n\022RES_ENTER_GAMEROOM\022\023\n\013memberCount\030\001"
+  "\010\"p\n\022RES_ENTER_GAMEROOM\022\023\n\013memberCount\030\001"
   " \001(\r\022%\n\007players\030\002 \003(\0132\024.Protocol.ObjectI"
-  "nfo\022\020\n\010isCreate\030\003 \001(\010\"&\n\022REQ_LEAVE_GAMER"
-  "OOM\022\020\n\010objectId\030\001 \001(\004\"8\n\022RES_LEAVE_GAMER"
-  "OOM\022\020\n\010roomName\030\001 \001(\t\022\020\n\010objectId\030\002 \001(\004\""
-  "\036\n\016REQ_ENTER_ROOM\022\014\n\004name\030\001 \001(\t\"G\n\016RES_E"
-  "NTER_ROOM\022$\n\006player\030\001 \001(\0132\024.Protocol.Obj"
-  "ectInfo\022\017\n\007success\030\002 \001(\010\"\013\n\tREQ_LEAVE\"\035\n"
-  "\tRES_LEAVE\022\020\n\010objectId\030\001 \001(\004\"-\n\013REQ_RESP"
-  "AWN\022\020\n\010objectId\030\001 \001(\004\022\014\n\004name\030\002 \001(\t\"\?\n\tR"
-  "ES_SPAWN\022$\n\006player\030\001 \001(\0132\024.Protocol.Obje"
-  "ctInfo\022\014\n\004mine\030\002 \001(\010\"6\n\rRES_SPAWN_ALL\022%\n"
-  "\007players\030\001 \003(\0132\024.Protocol.ObjectInfo\"\032\n\013"
-  "RES_DESPAWN\022\013\n\003ids\030\001 \003(\004\"-\n\rRES_CHANGE_H"
-  "P\022\020\n\010objectId\030\001 \001(\004\022\n\n\002hp\030\002 \001(\r\"-\n\007RES_D"
-  "IE\022\020\n\010objectId\030\001 \001(\004\022\020\n\010attacker\030\002 \001(\004\"0"
-  "\n\010REQ_MOVE\022$\n\004info\030\001 \001(\0132\026.Protocol.Posi"
-  "tionInfo\"0\n\010RES_MOVE\022$\n\006player\030\001 \001(\0132\024.P"
-  "rotocol.ObjectInfo\";\n\021RES_SPAWN_MONSTER\022"
-  "&\n\010monsters\030\001 \003(\0132\024.Protocol.ObjectInfo\""
-  "9\n\020RES_MOVE_MONSTER\022%\n\007monster\030\001 \001(\0132\024.P"
-  "rotocol.ObjectInfo\"G\n\021REQ_ATTACK_OBJECT\022"
-  "\020\n\010attacker\030\001 \001(\004\022\020\n\010objectId\030\002 \001(\004\022\016\n\006d"
-  "amage\030\003 \001(\r\"Y\n\021RES_ATTACK_OBJECT\022\020\n\010atta"
-  "cker\030\001 \001(\004\022\020\n\010objectId\030\002 \001(\004\022\016\n\006damage\030\003"
-  " \001(\r\022\020\n\010remainHp\030\004 \001(\rb\006proto3"
+  "nfo\022\020\n\010isCreate\030\003 \001(\010\022\014\n\004mine\030\004 \001(\010\"\?\n\026R"
+  "ES_ENTER_GAMEROOM_ALL\022%\n\007players\030\001 \003(\0132\024"
+  ".Protocol.ObjectInfo\"&\n\022REQ_LEAVE_GAMERO"
+  "OM\022\020\n\010objectId\030\001 \001(\004\"8\n\022RES_LEAVE_GAMERO"
+  "OM\022\020\n\010roomName\030\001 \001(\t\022\020\n\010objectId\030\002 \001(\004\"\036"
+  "\n\016REQ_ENTER_ROOM\022\014\n\004name\030\001 \001(\t\"G\n\016RES_EN"
+  "TER_ROOM\022$\n\006player\030\001 \001(\0132\024.Protocol.Obje"
+  "ctInfo\022\017\n\007success\030\002 \001(\010\"\013\n\tREQ_LEAVE\"\035\n\t"
+  "RES_LEAVE\022\020\n\010objectId\030\001 \001(\004\"-\n\013REQ_RESPA"
+  "WN\022\020\n\010objectId\030\001 \001(\004\022\014\n\004name\030\002 \001(\t\"\?\n\tRE"
+  "S_SPAWN\022$\n\006player\030\001 \001(\0132\024.Protocol.Objec"
+  "tInfo\022\014\n\004mine\030\002 \001(\010\"6\n\rRES_SPAWN_ALL\022%\n\007"
+  "players\030\001 \003(\0132\024.Protocol.ObjectInfo\"\032\n\013R"
+  "ES_DESPAWN\022\013\n\003ids\030\001 \003(\004\"-\n\rRES_CHANGE_HP"
+  "\022\020\n\010objectId\030\001 \001(\004\022\n\n\002hp\030\002 \001(\r\"-\n\007RES_DI"
+  "E\022\020\n\010objectId\030\001 \001(\004\022\020\n\010attacker\030\002 \001(\004\"0\n"
+  "\010REQ_MOVE\022$\n\004info\030\001 \001(\0132\026.Protocol.Posit"
+  "ionInfo\"0\n\010RES_MOVE\022$\n\006player\030\001 \001(\0132\024.Pr"
+  "otocol.ObjectInfo\";\n\021RES_SPAWN_MONSTER\022&"
+  "\n\010monsters\030\001 \003(\0132\024.Protocol.ObjectInfo\"9"
+  "\n\020RES_MOVE_MONSTER\022%\n\007monster\030\001 \001(\0132\024.Pr"
+  "otocol.ObjectInfo\"G\n\021REQ_ATTACK_OBJECT\022\020"
+  "\n\010attacker\030\001 \001(\004\022\020\n\010objectId\030\002 \001(\004\022\016\n\006da"
+  "mage\030\003 \001(\r\"Y\n\021RES_ATTACK_OBJECT\022\020\n\010attac"
+  "ker\030\001 \001(\004\022\020\n\010objectId\030\002 \001(\004\022\016\n\006damage\030\003 "
+  "\001(\r\022\020\n\010remainHp\030\004 \001(\rb\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_Protocol_2eproto_deps[2] = {
   &::descriptor_table_Enum_2eproto,
@@ -585,9 +611,9 @@ static const ::_pbi::DescriptorTable* const descriptor_table_Protocol_2eproto_de
 };
 static ::_pbi::once_flag descriptor_table_Protocol_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_Protocol_2eproto = {
-    false, false, 1230, descriptor_table_protodef_Protocol_2eproto,
+    false, false, 1309, descriptor_table_protodef_Protocol_2eproto,
     "Protocol.proto",
-    &descriptor_table_Protocol_2eproto_once, descriptor_table_Protocol_2eproto_deps, 2, 22,
+    &descriptor_table_Protocol_2eproto_once, descriptor_table_Protocol_2eproto_deps, 2, 23,
     schemas, file_default_instances, TableStruct_Protocol_2eproto::offsets,
     file_level_metadata_Protocol_2eproto, file_level_enum_descriptors_Protocol_2eproto,
     file_level_service_descriptors_Protocol_2eproto,
@@ -1285,12 +1311,13 @@ RES_ENTER_GAMEROOM::RES_ENTER_GAMEROOM(const RES_ENTER_GAMEROOM& from)
       decltype(_impl_.players_){from._impl_.players_}
     , decltype(_impl_.membercount_){}
     , decltype(_impl_.iscreate_){}
+    , decltype(_impl_.mine_){}
     , /*decltype(_impl_._cached_size_)*/{}};
 
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::memcpy(&_impl_.membercount_, &from._impl_.membercount_,
-    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.iscreate_) -
-    reinterpret_cast<char*>(&_impl_.membercount_)) + sizeof(_impl_.iscreate_));
+    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.mine_) -
+    reinterpret_cast<char*>(&_impl_.membercount_)) + sizeof(_impl_.mine_));
   // @@protoc_insertion_point(copy_constructor:Protocol.RES_ENTER_GAMEROOM)
 }
 
@@ -1302,6 +1329,7 @@ inline void RES_ENTER_GAMEROOM::SharedCtor(
       decltype(_impl_.players_){arena}
     , decltype(_impl_.membercount_){0u}
     , decltype(_impl_.iscreate_){false}
+    , decltype(_impl_.mine_){false}
     , /*decltype(_impl_._cached_size_)*/{}
   };
 }
@@ -1332,8 +1360,8 @@ void RES_ENTER_GAMEROOM::Clear() {
 
   _impl_.players_.Clear();
   ::memset(&_impl_.membercount_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&_impl_.iscreate_) -
-      reinterpret_cast<char*>(&_impl_.membercount_)) + sizeof(_impl_.iscreate_));
+      reinterpret_cast<char*>(&_impl_.mine_) -
+      reinterpret_cast<char*>(&_impl_.membercount_)) + sizeof(_impl_.mine_));
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -1368,6 +1396,14 @@ const char* RES_ENTER_GAMEROOM::_InternalParse(const char* ptr, ::_pbi::ParseCon
       case 3:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 24)) {
           _impl_.iscreate_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // bool mine = 4;
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 32)) {
+          _impl_.mine_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -1421,6 +1457,12 @@ uint8_t* RES_ENTER_GAMEROOM::_InternalSerialize(
     target = ::_pbi::WireFormatLite::WriteBoolToArray(3, this->_internal_iscreate(), target);
   }
 
+  // bool mine = 4;
+  if (this->_internal_mine() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(4, this->_internal_mine(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -1454,6 +1496,11 @@ size_t RES_ENTER_GAMEROOM::ByteSizeLong() const {
     total_size += 1 + 1;
   }
 
+  // bool mine = 4;
+  if (this->_internal_mine() != 0) {
+    total_size += 1 + 1;
+  }
+
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
@@ -1479,6 +1526,9 @@ void RES_ENTER_GAMEROOM::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, con
   if (from._internal_iscreate() != 0) {
     _this->_internal_set_iscreate(from._internal_iscreate());
   }
+  if (from._internal_mine() != 0) {
+    _this->_internal_set_mine(from._internal_mine());
+  }
   _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -1498,8 +1548,8 @@ void RES_ENTER_GAMEROOM::InternalSwap(RES_ENTER_GAMEROOM* other) {
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   _impl_.players_.InternalSwap(&other->_impl_.players_);
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(RES_ENTER_GAMEROOM, _impl_.iscreate_)
-      + sizeof(RES_ENTER_GAMEROOM::_impl_.iscreate_)
+      PROTOBUF_FIELD_OFFSET(RES_ENTER_GAMEROOM, _impl_.mine_)
+      + sizeof(RES_ENTER_GAMEROOM::_impl_.mine_)
       - PROTOBUF_FIELD_OFFSET(RES_ENTER_GAMEROOM, _impl_.membercount_)>(
           reinterpret_cast<char*>(&_impl_.membercount_),
           reinterpret_cast<char*>(&other->_impl_.membercount_));
@@ -1509,6 +1559,194 @@ void RES_ENTER_GAMEROOM::InternalSwap(RES_ENTER_GAMEROOM* other) {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_Protocol_2eproto_getter, &descriptor_table_Protocol_2eproto_once,
       file_level_metadata_Protocol_2eproto[3]);
+}
+
+// ===================================================================
+
+class RES_ENTER_GAMEROOM_ALL::_Internal {
+ public:
+};
+
+void RES_ENTER_GAMEROOM_ALL::clear_players() {
+  _impl_.players_.Clear();
+}
+RES_ENTER_GAMEROOM_ALL::RES_ENTER_GAMEROOM_ALL(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
+  // @@protoc_insertion_point(arena_constructor:Protocol.RES_ENTER_GAMEROOM_ALL)
+}
+RES_ENTER_GAMEROOM_ALL::RES_ENTER_GAMEROOM_ALL(const RES_ENTER_GAMEROOM_ALL& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  RES_ENTER_GAMEROOM_ALL* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.players_){from._impl_.players_}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  // @@protoc_insertion_point(copy_constructor:Protocol.RES_ENTER_GAMEROOM_ALL)
+}
+
+inline void RES_ENTER_GAMEROOM_ALL::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.players_){arena}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+}
+
+RES_ENTER_GAMEROOM_ALL::~RES_ENTER_GAMEROOM_ALL() {
+  // @@protoc_insertion_point(destructor:Protocol.RES_ENTER_GAMEROOM_ALL)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void RES_ENTER_GAMEROOM_ALL::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.players_.~RepeatedPtrField();
+}
+
+void RES_ENTER_GAMEROOM_ALL::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+void RES_ENTER_GAMEROOM_ALL::Clear() {
+// @@protoc_insertion_point(message_clear_start:Protocol.RES_ENTER_GAMEROOM_ALL)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.players_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* RES_ENTER_GAMEROOM_ALL::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // repeated .Protocol.ObjectInfo players = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            ptr = ctx->ParseMessage(_internal_add_players(), ptr);
+            CHK_(ptr);
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<10>(ptr));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* RES_ENTER_GAMEROOM_ALL::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Protocol.RES_ENTER_GAMEROOM_ALL)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // repeated .Protocol.ObjectInfo players = 1;
+  for (unsigned i = 0,
+      n = static_cast<unsigned>(this->_internal_players_size()); i < n; i++) {
+    const auto& repfield = this->_internal_players(i);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+        InternalWriteMessage(1, repfield, repfield.GetCachedSize(), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Protocol.RES_ENTER_GAMEROOM_ALL)
+  return target;
+}
+
+size_t RES_ENTER_GAMEROOM_ALL::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Protocol.RES_ENTER_GAMEROOM_ALL)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated .Protocol.ObjectInfo players = 1;
+  total_size += 1UL * this->_internal_players_size();
+  for (const auto& msg : this->_impl_.players_) {
+    total_size +=
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData RES_ENTER_GAMEROOM_ALL::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    RES_ENTER_GAMEROOM_ALL::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*RES_ENTER_GAMEROOM_ALL::GetClassData() const { return &_class_data_; }
+
+
+void RES_ENTER_GAMEROOM_ALL::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<RES_ENTER_GAMEROOM_ALL*>(&to_msg);
+  auto& from = static_cast<const RES_ENTER_GAMEROOM_ALL&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:Protocol.RES_ENTER_GAMEROOM_ALL)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  _this->_impl_.players_.MergeFrom(from._impl_.players_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void RES_ENTER_GAMEROOM_ALL::CopyFrom(const RES_ENTER_GAMEROOM_ALL& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Protocol.RES_ENTER_GAMEROOM_ALL)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool RES_ENTER_GAMEROOM_ALL::IsInitialized() const {
+  return true;
+}
+
+void RES_ENTER_GAMEROOM_ALL::InternalSwap(RES_ENTER_GAMEROOM_ALL* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  _impl_.players_.InternalSwap(&other->_impl_.players_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata RES_ENTER_GAMEROOM_ALL::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_Protocol_2eproto_getter, &descriptor_table_Protocol_2eproto_once,
+      file_level_metadata_Protocol_2eproto[4]);
 }
 
 // ===================================================================
@@ -1686,7 +1924,7 @@ void REQ_LEAVE_GAMEROOM::InternalSwap(REQ_LEAVE_GAMEROOM* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata REQ_LEAVE_GAMEROOM::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_Protocol_2eproto_getter, &descriptor_table_Protocol_2eproto_once,
-      file_level_metadata_Protocol_2eproto[4]);
+      file_level_metadata_Protocol_2eproto[5]);
 }
 
 // ===================================================================
@@ -1916,7 +2154,7 @@ void RES_LEAVE_GAMEROOM::InternalSwap(RES_LEAVE_GAMEROOM* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata RES_LEAVE_GAMEROOM::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_Protocol_2eproto_getter, &descriptor_table_Protocol_2eproto_once,
-      file_level_metadata_Protocol_2eproto[5]);
+      file_level_metadata_Protocol_2eproto[6]);
 }
 
 // ===================================================================
@@ -2119,7 +2357,7 @@ void REQ_ENTER_ROOM::InternalSwap(REQ_ENTER_ROOM* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata REQ_ENTER_ROOM::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_Protocol_2eproto_getter, &descriptor_table_Protocol_2eproto_once,
-      file_level_metadata_Protocol_2eproto[6]);
+      file_level_metadata_Protocol_2eproto[7]);
 }
 
 // ===================================================================
@@ -2349,7 +2587,7 @@ void RES_ENTER_ROOM::InternalSwap(RES_ENTER_ROOM* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata RES_ENTER_ROOM::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_Protocol_2eproto_getter, &descriptor_table_Protocol_2eproto_once,
-      file_level_metadata_Protocol_2eproto[7]);
+      file_level_metadata_Protocol_2eproto[8]);
 }
 
 // ===================================================================
@@ -2389,7 +2627,7 @@ const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*REQ_LEAVE::GetClassData() cons
 ::PROTOBUF_NAMESPACE_ID::Metadata REQ_LEAVE::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_Protocol_2eproto_getter, &descriptor_table_Protocol_2eproto_once,
-      file_level_metadata_Protocol_2eproto[8]);
+      file_level_metadata_Protocol_2eproto[9]);
 }
 
 // ===================================================================
@@ -2567,7 +2805,7 @@ void RES_LEAVE::InternalSwap(RES_LEAVE* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata RES_LEAVE::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_Protocol_2eproto_getter, &descriptor_table_Protocol_2eproto_once,
-      file_level_metadata_Protocol_2eproto[9]);
+      file_level_metadata_Protocol_2eproto[10]);
 }
 
 // ===================================================================
@@ -2797,7 +3035,7 @@ void REQ_RESPAWN::InternalSwap(REQ_RESPAWN* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata REQ_RESPAWN::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_Protocol_2eproto_getter, &descriptor_table_Protocol_2eproto_once,
-      file_level_metadata_Protocol_2eproto[10]);
+      file_level_metadata_Protocol_2eproto[11]);
 }
 
 // ===================================================================
@@ -3027,7 +3265,7 @@ void RES_SPAWN::InternalSwap(RES_SPAWN* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata RES_SPAWN::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_Protocol_2eproto_getter, &descriptor_table_Protocol_2eproto_once,
-      file_level_metadata_Protocol_2eproto[11]);
+      file_level_metadata_Protocol_2eproto[12]);
 }
 
 // ===================================================================
@@ -3215,7 +3453,7 @@ void RES_SPAWN_ALL::InternalSwap(RES_SPAWN_ALL* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata RES_SPAWN_ALL::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_Protocol_2eproto_getter, &descriptor_table_Protocol_2eproto_once,
-      file_level_metadata_Protocol_2eproto[12]);
+      file_level_metadata_Protocol_2eproto[13]);
 }
 
 // ===================================================================
@@ -3408,7 +3646,7 @@ void RES_DESPAWN::InternalSwap(RES_DESPAWN* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata RES_DESPAWN::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_Protocol_2eproto_getter, &descriptor_table_Protocol_2eproto_once,
-      file_level_metadata_Protocol_2eproto[13]);
+      file_level_metadata_Protocol_2eproto[14]);
 }
 
 // ===================================================================
@@ -3619,7 +3857,7 @@ void RES_CHANGE_HP::InternalSwap(RES_CHANGE_HP* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata RES_CHANGE_HP::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_Protocol_2eproto_getter, &descriptor_table_Protocol_2eproto_once,
-      file_level_metadata_Protocol_2eproto[14]);
+      file_level_metadata_Protocol_2eproto[15]);
 }
 
 // ===================================================================
@@ -3830,7 +4068,7 @@ void RES_DIE::InternalSwap(RES_DIE* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata RES_DIE::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_Protocol_2eproto_getter, &descriptor_table_Protocol_2eproto_once,
-      file_level_metadata_Protocol_2eproto[15]);
+      file_level_metadata_Protocol_2eproto[16]);
 }
 
 // ===================================================================
@@ -4029,7 +4267,7 @@ void REQ_MOVE::InternalSwap(REQ_MOVE* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata REQ_MOVE::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_Protocol_2eproto_getter, &descriptor_table_Protocol_2eproto_once,
-      file_level_metadata_Protocol_2eproto[16]);
+      file_level_metadata_Protocol_2eproto[17]);
 }
 
 // ===================================================================
@@ -4228,7 +4466,7 @@ void RES_MOVE::InternalSwap(RES_MOVE* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata RES_MOVE::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_Protocol_2eproto_getter, &descriptor_table_Protocol_2eproto_once,
-      file_level_metadata_Protocol_2eproto[17]);
+      file_level_metadata_Protocol_2eproto[18]);
 }
 
 // ===================================================================
@@ -4416,7 +4654,7 @@ void RES_SPAWN_MONSTER::InternalSwap(RES_SPAWN_MONSTER* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata RES_SPAWN_MONSTER::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_Protocol_2eproto_getter, &descriptor_table_Protocol_2eproto_once,
-      file_level_metadata_Protocol_2eproto[18]);
+      file_level_metadata_Protocol_2eproto[19]);
 }
 
 // ===================================================================
@@ -4615,7 +4853,7 @@ void RES_MOVE_MONSTER::InternalSwap(RES_MOVE_MONSTER* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata RES_MOVE_MONSTER::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_Protocol_2eproto_getter, &descriptor_table_Protocol_2eproto_once,
-      file_level_metadata_Protocol_2eproto[19]);
+      file_level_metadata_Protocol_2eproto[20]);
 }
 
 // ===================================================================
@@ -4850,7 +5088,7 @@ void REQ_ATTACK_OBJECT::InternalSwap(REQ_ATTACK_OBJECT* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata REQ_ATTACK_OBJECT::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_Protocol_2eproto_getter, &descriptor_table_Protocol_2eproto_once,
-      file_level_metadata_Protocol_2eproto[20]);
+      file_level_metadata_Protocol_2eproto[21]);
 }
 
 // ===================================================================
@@ -5109,7 +5347,7 @@ void RES_ATTACK_OBJECT::InternalSwap(RES_ATTACK_OBJECT* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata RES_ATTACK_OBJECT::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_Protocol_2eproto_getter, &descriptor_table_Protocol_2eproto_once,
-      file_level_metadata_Protocol_2eproto[21]);
+      file_level_metadata_Protocol_2eproto[22]);
 }
 
 // @@protoc_insertion_point(namespace_scope)
@@ -5130,6 +5368,10 @@ Arena::CreateMaybeMessage< ::Protocol::REQ_ENTER_GAMEROOM >(Arena* arena) {
 template<> PROTOBUF_NOINLINE ::Protocol::RES_ENTER_GAMEROOM*
 Arena::CreateMaybeMessage< ::Protocol::RES_ENTER_GAMEROOM >(Arena* arena) {
   return Arena::CreateMessageInternal< ::Protocol::RES_ENTER_GAMEROOM >(arena);
+}
+template<> PROTOBUF_NOINLINE ::Protocol::RES_ENTER_GAMEROOM_ALL*
+Arena::CreateMaybeMessage< ::Protocol::RES_ENTER_GAMEROOM_ALL >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::Protocol::RES_ENTER_GAMEROOM_ALL >(arena);
 }
 template<> PROTOBUF_NOINLINE ::Protocol::REQ_LEAVE_GAMEROOM*
 Arena::CreateMaybeMessage< ::Protocol::REQ_LEAVE_GAMEROOM >(Arena* arena) {
