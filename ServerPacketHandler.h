@@ -10,24 +10,25 @@ enum : unsigned short
 	PKT_RES_ENTER = 1001,
 	PKT_REQ_ENTER_GAMEROOM = 1002,
 	PKT_RES_ENTER_GAMEROOM = 1003,
-	PKT_REQ_LEAVE_GAMEROOM = 1004,
-	PKT_RES_LEAVE_GAMEROOM = 1005,
-	PKT_REQ_ENTER_ROOM = 1006,
-	PKT_RES_ENTER_ROOM = 1007,
-	PKT_REQ_LEAVE = 1008,
-	PKT_RES_LEAVE = 1009,
-	PKT_REQ_RESPAWN = 1010,
-	PKT_RES_SPAWN = 1011,
-	PKT_RES_SPAWN_ALL = 1012,
-	PKT_RES_DESPAWN = 1013,
-	PKT_RES_CHANGE_HP = 1014,
-	PKT_RES_DIE = 1015,
-	PKT_REQ_MOVE = 1016,
-	PKT_RES_MOVE = 1017,
-	PKT_RES_SPAWN_MONSTER = 1018,
-	PKT_RES_MOVE_MONSTER = 1019,
-	PKT_REQ_ATTACK_OBJECT = 1020,
-	PKT_RES_ATTACK_OBJECT = 1021,
+	PKT_RES_ENTER_GAMEROOM_ALL = 1004,
+	PKT_REQ_LEAVE_GAMEROOM = 1005,
+	PKT_RES_LEAVE_GAMEROOM = 1006,
+	PKT_REQ_ENTER_ROOM = 1007,
+	PKT_RES_ENTER_ROOM = 1008,
+	PKT_REQ_LEAVE = 1009,
+	PKT_RES_LEAVE = 1010,
+	PKT_REQ_RESPAWN = 1011,
+	PKT_RES_SPAWN = 1012,
+	PKT_RES_SPAWN_ALL = 1013,
+	PKT_RES_DESPAWN = 1014,
+	PKT_RES_CHANGE_HP = 1015,
+	PKT_RES_DIE = 1016,
+	PKT_REQ_MOVE = 1017,
+	PKT_RES_MOVE = 1018,
+	PKT_RES_SPAWN_MONSTER = 1019,
+	PKT_RES_MOVE_MONSTER = 1020,
+	PKT_REQ_ATTACK_OBJECT = 1021,
+	PKT_RES_ATTACK_OBJECT = 1022,
 };
 
 bool Handle_INVALID(Session* session, BYTE* buffer, int len);
@@ -58,6 +59,7 @@ public:
 	}
 	static shared_ptr<vector<char>> MakeSendBuffer(Protocol::RES_ENTER& pkt) { return MakeSendBuffer(pkt, PKT_RES_ENTER); }
 	static shared_ptr<vector<char>> MakeSendBuffer(Protocol::RES_ENTER_GAMEROOM& pkt) { return MakeSendBuffer(pkt, PKT_RES_ENTER_GAMEROOM); }
+	static shared_ptr<vector<char>> MakeSendBuffer(Protocol::RES_ENTER_GAMEROOM_ALL& pkt) { return MakeSendBuffer(pkt, PKT_RES_ENTER_GAMEROOM_ALL); }
 	static shared_ptr<vector<char>> MakeSendBuffer(Protocol::RES_LEAVE_GAMEROOM& pkt) { return MakeSendBuffer(pkt, PKT_RES_LEAVE_GAMEROOM); }
 	static shared_ptr<vector<char>> MakeSendBuffer(Protocol::RES_ENTER_ROOM& pkt) { return MakeSendBuffer(pkt, PKT_RES_ENTER_ROOM); }
 	static shared_ptr<vector<char>> MakeSendBuffer(Protocol::RES_LEAVE& pkt) { return MakeSendBuffer(pkt, PKT_RES_LEAVE); }

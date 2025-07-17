@@ -90,6 +90,9 @@ extern RES_ENTERDefaultTypeInternal _RES_ENTER_default_instance_;
 class RES_ENTER_GAMEROOM;
 struct RES_ENTER_GAMEROOMDefaultTypeInternal;
 extern RES_ENTER_GAMEROOMDefaultTypeInternal _RES_ENTER_GAMEROOM_default_instance_;
+class RES_ENTER_GAMEROOM_ALL;
+struct RES_ENTER_GAMEROOM_ALLDefaultTypeInternal;
+extern RES_ENTER_GAMEROOM_ALLDefaultTypeInternal _RES_ENTER_GAMEROOM_ALL_default_instance_;
 class RES_ENTER_ROOM;
 struct RES_ENTER_ROOMDefaultTypeInternal;
 extern RES_ENTER_ROOMDefaultTypeInternal _RES_ENTER_ROOM_default_instance_;
@@ -130,6 +133,7 @@ template<> ::Protocol::RES_DESPAWN* Arena::CreateMaybeMessage<::Protocol::RES_DE
 template<> ::Protocol::RES_DIE* Arena::CreateMaybeMessage<::Protocol::RES_DIE>(Arena*);
 template<> ::Protocol::RES_ENTER* Arena::CreateMaybeMessage<::Protocol::RES_ENTER>(Arena*);
 template<> ::Protocol::RES_ENTER_GAMEROOM* Arena::CreateMaybeMessage<::Protocol::RES_ENTER_GAMEROOM>(Arena*);
+template<> ::Protocol::RES_ENTER_GAMEROOM_ALL* Arena::CreateMaybeMessage<::Protocol::RES_ENTER_GAMEROOM_ALL>(Arena*);
 template<> ::Protocol::RES_ENTER_ROOM* Arena::CreateMaybeMessage<::Protocol::RES_ENTER_ROOM>(Arena*);
 template<> ::Protocol::RES_LEAVE* Arena::CreateMaybeMessage<::Protocol::RES_LEAVE>(Arena*);
 template<> ::Protocol::RES_LEAVE_GAMEROOM* Arena::CreateMaybeMessage<::Protocol::RES_LEAVE_GAMEROOM>(Arena*);
@@ -752,6 +756,7 @@ class RES_ENTER_GAMEROOM final :
     kPlayersFieldNumber = 2,
     kMemberCountFieldNumber = 1,
     kIsCreateFieldNumber = 3,
+    kMineFieldNumber = 4,
   };
   // repeated .Protocol.ObjectInfo players = 2;
   int players_size() const;
@@ -789,6 +794,15 @@ class RES_ENTER_GAMEROOM final :
   void _internal_set_iscreate(bool value);
   public:
 
+  // bool mine = 4;
+  void clear_mine();
+  bool mine() const;
+  void set_mine(bool value);
+  private:
+  bool _internal_mine() const;
+  void _internal_set_mine(bool value);
+  public:
+
   // @@protoc_insertion_point(class_scope:Protocol.RES_ENTER_GAMEROOM)
  private:
   class _Internal;
@@ -800,6 +814,164 @@ class RES_ENTER_GAMEROOM final :
     ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::Protocol::ObjectInfo > players_;
     uint32_t membercount_;
     bool iscreate_;
+    bool mine_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_Protocol_2eproto;
+};
+// -------------------------------------------------------------------
+
+class RES_ENTER_GAMEROOM_ALL final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:Protocol.RES_ENTER_GAMEROOM_ALL) */ {
+ public:
+  inline RES_ENTER_GAMEROOM_ALL() : RES_ENTER_GAMEROOM_ALL(nullptr) {}
+  ~RES_ENTER_GAMEROOM_ALL() override;
+  explicit PROTOBUF_CONSTEXPR RES_ENTER_GAMEROOM_ALL(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  RES_ENTER_GAMEROOM_ALL(const RES_ENTER_GAMEROOM_ALL& from);
+  RES_ENTER_GAMEROOM_ALL(RES_ENTER_GAMEROOM_ALL&& from) noexcept
+    : RES_ENTER_GAMEROOM_ALL() {
+    *this = ::std::move(from);
+  }
+
+  inline RES_ENTER_GAMEROOM_ALL& operator=(const RES_ENTER_GAMEROOM_ALL& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline RES_ENTER_GAMEROOM_ALL& operator=(RES_ENTER_GAMEROOM_ALL&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const RES_ENTER_GAMEROOM_ALL& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const RES_ENTER_GAMEROOM_ALL* internal_default_instance() {
+    return reinterpret_cast<const RES_ENTER_GAMEROOM_ALL*>(
+               &_RES_ENTER_GAMEROOM_ALL_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    4;
+
+  friend void swap(RES_ENTER_GAMEROOM_ALL& a, RES_ENTER_GAMEROOM_ALL& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(RES_ENTER_GAMEROOM_ALL* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(RES_ENTER_GAMEROOM_ALL* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  RES_ENTER_GAMEROOM_ALL* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<RES_ENTER_GAMEROOM_ALL>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const RES_ENTER_GAMEROOM_ALL& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom( const RES_ENTER_GAMEROOM_ALL& from) {
+    RES_ENTER_GAMEROOM_ALL::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(RES_ENTER_GAMEROOM_ALL* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "Protocol.RES_ENTER_GAMEROOM_ALL";
+  }
+  protected:
+  explicit RES_ENTER_GAMEROOM_ALL(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kPlayersFieldNumber = 1,
+  };
+  // repeated .Protocol.ObjectInfo players = 1;
+  int players_size() const;
+  private:
+  int _internal_players_size() const;
+  public:
+  void clear_players();
+  ::Protocol::ObjectInfo* mutable_players(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::Protocol::ObjectInfo >*
+      mutable_players();
+  private:
+  const ::Protocol::ObjectInfo& _internal_players(int index) const;
+  ::Protocol::ObjectInfo* _internal_add_players();
+  public:
+  const ::Protocol::ObjectInfo& players(int index) const;
+  ::Protocol::ObjectInfo* add_players();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::Protocol::ObjectInfo >&
+      players() const;
+
+  // @@protoc_insertion_point(class_scope:Protocol.RES_ENTER_GAMEROOM_ALL)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::Protocol::ObjectInfo > players_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -855,7 +1027,7 @@ class REQ_LEAVE_GAMEROOM final :
                &_REQ_LEAVE_GAMEROOM_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    4;
+    5;
 
   friend void swap(REQ_LEAVE_GAMEROOM& a, REQ_LEAVE_GAMEROOM& b) {
     a.Swap(&b);
@@ -1003,7 +1175,7 @@ class RES_LEAVE_GAMEROOM final :
                &_RES_LEAVE_GAMEROOM_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    5;
+    6;
 
   friend void swap(RES_LEAVE_GAMEROOM& a, RES_LEAVE_GAMEROOM& b) {
     a.Swap(&b);
@@ -1167,7 +1339,7 @@ class REQ_ENTER_ROOM final :
                &_REQ_ENTER_ROOM_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    6;
+    7;
 
   friend void swap(REQ_ENTER_ROOM& a, REQ_ENTER_ROOM& b) {
     a.Swap(&b);
@@ -1320,7 +1492,7 @@ class RES_ENTER_ROOM final :
                &_RES_ENTER_ROOM_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    7;
+    8;
 
   friend void swap(RES_ENTER_ROOM& a, RES_ENTER_ROOM& b) {
     a.Swap(&b);
@@ -1487,7 +1659,7 @@ class REQ_LEAVE final :
                &_REQ_LEAVE_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    8;
+    9;
 
   friend void swap(REQ_LEAVE& a, REQ_LEAVE& b) {
     a.Swap(&b);
@@ -1606,7 +1778,7 @@ class RES_LEAVE final :
                &_RES_LEAVE_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    9;
+    10;
 
   friend void swap(RES_LEAVE& a, RES_LEAVE& b) {
     a.Swap(&b);
@@ -1754,7 +1926,7 @@ class REQ_RESPAWN final :
                &_REQ_RESPAWN_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    10;
+    11;
 
   friend void swap(REQ_RESPAWN& a, REQ_RESPAWN& b) {
     a.Swap(&b);
@@ -1918,7 +2090,7 @@ class RES_SPAWN final :
                &_RES_SPAWN_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    11;
+    12;
 
   friend void swap(RES_SPAWN& a, RES_SPAWN& b) {
     a.Swap(&b);
@@ -2086,7 +2258,7 @@ class RES_SPAWN_ALL final :
                &_RES_SPAWN_ALL_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    12;
+    13;
 
   friend void swap(RES_SPAWN_ALL& a, RES_SPAWN_ALL& b) {
     a.Swap(&b);
@@ -2243,7 +2415,7 @@ class RES_DESPAWN final :
                &_RES_DESPAWN_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    13;
+    14;
 
   friend void swap(RES_DESPAWN& a, RES_DESPAWN& b) {
     a.Swap(&b);
@@ -2405,7 +2577,7 @@ class RES_CHANGE_HP final :
                &_RES_CHANGE_HP_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    14;
+    15;
 
   friend void swap(RES_CHANGE_HP& a, RES_CHANGE_HP& b) {
     a.Swap(&b);
@@ -2564,7 +2736,7 @@ class RES_DIE final :
                &_RES_DIE_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    15;
+    16;
 
   friend void swap(RES_DIE& a, RES_DIE& b) {
     a.Swap(&b);
@@ -2723,7 +2895,7 @@ class REQ_MOVE final :
                &_REQ_MOVE_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    16;
+    17;
 
   friend void swap(REQ_MOVE& a, REQ_MOVE& b) {
     a.Swap(&b);
@@ -2880,7 +3052,7 @@ class RES_MOVE final :
                &_RES_MOVE_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    17;
+    18;
 
   friend void swap(RES_MOVE& a, RES_MOVE& b) {
     a.Swap(&b);
@@ -3037,7 +3209,7 @@ class RES_SPAWN_MONSTER final :
                &_RES_SPAWN_MONSTER_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    18;
+    19;
 
   friend void swap(RES_SPAWN_MONSTER& a, RES_SPAWN_MONSTER& b) {
     a.Swap(&b);
@@ -3194,7 +3366,7 @@ class RES_MOVE_MONSTER final :
                &_RES_MOVE_MONSTER_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    19;
+    20;
 
   friend void swap(RES_MOVE_MONSTER& a, RES_MOVE_MONSTER& b) {
     a.Swap(&b);
@@ -3351,7 +3523,7 @@ class REQ_ATTACK_OBJECT final :
                &_REQ_ATTACK_OBJECT_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    20;
+    21;
 
   friend void swap(REQ_ATTACK_OBJECT& a, REQ_ATTACK_OBJECT& b) {
     a.Swap(&b);
@@ -3521,7 +3693,7 @@ class RES_ATTACK_OBJECT final :
                &_RES_ATTACK_OBJECT_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    21;
+    22;
 
   friend void swap(RES_ATTACK_OBJECT& a, RES_ATTACK_OBJECT& b) {
     a.Swap(&b);
@@ -3975,6 +4147,67 @@ inline void RES_ENTER_GAMEROOM::_internal_set_iscreate(bool value) {
 inline void RES_ENTER_GAMEROOM::set_iscreate(bool value) {
   _internal_set_iscreate(value);
   // @@protoc_insertion_point(field_set:Protocol.RES_ENTER_GAMEROOM.isCreate)
+}
+
+// bool mine = 4;
+inline void RES_ENTER_GAMEROOM::clear_mine() {
+  _impl_.mine_ = false;
+}
+inline bool RES_ENTER_GAMEROOM::_internal_mine() const {
+  return _impl_.mine_;
+}
+inline bool RES_ENTER_GAMEROOM::mine() const {
+  // @@protoc_insertion_point(field_get:Protocol.RES_ENTER_GAMEROOM.mine)
+  return _internal_mine();
+}
+inline void RES_ENTER_GAMEROOM::_internal_set_mine(bool value) {
+  
+  _impl_.mine_ = value;
+}
+inline void RES_ENTER_GAMEROOM::set_mine(bool value) {
+  _internal_set_mine(value);
+  // @@protoc_insertion_point(field_set:Protocol.RES_ENTER_GAMEROOM.mine)
+}
+
+// -------------------------------------------------------------------
+
+// RES_ENTER_GAMEROOM_ALL
+
+// repeated .Protocol.ObjectInfo players = 1;
+inline int RES_ENTER_GAMEROOM_ALL::_internal_players_size() const {
+  return _impl_.players_.size();
+}
+inline int RES_ENTER_GAMEROOM_ALL::players_size() const {
+  return _internal_players_size();
+}
+inline ::Protocol::ObjectInfo* RES_ENTER_GAMEROOM_ALL::mutable_players(int index) {
+  // @@protoc_insertion_point(field_mutable:Protocol.RES_ENTER_GAMEROOM_ALL.players)
+  return _impl_.players_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::Protocol::ObjectInfo >*
+RES_ENTER_GAMEROOM_ALL::mutable_players() {
+  // @@protoc_insertion_point(field_mutable_list:Protocol.RES_ENTER_GAMEROOM_ALL.players)
+  return &_impl_.players_;
+}
+inline const ::Protocol::ObjectInfo& RES_ENTER_GAMEROOM_ALL::_internal_players(int index) const {
+  return _impl_.players_.Get(index);
+}
+inline const ::Protocol::ObjectInfo& RES_ENTER_GAMEROOM_ALL::players(int index) const {
+  // @@protoc_insertion_point(field_get:Protocol.RES_ENTER_GAMEROOM_ALL.players)
+  return _internal_players(index);
+}
+inline ::Protocol::ObjectInfo* RES_ENTER_GAMEROOM_ALL::_internal_add_players() {
+  return _impl_.players_.Add();
+}
+inline ::Protocol::ObjectInfo* RES_ENTER_GAMEROOM_ALL::add_players() {
+  ::Protocol::ObjectInfo* _add = _internal_add_players();
+  // @@protoc_insertion_point(field_add:Protocol.RES_ENTER_GAMEROOM_ALL.players)
+  return _add;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::Protocol::ObjectInfo >&
+RES_ENTER_GAMEROOM_ALL::players() const {
+  // @@protoc_insertion_point(field_list:Protocol.RES_ENTER_GAMEROOM_ALL.players)
+  return _impl_.players_;
 }
 
 // -------------------------------------------------------------------
@@ -5088,6 +5321,8 @@ inline void RES_ATTACK_OBJECT::set_remainhp(uint32_t value) {
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

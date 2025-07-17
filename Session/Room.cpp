@@ -232,6 +232,9 @@ void Room::SpawnMonster()
 void Room::BeginPlay()
 {
 	TimerPushJob(1000, &Room::SpawnMonster); // Spawn Monster
+	TimerPushJob(1000, &Room::SpawnMonster); // Spawn Monster
+	TimerPushJob(2000, &Room::SpawnMonster); // Spawn Monster
+	TimerPushJob(2000, &Room::SpawnMonster); // Spawn Monster
 }
 
 void Room::Tick()
