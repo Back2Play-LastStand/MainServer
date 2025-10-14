@@ -167,14 +167,14 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(SolutionDir)Libraries\include\;$(SolutionDir)MainServer\Object\;$(SolutionDir)MainServer\Session\;$(SolutionDir)MainServer\pch\;$(SolutionDir)ServerCore\cpp\;$(SolutionDir)ServerCore\h\;$(SolutionDir)ServerCore\cppx\h\;$(SolutionDir)MainServer\Manager\;$(SolutionDir)MainServer\Protocol\;$(SolutionDir)MainServer\;C:\Users\User\Downloads\oneapi-tbb-2022.0.0-win\oneapi-tbb-2022.0.0\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Libraries\include\;$(SolutionDir)MainServer\Object\;$(SolutionDir)MainServer\Session\;$(SolutionDir)MainServer\pch\;$(SolutionDir)ServerCore\cpp\;$(SolutionDir)ServerCore\h\;$(SolutionDir)ServerCore\cppx\h\;$(SolutionDir)MainServer\Manager\;$(SolutionDir)MainServer\Protocol\;$(SolutionDir)MainServer\;$(SolutionDir)MainServer\vcpkg_installed\x64-windows\x64-windows\include\</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)Libraries\Libs\ServerCore\Debug\;C:\Users\User\Downloads\oneapi-tbb-2022.0.0-win\oneapi-tbb-2022.0.0\lib\intel64\vc14</AdditionalLibraryDirectories>
-      <AdditionalDependencies>ServerCore.lib;tbb.lib;libprotobufd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)Libraries\Libs\ServerCore\Debug\;$(SolutionDir)MainServer\vcpkg_installed\x64-windows\x64-windows\lib\</AdditionalLibraryDirectories>
+      <AdditionalDependencies>ServerCore.lib;tbb12.lib;libprotobufd.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PreBuildEvent>
       <Command>call "$(SolutionDir)Common\protoc\bin\GenPackets.bat</Command>

@@ -1,0 +1,82 @@
+Package: vcpkg-cmake-config
+Version: 2022-02-06
+Port-Version: 1
+Architecture: x64-windows
+Multi-Arch: same
+Abi: 7b2bd08dde023e7feea8ae9fd0c87555deee98a6041fc31c5aa3366a279ea2a3
+Status: install ok installed
+
+Package: vcpkg-cmake
+Version: 2023-05-04
+Architecture: x64-windows
+Multi-Arch: same
+Abi: f728485d0e8752333847e8df97bcd46b63ea2dcb7515e7031507138d46ab5c5c
+Status: install ok installed
+
+Package: zstd
+Version: 1.5.5
+Port-Version: 2
+Depends: vcpkg-cmake, vcpkg-cmake-config
+Architecture: x64-windows
+Multi-Arch: same
+Abi: 0259934d625ddf8a6a55784c8e3468cc07cc7810548ac1809454c6ff16a6d3b1
+Description: Zstandard - Fast real-time compression algorithm
+Status: install ok installed
+
+Package: zlib
+Version: 1.3.1
+Depends: vcpkg-cmake
+Architecture: x64-windows
+Multi-Arch: same
+Abi: 83c577a939b21fb222720c3cf3237e7df5aa5e2f1499bbd71ddf41bc68035007
+Description: A compression library
+Status: install ok installed
+
+Package: protobuf
+Version: 3.21.12
+Port-Version: 1
+Depends: protobuf, vcpkg-cmake, vcpkg-cmake-config
+Architecture: x64-windows
+Multi-Arch: same
+Abi: c2c7d454809b9c89b662b74f032404d68f698b420610181ef6aab945c6e910bc
+Description: Protocol Buffers - Google's data interchange format
+Status: install ok installed
+
+Package: vcpkg-cmake-get-vars
+Version: 2023-12-31
+Depends: vcpkg-cmake
+Architecture: x64-windows
+Multi-Arch: same
+Abi: 8569cc57a97d52a1309c3497d0a7a52508e2115acc6d402ed4c3fbe049df56f3
+Status: install ok installed
+
+Package: openssl
+Version: 3.2.1
+Port-Version: 1
+Depends: vcpkg-cmake, vcpkg-cmake-config, vcpkg-cmake-get-vars
+Architecture: x64-windows
+Multi-Arch: same
+Abi: 847c91fff15a411f7d40fbc679bc2f1cba0ee1c5844a5c3adb0503b747cad62f
+Description: OpenSSL is an open source project that provides a robust, commercial-grade, and full-featured toolkit for the Transport Layer Security (TLS) and Secure Sockets Layer (SSL) protocols. It is also a general-purpose cryptography library.
+Status: install ok installed
+
+Package: lz4
+Version: 1.9.4
+Port-Version: 1
+Depends: vcpkg-cmake, vcpkg-cmake-config
+Architecture: x64-windows
+Multi-Arch: same
+Abi: 196cb4604b2dbb80ebe3c17d0b04a51e112c694c20cc810e8d019800af28538f
+Description: Lossless compression algorithm, providing compression speed at 400 MB/s per core.
+Status: install ok installed
+
+Package: mysql-connector-cpp
+Version: 8.0.32
+Port-Version: 1
+Depends: lz4, openssl, protobuf, vcpkg-cmake, vcpkg-cmake-config, zlib, zstd
+Architecture: x64-windows
+Multi-Arch: same
+Abi: 1babbf1fc5b5fac6ef9028c21bae5a93156cbde78d61d0ccb2d807de6bb61d1c
+Description: This is a release of MySQL Connector/C++, the C++ interface for communicating with MySQL servers.
+Status: install ok installed
+
