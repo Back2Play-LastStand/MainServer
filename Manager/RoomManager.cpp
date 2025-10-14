@@ -4,14 +4,6 @@
 
 RoomManager::RoomManager()
 {
-	auto names = vector<string>{ "roomname", "room1", "room2" };
-	for (auto& name : names)
-	{
-		auto room = MakeShared<Room>(name);
-		room->BeginPlay();
-		room->Tick();
-		m_rooms.insert({ name ,room });
-	}
 }
 
 void RoomManager::HandleCreateRoom(string roomName)
@@ -28,26 +20,34 @@ void RoomManager::HandleJoinGameRoom(Session* session, Protocol::REQ_ENTER_GAMER
 
 	int count = 1;
 	if (pkt.iscreate())
-		HandleCreateRoom(pkt.name());
-
-	for (auto& it : m_rooms)
 	{
-		if (it.first == pkt.name())
-		{
-			auto& room = it.second;
-			myPlayer->EnterRoom(it.second);
-			for (auto& i : room->GetPlayers())
-			{
-				auto info = enter.add_players();
-				info->set_name(i.second->GetName());
-				count++;
-			}
-		}
+		HandleCreateRoom(pkt.name());
+		enter.set_iscreate(true);
 	}
 
-	enter.set_membercount(count);
-	auto sendBuffer = ServerPacketHandler::MakeSendBuffer(enter);
-	session->SendContext(move(*sendBuffer));
+	auto& room = m_rooms[pkt.name()];
+	myPlayer->EnterRoom(room);
+
+	{
+		for (auto& iter : room->GetPlayers())
+		{
+			auto info = enter.add_players();
+			info->set_objectid(iter.second->GetId());
+			info->set_name(iter.second->GetName());
+		}
+		auto sendBuffer = ServerPacketHandler::MakeSendBuffer(enter);
+		session->SendContext(move(*sendBuffer));
+	}
+
+	{
+		Protocol::RES_ENTER_GAMEROOM_ALL notify;
+		auto info = notify.add_players();
+		info->set_objectid(myPlayer->GetId());
+		info->set_name(myPlayer->GetName());
+
+		auto sendBuffer = ServerPacketHandler::MakeSendBuffer(notify);
+		room->BroadCast(move(*sendBuffer), myPlayer->GetId());
+	}
 }
 
 void RoomManager::HandleLeaveGameRoom(Session* session, Protocol::REQ_LEAVE_GAMEROOM pkt)
@@ -75,7 +75,7 @@ void RoomManager::HandleEnterRoom(Session* session, Protocol::REQ_ENTER_ROOM pkt
 	Protocol::RES_ENTER_ROOM res;
 	res.set_success(room != nullptr && myPlayer->GetRoom().get() == room.get());
 	auto sendBuffer = ServerPacketHandler::MakeSendBuffer(res);
-	session->SendContext(move(*sendBuffer));
+	room->BroadCast(move(*sendBuffer));
 
 	if (res.success())
 	{

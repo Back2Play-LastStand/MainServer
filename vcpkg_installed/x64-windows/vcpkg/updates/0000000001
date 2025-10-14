@@ -1,7 +1,9 @@
-Package: vcpkg-cmake-config
-Version: 2022-02-06
-Port-Version: 1
+Package: hwloc
+Version: 2.10.0
 Architecture: x64-windows
 Multi-Arch: same
-Abi: 7b2bd08dde023e7feea8ae9fd0c87555deee98a6041fc31c5aa3366a279ea2a3
+Maintainer: bgoglin<Brice.Goglin@inria.fr>
+Abi: 76d97264e16f088a6d82b4d37c62c140ab976e8df327751b8b643b0dc74ad8f3
+Description: Portable Hardware Locality (hwloc)
+    The Portable Hardware Locality (hwloc) software package provides a portable abstraction (across OS, versions, architectures, ...) of the hierarchical topology of modern architectures, including NUMA memory nodes, sockets, shared caches, cores and simultaneous multithreading. It also gathers various system attributes such as cache and memory information as well as the locality of I/O devices such as network interfaces, InfiniBand HCAs or GPUs.
 Status: install ok installed

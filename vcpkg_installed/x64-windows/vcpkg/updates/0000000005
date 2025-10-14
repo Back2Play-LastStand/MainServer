@@ -1,9 +1,7 @@
-Package: zstd
-Version: 1.5.5
-Port-Version: 2
-Depends: vcpkg-cmake, vcpkg-cmake-config
+Package: tbb
+Feature: hwloc
+Depends: hwloc
 Architecture: x64-windows
 Multi-Arch: same
-Abi: 0259934d625ddf8a6a55784c8e3468cc07cc7810548ac1809454c6ff16a6d3b1
-Description: Zstandard - Fast real-time compression algorithm
+Description: Builds TBB with TBBBind support for Hybrid CPUs or NUMA architectures.
 Status: install ok installed
