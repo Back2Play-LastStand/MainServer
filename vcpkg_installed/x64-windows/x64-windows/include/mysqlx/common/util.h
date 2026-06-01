@@ -1,22 +1,22 @@
 /*
- * Copyright (c) 2015, 2019, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2015, 2024, Oracle and/or its affiliates.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License, version 2.0, as
  * published by the Free Software Foundation.
  *
- * This program is also distributed with certain software (including
- * but not limited to OpenSSL) that is licensed under separate terms,
- * as designated in a particular file or component or in included license
- * documentation.  The authors of MySQL hereby grant you an
- * additional permission to link the program and your derivative works
- * with the separately licensed software that they have included with
- * MySQL.
+ * This program is designed to work with certain software (including
+ * but not limited to OpenSSL) that is licensed under separate terms, as
+ * designated in a particular file or component or in included license
+ * documentation. The authors of MySQL hereby grant you an additional
+ * permission to link the program and your derivative works with the
+ * separately licensed software that they have either included with
+ * the program or referenced in the documentation.
  *
  * Without limiting anything contained in the foregoing, this file,
- * which is part of MySQL Connector/C++, is also subject to the
+ * which is part of Connector/C++, is also subject to the
  * Universal FOSS Exception, version 1.0, a copy of which can be found at
- * http://oss.oracle.com/licenses/universal-foss-exception.
+ * https://oss.oracle.com/licenses/universal-foss-exception.
  *
  * This program is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -25,7 +25,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software Foundation, Inc.,
- * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
+ * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
 #ifndef MYSQLX_COMMON_UTIL_H
@@ -38,7 +38,16 @@
   Macros used to disable warnings for fragments of code.
 */
 
-#if defined __GNUC__ || defined __clang__
+#if defined _MSC_VER
+
+
+#define PRAGMA(X) __pragma(X)
+#define DISABLE_WARNING(W) PRAGMA(warning (disable:W))
+
+#define DIAGNOSTIC_PUSH  PRAGMA(warning (push))
+#define DIAGNOSTIC_POP   PRAGMA(warning (pop))
+
+#elif defined __GNUC__ || defined __clang__
 
 #define PRAGMA(X) _Pragma(#X)
 #define DISABLE_WARNING(W) PRAGMA(GCC diagnostic ignored #W)
@@ -50,15 +59,6 @@
 #define DIAGNOSTIC_PUSH
 #define DIAGNOSTIC_POP
 #endif
-
-#elif defined _MSC_VER
-
-
-#define PRAGMA(X) __pragma(X)
-#define DISABLE_WARNING(W) PRAGMA(warning (disable:W))
-
-#define DIAGNOSTIC_PUSH  PRAGMA(warning (push))
-#define DIAGNOSTIC_POP   PRAGMA(warning (pop))
 
 #else
 
@@ -172,8 +172,15 @@ POP_SYS_WARNINGS
 #undef DIAGNOSTIC_PUSH
 #undef DIAGNOSTIC_POP
 
+#if defined _MSC_VER
 
-#if defined __GNUC__ || defined __clang__
+#define PRAGMA(X) __pragma(X)
+#define DISABLE_WARNING(W) PRAGMA(warning(disable : W))
+
+#define DIAGNOSTIC_PUSH PRAGMA(warning(push))
+#define DIAGNOSTIC_POP PRAGMA(warning(pop))
+
+#elif defined __GNUC__ || defined __clang__
 
 #define PRAGMA(X) _Pragma(#X)
 #define DISABLE_WARNING(W) PRAGMA(GCC diagnostic ignored #W)
@@ -185,14 +192,6 @@ POP_SYS_WARNINGS
 #define DIAGNOSTIC_PUSH
 #define DIAGNOSTIC_POP
 #endif
-
-#elif defined _MSC_VER
-
-#define PRAGMA(X) __pragma(X)
-#define DISABLE_WARNING(W) PRAGMA(warning (disable:W))
-
-#define DIAGNOSTIC_PUSH  PRAGMA(warning (push))
-#define DIAGNOSTIC_POP   PRAGMA(warning (pop))
 
 #else
 

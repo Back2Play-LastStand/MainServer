@@ -36,6 +36,16 @@ set_target_properties(protobuf::libprotoc PROPERTIES
 list(APPEND _cmake_import_check_targets protobuf::libprotoc )
 list(APPEND _cmake_import_check_files_for_protobuf::libprotoc "${_IMPORT_PREFIX}/debug/lib/libprotocd.lib" "${_IMPORT_PREFIX}/debug/bin/libprotocd.dll" )
 
+# Import target "protobuf::libupb" for configuration "Debug"
+set_property(TARGET protobuf::libupb APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
+set_target_properties(protobuf::libupb PROPERTIES
+  IMPORTED_LINK_INTERFACE_LANGUAGES_DEBUG "C;RC"
+  IMPORTED_LOCATION_DEBUG "${_IMPORT_PREFIX}/debug/lib/libupbd.lib"
+  )
+
+list(APPEND _cmake_import_check_targets protobuf::libupb )
+list(APPEND _cmake_import_check_files_for_protobuf::libupb "${_IMPORT_PREFIX}/debug/lib/libupbd.lib" )
+
 # Import target "protobuf::protoc" for configuration "Debug"
 set_property(TARGET protobuf::protoc APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
 set_target_properties(protobuf::protoc PROPERTIES

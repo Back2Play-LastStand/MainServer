@@ -5,7 +5,7 @@ includedir=${prefix}/include
 
 Name: hwloc
 Description: Hardware locality detection and management library
-Version: 2.10.0rc3-git
+Version: 2.11.2rc2-git
 Requires.private: 
 Cflags: "-I${includedir}"
 Libs: "-L${libdir}" -lhwloc

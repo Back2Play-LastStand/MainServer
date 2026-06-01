@@ -1,22 +1,22 @@
 /*
- * Copyright (c) 2016, 2020, Oracle and/or its affiliates.
+ * Copyright (c) 2016, 2024, Oracle and/or its affiliates.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License, version 2.0, as
  * published by the Free Software Foundation.
  *
- * This program is also distributed with certain software (including
- * but not limited to OpenSSL) that is licensed under separate terms,
- * as designated in a particular file or component or in included license
- * documentation.  The authors of MySQL hereby grant you an
- * additional permission to link the program and your derivative works
- * with the separately licensed software that they have included with
- * MySQL.
+ * This program is designed to work with certain software (including
+ * but not limited to OpenSSL) that is licensed under separate terms, as
+ * designated in a particular file or component or in included license
+ * documentation. The authors of MySQL hereby grant you an additional
+ * permission to link the program and your derivative works with the
+ * separately licensed software that they have either included with
+ * the program or referenced in the documentation.
  *
  * Without limiting anything contained in the foregoing, this file,
- * which is part of MySQL Connector/C++, is also subject to the
+ * which is part of Connector/C++, is also subject to the
  * Universal FOSS Exception, version 1.0, a copy of which can be found at
- * http://oss.oracle.com/licenses/universal-foss-exception.
+ * https://oss.oracle.com/licenses/universal-foss-exception.
  *
  * This program is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -25,13 +25,13 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software Foundation, Inc.,
- * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
+ * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
 /**
   @defgroup xapi X DevAPI for C
 
-  Functions and types defined by X DevAPI for C. See @ref xapi_ref for introduction.
+  Functions and types defined by X DevAPI for C. See @ref xapi_example for introduction.
 
   @{
   @defgroup xapi_sess     Session operations
@@ -429,6 +429,8 @@ mysqlx_opt_type_t;
 #define OPT_TLS_CIPHERSUITES(A) MYSQLX_OPT_TLS_CIPHERSUITES, (A)
 #define OPT_COMPRESSION(A) MYSQLX_OPT_COMPRESSION, (unsigned int)(A)
 #define OPT_COMPRESSION_ALGORITHMS(A) MYSQLX_OPT_COMPRESSION_ALGORITHMS, (const char*)(A)
+#define OPT_READ_TIMEOUT(A) MYSQLX_OPT_READ_TIMEOUT, (unsigned int)(A)
+#define OPT_WRITE_TIMEOUT(A) MYSQLX_OPT_WRITE_TIMEOUT, (unsigned int)(A)
 
 
 /**
@@ -514,6 +516,10 @@ mysqlx_collection_validation_level_t;
 #define OPT_COLLECTION_VALIDATION_LEVEL(X) MYSQLX_OPT_COLLECTION_VALIDATION_LEVEL, (unsigned int)X
 #define OPT_COLLECTION_VALIDATION_SCHEMA(X) MYSQLX_OPT_COLLECTION_VALIDATION_SCHEMA, (const char*)X
 
+/**
+  Compression modes.
+  TODO: see...
+*/
 typedef enum mysqlx_compression_mode_enum
 {
 #define XAPI_COMPRESSION_ENUM(X,N)  MYSQLX_COMPRESSION_##X = N,
@@ -815,6 +821,8 @@ mysqlx_get_session(const char *host, int port, const char *user,
   - `tls-ciphersuites=[...]` : see `#MYSQLX_OPT_TLS_CIPHERSUITES`
   - `compression=...` : see `#MYSQLX_OPT_COMPRESSION`
   - `compression-algorithms=[...]` : see `#MYSQLX_OPT_COMPRESSION_ALGORITHMS`
+  - `read-timeout=...`: see `#MYSQLX_OPT_READ_TIMEOUT`
+  - `write-timeout=...`: see `#MYSQLX_OPT_WRITE_TIMEOUT`
 
 
   @note The session returned by the function must be properly closed using

@@ -36,6 +36,16 @@ set_target_properties(protobuf::libprotoc PROPERTIES
 list(APPEND _cmake_import_check_targets protobuf::libprotoc )
 list(APPEND _cmake_import_check_files_for_protobuf::libprotoc "${_IMPORT_PREFIX}/lib/libprotoc.lib" "${_IMPORT_PREFIX}/bin/libprotoc.dll" )
 
+# Import target "protobuf::libupb" for configuration "Release"
+set_property(TARGET protobuf::libupb APPEND PROPERTY IMPORTED_CONFIGURATIONS RELEASE)
+set_target_properties(protobuf::libupb PROPERTIES
+  IMPORTED_LINK_INTERFACE_LANGUAGES_RELEASE "C;RC"
+  IMPORTED_LOCATION_RELEASE "${_IMPORT_PREFIX}/lib/libupb.lib"
+  )
+
+list(APPEND _cmake_import_check_targets protobuf::libupb )
+list(APPEND _cmake_import_check_files_for_protobuf::libupb "${_IMPORT_PREFIX}/lib/libupb.lib" )
+
 # Import target "protobuf::protoc" for configuration "Release"
 set_property(TARGET protobuf::protoc APPEND PROPERTY IMPORTED_CONFIGURATIONS RELEASE)
 set_target_properties(protobuf::protoc PROPERTIES
