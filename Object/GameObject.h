@@ -1,5 +1,6 @@
 #pragma once
 #include "Enum.pb.h"
+#include "Struct.pb.h";
 
 class Room;
 
@@ -15,12 +16,19 @@ public:
 	unsigned int GetHp() const { return m_hp; }
 	unsigned int GetPower() const { return m_power; }
 	virtual shared_ptr<Room> GetRoom() const;
+	int GetX() const { return m_info.posinfo().posx(); }
+	int GetY() const { return m_info.posinfo().posy(); }
 
 	void SetId(unsigned long long id) { m_objectId = id; }
 	void SetType(Protocol::ObjectType type) { m_objectType = type; }
 	void SetHp(unsigned int hp) { m_hp = hp; }
 	void SetPower(unsigned int power) { m_power = power; }
 	void SetRoom(shared_ptr<Room> room) { m_room = room; }
+	void SetPos(int x, int y) 
+	{
+		m_info.mutable_posinfo()->set_posx(x);
+		m_info.mutable_posinfo()->set_posy(y);
+	}
 
 	virtual void BeginPlay() {};
 	virtual void Tick();
@@ -39,6 +47,7 @@ protected:
 private:
 	unsigned long long m_objectId;
 	Protocol::ObjectType m_objectType;
+	Protocol::ObjectInfo m_info;
 	unsigned int m_hp = 0;
 	unsigned int m_power = 0;
 	unsigned long long m_delta = 0;

@@ -7,7 +7,7 @@ shared_ptr<Room> GRoom = make_shared<Room>();
 
 Room::Room(string name) : m_name(name)
 {
-	GMapData->LoadMapFromTxt("C:/Users/User/Documents/GitHub/GameServer/Binaries/x64/MeshMap.txt");
+	GMapData->LoadMapFromTxt("C:/Users/minhy/Documents/GitHub/GameServer/Binaries/x64/MeshMap.txt");
 }
 
 Room::~Room()
@@ -143,12 +143,17 @@ void Room::HandleRespawnPlayer(Session* session, Protocol::REQ_RESPAWN pkt)
 	if (!player)
 		return;
 
+	random_device rd;
+	mt19937 gen(rd());
+	const auto& positions = GMapData->GetAllWalkablePositions();
+	uniform_int_distribution<size_t> dis(0, positions.size() - 1);
+	auto [x, z] = positions[dis(gen)];
 	{
 		EnterObject(player);
 
 		player->SetHp(100);
-		player->GetObjectInfo().mutable_posinfo()->set_posx(0);
-		player->GetObjectInfo().mutable_posinfo()->set_posy(0);
+		player->GetObjectInfo().mutable_posinfo()->set_posx(x);
+		player->GetObjectInfo().mutable_posinfo()->set_posy(z);
 
 
 		Protocol::RES_SPAWN spawn;
@@ -156,8 +161,8 @@ void Room::HandleRespawnPlayer(Session* session, Protocol::REQ_RESPAWN pkt)
 		info->set_objectid(player->GetId());
 		info->set_name(player->GetName());
 		info->set_health(player->GetHp());
-		info->mutable_posinfo()->set_posx(0);
-		info->mutable_posinfo()->set_posy(0);
+		info->mutable_posinfo()->set_posx(x);
+		info->mutable_posinfo()->set_posy(z);
 		spawn.set_allocated_player(info);
 		spawn.set_mine(true);
 
@@ -171,8 +176,8 @@ void Room::HandleRespawnPlayer(Session* session, Protocol::REQ_RESPAWN pkt)
 		info->set_objectid(player->GetId());
 		info->set_name(player->GetName());
 		info->set_health(player->GetHp());
-		info->mutable_posinfo()->set_posx(0);
-		info->mutable_posinfo()->set_posy(0);
+		info->mutable_posinfo()->set_posx(x);
+		info->mutable_posinfo()->set_posy(z);
 		spawn.set_mine(false);
 
 		auto sendBuffer = ServerPacketHandler::MakeSendBuffer(spawn);

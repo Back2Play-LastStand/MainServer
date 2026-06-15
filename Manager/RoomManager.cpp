@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "RoomManager.h"
 #include <random>
+#include "Storage/MapData.h"
 
 RoomManager::RoomManager()
 {
@@ -85,12 +86,15 @@ void RoomManager::HandleEnterRoom(Session* session, Protocol::REQ_ENTER_ROOM pkt
 			info->set_objectid(myPlayer->GetId());
 			info->set_name(myPlayer->GetName());
 			info->set_health(myPlayer->GetHp());
-			// Temp
+			auto positions = GMapData->GetAllWalkablePositions();
+			GMapData->GetAllWalkablePositions();
 			random_device rd;
 			mt19937 gen(rd());
-			uniform_int_distribution<int> dis(-2, 2);
-			info->mutable_posinfo()->set_posx(dis(gen));
-			info->mutable_posinfo()->set_posy(dis(gen));
+			uniform_int_distribution<size_t> dis(0, positions.size() - 1);
+			auto [x, z] = positions[dis(gen)];
+			cout << "Spawn : " << x << ", " << z << endl;
+			info->mutable_posinfo()->set_posx(x);
+			info->mutable_posinfo()->set_posy(z);
 			spawn.set_allocated_player(info);
 			spawn.set_mine(true);
 
