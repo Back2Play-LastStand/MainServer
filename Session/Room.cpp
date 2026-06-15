@@ -99,6 +99,10 @@ void Room::HandleMove(Session* session, Protocol::REQ_MOVE pkt)
 	if (!player)
 		return;
 
+	// Ignore already dead player
+	if (player->GetHp() <= 0)
+		return;
+	
 	player->GetObjectInfo().mutable_posinfo()->CopyFrom(pkt.info());
 	{
 		Protocol::RES_MOVE move;
@@ -119,6 +123,14 @@ void Room::HandleAttack(Session* session, Protocol::REQ_ATTACK_OBJECT pkt)
 {
 	auto attacker = GManager->Object()->FindById(pkt.attacker());
 	auto object = GManager->Object()->FindById(pkt.objectid());
+	
+	// Ignore attack from dead player
+	if (attacker->GetHp() <= 0)
+		return;
+	// Ignore already dead target
+	if (object->GetHp() <= 0)
+		return;
+
 	if (object)
 	{
 		Protocol::RES_ATTACK_OBJECT attack;
@@ -209,8 +221,8 @@ void Room::SpawnMonster()
 
 		auto monster = GManager->Object()->CreateObject<Monster>();
 		Protocol::PositionInfo* pos = new Protocol::PositionInfo();
-		pos->set_posx(worldX);
-		pos->set_posy(worldZ);
+		pos->set_posx(mapX);
+		pos->set_posy(mapZ);
 		monster->GetObjectInfo().set_allocated_posinfo(pos);
 
 		monster->BeginPlay();
