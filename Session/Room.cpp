@@ -246,12 +246,45 @@ void Room::SpawnMonster()
 	BroadCast(move(*sendBuffer));
 }
 
+shared_ptr<Player> Room::FindClosestPlayer(int x, int y)
+{
+	shared_ptr<Player> result = nullptr;
+	int bestDist = INT_MAX;
+
+	for (auto& [id, player] : m_players)
+	{
+		if (!player) continue;
+
+		// dead player ignore
+		if (player->GetHp() <= 0)
+			continue;
+
+		int dist = abs(player->GetX() - x) + abs(player->GetY() - y);
+
+		if (dist < bestDist)
+		{
+			bestDist = dist;
+			result = player;
+		}
+	}
+
+	return result;
+}
+
+vector<pair<int, int>> Room::FindPath(int sx, int sz, int ex, int ez)
+{
+	if (sx == ex && sz == ez)
+		return {};
+
+	return _pathFinder.FindPath(sx, sz, ex, ez);
+}
+
 void Room::BeginPlay()
 {
 	TimerPushJob(1000, &Room::SpawnMonster); // Spawn Monster
-	TimerPushJob(1000, &Room::SpawnMonster); // Spawn Monster
-	TimerPushJob(2000, &Room::SpawnMonster); // Spawn Monster
-	TimerPushJob(2000, &Room::SpawnMonster); // Spawn Monster
+	//TimerPushJob(1000, &Room::SpawnMonster); // Spawn Monster
+	//TimerPushJob(2000, &Room::SpawnMonster); // Spawn Monster
+	//TimerPushJob(2000, &Room::SpawnMonster); // Spawn Monster
 }
 
 void Room::Tick()
