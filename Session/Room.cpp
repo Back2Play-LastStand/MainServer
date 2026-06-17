@@ -113,6 +113,9 @@ void Room::HandleMove(Session* session, Protocol::REQ_MOVE pkt)
 		auto sendBuffer = ServerPacketHandler::MakeSendBuffer(move);
 		for (auto& [id, p] : m_players)
 		{
+			if (id == player->GetId())
+				continue;
+
 			if (auto s = p->GetSession())
 				s->SendContext(*sendBuffer);
 		}
