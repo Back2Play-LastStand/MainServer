@@ -18,6 +18,7 @@ public:
 	virtual shared_ptr<Room> GetRoom() const;
 	int GetX() const { return m_info.posinfo().posx(); }
 	int GetY() const { return m_info.posinfo().posy(); }
+	Protocol::ObjectInfo& GetObjectInfo() { return m_info; }
 
 	void SetId(unsigned long long id) { m_objectId = id; }
 	void SetType(Protocol::ObjectType type) { m_objectType = type; }
@@ -29,6 +30,7 @@ public:
 		m_info.mutable_posinfo()->set_posx(x);
 		m_info.mutable_posinfo()->set_posy(y);
 	}
+	void SetObjectInfo(Protocol::ObjectInfo info) { m_info = info; }
 
 	virtual void BeginPlay() {};
 	virtual void Tick();

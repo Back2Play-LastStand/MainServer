@@ -13,16 +13,6 @@ Monster::~Monster()
 {
 }
 
-void Monster::SetObjectInfo(Protocol::ObjectInfo info)
-{
-	m_info = info;
-}
-
-Protocol::ObjectInfo& Monster::GetObjectInfo()
-{
-	return m_info;
-}
-
 void Monster::BeginPlay()
 {
 	Super::BeginPlay();

@@ -17,9 +17,6 @@ public:
 	Monster(unsigned long long id, unsigned int power = 10);
 	virtual ~Monster();
 
-	void SetObjectInfo(Protocol::ObjectInfo info);
-	Protocol::ObjectInfo& GetObjectInfo();
-
 	virtual void BeginPlay() override;
 	virtual void Tick() override;
 	virtual void TakeDamage(shared_ptr<GameObject> attacker, int amount) override;
