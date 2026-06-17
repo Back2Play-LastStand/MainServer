@@ -51,6 +51,7 @@ private:
 	MonsterState m_state = MonsterState::Idle;
 	uint64_t m_lastAttackTime = 0;
 	uint64_t m_lastPathTime = 0;
+	uint64_t m_lastMoveTime = 0;
 	deque<pair<int, int>> m_path;
 };
 

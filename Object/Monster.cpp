@@ -206,8 +206,14 @@ void Monster::MoveAlongPath()
 	if (m_path.empty())
 		return;
 
-	auto [x, y] = m_path.front();
+	uint64_t now = GetTickCount64();
+	if (now - m_lastMoveTime < 300)
+		return;
 
+	m_lastMoveTime = now;
+
+	auto [x, y] = m_path.front();
+	cout << "move to: " << x << "," << y << endl;
 	SetPos(x, y);
 	Protocol::RES_MOVE_MONSTER move;
 	auto info = move.mutable_monster();
