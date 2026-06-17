@@ -82,12 +82,14 @@ void RoomManager::HandleEnterRoom(Session* session, Protocol::REQ_ENTER_ROOM pkt
 	{
 		{
 			Protocol::RES_SPAWN spawn;
-			Protocol::ObjectInfo* info = new Protocol::ObjectInfo();
+			auto info = spawn.mutable_player();
 			info->set_objectid(myPlayer->GetId());
 			info->set_name(myPlayer->GetName());
 			info->set_health(myPlayer->GetHp());
 			auto positions = GMapData->GetAllWalkablePositions();
-			GMapData->GetAllWalkablePositions();
+			if (positions.empty())
+				return;
+
 			random_device rd;
 			mt19937 gen(rd());
 			uniform_int_distribution<size_t> dis(0, positions.size() - 1);
@@ -95,7 +97,8 @@ void RoomManager::HandleEnterRoom(Session* session, Protocol::REQ_ENTER_ROOM pkt
 			cout << "Spawn : " << x << ", " << z << endl;
 			info->mutable_posinfo()->set_posx(x);
 			info->mutable_posinfo()->set_posy(z);
-			spawn.set_allocated_player(info);
+			myPlayer->SetHp(100);
+			myPlayer->SetPos(x, z);
 			spawn.set_mine(true);
 
 			auto sendBuffer = ServerPacketHandler::MakeSendBuffer(spawn);
