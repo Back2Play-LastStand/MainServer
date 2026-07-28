@@ -1,82 +1,135 @@
 Package: vcpkg-cmake-config
-Version: 2022-02-06
-Port-Version: 1
+Version: 2024-05-23
 Architecture: x64-windows
 Multi-Arch: same
-Abi: 7b2bd08dde023e7feea8ae9fd0c87555deee98a6041fc31c5aa3366a279ea2a3
+Abi: 2c147edd0844c54835887b8dbdd933a13368d33c8f653fe57a8fc8212d64a114
 Status: install ok installed
 
 Package: vcpkg-cmake
-Version: 2023-05-04
+Version: 2024-04-23
 Architecture: x64-windows
 Multi-Arch: same
-Abi: f728485d0e8752333847e8df97bcd46b63ea2dcb7515e7031507138d46ab5c5c
+Abi: 12ae32ea3102a1cd01e52f183030e64ddd882c037e0cca32d84002ad40a6ae4c
 Status: install ok installed
 
 Package: zstd
-Version: 1.5.5
-Port-Version: 2
+Version: 1.5.7
 Depends: vcpkg-cmake, vcpkg-cmake-config
 Architecture: x64-windows
 Multi-Arch: same
-Abi: 0259934d625ddf8a6a55784c8e3468cc07cc7810548ac1809454c6ff16a6d3b1
+Abi: 99b5d74f786eccc08196373c233342451e2aaf165e189dbb9966c61bbf88f2cb
 Description: Zstandard - Fast real-time compression algorithm
 Status: install ok installed
 
 Package: zlib
-Version: 1.3.1
-Depends: vcpkg-cmake
+Version: 1.3.2
+Depends: vcpkg-cmake, vcpkg-cmake-config
 Architecture: x64-windows
 Multi-Arch: same
-Abi: 83c577a939b21fb222720c3cf3237e7df5aa5e2f1499bbd71ddf41bc68035007
+Abi: 991b2b6eec9698c70af02cfeff7b9059e3f29069ae69d0328099c046a5faae1b
 Description: A compression library
 Status: install ok installed
 
 Package: protobuf
-Version: 3.21.12
-Port-Version: 1
-Depends: protobuf, vcpkg-cmake, vcpkg-cmake-config
+Version: 6.33.4
+Port-Version: 2
+Depends: abseil, utf8-range, vcpkg-cmake, vcpkg-cmake-config
 Architecture: x64-windows
 Multi-Arch: same
-Abi: c2c7d454809b9c89b662b74f032404d68f698b420610181ef6aab945c6e910bc
-Description: Protocol Buffers - Google's data interchange format
+Abi: 1b2bcda89dfc7c5012568f1b41afb4db2bdf6baebc7edcfca7ae0ceb741929e3
+Description: Google's language-neutral, platform-neutral, extensible mechanism for serializing structured data.
 Status: install ok installed
 
 Package: vcpkg-cmake-get-vars
-Version: 2023-12-31
+Version: 2025-05-29
 Depends: vcpkg-cmake
 Architecture: x64-windows
 Multi-Arch: same
-Abi: 8569cc57a97d52a1309c3497d0a7a52508e2115acc6d402ed4c3fbe049df56f3
+Abi: ac5e4195d9ad10a1633ad3fcf733e9419376e46b780eb0f29c644675d7e991d1
 Status: install ok installed
 
 Package: openssl
-Version: 3.2.1
-Port-Version: 1
+Version: 3.6.2
 Depends: vcpkg-cmake, vcpkg-cmake-config, vcpkg-cmake-get-vars
 Architecture: x64-windows
 Multi-Arch: same
-Abi: 847c91fff15a411f7d40fbc679bc2f1cba0ee1c5844a5c3adb0503b747cad62f
+Abi: ca0c2706c3be8a086d8b6bec36ddcbd6cd358157953f342fe53cdb03dc3afb98
 Description: OpenSSL is an open source project that provides a robust, commercial-grade, and full-featured toolkit for the Transport Layer Security (TLS) and Secure Sockets Layer (SSL) protocols. It is also a general-purpose cryptography library.
 Status: install ok installed
 
 Package: lz4
-Version: 1.9.4
-Port-Version: 1
+Version: 1.10.0
 Depends: vcpkg-cmake, vcpkg-cmake-config
 Architecture: x64-windows
 Multi-Arch: same
-Abi: 196cb4604b2dbb80ebe3c17d0b04a51e112c694c20cc810e8d019800af28538f
+Abi: 78bebf2c324201f2bd8faf04a02f8f0419e3a586b9c605a1ef2fcecad16c7e1e
 Description: Lossless compression algorithm, providing compression speed at 400 MB/s per core.
 Status: install ok installed
 
 Package: mysql-connector-cpp
-Version: 8.0.32
-Port-Version: 1
-Depends: lz4, openssl, protobuf, vcpkg-cmake, vcpkg-cmake-config, zlib, zstd
+Version: 9.7.0
+Depends: lz4, openssl, protobuf, rapidjson, vcpkg-cmake, vcpkg-cmake-config, zlib, zstd
 Architecture: x64-windows
 Multi-Arch: same
-Abi: 1babbf1fc5b5fac6ef9028c21bae5a93156cbde78d61d0ccb2d807de6bb61d1c
+Abi: 0487b89cbfc464d9e88fd2dfcc5d6f1759536100b5ea03479d65d21113333071
 Description: This is a release of MySQL Connector/C++, the C++ interface for communicating with MySQL servers.
+Status: install ok installed
+
+Package: hwloc
+Version: 2.11.2
+Architecture: x64-windows
+Multi-Arch: same
+Maintainer: bgoglin<Brice.Goglin@inria.fr>
+Abi: 49ca5aeff7d35d3c111b942356520b820af3d5771759b9185cf966c891f8225f
+Description: Portable Hardware Locality (hwloc)
+    The Portable Hardware Locality (hwloc) software package provides a portable abstraction (across OS, versions, architectures, ...) of the hierarchical topology of modern architectures, including NUMA memory nodes, sockets, shared caches, cores and simultaneous multithreading. It also gathers various system attributes such as cache and memory information as well as the locality of I/O devices such as network interfaces, InfiniBand HCAs or GPUs.
+Status: install ok installed
+
+Package: tbb
+Version: 2022.3.0
+Depends: vcpkg-cmake, vcpkg-cmake-config
+Architecture: x64-windows
+Multi-Arch: same
+Abi: bed57f732478c0fa9f9485880291c504207c42b29a85e7d5250fc5d8d955631b
+Description: Intel's Threading Building Blocks.
+Default-Features: hwloc
+Status: install ok installed
+
+Package: tbb
+Feature: hwloc
+Depends: hwloc
+Architecture: x64-windows
+Multi-Arch: same
+Description: Builds TBB with TBBBind support for Hybrid CPUs or NUMA architectures.
+Status: install ok installed
+
+Package: rapidjson
+Version: 2025-02-26
+Depends: vcpkg-cmake, vcpkg-cmake-config
+Architecture: x64-windows
+Multi-Arch: same
+Abi: 2f4fac1b504db81e88e6c8dd9f60f147ec38d77bbb30cc82dfb4c118fe896e00
+Description: A fast JSON parser/generator for C++ with both SAX/DOM style API <http://rapidjson.org/>
+Status: install ok installed
+
+Package: abseil
+Version: 20260107.1
+Port-Version: 3
+Depends: vcpkg-cmake, vcpkg-cmake-config
+Architecture: x64-windows
+Multi-Arch: same
+Abi: df516204d3b015df59f4e7ad9e1c103970f9df3e364e78703177bd81543b9f2f
+Description: Abseil is an open-source collection of C++ library code designed to augment the C++ standard library. The Abseil library code is collected from Google's own C++ code base, has been extensively tested and used in production, and is the same code we depend on in our daily coding lives.
+    In some cases, Abseil provides pieces missing from the C++ standard; in others, Abseil provides alternatives to the standard for special needs we've found through usage in the Google code base. We denote those cases clearly within the library code we provide you.
+    Abseil is not meant to be a competitor to the standard library; we've just found that many of these utilities serve a purpose within our code base, and we now want to provide those resources to the C++ community as a whole.
+Status: install ok installed
+
+Package: utf8-range
+Version: 6.33.4
+Depends: abseil, vcpkg-cmake, vcpkg-cmake-config
+Architecture: x64-windows
+Multi-Arch: same
+Abi: d9beecfaad3593b9634037754f0cb85c8d64d5d2588ef6f000d0907f252362f4
+Description: Fast UTF-8 validation with Range algorithm (NEON+SSE4+AVX2)
 Status: install ok installed
 

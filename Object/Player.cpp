@@ -31,16 +31,6 @@ void Player::SetName(string name)
 	m_playerName = name;
 }
 
-void Player::SetObjectInfo(Protocol::ObjectInfo info)
-{
-	m_info = info;
-}
-
-Protocol::ObjectInfo& Player::GetObjectInfo()
-{
-	return m_info;
-}
-
 void Player::BeginPlay()
 {
 	Super::BeginPlay();

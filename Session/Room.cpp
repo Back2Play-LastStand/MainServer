@@ -7,7 +7,7 @@ shared_ptr<Room> GRoom = make_shared<Room>();
 
 Room::Room(string name) : m_name(name)
 {
-	GMapData->LoadMapFromTxt("C:/Users/User/Documents/GitHub/GameServer/Binaries/x64/MeshMap.txt");
+	GMapData->LoadMapFromTxt("C:/Users/minhy/Documents/GitHub/GameServer/Binaries/x64/MeshMap.txt");
 }
 
 Room::~Room()
@@ -99,6 +99,10 @@ void Room::HandleMove(Session* session, Protocol::REQ_MOVE pkt)
 	if (!player)
 		return;
 
+	// Ignore already dead player
+	if (player->GetHp() <= 0)
+		return;
+	
 	player->GetObjectInfo().mutable_posinfo()->CopyFrom(pkt.info());
 	{
 		Protocol::RES_MOVE move;
@@ -109,6 +113,9 @@ void Room::HandleMove(Session* session, Protocol::REQ_MOVE pkt)
 		auto sendBuffer = ServerPacketHandler::MakeSendBuffer(move);
 		for (auto& [id, p] : m_players)
 		{
+			if (id == player->GetId())
+				continue;
+
 			if (auto s = p->GetSession())
 				s->SendContext(*sendBuffer);
 		}
@@ -119,6 +126,14 @@ void Room::HandleAttack(Session* session, Protocol::REQ_ATTACK_OBJECT pkt)
 {
 	auto attacker = GManager->Object()->FindById(pkt.attacker());
 	auto object = GManager->Object()->FindById(pkt.objectid());
+	
+	// Ignore attack from dead player
+	if (attacker->GetHp() <= 0)
+		return;
+	// Ignore already dead target
+	if (object->GetHp() <= 0)
+		return;
+
 	if (object)
 	{
 		Protocol::RES_ATTACK_OBJECT attack;
@@ -143,12 +158,17 @@ void Room::HandleRespawnPlayer(Session* session, Protocol::REQ_RESPAWN pkt)
 	if (!player)
 		return;
 
+	random_device rd;
+	mt19937 gen(rd());
+	const auto& positions = GMapData->GetAllWalkablePositions();
+	uniform_int_distribution<size_t> dis(0, positions.size() - 1);
+	auto [x, z] = positions[dis(gen)];
 	{
 		EnterObject(player);
 
 		player->SetHp(100);
-		player->GetObjectInfo().mutable_posinfo()->set_posx(0);
-		player->GetObjectInfo().mutable_posinfo()->set_posy(0);
+		player->GetObjectInfo().mutable_posinfo()->set_posx(x);
+		player->GetObjectInfo().mutable_posinfo()->set_posy(z);
 
 
 		Protocol::RES_SPAWN spawn;
@@ -156,8 +176,8 @@ void Room::HandleRespawnPlayer(Session* session, Protocol::REQ_RESPAWN pkt)
 		info->set_objectid(player->GetId());
 		info->set_name(player->GetName());
 		info->set_health(player->GetHp());
-		info->mutable_posinfo()->set_posx(0);
-		info->mutable_posinfo()->set_posy(0);
+		info->mutable_posinfo()->set_posx(x);
+		info->mutable_posinfo()->set_posy(z);
 		spawn.set_allocated_player(info);
 		spawn.set_mine(true);
 
@@ -171,8 +191,8 @@ void Room::HandleRespawnPlayer(Session* session, Protocol::REQ_RESPAWN pkt)
 		info->set_objectid(player->GetId());
 		info->set_name(player->GetName());
 		info->set_health(player->GetHp());
-		info->mutable_posinfo()->set_posx(0);
-		info->mutable_posinfo()->set_posy(0);
+		info->mutable_posinfo()->set_posx(x);
+		info->mutable_posinfo()->set_posy(z);
 		spawn.set_mine(false);
 
 		auto sendBuffer = ServerPacketHandler::MakeSendBuffer(spawn);
@@ -204,8 +224,8 @@ void Room::SpawnMonster()
 
 		auto monster = GManager->Object()->CreateObject<Monster>();
 		Protocol::PositionInfo* pos = new Protocol::PositionInfo();
-		pos->set_posx(worldX);
-		pos->set_posy(worldZ);
+		pos->set_posx(mapX);
+		pos->set_posy(mapZ);
 		monster->GetObjectInfo().set_allocated_posinfo(pos);
 
 		monster->BeginPlay();
@@ -229,12 +249,45 @@ void Room::SpawnMonster()
 	BroadCast(move(*sendBuffer));
 }
 
+shared_ptr<Player> Room::FindClosestPlayer(int x, int y)
+{
+	shared_ptr<Player> result = nullptr;
+	int bestDist = INT_MAX;
+
+	for (auto& [id, player] : m_players)
+	{
+		if (!player) continue;
+
+		// dead player ignore
+		if (player->GetHp() <= 0)
+			continue;
+
+		int dist = abs(player->GetX() - x) + abs(player->GetY() - y);
+
+		if (dist < bestDist)
+		{
+			bestDist = dist;
+			result = player;
+		}
+	}
+
+	return result;
+}
+
+vector<pair<int, int>> Room::FindPath(int sx, int sz, int ex, int ez)
+{
+	if (sx == ex && sz == ez)
+		return {};
+
+	return _pathFinder.FindPath(sx, sz, ex, ez);
+}
+
 void Room::BeginPlay()
 {
 	TimerPushJob(1000, &Room::SpawnMonster); // Spawn Monster
-	TimerPushJob(1000, &Room::SpawnMonster); // Spawn Monster
-	TimerPushJob(2000, &Room::SpawnMonster); // Spawn Monster
-	TimerPushJob(2000, &Room::SpawnMonster); // Spawn Monster
+	//TimerPushJob(1000, &Room::SpawnMonster); // Spawn Monster
+	//TimerPushJob(2000, &Room::SpawnMonster); // Spawn Monster
+	//TimerPushJob(2000, &Room::SpawnMonster); // Spawn Monster
 }
 
 void Room::Tick()

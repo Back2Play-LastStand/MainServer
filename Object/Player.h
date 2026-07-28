@@ -15,8 +15,6 @@ public:
 	GameSession* GetSession() const;
 	string GetName() const;
 	void SetName(string name);
-	void SetObjectInfo(Protocol::ObjectInfo info);
-	Protocol::ObjectInfo& GetObjectInfo();
 
 	virtual void BeginPlay() override;
 	virtual void Tick() override;

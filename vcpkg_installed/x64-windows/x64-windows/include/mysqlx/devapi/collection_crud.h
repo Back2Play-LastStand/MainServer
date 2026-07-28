@@ -1,22 +1,22 @@
 /*
- * Copyright (c) 2015, 2019, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2015, 2024, Oracle and/or its affiliates.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License, version 2.0, as
  * published by the Free Software Foundation.
  *
- * This program is also distributed with certain software (including
- * but not limited to OpenSSL) that is licensed under separate terms,
- * as designated in a particular file or component or in included license
- * documentation.  The authors of MySQL hereby grant you an
- * additional permission to link the program and your derivative works
- * with the separately licensed software that they have included with
- * MySQL.
+ * This program is designed to work with certain software (including
+ * but not limited to OpenSSL) that is licensed under separate terms, as
+ * designated in a particular file or component or in included license
+ * documentation. The authors of MySQL hereby grant you an additional
+ * permission to link the program and your derivative works with the
+ * separately licensed software that they have either included with
+ * the program or referenced in the documentation.
  *
  * Without limiting anything contained in the foregoing, this file,
- * which is part of MySQL Connector/C++, is also subject to the
+ * which is part of Connector/C++, is also subject to the
  * Universal FOSS Exception, version 1.0, a copy of which can be found at
- * http://oss.oracle.com/licenses/universal-foss-exception.
+ * https://oss.oracle.com/licenses/universal-foss-exception.
  *
  * This program is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -25,9 +25,8 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software Foundation, Inc.,
- * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
+ * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
  */
-
 #ifndef MYSQLX_COLLECTION_CRUD_H
 #define MYSQLX_COLLECTION_CRUD_H
 
@@ -82,6 +81,8 @@ class Session;
 class Collection;
 class Table;
 
+template<>
+PUBLIC_API common::Value Value::get<common::Value>() const;
 
 // ----------------------------------------------------------------------
 
@@ -435,19 +436,19 @@ struct Collection_modify_base
 /**
   An operation which modifies all or selected documents in a collection.
 
-  Note that in operations such as `set()`, `unset()`, `arrayInsert()` and 
-  `arrayAppend()` the field argument is specified as a document path. It can be 
+  Note that in operations such as `set()`, `unset()`, `arrayInsert()` and
+  `arrayAppend()` the field argument is specified as a document path. It can be
   a simple field name, but it can be a more complex expression like
-  `$.foo.bar[3]`. One consequence of this is that document field names that 
-  contain spaces or other special characters need to be quoted, for example one 
+  `$.foo.bar[3]`. One consequence of this is that document field names that
+  contain spaces or other special characters need to be quoted, for example one
   needs to use this form
   ```
     .unset("\"field name with spaces\"")
   ```
-  as `.unset("field name with spaces")` would be an invalid document path 
+  as `.unset("field name with spaces")` would be an invalid document path
   expression.
-  
-  Note also that wildcard paths that use `*` or `**` are not valid for these 
+
+  Note also that wildcard paths that use `*` or `**` are not valid for these
   operations that modify documents.
 
   See [MySQL Reference Manual](https://dev.mysql.com/doc/refman/en/json.html#json-path-syntax)
@@ -494,16 +495,15 @@ public:
     Set the given field in a document to the given value.
 
     The field is given by a document path. The value can be either a direct
-    literal or an expression given as `expr(<string>)`, to be evaluated on
-    the server.
+    literal, `DbDoc` instance or an expression given as `expr(<string>)`, to be
+    evaluated on the server.
   */
 
   CollectionModify& set(const Field &field, const Value &val)
   {
     try {
-      get_impl()->add_operation(
-        Impl::SET, field, (const common::Value&)val
-      );
+      get_impl()->add_operation(Impl::SET, field,
+                                val.get<common::Value>());
       return *this;
     }
     CATCH_AND_WRAP
@@ -534,11 +534,8 @@ public:
   CollectionModify& arrayInsert(const Field &field, const Value &val)
   {
     try {
-      get_impl()->add_operation(
-        Impl::ARRAY_INSERT,
-        field,
-        (const common::Value&)val
-      );
+      get_impl()->add_operation(Impl::ARRAY_INSERT, field,
+                                val.get<common::Value>());
       return *this;
     }
     CATCH_AND_WRAP
@@ -555,11 +552,8 @@ public:
   CollectionModify& arrayAppend(const Field &field, const Value &val)
   {
     try {
-      get_impl()->add_operation(
-        Impl::ARRAY_APPEND,
-        field,
-        (const common::Value&)val
-      );
+      get_impl()->add_operation(Impl::ARRAY_APPEND, field,
+                                val.get<common::Value>());
       return *this;
     }
     CATCH_AND_WRAP

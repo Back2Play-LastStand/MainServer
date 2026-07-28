@@ -1,6 +1,7 @@
 {
   "dependencies": [
     "mysql-connector-cpp",
-    "tbb"
+    "tbb",
+    "protobuf"
   ]
 }
